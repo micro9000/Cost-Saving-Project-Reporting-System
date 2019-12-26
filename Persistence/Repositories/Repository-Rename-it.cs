@@ -29,15 +29,6 @@ namespace Persistence.Repositories
 		}
 
 
-		//public static DbConnection GetSOBOpenConnection ()
-		//{
-		//	var connection = new MySqlConnection("Server=PHSM01WS012; Port=3306;Database=sob_db;Uid=automation;password=automation_APPs2017!;Persist Security Info=True;Allow Zero Datetime=True;");
-		//	connection.Open();
-
-		//	return connection;
-		//}
-
-
 		public int Add (TEntity entity)
 		{
 			var id = 0;
