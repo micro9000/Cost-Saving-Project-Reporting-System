@@ -1,0 +1,1431 @@
+﻿@model Domain.Proposal
+
+@{
+	ViewBag.Title = "Details";
+	ViewBag.page_id = "proposal_details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+@{
+	string profile_url = "http://mysite.onsemi.com/User%20Photos/Profile%20Pictures/"+ Model.EmpFFID +"_LThumb.jpg";
+
+	decimal dollarImpact = 0;
+	if (Model.DollarImpact != null || Model.DollarImpact > 0)
+	{
+		dollarImpact = Model.DollarImpact;
+	}
+
+	decimal totalDollarImpact = dollarImpact * Model.NumberOfMonthsToBeActive;
+
+	string expectedStartDate = "";
+	if (Model.ExpectedStartDate != null && Model.ExpectedStartDate != (new DateTime(0001, 01, 01)))
+	{
+		expectedStartDate = Model.ExpectedStartDate.ToString("yyyy-MM-dd");
+	}
+}
+
+
+<div class="z-depth-1 reports-list-tb " style="background: white; width: 85%; margin: auto;">
+	<div class="row">
+
+		<div class="col l12 m12 s12 blue-grey darken-3" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+			<div class="col l12 s12 m12">
+				<h4 style="color: white;">@ESAVINGS_v1.Resources.Details.Details.ProposalDetailsHeader - @Html.DisplayFor(m => m.OAStatusIndicator)</h4>
+				@if (Model.IsBPI == 1)
+				{
+					<p style="color: white;">@ESAVINGS_v1.Resources.Details.Details.MarkAsBPI</p>
+				}
+
+				@if (ViewBag.IsUserLoggedIn == true)
+				{
+					if ((Model.OAStatus.ToString() == ViewBag.status_PROJECT_PROPOSAL && Model.EmpFFID == ViewBag.UserFFID) ||
+						(
+							( // Allowed status
+								Model.OAStatus.ToString() == ViewBag.status_PROJECT_PROPOSAL ||
+								Model.OAStatus.ToString() == ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS ||
+								Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
+								Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS
+							) &&
+							( // allowed users with their permissions
+								(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true) || // Normal COST-ANALYST
+								(ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) || // Normal FINANCE
+								(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.IsUserMaster == true) || // Cost-Analyst Master approver
+								(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true) // Finance Master approver
+							)
+						))
+					{
+
+						<div id="updateProposalWarningModal" class="modal">
+							<div class="modal-content">
+								<div style="text-align:center; font-family:Tahoma, Geneva, sans-serif; letter-spacing: 3px;">
+									<img src="~/Assets/imgs/info.png" alt="Information" style="width: 140px; height: auto;" />
+									<p>@ESAVINGS_v1.Resources.Details.Details.updateProposalWarningMsg</p>
+									<a class="waves-effect waves-light btn-large" href="~/Home/Proposal/@ViewBag.proposalID">@ESAVINGS_v1.Resources.Details.Details.ContinueUpdateBtnLbl</a>
+									<a class="modal-close waves-effect waves-light btn-large">@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl</a>
+								</div>
+							</div>
+						</div>
+
+						<a class="btn btn-small waves-effect waves-light" id="btn_lets_update_proposal_details">
+							@ESAVINGS_v1.Resources.Details.Details.UpdateProposalbtn
+							<i class="material-icons left">edit</i>
+						</a>
+					}
+				}
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="padding: 20px;">
+			<div class="row">
+				<div class="col s12">
+					<ul class="tabs">
+						<li class="tab col s3"><a class="active" href="#current-and-proposal-details">@ESAVINGS_v1.Resources.Details.Details.OverviewTabHeader</a></li>
+						<li class="tab col s3"><a href="#attachments">@ESAVINGS_v1.Resources.Details.Details.AttachmentTabHeader</a></li>
+						<li class="tab col s3"><a href="#action-items">@ESAVINGS_v1.Resources.Details.Details.ActionItemTabHeader</a></li>
+						<li class="tab col s3"><a href="#initial-approval">@ESAVINGS_v1.Resources.Details.Details.ApprovalStatusTabHeader</a></li>
+					</ul>
+				</div>
+				<div id="current-and-proposal-details" class="col s12">
+					<br />
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<div class="card" style="border-left: 5px solid #37474f; margin: 0;">
+								<div class="card-content">
+
+									<div class="row">
+
+
+										<div class="col l12 m12 s12">
+
+											<div class="row">
+
+
+												<div class="col l6 m6 s6">
+
+													<!-- Employee who submit proposal -->
+													<div class="input-field">
+														<div>
+															@if (Model.OAStatus.ToString() != ViewBag.status_INVALID &&
+															Model.OAStatus.ToString() != ViewBag.status_EXISTING_PROJECT &&
+															Model.OAStatus.ToString() != ViewBag.status_DUPLICATE_ENTRY)
+															{
+																<img src="@profile_url" style="width: 150px; height: auto;" alt="@Html.DisplayFor(m => m.SubmittedBy)" /><br />
+															}
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.EmployeeNameLbl:</label>
+															<div class="details-content" style="font-size: 30px; font-weight: bold;">@Html.DisplayFor(m => m.SubmittedBy)</div>
+														</div>
+													</div>
+
+													<!-- Dollar Impact -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.DollarImpactLbl ($/@ESAVINGS_v1.Resources.Details.Details.MonthLbl):</label>
+
+															@if (dollarImpact == 0)
+															{
+																<div class="details-content">TBD</div>
+															}
+															else
+															{
+																<div class="details-content">@dollarImpact.ToString("C")</div>
+															}
+
+														</div>
+													</div>
+
+													<!-- Number of months to be active -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.NumberOfMonthsToBeActiveLbl:</label>
+															@if (dollarImpact == 0)
+															{
+																<div class="details-content">TBD</div>
+															}
+															else
+															{
+																<div class="details-content">@Html.DisplayFor(m => m.NumberOfMonthsToBeActive)</div>
+															}
+
+														</div>
+													</div>
+
+													<!-- Total dollar impact -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.TotalDollarImpactLbl ($/@ESAVINGS_v1.Resources.Details.Details.MonthLbl * @ESAVINGS_v1.Resources.Details.Details.NumberOfMonthsToBeActiveLbl)</label>
+
+															@if (dollarImpact == 0)
+															{
+																<div class="details-content">TBD</div>
+															}
+															else
+															{
+																<div class="details-content">@totalDollarImpact.ToString("C")</div>
+															}
+														</div>
+													</div>
+
+												</div>
+
+												<div class="col l6 m6 s6">
+													<!-- Date submitted -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.DateSubmittedLbl:</label>
+															<div class="details-content">@Model.SubmittedDate.ToLongDateString()</div>
+														</div>
+													</div>
+													<br />
+													<!-- Ticket Number -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.TicketNumberLbl:</label>
+															<div class="details-content">@Html.DisplayFor(m => m.ProposalTicket)</div>
+														</div>
+													</div>
+													<br />
+													<!-- Department / area beneficiary -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.DepartmentAreaBeneficiaryLbl:</label>
+															<div class="details-content">@Html.DisplayFor(m => m.AreaDeptBeneficiary)</div>
+														</div>
+													</div>
+													<br />
+													<!-- Project type -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.ProjectTypeLbl:</label>
+															<div class="details-content">
+																@Html.DisplayFor(m => m.ProjectTypeIndicator)
+															</div>
+														</div>
+													</div>
+													<br />
+													<!-- Expected start date -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.ExpectedStartDateLbl:</label>
+															<div class="details-content">@expectedStartDate</div>
+														</div>
+													</div>
+
+												</div>
+
+											</div>
+
+										</div>
+
+
+										<div class="col l12 m12 s12">
+											<div class="input-field">
+												<!-- Project title -->
+												<div>
+													<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.ProjectTitleLbl:</label>
+													<div class="details-content">@Html.DisplayFor(m => m.ProjectTitle)</div>
+												</div>
+											</div>
+
+											<div class="input-field">
+												<!-- Additoinal description -->
+												<div>
+													<label class="details-label">@ESAVINGS_v1.Resources.Details.Details.AdditionalDescriptionLbl:</label>
+													<div class="details-content" style="white-space: pre-wrap">@Html.DisplayFor(m => m.Remarks)</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+
+						<div class="col s12 m12 l6">
+							<div class="card" style="border-left: 5px solid #ee6e73; margin: 0;">
+								<div class="card-image">
+
+									<!-- Current image -->
+									@if (Model.CurrentImgs != null)
+									{
+										if (Model.CurrentImgs.ToList().Count > 1)
+										{
+											<div class="carousel carousel-slider">
+												@foreach (var item in Model.CurrentImgs)
+												{
+													<a class="carousel-item" href="#@item.Id"><img src="@Model.SiteBaseURL@Model.CurrentImgsPath@item.ServerFileName"></a>
+												}
+											</div>
+										}
+										else if (Model.CurrentImgs.ToList().Count == 1)
+										{
+											foreach (var item in Model.CurrentImgs)
+											{
+												<img class="materialboxed" data-caption="@Html.DisplayFor(m => m.CurrentDescription)" id="image_for_current" src="@Model.SiteBaseURL@Model.CurrentImgsPath@item.ServerFileName">
+											}
+										}
+										<a class="btn-floating halfway-fab waves-effect waves-light red" id="view_current_imgs"><i class="material-icons">photo_album</i></a>
+									}
+									else
+									{
+										<img class="materialboxed" id="image_for_current" src="~/Assets/imgs/no-image-available.png">
+									}
+								</div>
+
+								<!-- Current description -->
+								<div class="card-content red lighten-5">
+									<span class="card-title" style="color: #ee6e73;">
+										@ESAVINGS_v1.Resources.Details.Details.CurrentDescLbl
+										@if (Model.CurrentImgs != null)
+										{
+											if (Model.CurrentImgs.ToList().Count > 1)
+											{
+												<a class="waves-effect waves-light btn-small">View Images</a>
+											}
+										}
+									</span>
+
+									<blockquote>
+										@Html.DisplayFor(m => m.CurrentDescription)
+									</blockquote>
+								</div>
+							</div>
+						</div>
+
+						<div class="col s12 m12 l6">
+							<div class="card" style="border-left: 5px solid #03a9f4; margin: 0;">
+								<div class="card-image">
+									<!-- Proposal image -->
+									@if (Model.ProposalImgs != null)
+									{
+										if (Model.ProposalImgs.ToList().Count > 1)
+										{
+											<div class="carousel carousel-slider">
+												@foreach (var item in Model.ProposalImgs)
+												{
+													<a class="carousel-item" href="#@item.Id"><img src="@Model.SiteBaseURL@Model.ProposalImgsPath@item.ServerFileName"></a>
+												}
+											</div>
+										}
+										else if (Model.ProposalImgs.ToList().Count == 1)
+										{
+											foreach (var item in Model.ProposalImgs)
+											{
+												<img class="materialboxed" data-caption="@Html.DisplayFor(m => m.ProposalDescription)" id="image_for_current" src="@Model.SiteBaseURL@Model.ProposalImgsPath@item.ServerFileName">
+											}
+										}
+										<a class="btn-floating halfway-fab waves-effect waves-light red" id="view_proposal_imgs"><i class="material-icons">photo_album</i></a>
+									}
+									else
+									{
+										<img class="materialboxed" id="image_for_proposal" src="~/Assets/imgs/no-image-available.png">
+									}
+
+								</div>
+								<!-- Proposal description -->
+								<div class="card-content light-blue lighten-5">
+									<span class="card-title" style="color: #03a9f4">@ESAVINGS_v1.Resources.Details.Details.ProposalDescLb</span>
+
+									<blockquote style="border-left: 5px solid #03a9f4;">
+										@Html.DisplayFor(m => m.ProposalDescription)
+									</blockquote>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+				<div id="attachments" class="col s12">
+					<br />
+					<div class="row">
+						<div class="col l12 s12 m12">
+							<div class="card" style="border-left: 5px solid #37474f; margin: 0;">
+
+								<div class="card-content">
+
+									<!-- Attachment header -->
+
+									<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+										<h5>@ESAVINGS_v1.Resources.Details.Details.AttachmentSectionHeader</h5>
+									</div>
+
+									<table>
+										<thead>
+											<tr>
+												<th style="width: 5%;">#</th>
+												<th>@ESAVINGS_v1.Resources.Details.Details.FileNameTbHeader</th>
+												<th>@ESAVINGS_v1.Resources.Details.Details.AttachedByTbHeader</th>
+											</tr>
+										</thead>
+
+										<tbody>
+
+											@if (Model.SupportingDocs != null)
+											{
+												if (Model.SupportingDocs.ToList().Count > 0)
+												{
+													int counter = 1;
+
+													foreach (var item in Model.SupportingDocs)
+													{
+														<tr>
+															<td>@counter</td>
+															<td><a href="~/ESavings/DownloadSupportingDocument?fileNameInServer=@item.ServerFileName&origFileName=@item.OrigFileName">@item.OrigFileName</a></td>
+															<td>@item.AttachedBy</td>
+														</tr>
+
+														counter += 1;
+													}
+												}
+												else
+												{
+													<tr>
+														<td colspan="3">@ESAVINGS_v1.Resources.Details.Details.NoAttachMsg</td>
+													</tr>
+												}
+											}
+											else
+											{
+												<tr>
+													<td colspan="3">@ESAVINGS_v1.Resources.Details.Details.NoAttachMsg</td>
+												</tr>
+											}
+
+
+
+										</tbody>
+									</table>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="action-items" class="col s12">
+
+					@*@if (ViewBag.IsUserLoggedIn == true){}
+						@if (Model.OAStatus.ToString() != ViewBag.status_INVALID){}*@
+					
+
+					<!-- Assign action Modal -->
+					<div id="assign-action-item-modal" class="modal modal-fixed-footer">
+						<div class="progress" id="verifier-assign-action-to-owner-loader" style="margin: 0; display: none;">
+							<div class="indeterminate"></div>
+						</div>
+						<div class="modal-content">
+							<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+								<h4 class="header">@ESAVINGS_v1.Resources.Details.Details.AssignActionOwnerModalHeader</h4>
+							</div>
+
+							<div class="row">
+								<div class="col s12 m12 l12">
+									<!-- Needed action -->
+									<div class="input-field">
+										<i class="material-icons prefix">message</i>
+										<textarea id="proposal_action_description" class="materialize-textarea"></textarea>
+										<label for="proposal_action_description">@ESAVINGS_v1.Resources.Details.Details.NeededActionLbl</label>
+									</div>
+								</div>
+								<div class="col s12 m12 l12">
+									<!-- Search employee -->
+									<div class="input-field">
+										<i class="material-icons prefix">search</i>
+										<input id="search_action_owner" type="text" class="validate">
+										<label for="search_action_owner">@ESAVINGS_v1.Resources.Details.Details.SearchEmployeeLbl</label>
+									</div>
+								</div>
+							</div>
+							<div class="container">
+								<!-- Search employee results -->
+								<div class="row">
+									<strong>@ESAVINGS_v1.Resources.Details.Details.ChooseActionOwnerLbl:</strong><br />
+									<div class="col l8 m8 s12" id="search_employee_list">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+
+							<!-- cancel button -->
+							<button class="btn waves-effect waves-light red accent-2">
+								@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl
+							</button>
+							
+							<!-- Assign action button -->
+							<button class="btn waves-effect waves-light " id="btn_assign_action_to_employee">
+								@ESAVINGS_v1.Resources.Details.Details.AssignBtnLbl
+							</button>
+
+						</div>
+					</div>
+
+					<div class="row">
+						<br />
+						<div class="col s12 m12 l12" style="background-color:#e0f2f1 !important; padding: 20px;">
+
+							<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+								<!-- Assigned section header -->
+								<h5>@ESAVINGS_v1.Resources.Details.Details.AssigneedSectionHeader</h5>
+
+								@if (ViewBag.IsUserLoggedIn == true)
+								{
+									if ((
+										(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true) || // Normal COST-ANALYST
+										(ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) || // Normal FINANCE
+										(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.IsUserMaster == true) || // Cost-Analyst Master approver
+										(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true) // Finance Master approver
+										) &&
+										Model.OAStatus.ToString() != ViewBag.status_INVALID &&
+										//Model.OAStatus.ToString() != ViewBag.status_COST_AVOIDANCE &&
+										Model.OAStatus.ToString() != ViewBag.status_EXISTING_PROJECT &&
+										Model.OAStatus.ToString() != ViewBag.status_DUPLICATE_ENTRY &&
+										Model.OAStatus.ToString() != ViewBag.status_COST_FUNNEL_EVALUATING &&
+										Model.OAStatus.ToString() != ViewBag.status_REALIZATION)
+									{
+										// Assign action button
+										<a class="waves-effect waves-light modal-trigger btn-small"
+										   data-target="assign-action-item-modal">
+												<i class="material-icons left">person_add</i>@ESAVINGS_v1.Resources.Details.Details.AssignActionBtnLbl
+										</a>
+									}
+								}
+
+								<br />
+
+							</div>
+
+
+							@{
+								string[] approvalStatus = {
+										ESAVINGS_v1.Resources.Details.Details.ApprovalStatus_NoVerification,
+										ESAVINGS_v1.Resources.Details.Details.ApprovalStatus_VerifiedClosed,
+										ESAVINGS_v1.Resources.Details.Details.ApprovalStatus_VerifyNotDone
+								};
+							}
+
+
+							<ul class="collapsible expandable">
+
+								@if (Model.NeededActions != null)
+								{
+									foreach (var action in Model.NeededActions)
+									{
+										var approvers = action.Approvers;
+										<li>
+											<div class="collapsible-header"><i class="material-icons">star</i>@action.OwnerFullname / @action.OwnerFFID | @approvalStatus[action.IsClosed] <br /><br /> @action.NeededAction</div>
+											<div class="collapsible-body">
+												<div class="row">
+
+													<div class="col l12 s12 m12 ">
+														<div class="progress" id="approver-verification-loader" style="margin: 0; display: none;">
+															<div class="indeterminate"></div>
+														</div>
+														<div class="card-panel" style="border-left: 5px solid #4db6ac; margin: 0;">
+
+															<div class="row">
+
+																<div class="col l12 s12 m12">
+																	<div style="text-align: right">
+
+																		@if (ViewBag.IsUserLoggedIn == true)
+																		{
+																			foreach (var approver in approvers)
+																			{
+																				if (ViewBag.UserType == ViewBag.userType_costAnalyst &&
+																					ViewBag.UserIsCostAnalystOnCurrentProposal == true &&
+																					ViewBag.UserFFID == approver.ApproverFFID && // TODO: finance has no permission to edit
+																					(Model.OAStatus.ToString() != ViewBag.status_INVALID &&
+																					//Model.OAStatus.ToString() != ViewBag.status_COST_AVOIDANCE &&
+																					Model.OAStatus.ToString() != ViewBag.status_EXISTING_PROJECT &&
+																					Model.OAStatus.ToString() != ViewBag.status_DUPLICATE_ENTRY &&
+																					Model.OAStatus.ToString() != ViewBag.status_COST_FUNNEL_EVALUATING &&
+																					Model.OAStatus.ToString() != ViewBag.status_REALIZATION))
+																				{
+																					<a class="btn-small" style="padding: 5px;"><i class="material-icons center" style="line-height: normal">edit</i></a>
+																					break;
+																				}
+																			}
+																		}
+
+																	</div>
+																</div>
+																<!-- Action description -->
+																<div class="input-field col l12 m12 s12">
+																	<div>
+																		<label>@ESAVINGS_v1.Resources.Details.Details.ActionDescriptionLbl:</label>
+																		<div>@action.NeededAction</div>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+																<!-- Action owner -->
+																<div class="input-field col l6 m6 s12">
+																	<div>
+																		<label>@ESAVINGS_v1.Resources.Details.Details.OwnerNameLbl:</label>
+																		<div>@action.OwnerFullname / @action.OwnerFFID</div>
+																	</div>
+																</div>
+																<!-- Assigned date -->
+																<div class="input-field col l6 m6 s12">
+																	<div>
+																		<label>@ESAVINGS_v1.Resources.Details.Details.AssignedDatelbl:</label>
+																		<div>@action.DateAssign.ToLongDateString()</div>
+																	</div>
+																</div>
+
+															</div>
+
+															@if (ViewBag.IsUserLoggedIn == true && ViewBag.UserFFID == action.OwnerFFID &&
+																	(Model.OAStatus.ToString() == ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS ||
+																	Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
+																	Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
+																	Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING ||
+																	Model.OAStatus.ToString() == ViewBag.status_ACTIVE))
+															{
+																<div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+																	<div class="col l12 s12 m12">
+																		<div class="input-field">
+																			<!-- Owner remarks -->
+																			<textarea id="assignees_remarks" class="materialize-textarea">@action.OwnerRemarks</textarea>
+																			<label for="assignees_remarks">@ESAVINGS_v1.Resources.Details.Details.OwnersRemarksLbl</label>
+																		</div>
+																	</div>
+
+																	<!-- Supporting documents -->
+																	<div class="col l12 m12 s12">
+																		<div class="input-field">
+																			<strong class="header">@ESAVINGS_v1.Resources.Details.Details.SupportingDocumentsLbl</strong>
+																			<a class="btn-floating btn-small waves-effect waves-light red btn-browse-supporting-documents"><i class="material-icons">attach_file</i></a>
+																			<input type="file" class="hide-file-button" id="supporting_documents" multiple />
+																			<br />
+																		</div>
+																		<div class="col l12 m12 s12" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+																			<div id="action_supporting_documents"></div>
+																		</div>
+																	</div>
+
+																	<!-- Save button -->
+																	<div class="col l12 s12 m12">
+																		<div style="text-align: right">
+																			<a class="waves-effect waves-light btn-small pulse btn-action-owner-save-response"
+																			   data-action-id="@action.Id">
+																				<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
+																			</a>
+																		</div>
+																	</div>
+
+																</div>
+															}
+															else
+															{
+																<!-- Remarks -->
+																<div class="row" style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+																	<div class="input-field col l12 m12 s12">
+																		<div>
+																			<label>@ESAVINGS_v1.Resources.Details.Details.OwnersRemarksLbl:</label>
+																			<div>@action.OwnerRemarks</div>
+																		</div>
+																	</div>
+																</div>
+															}
+
+															@foreach (var approver in approvers)
+															{
+
+																if (ViewBag.IsUserLoggedIn == true &&
+																		(
+																			(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true) || // Normal Cost-Analyst
+																			(ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true)
+																			&& ViewBag.UserFFID == approver.ApproverFFID && action.IsClosed == 0
+																		) || ViewBag.IsUserMaster == true
+																	)
+																{ // Model.OAStatus.ToString() == ViewBag.status_IN_PROGRESS
+																	<div class="card-panel" style="border-left: 5px solid #cddc39; margin: 0;">
+																		<div class="row">
+																			<!-- Approver name -->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ApproverNameLbl:</label>
+																					<div>@approver.ApproverFullname / @approver.ApproverFFID</div>
+																				</div>
+																			</div>
+
+																			<!-- Approval status -->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationStatusLbl:</label>
+																					<div>@approvalStatus[approver.ApprovalStatus]</div>
+																				</div>
+																			</div>
+
+																			<!-- Date responded -->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationDateLbl:</label>
+																					<div>@approver.DateResponse</div>
+																				</div>
+																			</div>
+
+																			<!-- Approver remarks -->
+																			<div class="col l12 s12 m12">
+																				<div class="input-field">
+																					<textarea id="verifierRemarks_@action.Id" class="materialize-textarea">@approver.Remarks</textarea>
+																					<label for="verifierRemarks_@action.Id">@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl</label>
+																				</div>
+																			</div>
+																		</div>
+
+																		<!-- BUttons -->
+																		<div style="text-align: right">
+																			<strong>Verification status: </strong>
+																			<a class="waves-effect waves-light btn-small pulse btn-approver-action-verification"
+																			   data-action-id="@action.Id" data-status="1">
+																				<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActionVerifyDoneBtnLbl
+																			</a>
+																			<a class="waves-effect waves-light btn-small red accent-2 btn-approver-action-verification"
+																			   data-action-id="@action.Id" data-status="2">
+																				<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.ActionVerifyNotDoneBtnLbl
+																			</a>
+																		</div>
+
+																	</div>
+																}
+																else
+																{
+																	<div class="card-panel" style="border-left: 5px solid #009688;">
+																		<div class="row">
+
+																			<!-- Approver name -->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ApproverNameLbl:</label>
+																					<div>@approver.ApproverFullname / @approver.ApproverFFID</div>
+																				</div>
+																			</div>
+
+																			<!-- Approval status -->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationStatusLbl:</label>
+																					<div>@approvalStatus[approver.ApprovalStatus]</div>
+																				</div>
+																			</div>
+
+																			<!-- Action verification date-->
+																			<div class="input-field col l4 m4 s4">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationDateLbl:</label>
+																					<div>@approver.DateResponse.ToLongDateString()</div>
+																				</div>
+																			</div>
+
+																			<!-- Approver remarks -->
+																			<div class="col l12 s12 m12">
+																				<div>
+																					<label>@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl:</label>
+																					<div>@approver.Remarks</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																}
+
+															}
+
+														</div>
+													</div>
+
+												</div>
+
+											</div>
+
+
+										</li>
+
+									}
+								}
+
+
+
+
+							</ul>
+
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+				<div id="initial-approval" class="col s12">
+					<br />
+
+					@*
+						*************************************************************************************
+						Department Cost Analyst section start here
+					*@
+
+					<!-- Reassign cost-analyst approver modal -->
+					<div id="reassign-project-to-cost-analyst-modal" class="modal modal-fixed-footer">
+						<div class="progress" id="verifier-reassign-cost-analyst-loader" style="margin: 0; display: none;">
+							<div class="indeterminate"></div>
+						</div>
+						<div class="modal-content">
+							<!-- Header -->
+							<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+								<h4 class="header">@ESAVINGS_v1.Resources.Details.Details.ChangeCostAnalystLbl</h4>
+							</div>
+							<div class="row">
+								<!-- Remarks -->
+								<div class="col s12 m12 l12">
+									<div class="input-field">
+										<i class="material-icons prefix">message</i>
+										<textarea id="current_cost_analyst_remarks" class="materialize-textarea"></textarea>
+										<label for="current_cost_analyst_remarks">@ESAVINGS_v1.Resources.Details.Details.CurrentCostAnalystRemarksLbl</label>
+									</div>
+								</div>
+								<!-- select cost-analyst  -->
+								<div class="col s12 m12 l12">
+									<div class="input-field">
+										<i class="material-icons prefix">person</i>
+										<select id="cost_analyst_approver">
+											<option value="" selected>@ESAVINGS_v1.Resources.Details.Details.ChooseCostAnalystApproverLbl</option>
+											@if (ViewBag.CostAnalystList != null)
+											{
+												foreach (var ca in ViewBag.CostAnalystList)
+												{
+													<option value="@ca.FFID">@ca.FullName</option>
+												}
+											}
+										</select>
+										<label>@ESAVINGS_v1.Resources.Details.Details.CostAnalystApproverLbl</label>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- buttons -->
+						<div class="modal-footer">
+
+							<button class="btn waves-effect waves-light red accent-2">
+								@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl
+							</button>
+							@*btn-verifier-assign-action-to-owner*@
+							<button class="btn waves-effect waves-light " id="btn_assign_project_to_new_cost_analyst">
+								@ESAVINGS_v1.Resources.Details.Details.AssignBtnLbl
+							</button>
+
+						</div>
+					</div>
+
+					@{
+						// Verification status array
+						string[] isVerifyStatus = {
+							ESAVINGS_v1.Resources.Details.Details.ProposalApprover_NoVerification,
+							ESAVINGS_v1.Resources.Details.Details.ProposalApprover_Verified,
+							ESAVINGS_v1.Resources.Details.Details.ProposalApprover_Disapproved,
+							ESAVINGS_v1.Resources.Details.Details.ProposalApprover_Saved,
+							ESAVINGS_v1.Resources.Details.Details.ApprovalStatus_VerifiedClosed
+						};
+					}
+
+					<div class="z-depth-1">
+						<div class="progress" id="cost-analyst-verification-loader" style="margin: 0; display: none;">
+							<div class="indeterminate"></div>
+						</div>
+						<div class="row">
+							<div class="col s12 m12 l12" style="background-color: #e1f5fe !important; padding: 20px;">
+								<!-- Department cost analyst section -->
+								<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+									<h5>@ESAVINGS_v1.Resources.Details.Details.DeptCostAnalystSectionHeader</h5>
+								</div>
+
+								@foreach (var costAnalyst in Model.CostAnalysts)
+								{
+									string verifyDate = (costAnalyst.VerifyDate.ToString() != "1/1/2000 1:01:01 AM") ? costAnalyst.VerifyDate.ToLongDateString() : "";
+
+									<div class="card-panel" style="border-left: 5px solid #03a9f4;">
+										<div class="row">
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<!-- Cost analyst approver-->
+													<label>@ESAVINGS_v1.Resources.Details.Details.CostAnalystApproverLbl:</label>
+													<!-- Reassign button -->
+													<div>
+														@costAnalyst.CostAnalystInfo.FullName
+
+														@if (ViewBag.IsUserLoggedIn == true && (Model.OAStatus.ToString() == ViewBag.status_PROJECT_PROPOSAL ||
+														Model.OAStatus.ToString() == ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS) &&
+														(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true || // Normal Cost-Analyst
+														(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.IsUserMaster == true))) // Cost Analyst master approver
+														{
+															<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-cost-analyst" data-current-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id" style="padding: 0 5px;">
+																<i class="material-icons left" style="margin-right: 0;">edit</i>
+															</a>
+														}
+													</div>
+												</div>
+											</div>
+											<!-- Verification status -->
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<label>@ESAVINGS_v1.Resources.Details.Details.CostAnalystVerifiedStatusLbl:</label>
+													<div>@isVerifyStatus[costAnalyst.IsVerify]</div>
+												</div>
+											</div>
+											<!-- Verified date -->
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<label>@ESAVINGS_v1.Resources.Details.Details.CostAnalystVerifiedDateLbl:</label>
+													<div>@verifyDate</div>
+												</div>
+											</div>
+										</div>
+
+										@if (ViewBag.IsUserLoggedIn == true && (Model.OAStatus.ToString() == ViewBag.status_PROJECT_PROPOSAL ||
+												Model.OAStatus.ToString() == ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS) &&
+												(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true || // Normal Cost-Analyst
+												(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.IsUserMaster == true))) // Cost Analyst master approver
+										{// if the user is cost analyst and the proposal is under on the list of dept code of the cost analyst
+											<div class="row">
+												<div class="col l12 s12 m12">
+													<!-- Cost analyst remarks -->
+													<div class="input-field">
+														<textarea id="deptCostAnalystComments_@costAnalyst.Id" class="materialize-textarea">@costAnalyst.Remarks</textarea>
+														<label for="deptCostAnalystComments_@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl</label>
+													</div>
+
+													<!-- Project or Benefit type -->
+													<label for="projectType_@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.ProjectTypeLbl</label>
+													<div id="projectType_@costAnalyst.Id">
+
+														@foreach (var ptype in ViewBag.ProjectTypes)
+														{
+															if (ptype.Value != "NA")
+															{
+																if (ptype.Key == Model.ProjectType)
+																{
+																	<label>
+																		<input name="project_type_@costAnalyst.Id" data-project-type="@ptype.Key" type="radio" checked />
+																		<span>@ptype.Value</span>
+																	</label>
+																}
+																else
+																{
+																	<label>
+																		<input name="project_type_@costAnalyst.Id" data-project-type="@ptype.Key" type="radio" />
+																		<span>@ptype.Value</span>
+																	</label>
+																}
+															}
+
+														}
+													</div><br />
+
+													<!-- Dollar impact -->
+													<div class="input-field">
+														<input id="dollarImpact_@costAnalyst.Id" value="@dollarImpact" type="text">
+														<label for="dollarImpact_@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.DollarImpactLbl ($/@ESAVINGS_v1.Resources.Details.Details.MonthLbl):</label>
+													</div>
+
+													<!-- Expected start date-->
+													<div class="input-field">
+														<input id="expectedStartDate_@costAnalyst.Id" type="text" class="datepicker" value="@expectedStartDate" autocomplete="off">
+														<label for="expectedStartDate_@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.ExpectedStartDateLbl</label>
+													</div>
+
+													<!--Number of months to be active -->
+													<div class="input-field">
+														<input id="numberOfMonthsToBeActive_@costAnalyst.Id" type="text" value="@Model.NumberOfMonthsToBeActive" autocomplete="off">
+														<label for="numberOfMonthsToBeActive_@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.NumberOfMonthsToBeActiveLbl</label>
+													</div>
+
+													<!-- Choose Finance approver -->
+													<div class="input-field">
+														<select id="finance_approver_@costAnalyst.Id">
+															<option value="" selected>@ESAVINGS_v1.Resources.Details.Details.ChooseFinanceApproverLbl</option>
+															@if (ViewBag.FinanceList != null)
+															{
+																if (Model.FinanceApproval.Count > 0)
+																{
+																	foreach (var finance in ViewBag.FinanceList)
+																	{
+																		if (Model.FinanceApproval[0].FinanceApproverInfo.FFID == finance.FFID)
+																		{
+																			<option value="@finance.FFID" selected>@finance.FullName</option>
+																		}
+																		else
+																		{
+																			<option value="@finance.FFID">@finance.FullName</option>
+																		}
+
+																	}
+																}
+																else
+																{
+																	foreach (var finance in ViewBag.FinanceList)
+																	{
+																		<option value="@finance.FFID">@finance.FullName</option>
+																	}
+																}
+
+
+															}
+														</select>
+														<label> @ESAVINGS_v1.Resources.Details.Details.FinanceApproverLbl</label>
+													</div>
+
+													<!-- Supporting documents -->
+													<div class="input-field">
+														<strong class="header">@ESAVINGS_v1.Resources.Details.Details.SupportingDocumentsLbl</strong>
+														<a class="btn-floating btn-small waves-effect waves-light red btn-browse-cost-analyst-supporting-documents"><i class="material-icons">attach_file</i></a>
+														<input type="file" class="hide-file-button" id="cost_analyst_supporting_documents_file_browser" multiple />
+														<br />
+													</div>
+													<div class="col l12 m12 s12" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+														<div id="cost_analyst_supporting_documents"></div>
+													</div>
+
+
+													<div style="text-align: right">
+														<!-- Finance approval button -->
+														<a class="btn waves-effect waves-light btn-small green btn-cost-analyst-verification"
+														   data-oa-status="@ViewBag.status_COST_FUNNEL_IDENTIFIED"
+														   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+														   data-proposal-cost-analyst-verification-id="@costAnalyst.Id"
+														   data-status="1">
+															<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.FinanceApprovalLbl
+														</a>
+
+														<!-- Save buton -->
+														<a class="btn waves-effect waves-light btn-small btn-cost-analyst-verification"
+														   data-oa-status="@ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS"
+														   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+														   data-proposal-cost-analyst-verification-id="@costAnalyst.Id"
+														   data-status="3">
+															<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
+														</a>
+
+														<!-- Disapproved buttons -->
+														<a class="btn dropdown-trigger waves-effect waves-light btn-small red accent-2"
+														   data-target='disapproved_dropdown_btn_list'>
+															<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.ProposalApprover_Disapproved
+														</a>
+
+														<ul id='disapproved_dropdown_btn_list' class='dropdown-content'>
+															<li> <!--Cancel button-->
+																<a href="#!" class="btn-cost-analyst-verification"
+																   data-status="2" data-oa-status="@ViewBag.status_CANCELED"
+																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()</a>
+															</li>
+															<li> <!-- Invalid button -->
+																<a href="#!" class="btn-cost-analyst-verification"
+																   data-status="2" data-oa-status="@ViewBag.status_INVALID"
+																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.InvalidBtnLbl.ToUpper()</a>
+															</li>
+															<li> <!-- Existing Project button -->
+																<a href="#!" class="btn-cost-analyst-verification"
+																   data-status="2" data-oa-status="@ViewBag.status_EXISTING_PROJECT"
+																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.ExistingProjectBtnLbl.ToUpper()</a>
+															</li>
+															<li> <!-- Duplicate entry button -->
+																<a href="#!" class="btn-cost-analyst-verification"
+																   data-status="2" data-oa-status="@ViewBag.status_DUPLICATE_ENTRY"
+																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
+																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.DuplicateEntryBtnLbl.ToUpper()</a>
+															</li>
+														</ul>
+
+													</div>
+												</div>
+											</div>
+										}
+										else
+										{
+											<!-- Cost analyst remarks -->
+											<div class="row">
+												<div class="input-field col l12 m12 s12">
+													<div>
+														<label>@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl:</label>
+														<div style="white-space:pre-wrap">@costAnalyst.Remarks</div>
+													</div>
+												</div>
+											</div>
+										}
+									</div>
+								}
+							</div>
+						</div>
+					</div>
+
+
+					@*
+						*************************************************************************************
+						Finance section start here
+					*@
+
+
+					@if (Model.FinanceApproval.Count > 0)
+					{
+
+						<!-- Reassign finance approver modal-->
+						<div id="reassign-project-to-finance-modal" class="modal modal-fixed-footer">
+							<div class="progress" id="verifier-assign-action-to-owner-loader" style="margin: 0; display: none;">
+								<div class="indeterminate"></div>
+							</div>
+							<div class="modal-content">
+								<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+									<h4 class="header">@ESAVINGS_v1.Resources.Details.Details.ChangeFinanceLbl</h4>
+								</div>
+								<div class="row">
+									<!-- Finance remarks -->
+									<div class="col s12 m12 l12">
+										<div class="input-field">
+											<i class="material-icons prefix">message</i>
+											<textarea id="current_finance_remarks" class="materialize-textarea"></textarea>
+											<label for="current_finance_remarks">@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl</label>
+										</div>
+									</div>
+									<!-- Choose finance approver -->
+									<div class="col s12 m12 l12">
+										<div class="input-field">
+											<i class="material-icons prefix">person</i>
+											<select id="finance_approver">
+												<option value="" selected>@ESAVINGS_v1.Resources.Details.Details.ChooseFinanceApproverLbl</option>
+												@if (ViewBag.FinanceList != null)
+												{
+													foreach (var finance in ViewBag.FinanceList)
+													{
+														<option value="@finance.FFID">@finance.FullName</option>
+													}
+												}
+											</select>
+											<label>@ESAVINGS_v1.Resources.Details.Details.FinanceApproverLbl</label>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<!-- buttons -->
+							<div class="modal-footer">
+
+								<button class="btn waves-effect waves-light red accent-2">
+									@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl
+								</button>
+								@*btn-verifier-assign-action-to-owner*@
+								<button class="btn waves-effect waves-light" id="btn_assign_project_to_new_finance">
+									@ESAVINGS_v1.Resources.Details.Details.AssignBtnLbl
+								</button>
+
+							</div>
+						</div>
+
+						string finance_verifyDate = (@Model.FinanceApproval[0].VerifyDate.ToString() != "1/1/2000 1:01:01 AM") ? @Model.FinanceApproval[0].VerifyDate.ToLongDateString() : "";
+
+						<div class="z-depth-1">
+							<div class="progress" id="finance-verification-loader" style="margin: 0; display: none;">
+								<div class="indeterminate"></div>
+							</div>
+							<div class="row">
+								<div class="col s12 m12 l12" style="background-color:#f3e5f5 !important; padding: 20px;">
+									<!-- Finance section -->
+									<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+										<h5>@ESAVINGS_v1.Resources.Details.Details.FinanceSectionHeader</h5>
+									</div>
+
+									<div class="card-panel" style="border-left: 5px solid #ab47bc;">
+										<div class="row">
+
+											<!-- finance approver -->
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<label>@ESAVINGS_v1.Resources.Details.Details.FinanceApproverLbl:</label>
+													<div>
+														@Model.FinanceApproval[0].FinanceApproverInfo.FullName
+
+														@if (ViewBag.IsUserLoggedIn == true &&
+														((ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) ||
+														(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true)) &&
+														(Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
+														Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
+														Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING))
+														{
+															<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-finance" data-current-finance-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id" style="padding: 0 5px;">
+																<i class="material-icons left" style="margin-right: 0;">edit</i>
+															</a>
+														}
+													</div>
+												</div>
+											</div>
+
+											<!-- Action verification status -->
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationStatusLbl:</label>
+													<div>@isVerifyStatus[Model.FinanceApproval[0].IsVerify]</div>
+												</div>
+											</div>
+											<!-- Action verifcation date -->
+											<div class="input-field col l4 m4 s4">
+												<div>
+													<label>@ESAVINGS_v1.Resources.Details.Details.ActionVerificationDateLbl:</label>
+													<div>@finance_verifyDate</div>
+												</div>
+											</div>
+										</div>
+
+										@if (ViewBag.IsUserLoggedIn == true &&
+													((ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) ||
+													(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true)) &&
+													(Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
+													Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
+													Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING ||
+													Model.OAStatus.ToString() == ViewBag.status_ACTIVE))
+										{
+
+											<div class="row">
+												<div class="col l12 s12 m12">
+
+													@if (Model.DollarImpact != null || Model.DollarImpact > 0)
+													{
+														dollarImpact = Model.DollarImpact;
+													}
+
+													<!-- Finance approver -->
+													<div class="input-field">
+														<textarea id="financeRemarks" class="materialize-textarea">@Model.FinanceApproval[0].Remarks</textarea>
+														<label for="financeRemarks">@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl</label>
+													</div>
+
+													<!-- Project or Benefit type -->
+													<label for="finance_projectType">@ESAVINGS_v1.Resources.Details.Details.ProjectTypeLbl</label>
+													<div id="finance_projectType">
+														@foreach (var ptype in ViewBag.ProjectTypes)
+														{
+															if (ptype.Value != "NA")
+															{
+																if (ptype.Key == Model.ProjectType)
+																{
+																	<label>
+																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" checked />
+																		<span>@ptype.Value</span>
+																	</label>
+																}
+																else
+																{
+																	<label>
+																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" />
+																		<span>@ptype.Value</span>
+																	</label>
+																}
+															}
+
+														}
+													</div><br />
+
+													<!-- Dollar impact -->
+													<div class="input-field">
+														<input id="finance_dollarImpact" value="@dollarImpact" type="text">
+														<label for="finance_dollarImpact">@ESAVINGS_v1.Resources.Details.Details.DollarImpactLbl</label>
+													</div>
+
+													<!-- Expected start date -->
+													<div class="input-field">
+														<input id="finance_expectedStartDate" type="text" class="datepicker" value="@expectedStartDate" autocomplete="off">
+														<label for="finance_expectedStartDate">@ESAVINGS_v1.Resources.Details.Details.ExpectedStartDateLbl</label>
+													</div>
+
+													<!-- Number of months to be active -->
+													<div class="input-field">
+														<input id="finance_numberOfMonthsToBeActive" type="text" value="@Model.NumberOfMonthsToBeActive" autocomplete="off">
+														<label for="finance_numberOfMonthsToBeActive">@ESAVINGS_v1.Resources.Details.Details.NumberOfMonthsToBeActiveLbl</label>
+													</div>
+
+													<!-- Finance category -->
+													<div class="input-field">
+														<select id="financeCategory">
+															@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
+															{
+																if (Model.FinanceCategoryID == cat.Id)
+																{
+																	<option value="@cat.Id" selected>@cat.Category</option>
+																}
+																else
+																{
+																	<option value="@cat.Id">@cat.Category</option>
+																}
+
+															}
+														</select>
+														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
+													</div>
+
+													<!-- Supporting documents -->
+													<div class="input-field">
+														<strong class="header">@ESAVINGS_v1.Resources.Details.Details.SupportingDocumentsLbl</strong>
+														<a class="btn-floating btn-small waves-effect waves-light red btn-browse-finance-supporting-documents"><i class="material-icons">attach_file</i></a>
+														<input type="file" class="hide-file-button" id="finance_supporting_documents_file_browser" multiple />
+														<br />
+													</div>
+													<div class="col l12 m12 s12" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+														<div id="finance_supporting_documents"></div>
+													</div>
+
+													<div style="text-align: right">
+
+														@if (Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED || Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS)
+														{
+															<!-- Cost funnel evaluating button -->
+															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
+															   data-oa-status="@ViewBag.status_COST_FUNNEL_EVALUATING"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="1">
+																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.CostFunnelEvaluatingBtnLbl
+															</a>
+															<!-- Save button  -->
+															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
+															   data-oa-status="@ViewBag.status_FINANCE_REVIEW_IN_PROGRESS"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="3">
+																<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
+															</a>
+															<!-- Disapproved button -->
+															<a class="btn dropdown-trigger waves-effect waves-light btn-small red accent-2"
+															   data-target="finance_disapproved_dropdown_btn_list"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id">
+																<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.ProposalApprover_Disapproved
+															</a>
+
+															<ul id='finance_disapproved_dropdown_btn_list' class='dropdown-content'>
+																<li> <!-- Cancel button -->
+																	<a href="#!" class="btn-finance-verification" data-status="2"
+																	   data-oa-status="@ViewBag.status_CANCELED"
+																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+																	   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id">
+																		@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
+																	</a>
+																</li>
+																<li> <!-- Invalid button -->
+																	<a href="#!" class="btn-finance-verification" data-status="2"
+																	   data-oa-status="@ViewBag.status_INVALID"
+																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+																	   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id">
+																		@ESAVINGS_v1.Resources.Details.Details.InvalidBtnLbl.ToUpper()
+																	</a>
+																</li>
+																<li> <!-- Existing Button -->
+																	<a href="#!" class="btn-finance-verification" data-status="2"
+																	   data-oa-status="@ViewBag.status_EXISTING_PROJECT"
+																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+																	   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id">
+																		@ESAVINGS_v1.Resources.Details.Details.ExistingProjectBtnLbl.ToUpper()
+																	</a>
+																</li>
+																<li> <!-- Duplicate button -->
+																	<a href="#!" class="btn-finance-verification" data-status="2"
+																	   data-oa-status="@ViewBag.status_DUPLICATE_ENTRY"
+																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+																	   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id">
+																		@ESAVINGS_v1.Resources.Details.Details.DuplicateEntryBtnLbl.ToUpper()
+																	</a>
+																</li>
+															</ul>
+														}
+														else if (Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING)
+														{
+															<!-- BPI button -->
+															<label>
+																@if (Model.IsBPI == 1)
+																{
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																}
+																else
+																{
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																}
+																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+															</label>
+															<!-- Cancel button -->
+															<a class="btn waves-effect waves-light btn-small red accent-2 btn-finance-verification"
+															   data-oa-status="@ViewBag.status_CANCELED"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="2">
+																<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
+															</a>
+															<!-- Active button -->
+															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
+															   data-oa-status="@ViewBag.status_ACTIVE"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="4">
+																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActiveBtnLbl
+															</a>
+														}
+														else if (Model.OAStatus.ToString() == ViewBag.status_ACTIVE)
+														{
+															<!-- BPI button -->
+															<label>
+																@if (Model.IsBPI == 1)
+																{
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																}
+																else
+																{
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																}
+																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+															</label>
+														}
+
+													</div>
+												</div>
+											</div>
+										}
+										else
+										{
+											<!-- Finace remarks -->
+											<div class="row">
+												<div class="col l12 s12 m12">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl:</label>
+															<div style="white-space: pre-wrap">@Model.FinanceApproval[0].Remarks</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										}
+									</div>
+								</div>
+
+							</div>
+						</div>
+					}
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+

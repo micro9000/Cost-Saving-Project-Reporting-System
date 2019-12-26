@@ -1,0 +1,297 @@
+﻿@{
+	ViewBag.Title = "Dashboard";
+	ViewBag.page_id = "home_dashboard";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+
+<div style="width: 85%; margin: auto">
+	<div class="row">
+
+
+		<div class="col s12 m12 l12">
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="border-left: 5px solid #03a9f4; margin: 0;">
+						<div class="card-content light-blue lighten-5">
+							<span class="card-title">Projects - @System.Configuration.ConfigurationManager.AppSettings["onsemi_site"]</span>
+
+							<table class="base-font-size" style="table-layout: fixed; width: 100%;">
+								<thead class="light-blue lighten-2">
+									<tr>
+										<th></th>
+										<th></th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Status</th>
+										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.For_verification</th>
+										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.Savings_total</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Savings_Dollar_Impact</th>
+										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.Cost_avoidance_total</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Cost_avoidance_dollar_impact</th>
+									</tr>
+								</thead>
+								<tbody id="proposal_counter_and_dollarImpact_calculation"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col s12 m12 l4">
+			@*<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="card" style="border-left: 5px solid #03a9f4; margin: 0;">
+							<div class="card-content light-blue lighten-5">
+								<span class="card-title">Projects</span>
+
+								<table class="base-font-size" style="table-layout: fixed; width: 100%;">
+									<thead class="light-blue lighten-2">
+										<tr>
+											<th></th>
+											<th></th>
+											<th style="text-align:center;">Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td colspan="2">New Project Entry</td>
+											<td style="text-align: center">@ViewBag.NewProjectEntryCounter</td>
+										</tr>
+										<tr>
+											<td colspan="2">Cost Funnel Identified</td>
+											<td style="text-align: center">@ViewBag.CostFunnelIdentifiedCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>In Progress / Action Required</td>
+											<td style="text-align: center">@ViewBag.InProgressCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>Cost Avoidance</td>
+											<td style="text-align: center">@ViewBag.CostAvoidanceCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>Existing Project</td>
+											<td style="text-align: center">@ViewBag.ExistingProjectsCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>Double Entry</td>
+											<td style="text-align: center">@ViewBag.DuplicateEntryCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>Invalid</td>
+											<td style="text-align: center">@ViewBag.InvalidCounter</td>
+										</tr>
+										<tr>
+											<td colspan="2">Cost Funnel Evaluation</td>
+											<td style="text-align: center">@ViewBag.CostFunnelEvaluatingCounter</td>
+										</tr>
+										<tr>
+											<td colspan="2">Active</td>
+											<td style="text-align: center">@ViewBag.ActiveCounter</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td><h6>Total</h6></td>
+											<th style="text-align: center"><h6>@ViewBag.TotalCounter</h6></th>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>*@
+
+			@*<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="card" style="border-left: 5px solid #03a9f4; margin: 0;">
+							<div class="card-content light-blue lighten-5">
+								<span class="card-title"><i class="material-icons">search</i> Quick Search By Status</span>
+								<table class="base-font-size">
+									<thead class="light-blue lighten-2">
+										<tr>
+											<th>Status</th>
+											<th>Submissions</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach (var status in ViewBag.ProposalNumberOfSubmissionsByStatus)
+										{
+											<tr>
+												<td><a style="color: black;" href="#" class="btn-view-all-proposal-by-status" data-status="@status.OAStatus">@status.OAStatusIndicator</a></td>
+												<td>@status.Submissions</td>
+											</tr>
+										}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>*@
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0; border-left: 5px solid #1e88e5; font-size: 11px;">
+						<div class="card-content">
+							<p class="card-title"><i class="material-icons">search</i> @ESAVINGS_v1.Resources.Index.Index.Search_project</p>
+
+
+							<div class="row">
+								<div class="col s12">
+									<label>
+										<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+										<span>@ESAVINGS_v1.Resources.Index.Index.BPI</span>
+									</label>
+								</div>
+							</div>
+
+							<div class="row">
+
+								<div class="col s12">
+									<label>
+										<input name="search_project_type" data-project-type="ALL" type="radio" />
+										<span>@ESAVINGS_v1.Resources.Index.Index.All</span>
+									</label>
+								</div>
+								@foreach (var ptype in ViewBag.ProjectTypes)
+								{
+									<div class="col s12">
+										<label>
+											<input name="search_project_type" data-project-type="@ptype.Key" type="radio" />
+											<span>@ptype.Value</span>
+										</label>
+									</div>
+								}
+
+								<div class="input-field col s12">
+									<input id="searchKeyword" type="text" class="validate" autocomplete="off">
+									<label for="searchKeyword">@ESAVINGS_v1.Resources.Index.Index.Keyword</label>
+								</div>
+								<div class="input-field col s12">
+									<select class="search_selected_status" multiple>
+										<option value="" disabled selected>Choose overall status</option>
+										<option value="0">@ESAVINGS_v1.Resources.Index.Index.All</option>
+
+										@foreach (var status in ViewBag.statusWithLabel)
+										{
+											<option value="@status.Key">@status.Value</option>
+										}
+									</select>
+									<label>@ESAVINGS_v1.Resources.Index.Index.MultiSelection</label>
+								</div>
+
+
+								<div class="input-field col s12">
+									<select class="search_selected_departments" multiple>
+										<option value="" disabled selected>Choose departments</option>
+										<option value="ALL">@ESAVINGS_v1.Resources.Index.Index.All</option>
+
+										@if (System.Configuration.ConfigurationManager.AppSettings["is_deptCode_enabled"].ToLower() == "true")
+										{
+											foreach (Domain.CostAnalystDeptCode dept in ViewBag.DepartmentListTmp)
+											{
+												<option value="@dept.DeptCode">@dept.DeptName (@dept.DeptCode)</option>
+											}
+										}
+										else
+										{
+											foreach (var deptName in ViewBag.DeptNames)
+											{
+												<option value="@deptName">@deptName</option>
+											}
+										}
+									</select>
+
+									<label>@ESAVINGS_v1.Resources.Index.Index.MultiSelection</label>
+								</div>
+
+								<div class="input-field col s12 m12 l12">
+									<input id="startDate" type="text" class="datepicker" autocomplete="off">
+									<label for="startDate">@ESAVINGS_v1.Resources.Index.Index.StartDate</label>
+								</div>
+
+								<div class="input-field col s12 m12 l12">
+									<input id="endDate" type="text" class="datepicker" autocomplete="off">
+									<label for="endDate">@ESAVINGS_v1.Resources.Index.Index.EndDate</label>
+								</div>
+
+								<div class="col l6 m6 s12">
+									<button class="btn waves-effect waves-light blue btn-search-by-keyword-andor-status" style="width: 100%;" type="submit" name="action">
+										<i class="material-icons center">search</i>
+									</button><br />
+								</div>
+								<div class="col l6 m6 s12">
+									<button class="btn waves-effect waves-light blue btn-export-to-excel" style="width: 100%;" type="submit" name="action">
+										<i class="material-icons center">file_download</i>
+									</button><br />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l8">
+
+			<div class="row" style="width: 99%; margin: auto;">
+				<div class="col s12 m12 l12 z-depth-1" style="background: white; border-left: 5px solid #607d8b; font-size: 11px;">
+					<div class="row">
+						<div class="col s12 m12 l12" style="padding: 0">
+							<table id="dashboard-all-proposal-tb" style="margin: 0">
+								<thead class="blue-grey" style="color: white;">
+									<tr>
+										<th colspan="9" style="text-align: center; font-size: 24px;" id="number_of_proposal_search_results"></th>
+									</tr>
+									<tr>
+										<th colspan="9">
+											<div style="width: 100%; margin: auto;">
+												<div id="proposals_pagination"></div>
+											</div>
+										</th>
+									</tr>
+									<tr>
+										@*<th>Ticket</th>*@
+										<th>@ESAVINGS_v1.Resources.Index.Index.Title</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Type</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Current</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Proposal</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Employee</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Department</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.ProjectedDollarImpact</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.StartDate</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.Status</th>
+									</tr>
+								</thead>
+
+								<tbody id="proposals_table"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<script>
+	var global_project_type_for_identified = "0";
+	var global_project_type_cost_savings = "@ViewBag.types_COST_SAVINGS";
+	var global_project_type_cost_avoidance = "@ViewBag.types_COST_AVOIDANCE";
+
+	//var global_project_types = ["", "@ViewBag.ProjectTypes[int.Parse(ViewBag.types_COST_SAVINGS)]", "@ViewBag.ProjectTypes[int.Parse(ViewBag.types_COST_AVOIDANCE)]"];
+
+
+</script>
+

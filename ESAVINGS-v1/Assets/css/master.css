@@ -1,0 +1,295 @@
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+.tabs .tab a:hover, .tabs .tab a {
+	background-color: transparent;
+	color: #b0bec5;
+}
+
+.tabs .tab a:hover, .tabs .tab a.active {
+	background-color: transparent;
+	color: #37474f;
+}
+
+.base-font-size {
+	font-size: 11px;
+}
+
+.base-font-size tr td, .base-font-size tr th {
+	padding: 8px 2px;
+}
+
+#proposalDescription {
+	margin: 20px 0;
+	padding-left: 1.5rem;
+	border-left: #03a9f4;
+}
+
+
+#dashboard-all-proposal-tb {
+	font-size: 11px;
+	margin-top: 5px;
+}
+
+/*#dashboard-all-proposal-tb tbody tr:hover {
+	background: #cfd8dc;
+}*/
+
+
+.PROJECT_PROPOSAL:hover, .COST_ANALYST_REVIEW_IN_PROGRESS:hover {
+	background: #dce775 !important;
+}
+
+
+.COST_FUNNEL_IDENTIFIED:hover {
+	background: #4fc3f7 !important;
+}
+
+.FINANCE_REVIEW_IN_PROGRESS:hover {
+	background: #9575cd !important;
+}
+
+.COST_FUNNEL_EVALUATING:hover {
+	background: #81c784 !important;
+}
+
+.INVALID:hover{
+	background: #e57373 !important;
+}
+
+.COST_AVOIDANCE:hover{
+	background: #a1887f !important;
+}
+
+.EXISTING_PROJECT:hover{
+	background: #bdbdbd !important;
+}
+
+.DUPLICATE_ENTRY:hover{
+	background: #90a4ae !important;
+}
+
+.REALIZATION:hover {
+	background: #4db6ac !important;
+}
+
+.ACTIVE:hover{
+	background: #33691e !important;
+}
+
+.CANCELED:hover{
+	background: #424242  !important;
+}
+
+.input-field input[type='text'],
+.input-field input[type='password'],
+.input-field textarea {
+	background: #EEE;
+	border-radius: 3px;
+}
+
+.login_form {
+	height: 100px;
+	margin: auto;
+}
+
+
+.tb-img img{
+	width: 130px;
+	height: auto;
+	margin: 0;
+}
+
+table tr th{
+	width: 10%;
+}
+
+.hide-file-button {
+	position: fixed;
+	top: 150%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+.header {
+	color: #ee6e73;
+}
+
+.error {
+	color: #FF5722;
+}
+
+.good {
+	color: #4CAF50;
+}
+
+.esaving-image-in-table{
+	width: 100px;
+	height: 70px;
+}
+
+.datepicker-date-display {
+	background: #607d8b;
+}
+
+.datepicker-table td.is-selected {
+	background: #607d8b;
+}
+
+/*##########################*/
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+.md-chip {
+	display: inline-block;
+	background: #e0e0e0;
+	padding: 0 12px;
+	border-radius: 32px;
+	font-size: 13px;
+}
+
+	.md-chip.md-chip-hover:hover {
+		background: #ccc;
+	}
+
+.md-chip-clickable {
+	cursor: pointer;
+}
+
+.md-chip, .md-chip-icon {
+	height: 32px;
+	line-height: 32px;
+}
+
+.md-chip-icon {
+	display: block;
+	float: left;
+	background: #009587;
+	width: 32px;
+	border-radius: 50%;
+	text-align: center;
+	color: white;
+	margin: 0 8px 0 -12px;
+}
+
+.md-chip-remove {
+	display: inline-block;
+	background: #aaa;
+	border: 0;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	padding: 0;
+	margin: 0 -4px 0 4px;
+	cursor: pointer;
+	font: inherit;
+	line-height: 20px;
+}
+
+.md-chip-remove:after {
+	color: #e0e0e0;
+	content: "x";
+}
+
+.md-chip-remove:hover {
+	background: #999;
+}
+
+.md-chip-remove:active {
+	background: #777;
+}
+
+.md-chips {
+	padding: 12px 0;
+}
+
+.md-chips .md-chip {
+	margin: 0 5px 3px 0;
+}
+
+.md-chip-raised {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+
+.modal#registerModal{
+	height: 40%;
+}
+
+.how-to-collapsible li .collapsible-header{
+	background: #37474f !important;
+	color: white;
+}
+
+
+.paginationjs{
+	width: 100%;
+	color: #ffffff;
+}
+
+.paginationjs-pages ul{
+	list-style-type: none;
+	overflow: hidden;
+	display: block;
+	margin: auto;
+	width: 100%;
+	padding: 0;
+	height: auto;
+}
+
+.paginationjs-pages ul li{
+	float:left;
+	display: block;
+	padding: 10px;
+	font-size: 9px;
+	cursor: pointer;
+}
+
+
+.paginationjs-pages ul li a{
+	color: white;
+}
+
+.paginationjs-pages ul li:hover{
+	background: #4fc3f7;
+}
+
+.paginationjs-pages ul li.active{
+	background: #4fc3f7;
+}
+
+.proposal_title_link{
+	color: black;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+
+
+.btn-view-all-proposal-by-status:hover{
+	text-decoration: underline;
+}
+
+
+.details-label{
+	font-size: 15px;
+	color: #616161;
+}
+
+.details-content{
+	font-size: 25px;
+}

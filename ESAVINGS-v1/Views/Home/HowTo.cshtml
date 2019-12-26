@@ -1,0 +1,175 @@
+﻿@{
+	ViewBag.Title = "HowTo";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.page_id = "howTo";
+}
+<br/>
+<div class="z-depth-1 reports-list-tb " style="background: white; width: 85%; margin: auto;">
+	<div class="row">
+
+		<div class="col l12 m12 s12 blue-grey darken-3" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+			<h4 style="color: white;">How to use the E-Savings</h4>
+		</div>
+
+		<div class="col l12 m12 s12">
+			
+			<ul class="collapsible expandable how-to-collapsible">
+				<li>
+					<div class="collapsible-header"><i class="material-icons">home</i>Home Page guide</div>
+					<div class="collapsible-body">
+						<span>
+							Home page is where you can see all pending proposal and search for a particular proposal.<br />
+							Home page has three components, see the ff. <br />
+						</span>
+
+						<p>
+							<b>Number of submission by status</b> - the summary of all submission by status <br />
+							<img class="materialboxed" src="~/HowToImgs/Home-NumberOfSubmissionsByStatus.PNG" alt="Number of submissions by status" width="200" /><br />
+						</p>
+
+
+						<p>
+							<b>Quick Search</b> - To search for a particular proposal by keyword, status or date submission range.
+						</p>
+
+						<p>
+							To search you can use <b>keyword</b> that will search for the <b>Title</b>,
+							<b>Ticket Number</b>, <b>the Name/department code of the proposal owner</b>, <b>Current/Proposal description</b> and <b>Remarks</b>.
+							You can also search for a specific proposal using the <b>overall status</b> and <b>date range</b> (it will use the date submission).
+
+							<img class="materialboxed" src="~/HowToImgs/Home-QuickSearch.PNG" alt="Quick search" style="width: 200px; height: 200px;" /><br />
+						</p>
+
+						<p>
+							<b>Proposal List</b> - the list of pending proposals or the results from quick search.
+						</p>
+						<p>
+							To view the proposal you can click the proposal title, that is normally in color <b style="color:#039be5">blue</b>.
+							<img class="materialboxed" src="~/HowToImgs/Home-Proposal-list.png" alt="Proposal List" style="width: 800px;" /><br />
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">menu</i>Navigation menus</div>
+					<div class="collapsible-body">
+						<span>There are two menus in E-Savings that will help you to navigate the system.</span>
+						<p>
+							The <b>main menu</b> is in the top of the page <br />
+							<img class="materialboxed" src="~/HowToImgs/Nav-Main-No-User.png" alt="Main nav menu" style="width: 800px;" /><br />
+							<img class="materialboxed" src="~/HowToImgs/Nav-Main-With-User.png" alt="Main nav menu" style="width: 800px;" /><br />
+						</p>
+
+						<p>
+							The <b>secondary menu or menu for mobile devices</b> is in the bottom right corner of the page <br />
+							<img class="materialboxed" src="~/HowToImgs/Nav-Secondary-No-User.png" alt="Secondary nav menu(no user)" /><br />
+							<img class="materialboxed" src="~/HowToImgs/Nav-Secondary-With-User.png" alt="Secondary nav menu (with user)" /><br />
+						</p>
+
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">verified_user</i>How to Login / Registration / Reset Password</div>
+					<div class="collapsible-body">
+						<span>
+							To submit a proposal, you need to login first. You can use your AD account to login in E-Savings or
+							if you don't have an AD account you can register your FFID to create an account, this will generate a default password of Welcome + Current year (Ex. Welcome2019).
+						</span>
+
+						<p>
+							To <b>Login</b>, just enter your <b>FFID</b> and <b>Password</b> (AD account or E-Savings Account)<br />
+							If you want the system to remember your account just check the <b>Remember Me</b> option. <br />
+							<img class="materialboxed" src="~/HowToImgs/Login-Form.png" alt="Login Form" width="300" /><br />
+						</p>
+
+						<p>
+							To <b>Register or to reset your password</b> just click the <b>OPERATOR REGISTRATION/RESET PASSWORD</b> button, enter your <b>FFID</b> and click <b>Submit</b> button<br />
+							<img class="materialboxed" src="~/HowToImgs/Login-Registration-Reset-Password.PNG" alt="Login Form" width="350" />
+						</p>
+
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">send</i>How to create proposal</div>
+					<div class="collapsible-body">
+						<span>
+							To submit or create new proposal, you need to login first (if you don't have an account or access, please see <i>How to Login / Registration / Reset Password</i> section) <br />
+							After the login, go to <b>Create Proposal</b> page and fill up the form.
+						</span>
+
+						<p>
+							<b>Project Title</b> is required
+						</p>
+
+						<p>
+							<b>Current image</b> is optional
+						</p>
+
+						<p>
+							<b>Proposal image</b> is optional
+						</p>
+
+						<p>
+							<b>Additional Description or Remarks</b> is required
+						</p>
+
+						<p>
+							<b>Supporting documents</b> is optional
+						</p>
+
+						<p>
+							Then click the <b>SUBMIT</b> button
+							<img class="materialboxed" src="~/HowToImgs/Create-Proposal.PNG" alt="Login Form" width="600" />
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">person</i>MyProfile Page guide</div>
+					<div class="collapsible-body">
+						<span>
+							MyProfile page is where you can see all your <b>Active</b> and <b>Achived Proposals</b>, you can also see if you have an action
+							item assigned to you as well as the list of proposals that need your approval if you a Cost Analyst or Cost Site In Charged approver.<br />
+							You can also see the summary of all Proposals in Number of submission by status as well as your Name and your department code.
+						</span>
+
+						<img class="materialboxed" src="~/HowToImgs/MyProfile.png" alt="Login Form" width="900" />
+
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">details</i>How to view the proposal details and approval status</div>
+					<div class="collapsible-body">
+						<span>
+							You have two options to view the proposals details, you can use the Home page proposal list or the MyProfile Page Active Proposal component <br/>
+							and click the <b>Project Title</b> or Proposal title to redirect to Details view.
+						</span>
+
+						<img class="materialboxed" src="~/HowToImgs/Home-Proposal-list-click-project-title.png" alt="Login Form" width="700" />
+						<br/>
+						<img class="materialboxed" src="~/HowToImgs/MyProfile-Active-Proposals.png" alt="Login Form" width="700" />
+						<br />
+						<strong>Note: Will update this image once the deployment is done</strong>
+						<img class="materialboxed" src="~/HowToImgs/Proposal-Overview.png" alt="Login Form" width="900" />
+					</div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">done</i>Cost analyst approval guide</div>
+					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">add_box</i>How to create and assign action item</div>
+					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">border_color</i>How to response to the action item - For action owner</div>
+					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+				</li>
+				<li>
+					<div class="collapsible-header"><i class="material-icons">done</i>Cost site incharge approval guide - Proposal closure</div>
+					<div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+				</li>
+			</ul>
+
+		</div>
+
+	</div>
+</div>

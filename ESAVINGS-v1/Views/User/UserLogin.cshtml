@@ -1,0 +1,139 @@
+﻿@{
+	ViewBag.Title = "Login";
+	ViewBag.page_id = "user_login";
+
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col l3 s12 m3"></div>
+		<div class="col l6 s12 m6">
+
+			<div class="card-panel" style="padding: 0; margin-top: 20px;">
+				<div class="progress" id="user-login-loader" style="margin: 0; display: none;">
+					<div class="indeterminate"></div>
+				</div>
+				<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px; padding: 10px 24px; color: white;" class="blue-grey darken-3">
+					<h4>@ESAVINGS_v1.Resources.Login.Login.LoginFormHeader</h4>
+				</div>
+
+				<div class="row" style="padding: 24px;">
+					<form class="col s12" id="Login_form">
+						<div class="row">
+							<div class="input-field col l12 s12 md12">
+								<i class="material-icons prefix">account_circle</i>
+								<input id="ffID" type="text" value="@ViewBag.cookie_userFFID" class="validate">
+								<label for="ffID">FFID</label>
+							</div>
+
+							<div class="input-field col l12 s12 md12">
+								<i class="material-icons prefix">vpn_key</i>
+								<input id="password" type="password" value="@ViewBag.cookie_password" class="validate">
+								<label for="password">Password</label>
+							</div>
+
+
+							<div class="input-field col l12 s12 md12" style="padding: 0px 24px;">
+
+								<div class="row">
+									<div class="col l12 md12 s12" style="text-align: center">
+
+										<label>
+											<input name="employeeType" value="IDL" type="radio" />
+											<span>IDL</span>
+										</label>
+
+										<label>
+											<input name="employeeType" value="DL" type="radio" />
+											<span>DL</span>
+										</label>
+
+										<br />
+										<br />
+
+										<label>
+											@if (ViewBag.cookie_userFFID != "")
+											{
+												<input id="remember_me_checkbox" type="checkbox" checked />
+											}
+											else
+											{
+												<input id="remember_me_checkbox" type="checkbox" />
+											}
+
+											<span>@ESAVINGS_v1.Resources.Login.Login.RememberMeLbl</span>
+										</label>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col l12 m12 s12">
+										<button class="btn waves-effect waves-light blue-grey darken-3" style="width: 100%;" type="submit" name="action">
+											@ESAVINGS_v1.Resources.Login.Login.LoginBtnLbl
+										</button>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col l12 m12 s12">
+										<button class="btn waves-effect waves-light blue-grey darken-3 modal-trigger" data-target="registerModal" style="width: 100%;">
+											@ESAVINGS_v1.Resources.Login.Login.OperatorRegistrationResetPassBtnLbl
+										</button>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col l12 md12 s12" style="text-align: center">
+										<span id="login_form_msg"></span>
+									</div>
+								</div>
+
+							</div>
+
+
+
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+
+
+		</div>
+		<div class="col l3 s12 m3"></div>
+	</div>
+</div>
+
+<div id="registerModal" class="modal modal-fixed-footer" style="width: 40%;">
+	<div class="progress" id="verifier-assign-action-to-owner-loader" style="margin: 0; display: none;">
+		<div class="indeterminate"></div>
+	</div>
+	<div class="modal-content">
+		<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+			<h4 class="header">@ESAVINGS_v1.Resources.Login.Login.OperatorRegistrationResetPassBtnLbl</h4>
+		</div>
+
+		<div class="row">
+			<div class="col s12 m12 l12">
+				<div class="input-field">
+					<input id="OperatorFFID" type="text">
+					<label for="OperatorFFID">FFID</label>
+				</div>
+			</div>
+			<div class="col s12 m12 l12">
+				<strong>@ESAVINGS_v1.Resources.Login.Login.YourDefaultPassLbl @ViewBag.DefaultPassword</strong>
+			</div>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button class="btn waves-effect waves-light red accent-2">
+			@ESAVINGS_v1.Resources.Login.Login.CancelBtnLbl
+		</button>
+		<button class="btn waves-effect waves-light btn-register-or-reset-my-password" id="btn_assign_action_to_employee">
+			@ESAVINGS_v1.Resources.Login.Login.SubmitBtnLbl
+		</button>
+	</div>
+</div>

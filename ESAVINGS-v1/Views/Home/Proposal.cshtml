@@ -1,0 +1,416 @@
+﻿@model Domain.Proposal
+
+@{
+	ViewBag.form_needed_action = "";
+
+	if (Model != null && Model.Id != 0)
+	{
+		ViewBag.Title = ESAVINGS_v1.Resources.CreateProposal.CreateProposal.UpdateProposalLbl;
+		ViewBag.form_needed_action = "update_proposal";
+	}
+	else
+	{
+		ViewBag.Title = ESAVINGS_v1.Resources.CreateProposal.CreateProposal.CreateProposalLbl;
+		ViewBag.form_needed_action = "create_new_proposal";
+	}
+
+
+
+	ViewBag.page_id = "create_proposal";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+	var dirCurrentImgs = "@Url.Content(ViewBag.dirCurrentImgs)";
+	var dirProposalImgs = "@Url.Content(ViewBag.dirProposalImgs)";
+	var isDL = "@((bool)ViewBag.IsDL == true ? "true" : "false")";
+</script>
+<br />
+<div class="z-depth-1 reports-list-tb " style="width: 85%; margin: auto;">
+	<div class="row">
+
+		<div class="col l12 m12 s12 blue-grey darken-3" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+			<div class="col l12 s12 m12">
+				<h4 style="color: white;">@ViewBag.Title</h4>
+			</div>
+		</div>
+
+		<div class="col s12 m12 l12" style="padding: 20px;">
+			<div class="row">
+				<br />
+
+				<form class="col s12" id="esavings_proposal_form" data-needed-action="@ViewBag.form_needed_action">
+					<div class="row">
+						<div class="input-field col s12">
+							<select id="Project_dept_area_beneficiary">
+								
+								@if (System.Configuration.ConfigurationManager.AppSettings["is_deptCode_enabled"].ToLower() == "true")
+								{
+									foreach (Domain.CostAnalystDeptCode dept in ViewBag.DepartmentListTmp)
+									{
+										if (Model.AreaDeptBeneficiary == dept.DeptCode)
+										{
+											<option value="@dept.DeptCode" selected>@dept.DeptName (@dept.DeptCode)</option>
+										}
+										else
+										{
+											<option value="@dept.DeptCode">@dept.DeptName (@dept.DeptCode)</option>
+										}
+									}
+								}
+								else
+								{
+									<option value="" selected>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ChooseDeptAreaBeneficiaryLbl</option>
+									foreach (var dept in ViewBag.DepartmentList)
+									{
+										<option value="@dept">@dept</option>
+									}
+								}
+							</select>
+
+
+
+							<label>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.DeptAreaBeneficiaryLbl</label>
+						</div>
+						<div class="input-field col s12">
+							<input id="Project_title" type="text" value="@Model.ProjectTitle" class="validate">
+							<label for="Project_title">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ProjectTitleLbl</label>
+						</div>
+						@if ((bool)ViewBag.IsDL == false)
+						{
+							<div class="col s12">
+								<p>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ProjectTypeLbl</p>
+
+								@foreach (var ptype in ViewBag.ProjectTypes)
+								{
+									if (ptype.Value != "NA")
+									{
+										if (ptype.Key == Model.ProjectType)
+										{
+											<label>
+												<input name="project_type" data-project-type="@ptype.Key" type="radio" checked />
+												<span>@ptype.Value</span>
+											</label>
+										}
+										else
+										{
+											<label>
+												<input name="project_type" data-project-type="@ptype.Key" type="radio" />
+												<span>@ptype.Value</span>
+											</label>
+										}
+									}
+
+								}
+							</div>
+						}
+
+					</div>
+
+					<div class="row">
+
+						<div class="col s12 m6">
+							<div class="card">
+								<div class="card-image">
+
+
+									@if (Model.CurrentImgs != null)
+									{
+										if (Model.CurrentImgs.ToList().Count > 1)
+										{
+											<div class="carousel carousel-slider " id="currentImgsCarousel">
+												@foreach (var item in Model.CurrentImgs)
+												{
+													<a class="carousel-item" href="#@item.Id"><img src="@Url.Content(ViewBag.dirCurrentImgs +""+ item.ServerFileName)"></a>
+												}
+											</div>
+										}
+										else if (Model.CurrentImgs.ToList().Count == 1)
+										{
+											foreach (var item in Model.CurrentImgs)
+											{
+												<img class="materialboxed" data-caption="@Html.DisplayFor(m => m.CurrentDescription)" id="image_for_current" src="@Url.Content(ViewBag.dirCurrentImgs +""+ item.ServerFileName)">
+											}
+										}
+
+
+										<a class="btn-floating halfway-fab waves-effect waves-light red modal-trigger" data-action="update_current_imgs" data-target="update_proposal_imgs_modal" href="#update_current_imgs"><i class="material-icons">edit</i></a>
+										<input type="file" class="hide-file-button" id="current_images" multiple />
+
+									}
+									else
+									{
+										<img class="materialboxed" id="image_for_current" src="~/Assets/imgs/no-image-available.png">
+										<a class="btn-floating halfway-fab waves-effect waves-light red" id="browse_image_for_current"><i class="material-icons">image</i></a>
+										<input type="file" class="hide-file-button" id="current_images" multiple />
+									}
+
+
+								</div>
+								<div class="card-content">
+									<span class="card-title" style="color: #ee6e73;">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.CurrentLbl</span>
+									<div class="input-field">
+										<textarea id="current_description" class="materialize-textarea">@Model.CurrentDescription</textarea>
+										<label for="current_description">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.CurrentDescriptionLbl</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col s12 m6">
+							<div class="card">
+								<div class="card-image">
+
+									@if (Model.ProposalImgs != null)
+									{
+										if (Model.ProposalImgs.ToList().Count > 1)
+										{
+											<div class="carousel carousel-slider" id="proposalImgsCarousel">
+												@foreach (var item in Model.ProposalImgs)
+												{
+													<a class="carousel-item" href="#@item.Id"><img src="@Url.Content(ViewBag.dirProposalImgs +""+ item.ServerFileName)"></a>
+												}
+											</div>
+										}
+										else if (Model.ProposalImgs.ToList().Count == 1)
+										{
+											foreach (var item in Model.ProposalImgs)
+											{
+												<img class="materialboxed" data-caption="@Html.DisplayFor(m => m.ProposalDescription)" id="image_for_current" src="@Url.Content(ViewBag.dirProposalImgs +""+ item.ServerFileName)">
+											}
+										}
+										<a class="btn-floating halfway-fab waves-effect waves-light red modal-trigger" data-action="update_proposal_imgs" data-target="update_proposal_imgs_modal" href="#update_proposal_imgs"><i class="material-icons">edit</i></a>
+										<input type="file" class="hide-file-button" id="proposal_images" multiple />
+									}
+									else
+									{
+										<img class="materialboxed" id="image_for_proposal" src="~/Assets/imgs/no-image-available.png">
+										<a class="btn-floating halfway-fab waves-effect waves-light red" id="browse_image_for_proposal"><i class="material-icons">image</i></a>
+										<input type="file" class="hide-file-button" id="proposal_images" multiple />
+									}
+								</div>
+								<div class="card-content">
+									<span class="card-title" style="color: #ee6e73">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ProposalLbl</span>
+									<div class="input-field">
+										<textarea id="propose_description" class="materialize-textarea">@Model.ProposalDescription</textarea>
+										<label for="propose_description">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ProposalDescriptionLbl</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+					<div class="row">
+						<div class="col l12 s12 m12">
+							<div class="card-panel">
+								<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+									<h4 class="header">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.RemarksLbl</h4>
+								</div>
+
+								<div class="row">
+
+									<div class="input-field col s12">
+										<textarea id="user_remarks" class="materialize-textarea">@Model.Remarks</textarea>
+										<label for="user_remarks">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.AdditionalDescriptionLbl</label>
+									</div>
+
+									@{
+										string dollarImpactStr = (Model.DollarImpact == 0) ? "" : Model.DollarImpact.ToString();
+										string numberOfMonthsStr = (Model.NumberOfMonthsToBeActive == 0) ? "" : Model.NumberOfMonthsToBeActive.ToString();
+									}
+
+									@*@if (Model != null && Model.Id != 0)
+										{
+											<strong class="header">Upload new supporting documents</strong>
+										}*@
+
+									@if ((bool)ViewBag.IsDL == false)
+									{
+										<div class="input-field col s12">
+											<input id="NumberOfMonthsToBeActive" type="text" value="@numberOfMonthsStr" class="validate">
+											<label for="NumberOfMonthsToBeActive">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ExpectedNumOfMonthsToBeActiveLbl</label>
+										</div>
+
+										<div class="input-field col s12">
+											<input id="DollarImpact" type="text" value="@dollarImpactStr" class="validate">
+											<label for="DollarImpact">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.DollarImpactLbl</label>
+										</div>
+
+										string expectedStartDate = "";
+										if (Model.ExpectedStartDate != null && Model.ExpectedStartDate != (new DateTime(0001, 01, 01)))
+										{
+											expectedStartDate = Model.ExpectedStartDate.ToString("yyyy-MM-dd");
+										}
+
+										<div class="input-field col s12">
+											<input id="ExpectedStartDate" type="text" value="@expectedStartDate" class="validate datepicker">
+											<label for="ExpectedStartDate">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ExpectedStartDateLbl</label>
+										</div>
+									}
+
+									@*<div class="file-field input-field col s12">
+											<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">attach_file</i></a>
+											<div class="btn btn-small">
+												<span>Supporting Docs<i class="material-icons right">attach_file</i></span>
+												<input type="file" id="" multiple>
+											</div>
+											<div class="file-path-wrapper">
+												<input class="file-path validate" type="text">
+											</div>
+										</div>*@
+
+									<div class="input-field col s12">
+										<div class="row">
+											<div class="col l12 m12 s12">
+
+
+												<strong class="header">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.SupportingDocumentsLbl</strong>
+
+												<a class="btn-floating btn-small waves-effect waves-light red btn-browse-supporting-documents"><i class="material-icons">attach_file</i></a>
+												<input type="file" class="hide-file-button" id="supporting_documents" multiple />
+												<br />
+
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col l12 m12 s12" id="supporting_documents_attachments" style="border-bottom: 1px solid rgba(0,0,0,0.14);">
+												@if (Model != null && Model.Id != 0)
+												{
+													if (Model.SupportingDocs.ToList().Count > 0)
+													{
+														<div class="md-chips">
+															@foreach (var supportingDoc in Model.SupportingDocs.ToList())
+															{
+																<div class="md-chip">
+																	<span>@supportingDoc.OrigFileName</span>
+																	<button type="button" class="md-chip-remove btn-delete-supporting-docs" data-id="@supportingDoc.Id"></button>
+																</div>
+															}
+														</div>
+													}
+												}
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col s12" style="text-align:right">
+										<button class="btn waves-effect waves-light btn-submit-esavings-proposal" type="submit" name="action">
+											@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.SubmitBtnLbl
+											<i class="material-icons right">send</i>
+										</button>
+									</div>
+									<div class="col l12 md12 s12" id="submit-esavings-proposal-loader" style="display:none">
+										<div class="progress">
+											<div class="indeterminate"></div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+
+
+
+
+				</form>
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+@if (Model != null && Model.Id != 0)
+{
+	<input type="file" class="hide-file-button" id="additional_imgs" multiple />
+	<div id="update_proposal_imgs_modal" class="modal modal-fixed-footer update_proposal_imgs_modal">
+		<div class="progress" id="verifier-assign-action-to-owner-loader" style="margin: 0; display: none;">
+			<div class="indeterminate"></div>
+		</div>
+		<div class="modal-content">
+			<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+				<h4 class="header">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.EditProposalImgsHeader</h4>
+			</div>
+
+			@*<div class="container">
+					<div class="row">
+						<div class="col l12">
+							<div class="card">
+								<div class="card-image edit_proposal_display_imgs">
+									<div class="carousel carousel-slider" id="edit_proposal_display_imgs_carousel">
+										<div id="edit_proposal_display_imgs">
+											<img class="materialboxed" id="additional_images" src="~/Assets/imgs/no-image-available.png">
+										</div>
+									</div>
+								</div>
+								<div class="card-content">
+									<div class="row">
+										<div class="col l12" style="text-align: center">
+											<strong class="header">Upload additional images</strong>
+											<a class="btn-floating btn-small waves-effect waves-light red btn-browse-additional-imgs" id="browse_additional_imgs"><i class="material-icons">attach_file</i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>*@
+			<div class="row">
+				<div class="col l12">
+					<br />
+					<strong class="header">Upload additional images</strong>
+					<a class="btn-floating btn-small waves-effect waves-light red btn-browse-additional-imgs" id="browse_additional_imgs"><i class="material-icons">attach_file</i></a>
+				</div>
+				<div class="col l12">
+					<br />
+					<table>
+						<thead>
+							<tr>
+								<th>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.FilenameLbl</th>
+								<th>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.DeleteLbl</th>
+							</tr>
+						</thead>
+						<tbody id="update_proposal_imgs"></tbody>
+					</table>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn waves-effect waves-light " id="btn_upload_proposal_additional_imgs_by_target">
+				@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.UploadBtnLbl
+			</button>
+		</div>
+	</div>
+}
+else
+{
+	<div id="submissionConfirmationModal" class="modal">
+		<div class="modal-content">
+			<div style="text-align:center; font-family:Tahoma, Geneva, sans-serif; letter-spacing: 3px;">
+				<img src="~/Assets/imgs/check-img.png" alt="Check" style="width: 200px; height: auto;" />
+				<h3 style="font-size: 20px;">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.SubmissionConfirmationHeader</h3>
+				<p>@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.SubmissionConfirmationMsg</p>
+				<a class="waves-effect waves-light btn-large" id="btn_view_proposal_details" style="font-size: 20px;">@ESAVINGS_v1.Resources.CreateProposal.CreateProposal.ViewDetailsBtnLbl</a>
+			</div>
+		</div>
+	</div>
+}
+

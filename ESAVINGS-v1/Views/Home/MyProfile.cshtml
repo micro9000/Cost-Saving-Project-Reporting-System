@@ -1,0 +1,210 @@
+﻿@model ESAVINGS_v1.Models.MyProfileData
+
+@{
+	ViewBag.Title = "MyProfile";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+
+@{
+	string profile_url = "http://mysite.onsemi.com/User%20Photos/Profile%20Pictures/"+ ViewBag.UserFFID +"_LThumb.jpg";
+}
+
+<div style="width: 85%; margin: auto;">
+	<div class="row">
+		<div class="col s12 m4 l4">
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0px;border-left: 5px solid #37474f  ">
+						<div class="card-content" style="background: white;">
+							<img src="@profile_url" style="width: 100px; height: auto;" alt="@ViewBag.UserFullName" /><br />
+							<span class="card-title">@ViewBag.UserFullName</span>
+							<span class="card-title">@ViewBag.UserDepartment</span>
+							<span class="card-title">@ViewBag.UserTypeStr</span>
+							<a class="btn waves-effect waves-light" href="~/Home/Proposal" 
+							   target="_blank"><i class="material-icons left">comment</i>@ESAVINGS_v1.Resources.Profile.Profile.CreateNewProposalBtnLbl</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0px;border-left: 5px solid #03a9f4 ">
+						<div class="card-content light-blue lighten-5">
+							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.NumberOfSubmissionByStatusLbl</span>
+							<table class="base-font-size">
+								<thead class="light-blue lighten-2">
+									<tr>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.StatusLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.SubmissionLbl</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var status in Model.ProposalNumberOfSubmissionsByStatus)
+									{
+										<tr>
+											<td>@status.OAStatusIndicator</td>
+											<td>@status.Submissions</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="col s12 m8 l8">
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0px; border-left: 5px solid #9c27b0 ">
+						<div class="card-content purple lighten-5">
+							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.ActiveProposalsHeader - <b>@((Model.ActiveProposals != null) ? Model.ActiveProposals.Count : 0)</b></span>
+							<table class="base-font-size">
+								<thead class="purple lighten-1">
+									<tr>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TitleLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.ProjectTypeLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TicketNumberLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.SubmittedByLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.StatusLbl</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.ActiveProposals != null)
+									{
+										foreach (var active in Model.ActiveProposals)
+										{
+											<tr>
+												<td><a href="~/Home/Details/@active.Id" target="_blank">@active.ProjectTitle</a></td>
+												<td>@ViewBag.ProjectTypes[active.ProjectType]</td>
+												<td>@active.ProposalTicket</td>
+												<td>@active.SubmittedBy</td>
+												<td>@active.OAStatusIndicator</td>
+											</tr>
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0px; border-left: 5px solid #cddc39">
+						<div class="card-content lime lighten-5">
+							<span class="card-title">For your approval - <b>@((Model.ForApprovalProposals != null) ? Model.ForApprovalProposals.Count : 0)</b></span>
+							<table class="base-font-size">
+								<thead class="lime lighten-1">
+									<tr>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TitleLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.ProjectTypeLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TicketNumberLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.SubmittedByLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.StatusLbl</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.ForApprovalProposals != null)
+									{
+										foreach (var forApproval in Model.ForApprovalProposals)
+										{
+											<tr>
+												<td><a href="~/Home/Details/@forApproval.Id" target="_blank">@forApproval.ProjectTitle</a></td>
+												<td>@ViewBag.ProjectTypes[forApproval.ProjectType]</td>
+												<td>@forApproval.ProposalTicket</td>
+												<td>@forApproval.SubmittedBy</td>
+												<td>@forApproval.OAStatusIndicator</td>
+											</tr>
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="margin: 0px; border-left: 5px solid #ee6e73">
+						<div class="card-content red lighten-5">
+							<span class="card-title">Your action item (s) - <b>@((Model.CurrentUserActionItems != null) ? Model.CurrentUserActionItems.Count : 0)</b></span>
+							<table class="base-font-size">
+								<thead class="red lighten-1">
+									<tr>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TitleLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TicketNumberLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.ActionDescriptionLbl</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.CurrentUserActionItems != null)
+									{
+										foreach (var action in Model.CurrentUserActionItems)
+										{
+											<tr>
+												<td><a href="~/Home/Details/@action.Id" target="_blank">@action.ProjectTitle</a></td>
+												<td>@action.ProposalTicket</td>
+												<td>@action.NeededActions[0].NeededAction</td>
+											</tr>
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m12 l12">
+					<div class="card" style="border-left: 5px solid #4db6ac">
+						<div class="card-content teal lighten-5">
+							<span class="card-title">Archived Proposal(s) - <b>@((Model.ArchivedProposals != null) ? Model.ArchivedProposals.Count : 0)</b></span>
+							<table class="base-font-size">
+								<thead class="teal lighten-2">
+									<tr>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TitleLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.ProjectTypeLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.TicketNumberLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.SubmittedByLbl</th>
+										<th>@ESAVINGS_v1.Resources.Profile.Profile.StatusLbl</th>
+									</tr>
+								</thead>
+								<tbody>
+									@if (Model.ArchivedProposals != null)
+									{
+										foreach (var proposal in Model.ArchivedProposals)
+										{
+											<tr>
+												<td><a href="~/Home/Details/@proposal.Id" target="_blank">@proposal.ProjectTitle</a></td>
+												<td>@ViewBag.ProjectTypes[proposal.ProjectType]</td>
+												<td>@proposal.ProposalTicket</td>
+												<td>@proposal.SubmittedBy</td>
+												<td>@proposal.OAStatusIndicator</td>
+											</tr>
+										}
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+
+
+	</div>
+</div>
+

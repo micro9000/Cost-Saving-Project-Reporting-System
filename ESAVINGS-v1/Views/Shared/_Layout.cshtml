@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<link rel="icon" href="~/Assets/imgs/esavings.png" type="image/vnd.microsoft.icon" id="favicon">
+	<title>@ViewBag.Title</title>
+
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link href="~/Assets/css/font.css" rel="stylesheet" />
+
+	<link href="~/Assets/materialize/css/materialize.min.css" rel="stylesheet" />
+	<link href="~/Assets/css/master.css" rel="stylesheet" />
+
+
+	<script>
+		var base_url = "@Request.Url.GetLeftPart(UriPartial.Authority)@Url.Content("~")";
+		var global_proposal_id = "@ViewBag.proposalID";
+	</script>
+
+	@{
+		string siteKey = System.Configuration.ConfigurationManager.AppSettings["onsemi_site_key"];
+		string site = System.Configuration.ConfigurationManager.AppSettings["onsemi_site"];
+		string logoFilename = "Banner-"+ siteKey +".png";
+	}
+
+</head>
+<body>
+	<main>
+
+		<ul id="dropdown1" class="dropdown-content">
+			<li><a href="~/Home/MyProfile">Profile</a></li>
+			<li class="divider"></li>
+			@if (ViewBag.IsUserMultiPermission == true)
+			{
+				if (ViewBag.UserType == ViewBag.userType_costAnalyst)
+				{
+					<li><a href="~/User/ChangeCurrentUserType">Finance</a></li>
+				}
+				else if (ViewBag.UserType == ViewBag.userType_finance)
+				{
+					<li><a href="~/User/ChangeCurrentUserType">Cost-Analyst</a></li>
+				}
+				<li class="divider"></li>
+			}
+			<li><a href="~/User/Logout">Sign-out</a></li>
+		</ul>
+
+
+		<ul id="esavings_sites_dropdown" class="dropdown-content">
+			<li><a href="http://phsm01ws014.ad.onsemi.com:2828/Home/Index" target="_blank">OSPI Tarlac</a></li>
+			<li><a href="http://phca01ws119.ad.onsemi.com:2828/Home/Index" target="_blank">OSPI Carmona</a></li>
+			<li><a href="http://phce01ws2014.ad.onsemi.com:8019/Home/Index" target="_blank">OSPI Cebu</a></li>
+			<li><a href="http://myse01ws014.ad.onsemi.com:8090/Home/Index" target="_blank">SBN Site 1</a></li>
+			<li><a href="http://vnbh01ws4064.ad.onsemi.com:8000/Home/Index" target="_blank">OSV</a></li>
+			<li><a href="http://vnbh01ws4064.ad.onsemi.com:9000/Home/Index" target="_blank">OSBD</a></li>
+		</ul>
+
+		<ul id="esavings_languages_dropdown" class="dropdown-content">
+			<li>@Html.ActionLink("English (US)", "ChangeLanguage", "Home", new
+		   {
+			   languageAbbrevation = "en-US"
+		   }, null) </li>
+			<li>
+				@Html.ActionLink("Filipino (Philippines)", "ChangeLanguage", "Home", new
+		   {
+			   languageAbbrevation = "fil-PH"
+		   }, null)
+			<li>@Html.ActionLink("Malay (Malaysia)", "ChangeLanguage", "Home", new
+		   {
+			   languageAbbrevation = "ms-MY"
+		   }, null) </li>
+			<li>
+				@Html.ActionLink("Vietnamese (Vietnam)", "ChangeLanguage", "Home", new
+		   {
+			   languageAbbrevation = "vi-VN"
+		   }, null)
+			</li>
+			<li>
+				@Html.ActionLink("Chinese (Simplified, China)", "ChangeLanguage", "Home", new
+		   {
+			   languageAbbrevation = "zh-CN"
+		   }, null)
+			</li>
+		</ul>
+
+
+		<div class="navbar-fixed">
+			<nav class="blue-grey darken-3">
+				<div class="nav-wrapper" style="width: 85%; margin: auto;">
+					<!-- <i class="large material-icons">attach_money</i> -->
+					<a href="~/Home/Index" class="brand-logo">
+						<img src="~/Assets/imgs/@logoFilename" alt="@site" />
+					</a>
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+
+						<li data-position="bottom"><a href="~/Home/Index"><i class="material-icons left">home</i>Home</a></li>
+
+						<li data-position="bottom"><a href="~/Home/BPIs"><i class="material-icons left">filter_list</i>BPI</a></li>
+
+						<li><a class="dropdown-trigger" href="#!" data-target="esavings_sites_dropdown"><i class="material-icons left">location_on</i>ON Semi Sites<i class="material-icons right">arrow_drop_down</i></a></li>
+
+						@if (ViewBag.IsUserLoggedIn == true)
+						{
+							<li data-position="bottom"><a href="~/Home/MyProfile"><i class="material-icons left">person</i>Profile</a></li>
+							<li data-position="bottom"><a href="~/Home/Proposal"><i class="material-icons left">comment</i>Create Proposal</a></li>
+						}
+
+						@*<li data-position="bottom"><a href="~/Home/HowTo"><i class="material-icons left">book</i>HowTo</a></li>*@
+						<li data-position="bottom"><a href="~/HowToImgs/User-Manual.pptx"><i class="material-icons left">book</i>HowTo</a></li>
+
+						<li><a class="dropdown-trigger" href="#!" data-target="esavings_languages_dropdown"><i class="material-icons left">language</i>Language<i class="material-icons right">arrow_drop_down</i></a></li>
+
+						@if (ViewBag.IsUserLoggedIn == true)
+						{
+							<li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons left">person</i>@ViewBag.UserFullName<i class="material-icons right">arrow_drop_down</i></a></li>
+						}
+						else
+						{
+							<li data-position="bottom"><a href="~/User/UserLogin"><i class="material-icons left">person</i>Sign in</a></li>
+						}
+
+
+
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+
+		@RenderBody()
+
+
+
+	</main>
+
+	<footer class="page-footer blue-grey darken-3">
+		<div style="text-align: center;">
+			© @DateTime.Now.Year Copyright Applications Engineering | @System.Configuration.ConfigurationManager.AppSettings["onsemi_site"]
+		</div>
+	</footer>
+
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large red pulse">
+			<i class="large material-icons">mode_edit</i>
+		</a>
+		<ul>
+			<li><a href="~/Home/Index" class="btn-floating grey"><i class="material-icons">home</i></a></li>
+			@if (ViewBag.IsUserLoggedIn == true)
+			{
+				<li><a href="~/Home/MyProfile" class="btn-floating blue-grey"><i class="material-icons">person</i></a></li>
+				<li><a href="~/Home/Proposal" class="btn-floating blue"><i class="material-icons">comment</i></a></li>
+			}
+
+			<li><a class="btn-floating green"><i class="material-icons">book</i></a></li>
+			<li><a href="~/Home/Index" class="btn-floating red"><i class="material-icons">search</i></a></li>
+		</ul>
+	</div>
+
+
+	<script src="~/Assets/js/jquery.js"></script>
+	<script src="~/Assets/js/pagination.min.js"></script>
+	<script src="~/Assets/js/jquery-fileDownload.js"></script>
+	<script src="~/Assets/materialize/js/materialize.min.js"></script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var elems = document.querySelectorAll('.fixed-action-btn');
+			var instances = M.FloatingActionButton.init(elems, {
+				direction: 'left'
+			});
+		});
+
+
+		$(document).ready(function () {
+			$('.materialboxed').materialbox();
+		});
+
+		$(document).ready(function () {
+			$('.tooltipped').tooltip();
+		});
+
+		$(".dropdown-trigger").dropdown();
+
+		$('.datepicker').datepicker({
+			format: 'yyyy-mm-dd'
+		});
+
+		// $('.carousel.carousel-slider').carousel({
+		//     fullWidth: true
+		// });
+
+	</script>
+
+	@if (ViewBag.page_id == "home_dashboard")
+	{
+		<script type="text/javascript" src="~/Assets/js/index.js"></script>
+
+	}
+	else if (ViewBag.page_id == "create_proposal")
+	{
+		<script type="text/javascript" src="~/Assets/js/Proposal.js"></script>
+	}
+	else if (ViewBag.page_id == "user_login")
+	{
+		<script type="text/javascript" src="~/Assets/js/Login.js"></script>
+	}
+	else if (ViewBag.page_id == "proposal_details")
+	{
+		<script type="text/javascript" src="~/Assets/js/Details.js"></script>
+	}
+	else if (ViewBag.page_id == "howTo")
+	{
+		<script type="text/javascript" src="~/Assets/js/HowTo.js"></script>
+	}
+	else if (ViewBag.page_id == "bpis")
+	{
+		<script type="text/javascript" src="~/Assets/js/BPIs.js"></script>
+	}
+
+</body>
+
+
+</html>
