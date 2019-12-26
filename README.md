@@ -7,7 +7,7 @@
 ## Reason why I created this repo on my own account
 
 * I design the structure of this project since this is one of my individual project at OSPI Tarlac
-* I want to use it as reference to future C# ASP.NET MVC projects
+* I want to use it as reference for future C# ASP.NET MVC projects
 
 
 ## What I learn
