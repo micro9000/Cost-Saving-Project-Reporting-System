@@ -83,5 +83,10 @@ namespace ESavingsFactory
 		{
 			return new FinanceCategoryRepository();
 		}
+
+		public static IProposalStatusLogRepository ProposalStatusLogRepository ()
+		{
+			return new ProposalStatusLogRepository();
+		}
 	}
 }
