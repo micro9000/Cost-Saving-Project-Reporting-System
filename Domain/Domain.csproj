@@ -82,6 +82,7 @@
     <Compile Include="ProposalFinanceApproval.cs" />
     <Compile Include="ProposalImg.cs" />
     <Compile Include="ProposalManagerVerifier.cs" />
+    <Compile Include="ProposalStatusLog.cs" />
     <Compile Include="SOBManagers.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="SupportingDoc.cs" />

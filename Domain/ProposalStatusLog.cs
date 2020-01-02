@@ -81,7 +81,7 @@ namespace Domain
 		}
 
 
-		private DateTime dateChanged = DateTime.MinValue;
+		private DateTime dateChanged = DateTime.Now;
 
 		public DateTime DateChanged
 		{

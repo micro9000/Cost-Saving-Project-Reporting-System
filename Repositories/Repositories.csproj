@@ -54,6 +54,7 @@
     <Compile Include="IProposalImgRepository.cs" />
     <Compile Include="IProposalManagerVerifierRepository.cs" />
     <Compile Include="IProposalRepository.cs" />
+    <Compile Include="IProposalStatusLogRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ISupportingDocRepository.cs" />
     <Compile Include="IValidatorRepository.cs" />

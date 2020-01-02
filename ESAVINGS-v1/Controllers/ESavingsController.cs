@@ -2119,6 +2119,15 @@ namespace ESAVINGS_v1.Controllers
 
 								if (Factory.ProposalFactory().UpdateProposalStatus(invalid_status, proposalIDIntParse) > 0)
 								{
+									// Log the new overall status
+									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+									{
+										ProposalID = proposalIDIntParse,
+										OAStatus = invalid_status,
+										ApproverFFID = this.UserFFID,
+										ApproverName = this.UserFullName
+									});
+
 									results["done"] = "FALSE";
 									results["msg"] = "<strong class='good'>Successfully move to <i>"+ StaticData.GetOverallStatusStr(invalid_status) +"</i> the status!</strong>";
 
@@ -2173,6 +2182,15 @@ namespace ESAVINGS_v1.Controllers
 								{
 									if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS, proposalIDIntParse) == 0)
 									{
+
+										// Log the new overall status
+										Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+										{
+											ProposalID = proposalIDIntParse,
+											OAStatus = (int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS,
+											ApproverFFID = this.UserFFID,
+											ApproverName = this.UserFullName
+										});
 										message += "<br/> Can't update overall status (IN-PROGRESS)";
 									}
 								}
@@ -2329,6 +2347,15 @@ namespace ESAVINGS_v1.Controllers
 										if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED, proposalIDIntParse) == 0)
 										{
 											message += "<br/> Can't update overall status " + StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED);
+
+											// Log the new overall status
+											Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+											{
+												ProposalID = proposalIDIntParse,
+												OAStatus = (int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED,
+												ApproverFFID = this.UserFFID,
+												ApproverName = this.UserFullName
+											});
 										}
 										else
 										{
@@ -2879,6 +2906,15 @@ namespace ESAVINGS_v1.Controllers
 								{
 									isApprovalDone = true;
 									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING);
+
+									// Log the new overall status
+									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+									{
+										ProposalID = proposalIDIntParse,
+										OAStatus = (int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING,
+										ApproverFFID = this.UserFFID,
+										ApproverName = this.UserFullName
+									});
 								}
 
 							}
@@ -2891,6 +2927,15 @@ namespace ESAVINGS_v1.Controllers
 								{
 									isApprovalDone = true;
 									invalidOrClosed = StaticData.GetOverallStatusStr(invalid_status);
+
+									// Log the new overall status
+									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+									{
+										ProposalID = proposalIDIntParse,
+										OAStatus = invalid_status,
+										ApproverFFID = this.UserFFID,
+										ApproverName = this.UserFullName
+									});
 								}
 							}
 							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS)
@@ -2899,6 +2944,15 @@ namespace ESAVINGS_v1.Controllers
 								{
 									isApprovalDone = true;
 									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS);
+
+									// Log the new overall status
+									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+									{
+										ProposalID = proposalIDIntParse,
+										OAStatus = (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS,
+										ApproverFFID = this.UserFFID,
+										ApproverName = this.UserFullName
+									});
 								}
 
 							}
@@ -2913,6 +2967,15 @@ namespace ESAVINGS_v1.Controllers
 								{
 									isApprovalDone = true;
 									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.ACTIVE);
+
+									// Log the new overall status
+									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+									{
+										ProposalID = proposalIDIntParse,
+										OAStatus = (int)StaticData.OverallStatus.ACTIVE,
+										ApproverFFID = this.UserFFID,
+										ApproverName = this.UserFullName
+									});
 								}
 							}
 
@@ -3116,12 +3179,30 @@ namespace ESAVINGS_v1.Controllers
 					if (proposalDetails.OAStatus == (int)StaticData.OverallStatus.PROJECT_PROPOSAL && this.UserType == ((int)StaticData.UserTypes.CostAnalyst).ToString())
 					{
 						Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS, proposalID);
+
+						// Log the new overall status
+						Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+						{
+							ProposalID = proposalID,
+							OAStatus = (int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS,
+							ApproverFFID = this.UserFFID,
+							ApproverName = this.UserFullName
+						});
 					}
 
 
 					if (proposalDetails.OAStatus == (int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED && this.UserType == ((int)StaticData.UserTypes.Finance).ToString())
 					{
 						Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS, proposalID);
+
+						// Log the new overall status
+						Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+						{
+							ProposalID = proposalID,
+							OAStatus = (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS,
+							ApproverFFID = this.UserFFID,
+							ApproverName = this.UserFullName
+						});
 					}
 
 

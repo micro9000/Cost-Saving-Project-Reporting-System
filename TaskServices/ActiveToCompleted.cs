@@ -86,6 +86,16 @@ namespace TaskServices
 
 					if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COMPLETED, activeP.Id) > 0)
 					{
+
+						// Log the new overall status
+						Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+						{
+							ProposalID = activeP.Id,
+							OAStatus = (int)StaticData.OverallStatus.COMPLETED,
+							ApproverFFID = "TaskServices",
+							ApproverName = "TaskServices"
+						});
+
 						// Update proposal actual completion date
 						Factory.ProposalFactory().UpdateProposalActualCompletionDate(DateTime.Now, activeP.Id);
 

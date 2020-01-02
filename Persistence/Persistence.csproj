@@ -81,6 +81,7 @@
     <Compile Include="Repositories\ProposalImgRepository.cs" />
     <Compile Include="Repositories\ProposalManagerVerifierRepository.cs" />
     <Compile Include="Repositories\ProposalRepository.cs" />
+    <Compile Include="Repositories\ProposalStatusLogRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\SupportingDocRepository.cs" />
     <Compile Include="Repositories\ValidatorRepository.cs" />
