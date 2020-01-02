@@ -442,6 +442,16 @@ namespace ESAVINGS_v1.Controllers
 
 						if (proposalID > 0)
 						{
+
+							Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+							{
+								ProposalID = proposalID,
+								OAStatus = (int)StaticData.OverallStatus.PROJECT_PROPOSAL,
+								ApproverFFID = this.UserFFID,
+								ApproverName = this.UserFullName
+							});
+
+
 							results["done"] = "TRUE";
 							results["msg"] = "<strong class='good'>Successfully submitted</strong><br/>";
 							results["proposalID"] = proposalID.ToString();
@@ -2182,7 +2192,10 @@ namespace ESAVINGS_v1.Controllers
 								{
 									if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS, proposalIDIntParse) == 0)
 									{
-
+										message += "<br/> Can't update overall status (IN-PROGRESS)";
+									}
+									else
+									{
 										// Log the new overall status
 										Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
 										{
@@ -2191,7 +2204,6 @@ namespace ESAVINGS_v1.Controllers
 											ApproverFFID = this.UserFFID,
 											ApproverName = this.UserFullName
 										});
-										message += "<br/> Can't update overall status (IN-PROGRESS)";
 									}
 								}
 
@@ -2348,6 +2360,9 @@ namespace ESAVINGS_v1.Controllers
 										{
 											message += "<br/> Can't update overall status " + StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED);
 
+										}
+										else
+										{
 											// Log the new overall status
 											Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
 											{
@@ -2356,9 +2371,8 @@ namespace ESAVINGS_v1.Controllers
 												ApproverFFID = this.UserFFID,
 												ApproverName = this.UserFullName
 											});
-										}
-										else
-										{
+
+
 											var selectedFinanceInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, financeInfo.FFID);
 											string selectedFinanceEmail = (selectedFinanceInfo.Count > 0) ? selectedFinanceInfo[0].Email : "";
 
