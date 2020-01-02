@@ -95,6 +95,19 @@ namespace Domain
 			}
 		}
 
+		private int isDeleted;
+
+		public int IsDeleted
+		{
+			get
+			{
+				return isDeleted;
+			}
+			set
+			{
+				isDeleted = value;
+			}
+		}
 
 	}
 
