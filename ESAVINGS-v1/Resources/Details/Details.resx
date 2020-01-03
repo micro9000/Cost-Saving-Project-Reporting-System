@@ -321,6 +321,9 @@
   <data name="ProposalDetailsHeader" xml:space="preserve">
     <value>Proposal Details</value>
   </data>
+  <data name="QlikViewSectionHeader" xml:space="preserve">
+    <value>Qlik View Section</value>
+  </data>
   <data name="SaveBtnLbl" xml:space="preserve">
     <value>Save</value>
   </data>

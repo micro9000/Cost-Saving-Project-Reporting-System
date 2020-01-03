@@ -673,6 +673,15 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Qlik View Section.
+        /// </summary>
+        public static string QlikViewSectionHeader {
+            get {
+                return ResourceManager.GetString("QlikViewSectionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string SaveBtnLbl {
