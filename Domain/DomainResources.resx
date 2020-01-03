@@ -192,4 +192,43 @@
   <data name="REALIZATION" xml:space="preserve">
     <value>REALIZATION</value>
   </data>
+  <data name="DELAYED" xml:space="preserve">
+    <value>DELAYED</value>
+  </data>
+  <data name="DELAYED_sm" xml:space="preserve">
+    <value>Delayed</value>
+  </data>
+  <data name="FunnelStatus_active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="FunnelStatus_cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="FunnelStatus_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="FunnelStatus_evaluating" xml:space="preserve">
+    <value>Evaluating</value>
+  </data>
+  <data name="FunnelStatus_identified" xml:space="preserve">
+    <value>Identified</value>
+  </data>
+  <data name="IN_QUEUE" xml:space="preserve">
+    <value>In Queue</value>
+  </data>
+  <data name="MONITOR" xml:space="preserve">
+    <value>MONITOR</value>
+  </data>
+  <data name="MONITOR_sm" xml:space="preserve">
+    <value>Monitor</value>
+  </data>
+  <data name="ON_GOING" xml:space="preserve">
+    <value>Ongoing</value>
+  </data>
+  <data name="ON_HOLD" xml:space="preserve">
+    <value>ON HOLD</value>
+  </data>
+  <data name="ON_HOLD_sm" xml:space="preserve">
+    <value>On Hold</value>
+  </data>
 </root>

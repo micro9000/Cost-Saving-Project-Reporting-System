@@ -40,10 +40,20 @@ namespace Domain
 			REALIZATION                     = 10,
 			ACTIVE                          = 11,
 			COMPLETED                       = 12,
-			CANCELED                        = 13
-			//PENDING_MGR_REVIEW = 2,// disabled temporary
-			//ACTION_SITE_COST_INCHARGE_REVIEW = 4,// disabled temporary
+			CANCELED                        = 13,
+			DELAYED							= 14,
+			ON_HOLD							= 15,
+			MONITOR							= 16
 		};
+
+		public enum GlobalFunnelStatus
+		{
+			Identified = 1,
+			Evaluating = 2,
+			Active = 3,
+			Complete = 4,
+			Cancelled = 5
+		}
 
 		public enum ProjectTypes
 		{
@@ -249,7 +259,7 @@ namespace Domain
 		}
 
 
-		public static List<int> GetOverallStatusStringArray ()
+		public static List<int> GetOverallStatusStringList ()
 		{
 			List<int> status = new List<int>();
 
@@ -296,7 +306,6 @@ namespace Domain
 					statusStr = DomainResources.FINANCE_REVIEW_IN_PROGRESS;
 					break;
 
-
 				case (int)OverallStatus.COST_FUNNEL_EVALUATING:
 					statusStr = DomainResources.COST_FUNNEL_EVALUATING;
 					break;
@@ -329,12 +338,145 @@ namespace Domain
 					statusStr = DomainResources.CANCELED;
 					break;
 
+				case (int)OverallStatus.DELAYED:
+					statusStr = DomainResources.DELAYED;
+					break;
+
+				case (int)OverallStatus.ON_HOLD:
+					statusStr = DomainResources.ON_HOLD;
+					break;
+
+				case (int)OverallStatus.MONITOR:
+					statusStr = DomainResources.MONITOR;
+					break;
+
 				default:
 					break;
 			}
 
 			return statusStr;
 		}
+
+		/// <summary>
+		/// Function that return the equipvalent status of E-Savings and Qlik view
+		/// </summary>
+		/// <param name="status"></param>
+		/// <returns>String status</returns>
+		public static string GetSystemStatusMappingToQlikViewStatusStr (int status)
+		{
+			string statusStr = DomainResources.NA;
+			switch (status)
+			{
+				case (int)OverallStatus.PROJECT_PROPOSAL:
+					statusStr = DomainResources.IN_QUEUE; // In-Queue
+					break;
+
+				case (int)OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS:
+					statusStr = DomainResources.ON_GOING; // Ongoing
+					break;
+
+				case (int)OverallStatus.COST_FUNNEL_IDENTIFIED:
+				case (int)OverallStatus.FINANCE_REVIEW_IN_PROGRESS:
+					statusStr = DomainResources.FunnelStatus_identified; // Identified
+					break;
+
+
+				case (int)OverallStatus.COST_FUNNEL_EVALUATING:
+					statusStr = DomainResources.FunnelStatus_evaluating; // Evaluating
+					break;
+
+				case (int)OverallStatus.INVALID:
+				case (int)OverallStatus.EXISTING_PROJECT:
+				case (int)OverallStatus.DUPLICATE_ENTRY:
+				case (int)OverallStatus.CANCELED:
+					statusStr = DomainResources.FunnelStatus_cancelled; // Cancelled
+					break;
+
+				case (int)OverallStatus.ACTIVE:
+					statusStr = DomainResources.FunnelStatus_active; // Active small
+					break;
+
+				case (int)OverallStatus.COMPLETED:
+					statusStr = DomainResources.FunnelStatus_complete; // Complete small
+					break;
+
+
+				case (int)OverallStatus.DELAYED:
+					statusStr = DomainResources.DELAYED_sm; // Delayed small
+					break;
+
+				case (int)OverallStatus.ON_HOLD:
+					statusStr = DomainResources.ON_HOLD_sm; // on-hold small
+					break;
+
+				case (int)OverallStatus.MONITOR:
+					statusStr = DomainResources.MONITOR_sm; // Monitor small
+					break;
+
+				default:
+					break;
+			}
+
+			return statusStr;
+		}
+
+
+		public static List<int> GetGlobalFunnelStatusStringList ()
+		{
+			List<int> status = new List<int>();
+
+			foreach (var sts in Enum.GetValues(typeof(GlobalFunnelStatus)))
+			{
+				status.Add(Convert.ToInt32(sts));
+			}
+
+			return status;
+		}
+
+		public static Dictionary<int, string> GetGlobalFunnelStatusWithLabel ()
+		{
+			Dictionary<int, string> status = new Dictionary<int, string>();
+
+			foreach (var sts in Enum.GetValues(typeof(GlobalFunnelStatus)))
+			{
+				status.Add(Convert.ToInt32(sts), GetGlobalFunnelStatusStr(Convert.ToInt32(sts)));
+			}
+
+			return status;
+		}
+
+		public static string GetGlobalFunnelStatusStr (int status)
+		{
+			string statusStr = DomainResources.NA;
+			switch (status)
+			{
+				case (int)GlobalFunnelStatus.Identified:
+					statusStr = DomainResources.FunnelStatus_identified;
+					break;
+
+				case (int)GlobalFunnelStatus.Evaluating:
+					statusStr = DomainResources.FunnelStatus_evaluating;
+					break;
+
+				case (int)GlobalFunnelStatus.Active:
+					statusStr = DomainResources.FunnelStatus_active;
+					break;
+
+				case (int)GlobalFunnelStatus.Complete:
+					statusStr = DomainResources.FunnelStatus_complete;
+					break;
+
+				case (int)GlobalFunnelStatus.Cancelled:
+					statusStr = DomainResources.FunnelStatus_cancelled;
+					break;
+
+				default:
+					break;
+			}
+
+			return statusStr;
+		}
+
 
 		public static string GetUserTypeStr (int userType, bool isMaster)
 		{

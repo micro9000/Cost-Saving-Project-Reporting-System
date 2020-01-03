@@ -178,6 +178,24 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DELAYED.
+        /// </summary>
+        internal static string DELAYED {
+            get {
+                return ResourceManager.GetString("DELAYED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delayed.
+        /// </summary>
+        internal static string DELAYED_sm {
+            get {
+                return ResourceManager.GetString("DELAYED_sm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DUPLICATE-ENTRY.
         /// </summary>
         internal static string DUPLICATE_ENTRY {
@@ -210,6 +228,60 @@ namespace Domain {
         internal static string FINANCE_REVIEW_IN_PROGRESS {
             get {
                 return ResourceManager.GetString("FINANCE_REVIEW_IN_PROGRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active.
+        /// </summary>
+        internal static string FunnelStatus_active {
+            get {
+                return ResourceManager.GetString("FunnelStatus_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        internal static string FunnelStatus_cancelled {
+            get {
+                return ResourceManager.GetString("FunnelStatus_cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        internal static string FunnelStatus_complete {
+            get {
+                return ResourceManager.GetString("FunnelStatus_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evaluating.
+        /// </summary>
+        internal static string FunnelStatus_evaluating {
+            get {
+                return ResourceManager.GetString("FunnelStatus_evaluating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Identified.
+        /// </summary>
+        internal static string FunnelStatus_identified {
+            get {
+                return ResourceManager.GetString("FunnelStatus_identified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In Queue.
+        /// </summary>
+        internal static string IN_QUEUE {
+            get {
+                return ResourceManager.GetString("IN_QUEUE", resourceCulture);
             }
         }
         
@@ -250,6 +322,24 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to MONITOR.
+        /// </summary>
+        internal static string MONITOR {
+            get {
+                return ResourceManager.GetString("MONITOR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monitor.
+        /// </summary>
+        internal static string MONITOR_sm {
+            get {
+                return ResourceManager.GetString("MONITOR_sm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NA.
         /// </summary>
         internal static string NA {
@@ -264,6 +354,33 @@ namespace Domain {
         internal static string NewProductEntry {
             get {
                 return ResourceManager.GetString("NewProductEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongoing.
+        /// </summary>
+        internal static string ON_GOING {
+            get {
+                return ResourceManager.GetString("ON_GOING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ON HOLD.
+        /// </summary>
+        internal static string ON_HOLD {
+            get {
+                return ResourceManager.GetString("ON_HOLD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On Hold.
+        /// </summary>
+        internal static string ON_HOLD_sm {
+            get {
+                return ResourceManager.GetString("ON_HOLD_sm", resourceCulture);
             }
         }
         
