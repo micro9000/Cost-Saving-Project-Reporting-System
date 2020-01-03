@@ -32,6 +32,8 @@ namespace Repositories
 
 		int UpdateProposalFinanceCategory (int financeCategoryID, int proposalID);
 
+		int UpdateProposalFunnelStatus (int funnelStatus, int proposalID);
+
 		List<Proposal> SearchProposal (Proposal proposal);
 
 		List<Proposal> SearchProposal (Proposal proposal, string startDate, string endDate);

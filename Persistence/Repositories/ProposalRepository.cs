@@ -857,6 +857,27 @@ namespace Persistence.Repositories
 		}
 
 
+		public int UpdateProposalFunnelStatus (int funnelStatus, int proposalID)
+		{
+			string query = "UPDATE Proposals SET funnelStatus=@funnelStatus WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					funnelStatus = funnelStatus,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+
 		public int UpdateProposalActualCompletionDate (DateTime actualCompletionDate, int proposalID)
 		{
 			string query = "UPDATE Proposals SET actualCompletionDate=@actualCompletionDate WHERE id=@proposalID";
