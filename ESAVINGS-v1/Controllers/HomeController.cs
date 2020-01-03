@@ -238,6 +238,7 @@ namespace ESAVINGS_v1.Controllers
 			this.ViewBagUserTypes();
 			this.ViewBagOverallStatus();
 			ViewBag.ProjectTypes = StaticData.GetProjectTypeWithLabel();
+			ViewBag.GlobalFunnelStatus = StaticData.GetGlobalFunnelStatusWithLabel();
 			ViewBag.proposalID = proposalID;
 
 			Proposal proposalDetails = new Proposal();
