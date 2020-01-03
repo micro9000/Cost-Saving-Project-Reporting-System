@@ -944,6 +944,7 @@ namespace ESAVINGS_v1.Controllers
 
 				proposal.FinanceCategory = financeCategories[proposal.FinanceCategoryID].Category;
 
+				proposal.FunnelStatusIndicator = StaticData.GetGlobalFunnelStatusStr(proposal.FunnelStatus);
 				proposal.OAStatusIndicator = StaticData.GetOverallStatusStr(proposal.OAStatus);
 				proposal.ProjectTypeIndicator = StaticData.GetProjectTypeStr(proposal.ProjectType);
 				proposal.SiteIndicator = ConfigurationManager.AppSettings["onsemi_site"];

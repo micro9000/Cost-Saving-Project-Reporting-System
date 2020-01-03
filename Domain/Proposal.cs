@@ -409,6 +409,35 @@ namespace Domain
 		}
 
 
+		private int funnelStatus = 1;
+
+		public int FunnelStatus
+		{
+			get
+			{
+				return funnelStatus;
+			}
+			set
+			{
+				funnelStatus = value;
+			}
+		}
+
+		private string funnelStatusIndicator;
+
+		public string FunnelStatusIndicator
+		{
+			get
+			{
+				return funnelStatusIndicator;
+			}
+			set
+			{
+				funnelStatusIndicator = value;
+			}
+		}
+
+
 		private int financeCategoryID = 1;
 
 		public int FinanceCategoryID
@@ -659,6 +688,7 @@ namespace Domain
 			Map(p => p.ProposalImgsPath).Ignore();
 			Map(p => p.ProjectedDollarImpact).Ignore();
 			Map(p => p.FinanceCategory).Ignore();
+			Map(p => p.FunnelStatusIndicator).Ignore();
 			AutoMap();
 		}
 	}
