@@ -416,7 +416,7 @@
 
 					@*@if (ViewBag.IsUserLoggedIn == true){}
 						@if (Model.OAStatus.ToString() != ViewBag.status_INVALID){}*@
-					
+
 
 					<!-- Assign action Modal -->
 					<div id="assign-action-item-modal" class="modal modal-fixed-footer">
@@ -461,7 +461,7 @@
 							<button class="btn waves-effect waves-light red accent-2">
 								@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl
 							</button>
-							
+
 							<!-- Assign action button -->
 							<button class="btn waves-effect waves-light " id="btn_assign_action_to_employee">
 								@ESAVINGS_v1.Resources.Details.Details.AssignBtnLbl
@@ -496,7 +496,7 @@
 										// Assign action button
 										<a class="waves-effect waves-light modal-trigger btn-small"
 										   data-target="assign-action-item-modal">
-												<i class="material-icons left">person_add</i>@ESAVINGS_v1.Resources.Details.Details.AssignActionBtnLbl
+											<i class="material-icons left">person_add</i>@ESAVINGS_v1.Resources.Details.Details.AssignActionBtnLbl
 										</a>
 									}
 								}
@@ -1026,25 +1026,29 @@
 														</a>
 
 														<ul id='disapproved_dropdown_btn_list' class='dropdown-content'>
-															<li> <!--Cancel button-->
+															<li>
+																<!--Cancel button-->
 																<a href="#!" class="btn-cost-analyst-verification"
 																   data-status="2" data-oa-status="@ViewBag.status_CANCELED"
 																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
 																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()</a>
 															</li>
-															<li> <!-- Invalid button -->
+															<li>
+																<!-- Invalid button -->
 																<a href="#!" class="btn-cost-analyst-verification"
 																   data-status="2" data-oa-status="@ViewBag.status_INVALID"
 																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
 																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.InvalidBtnLbl.ToUpper()</a>
 															</li>
-															<li> <!-- Existing Project button -->
+															<li>
+																<!-- Existing Project button -->
 																<a href="#!" class="btn-cost-analyst-verification"
 																   data-status="2" data-oa-status="@ViewBag.status_EXISTING_PROJECT"
 																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
 																   data-proposal-cost-analyst-verification-id="@costAnalyst.Id">@ESAVINGS_v1.Resources.Details.Details.ExistingProjectBtnLbl.ToUpper()</a>
 															</li>
-															<li> <!-- Duplicate entry button -->
+															<li>
+																<!-- Duplicate entry button -->
 																<a href="#!" class="btn-cost-analyst-verification"
 																   data-status="2" data-oa-status="@ViewBag.status_DUPLICATE_ENTRY"
 																   data-cost-analyst-id="@costAnalyst.CostAnalystInfo.Id"
@@ -1112,7 +1116,7 @@
 												{
 													foreach (var finance in ViewBag.FinanceList)
 													{
-														<option value="@finance.FFID">@finance.FullName</option>
+												<option value="@finance.FFID">@finance.FullName</option>
 													}
 												}
 											</select>
@@ -1142,6 +1146,7 @@
 							<div class="progress" id="finance-verification-loader" style="margin: 0; display: none;">
 								<div class="indeterminate"></div>
 							</div>
+
 							<div class="row">
 								<div class="col s12 m12 l12" style="background-color:#f3e5f5 !important; padding: 20px;">
 									<!-- Finance section -->
@@ -1166,9 +1171,9 @@
 														Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
 														Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING))
 														{
-															<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-finance" data-current-finance-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id" style="padding: 0 5px;">
-																<i class="material-icons left" style="margin-right: 0;">edit</i>
-															</a>
+														<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-finance" data-current-finance-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id" style="padding: 0 5px;">
+															<i class="material-icons left" style="margin-right: 0;">edit</i>
+														</a>
 														}
 													</div>
 												</div>
@@ -1191,8 +1196,8 @@
 										</div>
 
 										@if (ViewBag.IsUserLoggedIn == true &&
-													((ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) ||
-													(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true)) &&
+													((ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) || // <-- If user is finance
+													(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true)) && // <-- If master approver
 													(Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
 													Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
 													Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING ||
@@ -1222,17 +1227,17 @@
 															{
 																if (ptype.Key == Model.ProjectType)
 																{
-																	<label>
-																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" checked />
-																		<span>@ptype.Value</span>
-																	</label>
+													<label>
+														<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" checked />
+														<span>@ptype.Value</span>
+													</label>
 																}
 																else
 																{
-																	<label>
-																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" />
-																		<span>@ptype.Value</span>
-																	</label>
+													<label>
+														<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" />
+														<span>@ptype.Value</span>
+													</label>
 																}
 															}
 
@@ -1258,23 +1263,23 @@
 													</div>
 
 													<!-- Finance category -->
-													<div class="input-field">
+													@*<div class="input-field">
 														<select id="financeCategory">
 															@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
 															{
 																if (Model.FinanceCategoryID == cat.Id)
 																{
-																	<option value="@cat.Id" selected>@cat.Category</option>
+															<option value="@cat.Id" selected>@cat.Category</option>
 																}
 																else
 																{
-																	<option value="@cat.Id">@cat.Category</option>
+															<option value="@cat.Id">@cat.Category</option>
 																}
 
 															}
 														</select>
 														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
-													</div>
+													</div>*@
 
 													<!-- Supporting documents -->
 													<div class="input-field">
@@ -1299,7 +1304,7 @@
 															   data-status="1">
 																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.CostFunnelEvaluatingBtnLbl
 															</a>
-															<!-- Save button  -->
+																<!-- Save button  -->
 															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
 															   data-oa-status="@ViewBag.status_FINANCE_REVIEW_IN_PROGRESS"
 															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1307,7 +1312,7 @@
 															   data-status="3">
 																<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
 															</a>
-															<!-- Disapproved button -->
+																<!-- Disapproved button -->
 															<a class="btn dropdown-trigger waves-effect waves-light btn-small red accent-2"
 															   data-target="finance_disapproved_dropdown_btn_list"
 															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1316,7 +1321,8 @@
 															</a>
 
 															<ul id='finance_disapproved_dropdown_btn_list' class='dropdown-content'>
-																<li> <!-- Cancel button -->
+																<li>
+																	<!-- Cancel button -->
 																	<a href="#!" class="btn-finance-verification" data-status="2"
 																	   data-oa-status="@ViewBag.status_CANCELED"
 																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1324,7 +1330,8 @@
 																		@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
 																	</a>
 																</li>
-																<li> <!-- Invalid button -->
+																<li>
+																	<!-- Invalid button -->
 																	<a href="#!" class="btn-finance-verification" data-status="2"
 																	   data-oa-status="@ViewBag.status_INVALID"
 																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1332,7 +1339,8 @@
 																		@ESAVINGS_v1.Resources.Details.Details.InvalidBtnLbl.ToUpper()
 																	</a>
 																</li>
-																<li> <!-- Existing Button -->
+																<li>
+																	<!-- Existing Button -->
 																	<a href="#!" class="btn-finance-verification" data-status="2"
 																	   data-oa-status="@ViewBag.status_EXISTING_PROJECT"
 																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1340,7 +1348,8 @@
 																		@ESAVINGS_v1.Resources.Details.Details.ExistingProjectBtnLbl.ToUpper()
 																	</a>
 																</li>
-																<li> <!-- Duplicate button -->
+																<li>
+																	<!-- Duplicate button -->
 																	<a href="#!" class="btn-finance-verification" data-status="2"
 																	   data-oa-status="@ViewBag.status_DUPLICATE_ENTRY"
 																	   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
@@ -1353,48 +1362,48 @@
 														else if (Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING)
 														{
 															<!-- BPI button -->
-															<label>
-																@if (Model.IsBPI == 1)
+														<label>
+															@if (Model.IsBPI == 1)
 																{
-																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
 																}
 																else
 																{
-																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
 																}
-																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
-															</label>
+															<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+														</label>
 															<!-- Cancel button -->
-															<a class="btn waves-effect waves-light btn-small red accent-2 btn-finance-verification"
-															   data-oa-status="@ViewBag.status_CANCELED"
-															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
-															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
-															   data-status="2">
-																<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
-															</a>
+														<a class="btn waves-effect waves-light btn-small red accent-2 btn-finance-verification"
+														   data-oa-status="@ViewBag.status_CANCELED"
+														   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+														   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+														   data-status="2">
+															<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
+														</a>
 															<!-- Active button -->
-															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
-															   data-oa-status="@ViewBag.status_ACTIVE"
-															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
-															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
-															   data-status="4">
-																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActiveBtnLbl
-															</a>
+														<a class="btn waves-effect waves-light btn-small btn-finance-verification"
+														   data-oa-status="@ViewBag.status_ACTIVE"
+														   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+														   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+														   data-status="4">
+															<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActiveBtnLbl
+														</a>
 														}
 														else if (Model.OAStatus.ToString() == ViewBag.status_ACTIVE)
 														{
 															<!-- BPI button -->
-															<label>
-																@if (Model.IsBPI == 1)
+														<label>
+															@if (Model.IsBPI == 1)
 																{
-																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
 																}
 																else
 																{
-																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
 																}
-																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
-															</label>
+															<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+														</label>
 														}
 
 													</div>
@@ -1420,6 +1429,126 @@
 
 							</div>
 						</div>
+
+						<!--
+							Qlik view section 
+						-->
+						<div class="z-depth-1">
+							<div class="progress" id="qlik-view-forms-loader" style="margin: 0; display: none;">
+								<div class="indeterminate"></div>
+							</div>
+							<div class="row">
+
+								<div class="col s12 m12 l12" style="background-color:#e6f5ed !important; padding: 20px;">
+
+									<div style="border-bottom: 1px solid rgba(0,0,0,0.14); margin-bottom: 10px;">
+										<h5>@ESAVINGS_v1.Resources.Details.Details.QlikViewSectionHeader</h5>
+									</div>
+
+									<div class="card-panel" style="border-left: 5px solid #48bd65;">
+										@if (ViewBag.IsUserLoggedIn == true &&
+													((ViewBag.UserType == ViewBag.userType_finance && ViewBag.UserIsFinanceApprovalOnCurrentProposal == true) || // <-- If user is finance
+													(ViewBag.UserType == ViewBag.userType_finance && ViewBag.IsUserMaster == true)) && // <-- If master approver
+													(Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
+													Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
+													Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING ||
+													Model.OAStatus.ToString() == ViewBag.status_ACTIVE))
+										{
+
+											<div class="row">
+												<div class="col l12 s12 m12">
+													<!-- Finance category -->
+													<div class="input-field">
+														<select id="financeCategory">
+															@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
+															{
+																if (Model.FinanceCategoryID == cat.Id)
+																{
+																	<option value="@cat.Id" selected>@cat.Category</option>
+																}
+																else
+																{
+																	<option value="@cat.Id">@cat.Category</option>
+																}
+
+															}
+														</select>
+														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
+													</div>
+
+													<!-- Original due date -->
+													<div class="input-field">
+														<input id="qlik_view_original_due_date" type="text" class="datepicker" value="" autocomplete="off">
+														<label for="qlik_view_original_due_date">Original Due Date</label>
+													</div>
+
+													<!-- Current due date -->
+													<div class="input-field">
+														<input id="qlik_view_current_due_date" type="text" class="datepicker" value="" autocomplete="off">
+														<label for="qlik_view_current_due_date">Current Due Date</label>
+													</div>
+
+
+													<!-- Planned project start date -->
+													<div class="input-field">
+														<input id="qlik_view_planned_project_start_date" type="text" class="datepicker" value="" autocomplete="off">
+														<label for="qlik_view_planned_project_start_date">Planned project start date</label>
+													</div>
+
+													<!-- Planned Saving start date -->
+													<div class="input-field">
+														<input id="qlik_view_planned_saving_start_date" type="text" class="datepicker" value="" autocomplete="off">
+														<label for="qlik_view_planned_saving_start_date">Planned saving start date</label>
+													</div>
+
+													<!-- Actual completion date -->
+													<div class="input-field">
+														<input id="qlik_view_actual_completion_date" type="text" class="datepicker" value="" autocomplete="off">
+														<label for="qlik_view_actual_completion_date">Actual completion date</label>
+													</div>													<!-- Global funnel status -->
+													<div class="input-field">
+														<select id="globalFunnelStatus">
+															<option></option>
+															@foreach (var fStatus in ViewBag.GlobalFunnelStatus)
+															{
+																<option value="@fStatus.Key">@fStatus.Value</option>
+															}
+														</select>
+														<label for="globalFunnelStatus">Funnel status</label>
+													</div>
+
+
+
+													<div style="text-align: right">
+														<!-- Save button  -->
+														<a class="btn waves-effect waves-light btn-small btn-qlik-view-save-details">
+															<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
+														</a>
+													</div>
+												</div>
+											</div>
+										}
+										else
+										{
+											<!-- Finace remarks -->
+											@*<div class="row">
+												<div class="col l12 s12 m12">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl:</label>
+															<div style="white-space: pre-wrap">@Model.FinanceApproval[0].Remarks</div>
+														</div>
+													</div>
+												</div>
+											</div>*@
+										}
+									</div>
+								</div>
+
+
+							</div>
+						</div>
+
 					}
 				</div>
 
