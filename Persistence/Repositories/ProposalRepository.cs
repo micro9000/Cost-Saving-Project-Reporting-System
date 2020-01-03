@@ -876,5 +876,86 @@ namespace Persistence.Repositories
 			}
 			return rowsUpdated;
 		}
+
+
+		public int UpdateProposalOriginalDueDate (DateTime origDueDate, int proposalID)
+		{
+			string query = "UPDATE Proposals SET originalDueDate=@originalDueDate WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					originalDueDate = origDueDate,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+		public int UpdateProposalCurrentDueDate (DateTime currentDueDate, int proposalID)
+		{
+			string query = "UPDATE Proposals SET currentDueDate=@currentDueDate WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					currentDueDate = currentDueDate,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+		public int UpdateProposalPlannedProjectStartDate (DateTime plannedProjectStartDate, int proposalID)
+		{
+			string query = "UPDATE Proposals SET plannedProjectStartDate=@plannedProjectStartDate WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					plannedProjectStartDate = plannedProjectStartDate,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+		public int UpdateProposalPlannedSavingStartDate (DateTime plannedSavingStartDate, int proposalID)
+		{
+			string query = "UPDATE Proposals SET plannedSavingsStartDate=@plannedSavingsStartDate WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					plannedSavingsStartDate = plannedSavingStartDate,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
 	}
 }

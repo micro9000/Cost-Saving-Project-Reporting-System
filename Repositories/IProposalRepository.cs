@@ -20,9 +20,17 @@ namespace Repositories
 
 		int UpdateProposalExpectedStartDate (DateTime expectedStartDate, int proposalID);
 
-		int UpdateProposalFinanceCategory (int financeCategoryID, int proposalID);
+		int UpdateProposalOriginalDueDate (DateTime origDueDate, int proposalID);
+
+		int UpdateProposalCurrentDueDate (DateTime currentDueDate, int proposalID);
+
+		int UpdateProposalPlannedProjectStartDate (DateTime plannedProjectStartDate, int proposalID);
+
+		int UpdateProposalPlannedSavingStartDate (DateTime plannedSavingStartDate, int proposalID);
 
 		int UpdateProposalActualCompletionDate (DateTime actualCompletionDate, int proposalID);
+
+		int UpdateProposalFinanceCategory (int financeCategoryID, int proposalID);
 
 		List<Proposal> SearchProposal (Proposal proposal);
 
