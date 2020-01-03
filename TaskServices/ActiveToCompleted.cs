@@ -96,6 +96,9 @@ namespace TaskServices
 							ApproverName = "TaskServices"
 						});
 
+						// Update funnel status to Complete
+						Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Complete, activeP.Id);
+
 						//
 						// Update proposal actual completion date when the proposal's status is COMPLETED
 						//

@@ -2969,6 +2969,9 @@ namespace ESAVINGS_v1.Controllers
 										ApproverFFID = this.UserFFID,
 										ApproverName = this.UserFullName
 									});
+
+									// Update funell status to evaluating
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
 								}
 
 							}
@@ -2990,10 +2993,14 @@ namespace ESAVINGS_v1.Controllers
 										ApproverFFID = this.UserFFID,
 										ApproverName = this.UserFullName
 									});
+
+									// Update funell status to cancelled
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Cancelled, proposalIDIntParse);
 								}
 							}
-							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS)
+							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS) // Saved
 							{
+
 								if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS, proposalIDIntParse) > 0)
 								{
 									isApprovalDone = true;
@@ -3007,6 +3014,10 @@ namespace ESAVINGS_v1.Controllers
 										ApproverFFID = this.UserFFID,
 										ApproverName = this.UserFullName
 									});
+
+									// Update Global funnel status to Identified
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Identified, proposalIDIntParse);
+
 								}
 
 							}
@@ -3035,6 +3046,9 @@ namespace ESAVINGS_v1.Controllers
 										ApproverFFID = this.UserFFID,
 										ApproverName = this.UserFullName
 									});
+
+									// Update funnel status to Active
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Active, proposalIDIntParse);
 								}
 							}
 
