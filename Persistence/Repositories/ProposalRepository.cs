@@ -271,7 +271,7 @@ namespace Persistence.Repositories
 
 					if (statusList[0] == "0") // means all
 					{
-						foreach (int status in StaticData.GetOverallStatusStringArray())
+						foreach (int status in StaticData.GetOverallStatusStringList())
 						{
 							pgb.Predicates.Add(Predicates.Field<Proposal>(f => f.OAStatus, Operator.Eq, status));
 						}
