@@ -96,7 +96,9 @@ namespace TaskServices
 							ApproverName = "TaskServices"
 						});
 
-						// Update proposal actual completion date
+						//
+						// Update proposal actual completion date when the proposal's status is COMPLETED
+						//
 						Factory.ProposalFactory().UpdateProposalActualCompletionDate(DateTime.Now, activeP.Id);
 
 						var ownerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(ldapAddrs, activeP.EmpFFID);
