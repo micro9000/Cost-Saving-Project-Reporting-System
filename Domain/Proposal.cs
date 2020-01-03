@@ -439,7 +439,9 @@ namespace Domain
 
 
 		private DateTime originalDueDate;
-
+		//
+		// Assign in Submit_Proposal if the user is IDL
+		//
 		public DateTime OriginalDueDate
 		{
 			get

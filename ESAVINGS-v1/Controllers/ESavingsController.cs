@@ -425,6 +425,7 @@ namespace ESAVINGS_v1.Controllers
 							OAStatus = (int)StaticData.OverallStatus.PROJECT_PROPOSAL
 						};
 
+						// If the user is IDL, all of this attributes is required
 						if (this.IsDL == false)
 						{
 							newProposal.ProjectType = projectType;
@@ -436,6 +437,9 @@ namespace ESAVINGS_v1.Controllers
 							newProposal.CurrentDueDate = newProposal.ExpectedStartDate.AddMonths(newProposal.NumberOfMonthsToBeActive);
 						}
 
+						//
+						// Actual insertion of proposal details
+						//
 						int proposalID = Factory.ProposalFactory().Add(newProposal);
 
 						#endregion
@@ -1985,16 +1989,23 @@ namespace ESAVINGS_v1.Controllers
 
 						int UserCostAnalystIDTmp = (this.IsUserMaster == true) ? costAnalystID : int.Parse(this.UserCostAnalystID);
 
+
+						//
+						// Actual updating and approval
+						//
 						if (Factory.ProposalCostAnalystRepository().UpdateProposalCostAnalystVerification(proposalIDIntParse, UserCostAnalystIDTmp, remarks, isVerifiedIntParse) > 0)
 						{
 
-							// TODO if current status is INPROGRESS and the cost analyst review the action provided
+							// TODO: if current status is INPROGRESS and the cost analyst review the action provided
 
 
 							string message = "";
 
-							if (dollarImpact > 0)
+							if (dollarImpact > 0 && proposalDetails.DollarImpact != dollarImpact)
 							{
+								//
+								// Update dollar impact
+								//
 								if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
 								{
 									message += "<br/> Can't add/update dolar impact";
@@ -2005,8 +2016,11 @@ namespace ESAVINGS_v1.Controllers
 								}
 							}
 
-							if (projectTypeIntParse > 0)
+							if (projectTypeIntParse > 0 && proposalDetails.ProjectType != projectTypeIntParse)
 							{
+								//
+								// Update Project Type
+								//
 								if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
 								{
 									message += "<br/> Can't add/update project type";
@@ -2017,8 +2031,11 @@ namespace ESAVINGS_v1.Controllers
 								}
 							}
 
-							if (numberOfMonthsToBeActive > 0)
+							if (numberOfMonthsToBeActive > 0 && proposalDetails.NumberOfMonthsToBeActive != numberOfMonthsToBeActive)
 							{
+								//
+								// Update Proposal number of months to be active
+								//
 								if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
 								{
 									message += "<br/> Can't add/update number of months to be active";
@@ -2026,6 +2043,8 @@ namespace ESAVINGS_v1.Controllers
 								else
 								{
 									message += "<br/> Added number of months to be active";
+
+									// TODO: update the current due date
 								}
 							}
 
@@ -2033,8 +2052,11 @@ namespace ESAVINGS_v1.Controllers
 							if (expectedStartDate != "")
 							{
 								DateTime expectedStartDateParsed;
-								if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed))
+								if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed) && proposalDetails.ExpectedStartDate != expectedStartDateParsed)
 								{
+									//
+									// Update expected start date
+									//
 									if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
 									{
 										message += "<br/> Can't add/update expected project start date";
@@ -2042,6 +2064,8 @@ namespace ESAVINGS_v1.Controllers
 									else
 									{
 										message += "<br/> Added expected project start date";
+
+										// TODO: update the current due date
 									}
 								}
 							}
@@ -2122,7 +2146,10 @@ namespace ESAVINGS_v1.Controllers
 														(int)StaticData.OverallStatus.DUPLICATE_ENTRY };
 
 
-							if (isVerifiedIntParse == 2 && invalid_status_list.Contains(OAStatusIntParse)) // Invalid or disapproved
+							//
+							// When Invalid or disapproved
+							//
+							if (isVerifiedIntParse == 2 && invalid_status_list.Contains(OAStatusIntParse))
 							{
 								int OAStatusIndex = Array.IndexOf(invalid_status_list, OAStatusIntParse);
 								int invalid_status = invalid_status_list[OAStatusIndex];
@@ -2185,7 +2212,10 @@ namespace ESAVINGS_v1.Controllers
 									return Json(results);
 								}
 							}
-							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS) // Saved
+							//
+							// When Saving
+							//
+							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS)
 							{
 
 								if (proposalDetails.OAStatus == (int)StaticData.OverallStatus.PROJECT_PROPOSAL)
@@ -2300,7 +2330,10 @@ namespace ESAVINGS_v1.Controllers
 
 
 							}
-							else if (isVerifiedIntParse == 1 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED) // Finance approver insertion
+							//
+							// When cost analyst moved the proposal status to finance approval
+							//
+							else if (isVerifiedIntParse == 1 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED)
 							{
 
 								var neededActions = Factory.ProposalActionApproverRepository().GetProposalActionApprovers(proposalDetails.Id);
