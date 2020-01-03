@@ -2044,7 +2044,11 @@ namespace ESAVINGS_v1.Controllers
 								{
 									message += "<br/> Added number of months to be active";
 
-									// TODO: update the current due date
+									// Update the current due date
+									// when they update the expected start date and number of months to active
+									proposalDetails.CurrentDueDate = proposalDetails.ExpectedStartDate.AddMonths(numberOfMonthsToBeActive);
+									Factory.ProposalFactory().UpdateProposalCurrentDueDate(proposalDetails.CurrentDueDate, proposalIDIntParse);
+
 								}
 							}
 
@@ -2065,7 +2069,10 @@ namespace ESAVINGS_v1.Controllers
 									{
 										message += "<br/> Added expected project start date";
 
-										// TODO: update the current due date
+										// Update the current due date
+										// when they update the expected start date and number of months to active
+										proposalDetails.CurrentDueDate = expectedStartDateParsed.AddMonths(proposalDetails.NumberOfMonthsToBeActive);
+										Factory.ProposalFactory().UpdateProposalCurrentDueDate(proposalDetails.CurrentDueDate, proposalIDIntParse);
 									}
 								}
 							}
@@ -2851,17 +2858,17 @@ namespace ESAVINGS_v1.Controllers
 							}
 
 
-							if (financeCategoryID > 0)
-							{
-								if (Factory.ProposalFactory().UpdateProposalFinanceCategory(financeCategoryID, proposalIDIntParse) == 0)
-								{
-									message += "<br/> Can't update expected project start date";
-								}
-								else
-								{
-									message += "<br/> Added finance category";
-								}
-							}
+							//if (financeCategoryID > 0)
+							//{
+							//	if (Factory.ProposalFactory().UpdateProposalFinanceCategory(financeCategoryID, proposalIDIntParse) == 0)
+							//	{
+							//		message += "<br/> Can't update expected project start date";
+							//	}
+							//	else
+							//	{
+							//		message += "<br/> Added finance category";
+							//	}
+							//}
 
 							#region Insert Supporting documents
 
@@ -3014,6 +3021,11 @@ namespace ESAVINGS_v1.Controllers
 								{
 									isApprovalDone = true;
 									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.ACTIVE);
+
+
+									// Update plannedProjectStartDate to DATE NOW when proposal's status change to ACTIVE status
+									Factory.ProposalFactory().UpdateProposalPlannedProjectStartDate(DateTime.Now, proposalIDIntParse);
+
 
 									// Log the new overall status
 									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
