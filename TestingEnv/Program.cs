@@ -17,20 +17,9 @@ namespace TestingEnv
 		static void Main (string[] args)
 		{
 
-			//var cals = Helpers.ONCalendar.GetByYear(2019);
+			var cals = Helpers.ONCalendar.GetByYear(2020);
 
-			//foreach (var cal in cals)
-			//{
-			//	var startAndEnd = cal.Value;
-
-
-			//	Console.WriteLine(cal.Key +" STart: "+ startAndEnd["start"] + "End: "+ startAndEnd["end"]);
-			//}
-
-
-			var cal2 = Helpers.ONCalendar.GetByDate(new DateTime(2019, 12, 31));
-
-			foreach (var cal in cal2)
+			foreach (var cal in cals)
 			{
 				var startAndEnd = cal.Value;
 
@@ -38,9 +27,20 @@ namespace TestingEnv
 				Console.WriteLine(cal.Key +" STart: "+ startAndEnd["start"] + "End: "+ startAndEnd["end"]);
 			}
 
-			int currentWW = cal2.FirstOrDefault().Key + 1;
 
-			Console.WriteLine(currentWW);
+			//var cal2 = Helpers.ONCalendar.GetByDate(new DateTime(2019, 12, 31));
+
+			//foreach (var cal in cal2)
+			//{
+			//	var startAndEnd = cal.Value;
+
+
+			//	Console.WriteLine(cal.Key +" STart: "+ startAndEnd["start"] + "End: "+ startAndEnd["end"]);
+			//}
+
+			//int currentWW = cal2.FirstOrDefault().Key + 1;
+
+			//Console.WriteLine(currentWW);
 
 
 			//DateTime dec31 = new DateTime(2019, 1, 1);
