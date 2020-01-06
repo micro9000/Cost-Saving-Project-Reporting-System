@@ -213,17 +213,11 @@
   <data name="FunnelStatus_identified" xml:space="preserve">
     <value>Identified</value>
   </data>
-  <data name="IN_QUEUE" xml:space="preserve">
-    <value>In Queue</value>
-  </data>
   <data name="MONITOR" xml:space="preserve">
     <value>MONITOR</value>
   </data>
   <data name="MONITOR_sm" xml:space="preserve">
     <value>Monitor</value>
-  </data>
-  <data name="ON_GOING" xml:space="preserve">
-    <value>Ongoing</value>
   </data>
   <data name="ON_HOLD" xml:space="preserve">
     <value>ON HOLD</value>

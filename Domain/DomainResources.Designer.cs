@@ -277,15 +277,6 @@ namespace Domain {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In Queue.
-        /// </summary>
-        internal static string IN_QUEUE {
-            get {
-                return ResourceManager.GetString("IN_QUEUE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to IN Progress Action Required.
         /// </summary>
         internal static string INProgressActionRequired {
@@ -354,15 +345,6 @@ namespace Domain {
         internal static string NewProductEntry {
             get {
                 return ResourceManager.GetString("NewProductEntry", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ongoing.
-        /// </summary>
-        internal static string ON_GOING {
-            get {
-                return ResourceManager.GetString("ON_GOING", resourceCulture);
             }
         }
         

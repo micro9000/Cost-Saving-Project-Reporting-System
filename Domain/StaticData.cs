@@ -41,9 +41,9 @@ namespace Domain
 			ACTIVE                          = 11,
 			COMPLETED                       = 12,
 			CANCELED                        = 13,
-			DELAYED							= 14,
-			ON_HOLD							= 15,
-			MONITOR							= 16
+			//DELAYED							= 14,
+			//ON_HOLD							= 15,
+			//MONITOR							= 16
 		};
 
 		public enum GlobalFunnelStatus
@@ -338,17 +338,17 @@ namespace Domain
 					statusStr = DomainResources.CANCELED;
 					break;
 
-				case (int)OverallStatus.DELAYED:
-					statusStr = DomainResources.DELAYED;
-					break;
+				//case (int)OverallStatus.DELAYED:
+				//	statusStr = DomainResources.DELAYED;
+				//	break;
 
-				case (int)OverallStatus.ON_HOLD:
-					statusStr = DomainResources.ON_HOLD;
-					break;
+				//case (int)OverallStatus.ON_HOLD:
+				//	statusStr = DomainResources.ON_HOLD;
+				//	break;
 
-				case (int)OverallStatus.MONITOR:
-					statusStr = DomainResources.MONITOR;
-					break;
+				//case (int)OverallStatus.MONITOR:
+				//	statusStr = DomainResources.MONITOR;
+				//	break;
 
 				default:
 					break;
@@ -358,7 +358,7 @@ namespace Domain
 		}
 
 		/// <summary>
-		/// Function that return the equipvalent status of E-Savings and Qlik view
+		/// Function that return the equipvalent status of E-Savings and Qlik view (funnel status)
 		/// </summary>
 		/// <param name="status"></param>
 		/// <returns>String status</returns>
@@ -368,19 +368,12 @@ namespace Domain
 			switch (status)
 			{
 				case (int)OverallStatus.PROJECT_PROPOSAL:
-					statusStr = DomainResources.IN_QUEUE; // In-Queue
+					statusStr = DomainResources.FunnelStatus_identified;// Identified
 					break;
 
 				case (int)OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS:
-					statusStr = DomainResources.ON_GOING; // Ongoing
-					break;
-
 				case (int)OverallStatus.COST_FUNNEL_IDENTIFIED:
 				case (int)OverallStatus.FINANCE_REVIEW_IN_PROGRESS:
-					statusStr = DomainResources.FunnelStatus_identified; // Identified
-					break;
-
-
 				case (int)OverallStatus.COST_FUNNEL_EVALUATING:
 					statusStr = DomainResources.FunnelStatus_evaluating; // Evaluating
 					break;
@@ -401,17 +394,17 @@ namespace Domain
 					break;
 
 
-				case (int)OverallStatus.DELAYED:
-					statusStr = DomainResources.DELAYED_sm; // Delayed small
-					break;
+				//case (int)OverallStatus.DELAYED:
+				//	statusStr = DomainResources.DELAYED_sm; // Delayed small
+				//	break;
 
-				case (int)OverallStatus.ON_HOLD:
-					statusStr = DomainResources.ON_HOLD_sm; // on-hold small
-					break;
+				//case (int)OverallStatus.ON_HOLD:
+				//	statusStr = DomainResources.ON_HOLD_sm; // on-hold small
+				//	break;
 
-				case (int)OverallStatus.MONITOR:
-					statusStr = DomainResources.MONITOR_sm; // Monitor small
-					break;
+				//case (int)OverallStatus.MONITOR:
+				//	statusStr = DomainResources.MONITOR_sm; // Monitor small
+				//	break;
 
 				default:
 					break;
