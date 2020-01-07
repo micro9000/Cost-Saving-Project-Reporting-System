@@ -2649,7 +2649,7 @@ namespace ESAVINGS_v1.Controllers
 
 		public async Task<JsonResult> FinanceApproval (string proposalID, string remarks, string isVerified, string OAStatus,
 													int financeApproverID, string projectType="", string dollarImpactStr="",
-													string numberOfMonthsToBeActiveStr="", string expectedStartDate="", int financeCategoryID=0, int supportingDocsLen=0)
+													string numberOfMonthsToBeActiveStr="", string expectedStartDate="", int supportingDocsLen=0)
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
@@ -2773,20 +2773,6 @@ namespace ESAVINGS_v1.Controllers
 							return Json(results);
 						}
 
-
-						if (financeCategoryID == 0)
-						{
-							results["msg"] = "<strong class='error'>Finance Category is required</strong>";
-							return Json(results);
-						}
-
-						var financeCategories = this.GetAllFinanceCategoryById();
-						if (financeCategories.ContainsKey(financeCategoryID) == false)
-						{
-							results["msg"] = "<strong class='error'>Finance Category is required</strong>";
-							return Json(results);
-						}
-
 					}
 
 
@@ -2868,19 +2854,6 @@ namespace ESAVINGS_v1.Controllers
 									}
 								}
 							}
-
-
-							//if (financeCategoryID > 0)
-							//{
-							//	if (Factory.ProposalFactory().UpdateProposalFinanceCategory(financeCategoryID, proposalIDIntParse) == 0)
-							//	{
-							//		message += "<br/> Can't update expected project start date";
-							//	}
-							//	else
-							//	{
-							//		message += "<br/> Added finance category";
-							//	}
-							//}
 
 							#region Insert Supporting documents
 
