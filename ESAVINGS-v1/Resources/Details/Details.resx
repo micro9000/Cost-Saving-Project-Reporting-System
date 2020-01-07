@@ -138,6 +138,9 @@
   <data name="ActiveBtnLbl" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="actualCompletionDateLbl" xml:space="preserve">
+    <value>Actual completion date</value>
+  </data>
   <data name="AdditionalDescriptionLbl" xml:space="preserve">
     <value>Additional Description (Computed Cost reduction / Cost Avoidance)</value>
   </data>
@@ -193,7 +196,7 @@
     <value>Change Cost-Analyst</value>
   </data>
   <data name="ChangeFinanceLbl" xml:space="preserve">
-    <value>ChangeFinanceLbl</value>
+    <value>Change Finance</value>
   </data>
   <data name="ChooseActionOwnerLbl" xml:space="preserve">
     <value>Choose action owner</value>
@@ -202,7 +205,7 @@
     <value>Choose cost-analyst approver</value>
   </data>
   <data name="ChooseFinanceApproverLbl" xml:space="preserve">
-    <value>ChooseFinanceApproverLbl</value>
+    <value>Choose finance approver</value>
   </data>
   <data name="ContinueUpdateBtnLbl" xml:space="preserve">
     <value>Continue Update</value>
@@ -224,6 +227,9 @@
   </data>
   <data name="CurrentDescLbl" xml:space="preserve">
     <value>Current</value>
+  </data>
+  <data name="currentDueDateLbl" xml:space="preserve">
+    <value>Current due date</value>
   </data>
   <data name="DateSubmittedLbl" xml:space="preserve">
     <value>Date submitted</value>
@@ -264,6 +270,9 @@
   <data name="FinanceSectionHeader" xml:space="preserve">
     <value>Finance Section</value>
   </data>
+  <data name="funnelStatuslbl" xml:space="preserve">
+    <value>Funnel status</value>
+  </data>
   <data name="InvalidBtnLbl" xml:space="preserve">
     <value>Invalid</value>
   </data>
@@ -282,6 +291,9 @@
   <data name="NumberOfMonthsToBeActiveLbl" xml:space="preserve">
     <value>Number of months to be active</value>
   </data>
+  <data name="originalDueDateLbl" xml:space="preserve">
+    <value>Original due date</value>
+  </data>
   <data name="OverviewTabHeader" xml:space="preserve">
     <value>Overview</value>
   </data>
@@ -290,6 +302,12 @@
   </data>
   <data name="OwnersRemarksLbl" xml:space="preserve">
     <value>Owner's Remarks</value>
+  </data>
+  <data name="plannedProjectStartDateLbl" xml:space="preserve">
+    <value>Planned project start date</value>
+  </data>
+  <data name="plannedSavingStartDateLbl" xml:space="preserve">
+    <value>Planned saving start date</value>
   </data>
   <data name="ProjectOwnerLb" xml:space="preserve">
     <value>Project Owner</value>

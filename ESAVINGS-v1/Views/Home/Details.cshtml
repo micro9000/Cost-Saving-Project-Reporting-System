@@ -21,9 +21,46 @@
 	decimal totalDollarImpact = dollarImpact * Model.NumberOfMonthsToBeActive;
 
 	string expectedStartDate = "";
+	string originalDueDate = "";
+	string currentDueDate = "";
+	string plannedProjectStartDate = "";
+	string plannedSavingStartDate = "";
+	string actualCompletionDate = "";
+	
+	// Expected start date
 	if (Model.ExpectedStartDate != null && Model.ExpectedStartDate != (new DateTime(0001, 01, 01)))
 	{
 		expectedStartDate = Model.ExpectedStartDate.ToString("yyyy-MM-dd");
+	}
+	
+	// Original Due date
+	if (Model.OriginalDueDate != null && Model.OriginalDueDate != (new DateTime(0001, 01, 01)))
+	{
+		originalDueDate = Model.OriginalDueDate.ToString("yyyy-MM-dd");
+	}
+
+	// Current Due date
+	if (Model.CurrentDueDate != null && Model.CurrentDueDate != (new DateTime(0001, 01, 01)))
+	{
+		currentDueDate = Model.CurrentDueDate.ToString("yyyy-MM-dd");
+	}
+
+	// Planned Project start date
+	if (Model.PlannedProjectStartDate != null && Model.PlannedProjectStartDate != (new DateTime(0001, 01, 01)))
+	{
+		plannedProjectStartDate = Model.PlannedProjectStartDate.ToString("yyyy-MM-dd");
+	}
+
+	// Planned Saving start date
+	if (Model.PlannedSavingsStartDate != null && Model.PlannedSavingsStartDate != (new DateTime(0001, 01, 01)))
+	{
+		plannedSavingStartDate = Model.PlannedSavingsStartDate.ToString("yyyy-MM-dd");
+	}
+
+	// Actual completion date
+	if (Model.ActualCompletionDate != null && Model.ActualCompletionDate != (new DateTime(0001, 01, 01)))
+	{
+		actualCompletionDate = Model.ActualCompletionDate.ToString("yyyy-MM-dd");
 	}
 }
 
@@ -1116,7 +1153,7 @@
 												{
 													foreach (var finance in ViewBag.FinanceList)
 													{
-												<option value="@finance.FFID">@finance.FullName</option>
+														<option value="@finance.FFID">@finance.FullName</option>
 													}
 												}
 											</select>
@@ -1171,9 +1208,9 @@
 														Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
 														Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING))
 														{
-														<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-finance" data-current-finance-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id" style="padding: 0 5px;">
-															<i class="material-icons left" style="margin-right: 0;">edit</i>
-														</a>
+															<a class="waves-effect waves-light btn-small btn-reassign-project-to-new-finance" data-current-finance-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id" style="padding: 0 5px;">
+																<i class="material-icons left" style="margin-right: 0;">edit</i>
+															</a>
 														}
 													</div>
 												</div>
@@ -1227,17 +1264,17 @@
 															{
 																if (ptype.Key == Model.ProjectType)
 																{
-													<label>
-														<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" checked />
-														<span>@ptype.Value</span>
-													</label>
+																	<label>
+																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" checked />
+																		<span>@ptype.Value</span>
+																	</label>
 																}
 																else
 																{
-													<label>
-														<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" />
-														<span>@ptype.Value</span>
-													</label>
+																	<label>
+																		<input name="finance_project_type" data-project-type="@ptype.Key" type="radio" />
+																		<span>@ptype.Value</span>
+																	</label>
 																}
 															}
 
@@ -1264,22 +1301,22 @@
 
 													<!-- Finance category -->
 													@*<div class="input-field">
-														<select id="financeCategory">
-															@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
-															{
-																if (Model.FinanceCategoryID == cat.Id)
+															<select id="financeCategory">
+																@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
 																{
-															<option value="@cat.Id" selected>@cat.Category</option>
-																}
-																else
-																{
-															<option value="@cat.Id">@cat.Category</option>
-																}
+																	if (Model.FinanceCategoryID == cat.Id)
+																	{
+																<option value="@cat.Id" selected>@cat.Category</option>
+																	}
+																	else
+																	{
+																<option value="@cat.Id">@cat.Category</option>
+																	}
 
-															}
-														</select>
-														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
-													</div>*@
+																}
+															</select>
+															<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
+														</div>*@
 
 													<!-- Supporting documents -->
 													<div class="input-field">
@@ -1362,48 +1399,48 @@
 														else if (Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING)
 														{
 															<!-- BPI button -->
-														<label>
-															@if (Model.IsBPI == 1)
+															<label>
+																@if (Model.IsBPI == 1)
 																{
-																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
 																}
 																else
 																{
-																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
 																}
-															<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
-														</label>
+																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+															</label>
 															<!-- Cancel button -->
-														<a class="btn waves-effect waves-light btn-small red accent-2 btn-finance-verification"
-														   data-oa-status="@ViewBag.status_CANCELED"
-														   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
-														   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
-														   data-status="2">
-															<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
-														</a>
+															<a class="btn waves-effect waves-light btn-small red accent-2 btn-finance-verification"
+															   data-oa-status="@ViewBag.status_CANCELED"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="2">
+																<i class="material-icons left">clear</i>@ESAVINGS_v1.Resources.Details.Details.CancelBtnLbl.ToUpper()
+															</a>
 															<!-- Active button -->
-														<a class="btn waves-effect waves-light btn-small btn-finance-verification"
-														   data-oa-status="@ViewBag.status_ACTIVE"
-														   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
-														   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
-														   data-status="4">
-															<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActiveBtnLbl
-														</a>
+															<a class="btn waves-effect waves-light btn-small btn-finance-verification"
+															   data-oa-status="@ViewBag.status_ACTIVE"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id"
+															   data-proposal-finance-verification-id="@Model.FinanceApproval[0].Id"
+															   data-status="4">
+																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.ActiveBtnLbl
+															</a>
 														}
 														else if (Model.OAStatus.ToString() == ViewBag.status_ACTIVE)
 														{
 															<!-- BPI button -->
-														<label>
-															@if (Model.IsBPI == 1)
+															<label>
+																@if (Model.IsBPI == 1)
 																{
-																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" checked="checked" />
 																}
 																else
 																{
-																<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
+																	<input type="checkbox" class="filled-in" id="btn-mark-proposal-as-bpi" />
 																}
-															<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
-														</label>
+																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
+															</label>
 														}
 
 													</div>
@@ -1431,7 +1468,7 @@
 						</div>
 
 						<!--
-							Qlik view section 
+							Qlik view section
 						-->
 						<div class="z-depth-1">
 							<div class="progress" id="qlik-view-forms-loader" style="margin: 0; display: none;">
@@ -1478,43 +1515,52 @@
 
 													<!-- Original due date -->
 													<div class="input-field">
-														<input id="qlik_view_original_due_date" type="text" class="datepicker" value="" autocomplete="off">
-														<label for="qlik_view_original_due_date">Original Due Date</label>
+														<input id="qlik_view_original_due_date" type="text" class="datepicker" value="@originalDueDate" autocomplete="off">
+														<label for="qlik_view_original_due_date">@ESAVINGS_v1.Resources.Details.Details.originalDueDateLbl</label>
 													</div>
 
 													<!-- Current due date -->
 													<div class="input-field">
-														<input id="qlik_view_current_due_date" type="text" class="datepicker" value="" autocomplete="off">
-														<label for="qlik_view_current_due_date">Current Due Date</label>
+														<input id="qlik_view_current_due_date" type="text" class="datepicker" value="@currentDueDate" autocomplete="off">
+														<label for="qlik_view_current_due_date">@ESAVINGS_v1.Resources.Details.Details.currentDueDateLbl</label>
 													</div>
 
 
 													<!-- Planned project start date -->
 													<div class="input-field">
-														<input id="qlik_view_planned_project_start_date" type="text" class="datepicker" value="" autocomplete="off">
-														<label for="qlik_view_planned_project_start_date">Planned project start date</label>
+														<input id="qlik_view_planned_project_start_date" type="text" class="datepicker" value="@plannedProjectStartDate" autocomplete="off">
+														<label for="qlik_view_planned_project_start_date">@ESAVINGS_v1.Resources.Details.Details.plannedProjectStartDateLbl</label>
 													</div>
 
 													<!-- Planned Saving start date -->
 													<div class="input-field">
-														<input id="qlik_view_planned_saving_start_date" type="text" class="datepicker" value="" autocomplete="off">
-														<label for="qlik_view_planned_saving_start_date">Planned saving start date</label>
+														<input id="qlik_view_planned_saving_start_date" type="text" class="datepicker" value="@plannedSavingStartDate" autocomplete="off">
+														<label for="qlik_view_planned_saving_start_date">@ESAVINGS_v1.Resources.Details.Details.plannedSavingStartDateLbl</label>
 													</div>
 
 													<!-- Actual completion date -->
 													<div class="input-field">
-														<input id="qlik_view_actual_completion_date" type="text" class="datepicker" value="" autocomplete="off">
-														<label for="qlik_view_actual_completion_date">Actual completion date</label>
-													</div>													<!-- Global funnel status -->
+														<input id="qlik_view_actual_completion_date" type="text" class="datepicker" value="@actualCompletionDate" autocomplete="off">
+														<label for="qlik_view_actual_completion_date">@ESAVINGS_v1.Resources.Details.Details.actualCompletionDateLbl</label>
+													</div>
+													<!-- Global funnel status -->
 													<div class="input-field">
 														<select id="globalFunnelStatus">
 															<option></option>
 															@foreach (var fStatus in ViewBag.GlobalFunnelStatus)
 															{
-																<option value="@fStatus.Key">@fStatus.Value</option>
+																if (Model.FunnelStatus == fStatus.Key)
+																{
+																	<option value="@fStatus.Key" selected>@fStatus.Value</option>
+																}
+																else
+																{
+																	<option value="@fStatus.Key">@fStatus.Value</option>
+																}
 															}
 														</select>
-														<label for="globalFunnelStatus">Funnel status</label>
+
+														<label for="globalFunnelStatus">@ESAVINGS_v1.Resources.Details.Details.funnelStatuslbl</label>
 													</div>
 
 
@@ -1531,16 +1577,75 @@
 										else
 										{
 											<!-- Finace remarks -->
-											@*<div class="row">
-												<div class="col l12 s12 m12">
+											<div class="row">
+													
+												<div class="col l4 s12 m6">
 													<div class="input-field">
 														<div>
-															<label>@ESAVINGS_v1.Resources.Details.Details.ApproverRemarksLbl:</label>
-															<div style="white-space: pre-wrap">@Model.FinanceApproval[0].Remarks</div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl:</label>
+															<div style="white-space: pre-wrap">@Model.FinanceCategory</div>
 														</div>
 													</div>
 												</div>
-											</div>*@
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.originalDueDateLbl:</label>
+															<div style="white-space: pre-wrap">@originalDueDate</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.currentDueDateLbl:</label>
+															<div style="white-space: pre-wrap">@currentDueDate</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.plannedProjectStartDateLbl:</label>
+															<div style="white-space: pre-wrap">@plannedProjectStartDate</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.plannedSavingStartDateLbl:</label>
+															<div style="white-space: pre-wrap">@plannedSavingStartDate</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.actualCompletionDateLbl:</label>
+															<div style="white-space: pre-wrap">@actualCompletionDate</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.funnelStatuslbl:</label>
+															<div style="white-space: pre-wrap">@Model.FunnelStatusIndicator</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6"></div>
+												<div class="col l4 s12 m6"></div>
+
+											</div>
 										}
 									</div>
 								</div>

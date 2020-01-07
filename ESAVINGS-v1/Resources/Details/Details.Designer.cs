@@ -124,6 +124,15 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual completion date.
+        /// </summary>
+        public static string actualCompletionDateLbl {
+            get {
+                return ResourceManager.GetString("actualCompletionDateLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Additional Description (Computed Cost reduction / Cost Avoidance).
         /// </summary>
         public static string AdditionalDescriptionLbl {
@@ -286,7 +295,7 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ChangeFinanceLbl.
+        ///   Looks up a localized string similar to Change Finance.
         /// </summary>
         public static string ChangeFinanceLbl {
             get {
@@ -313,7 +322,7 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ChooseFinanceApproverLbl.
+        ///   Looks up a localized string similar to Choose finance approver.
         /// </summary>
         public static string ChooseFinanceApproverLbl {
             get {
@@ -381,6 +390,15 @@ namespace ESAVINGS_v1.Resources.Details {
         public static string CurrentDescLbl {
             get {
                 return ResourceManager.GetString("CurrentDescLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current due date.
+        /// </summary>
+        public static string currentDueDateLbl {
+            get {
+                return ResourceManager.GetString("currentDueDateLbl", resourceCulture);
             }
         }
         
@@ -502,6 +520,15 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Funnel status.
+        /// </summary>
+        public static string funnelStatuslbl {
+            get {
+                return ResourceManager.GetString("funnelStatuslbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid.
         /// </summary>
         public static string InvalidBtnLbl {
@@ -556,6 +583,15 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Original due date.
+        /// </summary>
+        public static string originalDueDateLbl {
+            get {
+                return ResourceManager.GetString("originalDueDateLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overview.
         /// </summary>
         public static string OverviewTabHeader {
@@ -579,6 +615,24 @@ namespace ESAVINGS_v1.Resources.Details {
         public static string OwnersRemarksLbl {
             get {
                 return ResourceManager.GetString("OwnersRemarksLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planned project start date.
+        /// </summary>
+        public static string plannedProjectStartDateLbl {
+            get {
+                return ResourceManager.GetString("plannedProjectStartDateLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Planned saving start date.
+        /// </summary>
+        public static string plannedSavingStartDateLbl {
+            get {
+                return ResourceManager.GetString("plannedSavingStartDateLbl", resourceCulture);
             }
         }
         
