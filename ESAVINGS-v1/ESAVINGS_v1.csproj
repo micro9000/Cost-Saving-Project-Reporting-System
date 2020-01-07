@@ -157,6 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MyProfileData.cs" />
+    <Compile Include="Models\QlikViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\CreateProposal\CreateProposal.Designer.cs">
       <AutoGen>True</AutoGen>

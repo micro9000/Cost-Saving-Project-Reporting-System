@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Helpers;
 using System.Globalization;
+using ESAVINGS_v1.Models;
 
 namespace ESAVINGS_v1.Controllers
 {
@@ -3863,6 +3864,92 @@ namespace ESAVINGS_v1.Controllers
 
 		}
 
+		public JsonResult UpdateQlikViewData (int proposalID, QlikViewData qlikviewdata)
+		{
+			IDictionary<string, string> results = new Dictionary<string, string>();
+			results["done"] = "FALSE";
+			results["msg"] = "<strong class='error'>Please login...</strong>";
+
+			try
+			{
+				if (IsUserSuccessfullyLoggedIn())
+				{
+					if (this.UserType != ((int)StaticData.UserTypes.Finance).ToString())
+					{
+						results["msg"] = "<strong class='error'>Permission Denied...</strong>";
+						return Json(results);
+					}
+
+					var projectDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalID);
+					string msg = "";
+
+					if (qlikviewdata.FinanceCategoryId > 0 && projectDetails.FinanceCategoryID != qlikviewdata.FinanceCategoryId)
+					{
+						Factory.ProposalFactory().UpdateProposalFinanceCategory(qlikviewdata.FinanceCategoryId, proposalID);
+
+						msg += "Updated Finance category <br/>";
+					}
+
+					if (qlikviewdata.OriginalDueDate != null && projectDetails.OriginalDueDate != qlikviewdata.OriginalDueDate)
+					{
+						Factory.ProposalFactory().UpdateProposalOriginalDueDate(qlikviewdata.OriginalDueDate, proposalID);
+
+						msg += "Updated Original due date <br/>";
+					}
+
+					if (qlikviewdata.CurrentDueDate != null && projectDetails.CurrentDueDate != qlikviewdata.CurrentDueDate)
+					{
+						Factory.ProposalFactory().UpdateProposalCurrentDueDate(qlikviewdata.CurrentDueDate, proposalID);
+
+						msg += "Updated Current due date <br/>";
+					}
+
+
+					if (qlikviewdata.PlannedProjectStartDate != null && projectDetails.PlannedProjectStartDate != qlikviewdata.PlannedProjectStartDate)
+					{
+						Factory.ProposalFactory().UpdateProposalPlannedProjectStartDate(qlikviewdata.PlannedProjectStartDate, proposalID);
+
+						msg += "Updated Planned project start date <br/>";
+					}
+
+
+					if (qlikviewdata.PlannedSavingStartDate != null && projectDetails.PlannedSavingsStartDate != qlikviewdata.PlannedSavingStartDate)
+					{
+						Factory.ProposalFactory().UpdateProposalPlannedSavingStartDate(qlikviewdata.PlannedSavingStartDate, proposalID);
+
+						msg += "Updated Planned saving start date <br/>";
+					}
+
+
+					if (qlikviewdata.ActualCompletionDate != null && projectDetails.ActualCompletionDate != qlikviewdata.ActualCompletionDate)
+					{
+						Factory.ProposalFactory().UpdateProposalActualCompletionDate(qlikviewdata.ActualCompletionDate, proposalID);
+
+						msg += "Updated Actual completion date <br/>";
+					}
+
+
+					if (qlikviewdata.GlobalFunnelStatusIndicator > 0 && projectDetails.FunnelStatus != qlikviewdata.GlobalFunnelStatusIndicator)
+					{
+						Factory.ProposalFactory().UpdateProposalFunnelStatus(qlikviewdata.GlobalFunnelStatusIndicator, proposalID);
+
+						msg += "Updated Actual completion date <br/>";
+					}
+
+					msg = (msg == "") ? "No changes made" : msg;
+					results["done"] = "TRUE";
+					results["msg"] = "<strong class='good'>"+ msg +"</strong>";
+				}
+			}
+			catch (Exception ex)
+			{
+				results["msg"] = ex.Message;
+			}
+
+
+
+			return Json(results);
+		}
 
 		public async Task<JsonResult> ReAssignProjectFinace (int proposalID, int currentFinanceID, string newFinanceFFID, string remarks)
 		{
@@ -3989,6 +4076,10 @@ namespace ESAVINGS_v1.Controllers
 
 			return Json(results);
 		}
+
+
+
+
 
 	}
 }

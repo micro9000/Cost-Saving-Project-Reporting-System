@@ -477,8 +477,6 @@ $(".btn-finance-verification").on("click", function () {
 	var expectedStartDate = $("#finance_expectedStartDate").val();
 	var numberOfMonthsToBeActive = $("#finance_numberOfMonthsToBeActive").val();
 
-	var financeCategory = $("#financeCategory").val();
-
 	var formData = new FormData();
 
 	formData.append("proposalID", global_proposal_id);
@@ -490,7 +488,6 @@ $(".btn-finance-verification").on("click", function () {
 	formData.append("numberOfMonthsToBeActiveStr", numberOfMonthsToBeActive);
 	formData.append("expectedStartDate", expectedStartDate);
 	formData.append("financeApproverID", financeApproverID);
-	formData.append("financeCategoryID", financeCategory);
 
 	formData.append("supportingDocsLen", finance_supporting_docs.length);
 	for (var i = 0; i < finance_supporting_docs.length; i++) {
@@ -697,3 +694,53 @@ $("#btn_lets_update_proposal_details").on("click", function () {
 
 	instance.open();
 })
+
+
+$("#btn-qlik-view-save-details").on("click", function () {
+
+	$("#qlik-view-forms-loader").css("display", "block");
+
+	var financeCategory = $("#financeCategory").val();
+	var origDueDate = $("#qlik_view_original_due_date").val();
+	var curDueDate = $("#qlik_view_current_due_date").val();
+	var plannedProjectStartDate = $("#qlik_view_planned_project_start_date").val();
+	var plannedSavingStartDate = $("#qlik_view_planned_saving_start_date").val();
+	var actualCompletionDate = $("#qlik_view_actual_completion_date").val();
+	var globalFunnelStatus = $("#globalFunnelStatus").val();
+
+
+	var data = {
+		proposalID: global_proposal_id,
+		FinanceCategoryId: financeCategory,
+		OriginalDueDate: origDueDate,
+		CurrentDueDate: curDueDate,
+		PlannedProjectStartDate: plannedProjectStartDate,
+		PlannedSavingStartDate: plannedSavingStartDate,
+		ActualCompletionDate: actualCompletionDate,
+		GlobalFunnelStatusIndicator: globalFunnelStatus
+	}
+
+
+	$.post(
+		base_url + "ESavings/UpdateQlikViewData",
+		data,
+		function (data) {
+			console.log(data);
+
+			$("#btn-qlik-view-save-details").attr("disabled", "disabled");
+			M.toast({
+				html: "Processing...Please wait...",
+				completeCallback: function () {
+					M.toast({
+						html: data.msg,
+						completeCallback: function () {
+							window.location.reload();
+						}
+					})
+
+				}
+			})
+		}
+	);
+
+});

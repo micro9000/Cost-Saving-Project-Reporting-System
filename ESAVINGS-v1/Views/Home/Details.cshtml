@@ -1299,25 +1299,6 @@
 														<label for="finance_numberOfMonthsToBeActive">@ESAVINGS_v1.Resources.Details.Details.NumberOfMonthsToBeActiveLbl</label>
 													</div>
 
-													<!-- Finance category -->
-													@*<div class="input-field">
-															<select id="financeCategory">
-																@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
-																{
-																	if (Model.FinanceCategoryID == cat.Id)
-																	{
-																<option value="@cat.Id" selected>@cat.Category</option>
-																	}
-																	else
-																	{
-																<option value="@cat.Id">@cat.Category</option>
-																	}
-
-																}
-															</select>
-															<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
-														</div>*@
-
 													<!-- Supporting documents -->
 													<div class="input-field">
 														<strong class="header">@ESAVINGS_v1.Resources.Details.Details.SupportingDocumentsLbl</strong>
@@ -1567,7 +1548,7 @@
 
 													<div style="text-align: right">
 														<!-- Save button  -->
-														<a class="btn waves-effect waves-light btn-small btn-qlik-view-save-details">
+														<a class="btn waves-effect waves-light btn-small" id="btn-qlik-view-save-details">
 															<i class="material-icons left">save</i>@ESAVINGS_v1.Resources.Details.Details.SaveBtnLbl
 														</a>
 													</div>
