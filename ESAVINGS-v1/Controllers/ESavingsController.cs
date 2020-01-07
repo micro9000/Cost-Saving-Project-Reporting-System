@@ -430,9 +430,10 @@ namespace ESAVINGS_v1.Controllers
 						{
 							newProposal.ProjectType = projectType;
 							newProposal.DollarImpact = dollarImpact;
-							newProposal.ExpectedStartDate = (data["ExpectedStartDate"] != "") ? ExpectedStartDate : new DateTime(0001, 01, 01);
-							newProposal.PlannedProjectStartDate = newProposal.ExpectedStartDate;
 							newProposal.NumberOfMonthsToBeActive = numberOfMonthsToBeActive;
+
+							newProposal.ExpectedStartDate = (data["ExpectedStartDate"] != "") ? ExpectedStartDate : new DateTime(0001, 01, 01);
+							//newProposal.PlannedProjectStartDate = newProposal.ExpectedStartDate;
 							newProposal.OriginalDueDate = newProposal.ExpectedStartDate.AddMonths(newProposal.NumberOfMonthsToBeActive);
 							newProposal.CurrentDueDate = newProposal.ExpectedStartDate.AddMonths(newProposal.NumberOfMonthsToBeActive);
 						}
@@ -2172,6 +2173,10 @@ namespace ESAVINGS_v1.Controllers
 										ApproverName = this.UserFullName
 									});
 
+
+									// Update funnel status to cancelled
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Cancelled, proposalIDIntParse);
+
 									results["done"] = "FALSE";
 									results["msg"] = "<strong class='good'>Successfully move to <i>"+ StaticData.GetOverallStatusStr(invalid_status) +"</i> the status!</strong>";
 
@@ -2241,6 +2246,10 @@ namespace ESAVINGS_v1.Controllers
 											ApproverFFID = this.UserFFID,
 											ApproverName = this.UserFullName
 										});
+
+
+										// Update funnel status
+										Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
 									}
 								}
 
@@ -2412,6 +2421,9 @@ namespace ESAVINGS_v1.Controllers
 												ApproverName = this.UserFullName
 											});
 
+
+											// Update funnel status
+											Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
 
 											var selectedFinanceInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, financeInfo.FFID);
 											string selectedFinanceEmail = (selectedFinanceInfo.Count > 0) ? selectedFinanceInfo[0].Email : "";
@@ -3016,7 +3028,7 @@ namespace ESAVINGS_v1.Controllers
 									});
 
 									// Update Global funnel status to Identified
-									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Identified, proposalIDIntParse);
+									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
 
 								}
 
