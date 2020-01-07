@@ -291,12 +291,18 @@ namespace ESAVINGS_v1.Controllers
 					proposalDetails.CurrentImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_current_imgs"]);
 					proposalDetails.ProposalImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_proposal_imgs"]);
 
+					proposalDetails.FunnelStatusIndicator = ViewBag.GlobalFunnelStatus[proposalDetails.FunnelStatus];
+
+					var financeCategories = this.GetAllFinanceCategoryById();
+					proposalDetails.FinanceCategory = financeCategories[proposalDetails.FinanceCategoryID].Category;
+
 					if (IsUserSuccessfullyLoggedIn() == true)
 					{
 						ViewBag.FinanceList = Factory.FinanceApproverFactory().GetAll().Where(f => f.IsDeleted == 0);
 						ViewBag.CostAnalystList = Factory.CostAnalystFactory().GetAll().Where(ca => ca.IsDeleted == 0 && ca.IsMaster == 0);
 
 						ViewBag.FinanceCategories = Factory.FinanceCategoryRepository().GetAllCategories();
+
 					}
 
 				}
