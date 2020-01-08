@@ -47,6 +47,7 @@
     <Compile Include="IFinanceApproverRepository.cs" />
     <Compile Include="IFinanceCategory.cs" />
     <Compile Include="IOperatorUserRepository.cs" />
+    <Compile Include="IOwnerAwardRepository.cs" />
     <Compile Include="IProposalActionApproverRepository.cs" />
     <Compile Include="IProposalActionRepository.cs" />
     <Compile Include="IProposalCostAnalystRepository.cs" />

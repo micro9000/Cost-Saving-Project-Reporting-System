@@ -72,6 +72,7 @@
     <Compile Include="FinanceCategory.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="OperatorUser.cs" />
+    <Compile Include="OwnerAward.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proposal.cs" />
     <Compile Include="ProposalAction.cs" />

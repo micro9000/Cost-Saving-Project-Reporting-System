@@ -74,6 +74,7 @@
     <Compile Include="Repositories\FinanceApproverRepository.cs" />
     <Compile Include="Repositories\FinanceCategoryRepository.cs" />
     <Compile Include="Repositories\OperatorUserRepository.cs" />
+    <Compile Include="Repositories\OwnerAwardRepository.cs" />
     <Compile Include="Repositories\ProposalActionApproverRepository.cs" />
     <Compile Include="Repositories\ProposalActionRepository.cs" />
     <Compile Include="Repositories\ProposalCostAnalystRepository.cs" />
