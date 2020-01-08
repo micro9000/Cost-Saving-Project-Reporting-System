@@ -76,7 +76,7 @@ namespace Domain
 		{
 			get
 			{
-				return projectTypeIndicator;
+				return string.IsNullOrEmpty(projectTypeIndicator) ? StaticData.GetProjectTypeStr(this.ProjectType) : projectTypeIndicator;
 			}
 			set
 			{
@@ -176,7 +176,7 @@ namespace Domain
 		{
 			get
 			{
-				return expectedStartDateStr;
+				return string.IsNullOrEmpty(expectedStartDateStr) ? this.ExpectedStartDate.ToString("yyyy-MM-dd") : expectedStartDateStr;
 			}
 			set
 			{
@@ -200,17 +200,17 @@ namespace Domain
 			}
 		}
 
-		private string OAStatusIndocator;
+		private string oaStatusIndicator;
 
 		public string OAStatusIndicator
 		{
 			get
 			{
-				return OAStatusIndocator;
+				return string.IsNullOrEmpty(oaStatusIndicator) ? StaticData.GetOverallStatusStr(this.OAStatus) : oaStatusIndicator;
 			}
 			set
 			{
-				OAStatusIndocator = value;
+				oaStatusIndicator = value;
 			}
 		}
 
@@ -429,7 +429,7 @@ namespace Domain
 		{
 			get
 			{
-				return funnelStatusIndicator;
+				return string.IsNullOrEmpty(funnelStatusIndicator) ? StaticData.GetGlobalFunnelStatusStr(this.FunnelStatus) : funnelStatusIndicator;
 			}
 			set
 			{

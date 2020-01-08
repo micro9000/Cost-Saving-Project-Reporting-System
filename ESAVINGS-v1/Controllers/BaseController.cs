@@ -935,6 +935,10 @@ namespace ESAVINGS_v1.Controllers
 			//create dictionary list for Finance category to prevent multiple access in database
 			var financeCategories = this.GetAllFinanceCategoryById();
 
+			string site = ConfigurationManager.AppSettings["onsemi_site"];
+			string siteBaseUrl = Request.Url.GetLeftPart(UriPartial.Authority) +""+ Url.Content("~");
+			string currentImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_current_imgs"]);
+			string proposalImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_proposal_imgs"]);
 
 			for (int i = 0 ; i <proposals.Count ; i++)
 			{
@@ -943,22 +947,14 @@ namespace ESAVINGS_v1.Controllers
 				proposal.ProposalImgs = Factory.ProposalImgFactory().GetProposalImgs(proposal.Id);
 
 				proposal.FinanceCategory = financeCategories[proposal.FinanceCategoryID].Category;
-
-				proposal.FunnelStatusIndicator = StaticData.GetGlobalFunnelStatusStr(proposal.FunnelStatus);
-				proposal.OAStatusIndicator = StaticData.GetOverallStatusStr(proposal.OAStatus);
-				proposal.ProjectTypeIndicator = StaticData.GetProjectTypeStr(proposal.ProjectType);
-				proposal.SiteIndicator = ConfigurationManager.AppSettings["onsemi_site"];
-
-				proposal.SiteBaseURL = Request.Url.GetLeftPart(UriPartial.Authority) +""+ Url.Content("~");
-				proposal.CurrentImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_current_imgs"]);
-				proposal.ProposalImgsPath = Url.Content(ConfigurationManager.AppSettings["dir_for_upload_proposal_imgs"]);
+				proposal.SiteIndicator = site;
+				proposal.SiteBaseURL = siteBaseUrl;
+				proposal.CurrentImgsPath = currentImgsPath;
+				proposal.ProposalImgsPath = proposalImgsPath;
 
 				//var deptTmp = departments.Where(d => d.DeptCode == proposal.EmpDeptCode).FirstOrDefault();
 				var dept = Factory.CostAnalystDeptCodesFactory().GetDepartment(proposal.AreaDeptBeneficiary);
 				proposal.DeptName = dept != null ? dept.DeptName : "";
-
-				proposal.ExpectedStartDateStr = proposal.ExpectedStartDate.ToString("yyyy-MM-dd");
-
 
 				proposals[i] = proposal;
 			}
