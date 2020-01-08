@@ -63,6 +63,13 @@ namespace Domain
 			ONE_TIME_SAVINGS = 3
 		}
 
+
+		public enum RewardType
+		{
+			Cash = 1,
+			Meal = 2
+		}
+
 		public static Dictionary<string, string> GetStatusCounterTreeKeyDesc ()
 		{
 			var desc = new Dictionary<string, string>();
@@ -283,7 +290,25 @@ namespace Domain
 			return status;
 		}
 
+		public static string GetRewardTypeStr (int type)
+		{
+			string typeStr = "Unknown";
+			switch (type)
+			{
+				case (int)RewardType.Cash:
+					typeStr = "Cash";
+					break;
 
+				case (int)RewardType.Meal:
+					typeStr = "Meal";
+					break;
+
+				default:
+					break;
+			}
+
+			return typeStr;
+		}
 
 		public static string GetOverallStatusStr (int status)
 		{
