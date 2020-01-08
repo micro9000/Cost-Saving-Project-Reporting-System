@@ -15,11 +15,18 @@ namespace ESavingsAPI
 
 			routes.MapRoute(
 				name: "Default",
-				url: "{controller}/{action}/{id}",
+				url: "api/{controller}/{id}",
 				defaults: new
 				{
-					controller = "Home",
-					action = "Index",
+					id = UrlParameter.Optional
+				}
+			);
+
+			routes.MapRoute(
+				name: "MapByAction",
+				url: "api/{controller}/{action}/{id}",
+				defaults: new
+				{
 					id = UrlParameter.Optional
 				}
 			);
