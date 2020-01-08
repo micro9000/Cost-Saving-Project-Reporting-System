@@ -17,15 +17,16 @@ namespace TestingEnv
 		static void Main (string[] args)
 		{
 
-			var cals = Helpers.ONCalendar.GetByYear(2020);
 
-			foreach (var cal in cals)
-			{
-				var startAndEnd = cal.Value;
+			//var cals = Helpers.ONCalendar.GetByYear(2020);
+
+			//foreach (var cal in cals)
+			//{
+			//	var startAndEnd = cal.Value;
 
 
-				Console.WriteLine(cal.Key +" STart: "+ startAndEnd["start"] + "End: "+ startAndEnd["end"]);
-			}
+			//	Console.WriteLine(cal.Key +" STart: "+ startAndEnd["start"] + "End: "+ startAndEnd["end"]);
+			//}
 
 
 			//var cal2 = Helpers.ONCalendar.GetByDate(new DateTime(2019, 12, 31));
