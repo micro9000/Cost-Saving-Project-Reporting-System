@@ -393,12 +393,13 @@ namespace Domain
 			switch (status)
 			{
 				case (int)OverallStatus.PROJECT_PROPOSAL:
-					statusStr = DomainResources.FunnelStatus_identified;// Identified
-					break;
-
 				case (int)OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS:
 				case (int)OverallStatus.COST_FUNNEL_IDENTIFIED:
 				case (int)OverallStatus.FINANCE_REVIEW_IN_PROGRESS:
+					statusStr = DomainResources.FunnelStatus_identified;// Identified
+					break;
+
+
 				case (int)OverallStatus.COST_FUNNEL_EVALUATING:
 					statusStr = DomainResources.FunnelStatus_evaluating; // Evaluating
 					break;
