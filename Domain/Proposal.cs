@@ -275,6 +275,37 @@ namespace Domain
 		}
 
 
+		private string projectOwnerName;
+
+		public string ProjectOwnerName
+		{
+			get
+			{
+				return projectOwnerName;
+			}
+			set
+			{
+				projectOwnerName = value;
+			}
+		}
+
+
+		private string projectOwnerFFID;
+
+		public string ProjectOwnerFFID
+		{
+			get
+			{
+				return projectOwnerFFID;
+			}
+			set
+			{
+				projectOwnerFFID = value;
+			}
+		}
+
+
+
 		private string areaDeptBeneficiary;
 
 		public string AreaDeptBeneficiary
