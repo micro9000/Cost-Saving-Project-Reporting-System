@@ -30,6 +30,8 @@ namespace ESavingsAPI.Controllers
 							   site = site,
 							   projectTitle = WebUtility.HtmlDecode(p.ProjectTitle),
 							   benefitType = p.ProjectTypeIndicator,
+							   monthlyDollarAmount = p.DollarImpact,
+							   numberOfMonthsToBeActive = p.NumberOfMonthsToBeActive,
 							   amount = (p.DollarImpact * p.NumberOfMonthsToBeActive),
 							   projectStatus = p.OAStatusIndicator,
 							   rank = 0,
