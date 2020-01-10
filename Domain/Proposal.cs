@@ -305,6 +305,20 @@ namespace Domain
 		}
 
 
+		private string projectOwnerRemarks;
+
+		public string ProjectOwnerRemarks
+		{
+			get
+			{
+				return projectOwnerRemarks;
+			}
+			set
+			{
+				projectOwnerRemarks = value;
+			}
+		}
+
 
 		private string areaDeptBeneficiary;
 
