@@ -36,6 +36,8 @@ namespace Repositories
 
 		int AssignProjectOwner (int proposalID, string empFFID, string empFullname);
 
+		int UpdateProjectOwnerRemarks (int proposalID, string remarks);
+
 		List<Proposal> SearchProposal (Proposal proposal);
 
 		List<Proposal> SearchProposal (Proposal proposal, string startDate, string endDate);

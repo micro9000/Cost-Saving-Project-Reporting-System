@@ -1014,5 +1014,26 @@ namespace Persistence.Repositories
 			}
 			return rowsUpdated;
 		}
+
+
+		public int UpdateProjectOwnerRemarks (int proposalID, string remarks)
+		{
+			string query = "UPDATE Proposals SET projectOwnerRemarks=@remarks WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					remarks = remarks,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
 	}
 }
