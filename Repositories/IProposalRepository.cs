@@ -34,6 +34,8 @@ namespace Repositories
 
 		int UpdateProposalFunnelStatus (int funnelStatus, int proposalID);
 
+		int AssignProjectOwner (int proposalID, string empFFID, string empFullname);
+
 		List<Proposal> SearchProposal (Proposal proposal);
 
 		List<Proposal> SearchProposal (Proposal proposal, string startDate, string endDate);
