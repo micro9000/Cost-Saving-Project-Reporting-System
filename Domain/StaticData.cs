@@ -455,6 +455,7 @@ namespace Domain
 		public static Dictionary<int, string> GetGlobalFunnelStatusWithLabel ()
 		{
 			Dictionary<int, string> status = new Dictionary<int, string>();
+			status.Add(0, "TBD");
 
 			foreach (var sts in Enum.GetValues(typeof(GlobalFunnelStatus)))
 			{
@@ -466,7 +467,7 @@ namespace Domain
 
 		public static string GetGlobalFunnelStatusStr (int status)
 		{
-			string statusStr = DomainResources.NA;
+			string statusStr = "TBD";
 			switch (status)
 			{
 				case (int)GlobalFunnelStatus.Identified:
