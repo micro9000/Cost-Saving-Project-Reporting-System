@@ -440,7 +440,7 @@ namespace Domain
 		}
 
 
-		private int funnelStatus = 1;
+		private int funnelStatus = 0;
 
 		public int FunnelStatus
 		{
@@ -460,6 +460,12 @@ namespace Domain
 		{
 			get
 			{
+
+				if (FunnelStatus == 0)
+				{
+					return StaticData.GetSystemStatusMappingToQlikViewStatusStr(this.OAStatus);
+				}
+
 				return string.IsNullOrEmpty(funnelStatusIndicator) ? StaticData.GetGlobalFunnelStatusStr(this.FunnelStatus) : funnelStatusIndicator;
 			}
 			set
