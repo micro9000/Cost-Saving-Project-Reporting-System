@@ -12,6 +12,15 @@ namespace Persistence.Repositories
 	public class ProposalRepository : Repository<Proposal>, IProposalRepository
 	{
 
+		/*
+		 * 
+		 * 
+		 * 
+		 * Kindly use this manual Predicates
+		 * https: //github.com/tmsmith/Dapper-Extensions/wiki/Predicates
+		 * 
+		 * 
+		 * */
 
 		public Proposal GetProposalDetailsByID (int proposalID)
 		{
@@ -41,6 +50,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> GetProposalByStatus (int status)
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -62,6 +72,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> GetArchivedProposalByUser (string userFFID)
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -98,6 +109,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> SearchProposal (Proposal proposal)
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -210,6 +222,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> SearchProposalByKeywordAndOrStatusAndOrDepts (string projectType, string keywordStr, string startDate = "", string endDate = "", string[] statusList = null, string[] deptList = null, int isBPI = 0)
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -328,6 +341,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> GetAllProposals ()
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -352,6 +366,7 @@ namespace Persistence.Repositories
 
 		public List<Proposal> GetAllBPIProposals ()
 		{
+			// If you have a question on this syntax, please refer to Predicate manual --> see the link at the top of this class
 			var pgMain = new PredicateGroup
 			{
 				Operator = GroupOperator.And,
@@ -970,6 +985,27 @@ namespace Persistence.Repositories
 				rowsUpdated = conn.Execute(query, new
 				{
 					plannedSavingsStartDate = plannedSavingStartDate,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+		public int AssignProjectOwner (int proposalID, string empFFID, string empFullname)
+		{
+			string query = "UPDATE Proposals SET projectOwnerName=@empFullname, projectOwnerFFID=@empFFID WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					empFFID = empFFID,
+					empFullname = empFullname,
 					proposalID = proposalID
 				});
 
