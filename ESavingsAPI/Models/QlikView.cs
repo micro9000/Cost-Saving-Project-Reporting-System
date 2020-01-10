@@ -31,6 +31,18 @@ namespace ESavingsAPI.Models
 			set;
 		}
 
+		public decimal monthlyDollarAmount
+		{
+			get;
+			set;
+		}
+
+		public int numberOfMonthsToBeActive
+		{
+			get;
+			set;
+		}
+
 		public string projectStatus
 		{
 			get;
