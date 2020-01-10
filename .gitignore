@@ -28,6 +28,7 @@ bin/
 obj/
 TestResults/
 Upload_imgs/
+SupportingDocs/
 ###################
 # Web publish log #
 ###################

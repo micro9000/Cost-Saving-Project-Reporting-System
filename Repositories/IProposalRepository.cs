@@ -34,7 +34,7 @@ namespace Repositories
 
 		int UpdateProposalFunnelStatus (int funnelStatus, int proposalID);
 
-		int AssignProjectOwner (int proposalID, string empFFID, string empFullname);
+		int AssignProjectOwner (int proposalID, string empFFID, string empFullname, string remarks);
 
 		int UpdateProjectOwnerRemarks (int proposalID, string remarks);
 

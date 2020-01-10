@@ -994,9 +994,9 @@ namespace Persistence.Repositories
 			return rowsUpdated;
 		}
 
-		public int AssignProjectOwner (int proposalID, string empFFID, string empFullname)
+		public int AssignProjectOwner (int proposalID, string empFFID, string empFullname, string remarks)
 		{
-			string query = "UPDATE Proposals SET projectOwnerName=@empFullname, projectOwnerFFID=@empFFID WHERE id=@proposalID";
+			string query = "UPDATE Proposals SET projectOwnerName=@empFullname, projectOwnerFFID=@empFFID, projectOwnerRemarks=@remarks WHERE id=@proposalID";
 
 			int rowsUpdated = 0;
 
@@ -1006,6 +1006,7 @@ namespace Persistence.Repositories
 				{
 					empFFID = empFFID,
 					empFullname = empFullname,
+					remarks = remarks,
 					proposalID = proposalID
 				});
 

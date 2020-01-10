@@ -58,5 +58,29 @@ namespace Persistence.Repositories
 			}
 		}
 
+
+		public List<CostAnalyst> GetAllCostAnalyst ()
+		{
+			var pgMain = new PredicateGroup
+			{
+				Operator = GroupOperator.And,
+				Predicates = new List<IPredicate>()
+			};
+
+			pgMain.Predicates.Add(Predicates.Field<CostAnalyst>(f => f.IsDeleted, Operator.Eq, 0));
+
+
+			List<CostAnalyst> results = new List<CostAnalyst>();
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				results = conn.GetList<CostAnalyst>(pgMain).ToList();
+
+				conn.Close();
+			}
+
+			return results;
+		}
+
 	}
 }

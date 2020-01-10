@@ -159,40 +159,80 @@ $("#search_action_owner").on("keypress", function (e) {
 });
 
 
-$(".btn-manager-verification").on("click", function () {
 
-	$("#manager-verification-loader").css("display", "block");
+$("#search_project_owner").on("keypress", function (e) {
 
-	var status = $(this).attr("data-status");
-	var verificationID = $(this).attr("data-proposal-manager-verification-id");
-	var remarks = $("#deptManagerVerifier_" + verificationID).val();
+	if (e.which == 13) {
 
-	$.post(
-		base_url + "ESavings/ManagerProposalVerification",
-		{
-			proposalID: global_proposal_id,
-			remarks: remarks,
-			isVerified: status
-		},
-		function (data) {
-			//console.log(data);
+		$("#verifier-assign-project-owner-loader").css("display", "block");
 
-			M.toast({
-				html: "Processing...Please wait...",
-				completeCallback: function () {
-					M.toast({
-						html: data.msg,
-						completeCallback: function () {
-							window.location.reload();
-						}
-					})
+		var searchStr = $(this).val();
 
-				}
-			})
-		}
-	);
+		$.post(
+			base_url + "User/SearchEmployee",
+			{
+				searchStr: searchStr
+			},
+			function (data) {
+				console.log(data);
+
+				var display = "";
+
+				$.each(data, function (i, person) {
+					display += "<p>";
+					display += "<label>";
+					display += "<input type='radio' class='selected_project_owner' data-owner-ffid='" + person.FFID + "' data-owner-fullname='" + person.DisplayName + "' name='action_owner'/>";
+					display += "<span>" + person.DisplayName + "/" + person.FFID + "</span>";
+					display += "</label>";
+					display += "</p>";
+				});
+
+				$("#search_project_owner_list").html(display);
+				$("#verifier-assign-project-owner-loader").css("display", "none");
+
+			}
+		);
+
+	}
 
 });
+
+
+
+//$(".btn-manager-verification").on("click", function () {
+
+//	$("#manager-verification-loader").css("display", "block");
+
+//	var status = $(this).attr("data-status");
+//	var verificationID = $(this).attr("data-proposal-manager-verification-id");
+//	var remarks = $("#deptManagerVerifier_" + verificationID).val();
+
+//	$.post(
+//		base_url + "ESavings/ManagerProposalVerification",
+//		{
+//			proposalID: global_proposal_id,
+//			remarks: remarks,
+//			isVerified: status
+//		},
+//		function (data) {
+//			//console.log(data);
+
+//			M.toast({
+//				html: "Processing...Please wait...",
+//				completeCallback: function () {
+//					M.toast({
+//						html: data.msg,
+//						completeCallback: function () {
+//							window.location.reload();
+//						}
+//					})
+
+//				}
+//			})
+//		}
+//	);
+
+//});
 
 
 var actionOwnerInfo = {
@@ -210,6 +250,8 @@ $(document).on("click", ".selected_owner", function () {
 
 
 $("#btn_assign_action_to_employee").on("click", function () {
+
+	$(this).attr("disabled", "disabled");
 
 	$("#verifier-assign-action-to-owner-loader").css("display", "block");
 
@@ -254,10 +296,6 @@ $("#btn_assign_action_to_employee").on("click", function () {
 
 
 
-
-
-
-
 $(".btn-browse-supporting-documents").on("click", function () {
 	$("#supporting_documents").click();
 });
@@ -288,6 +326,7 @@ $("#supporting_documents").on("change", function (e) {
 
 $(".btn-action-owner-save-response").on("click", function () {
 
+	$(this).attr("disabled", "disabled");
 	$("#approver-verification-loader").css("display", "block");
 
 	var formData = new FormData();
@@ -340,6 +379,7 @@ $(".btn-action-owner-save-response").on("click", function () {
 
 $(".btn-approver-action-verification").on("click", function () {
 
+	$(this).attr("disabled", "disabled");
 
 	$("#approver-verification-loader").css("display", "block");
 
@@ -542,6 +582,8 @@ $(".btn-reassign-project-to-new-cost-analyst").on("click", function () {
 
 $("#btn_assign_project_to_new_cost_analyst").on("click", function () {
 
+	$(this).attr("disabled", "disabled");
+
 	var remarks = $("#current_cost_analyst_remarks").val();
 	var newCostAnalystFFID = $("#cost_analyst_approver").val();
 	var cost_analyst_id = $(this).attr("data-current-cost-analyst-id");
@@ -594,6 +636,8 @@ $(".btn-reassign-project-to-new-finance").on("click", function () {
 
 $("#btn_assign_project_to_new_finance").on("click", function () {
 
+	$(this).attr("disabled", "disabled");
+
 	var remarks = $("#current_finance_remarks").val();
 	var newFinanceFFID = $("#finance_approver").val();
 	var curFinanceID = $(this).attr("data-current-finance-id");
@@ -628,6 +672,7 @@ $("#btn_assign_project_to_new_finance").on("click", function () {
 
 
 $("#btn-mark-proposal-as-bpi").on("change", function () {
+
 	if (this.checked === true) {
 		
 		$.post(
@@ -699,6 +744,7 @@ $("#btn_lets_update_proposal_details").on("click", function () {
 $("#btn-qlik-view-save-details").on("click", function () {
 
 	$("#qlik-view-forms-loader").css("display", "block");
+	$(this).attr("disabled", "disabled");
 
 	var financeCategory = $("#financeCategory").val();
 	var origDueDate = $("#qlik_view_original_due_date").val();
@@ -744,3 +790,155 @@ $("#btn-qlik-view-save-details").on("click", function () {
 	);
 
 });
+
+
+
+
+
+// ###########################################
+// ###########################################
+//
+//  PROJECT OWNER functions:
+// ------------> 
+
+
+
+var projectOwnerInfo = {
+	ffID: "",
+	fullName: ""
+}
+
+$(document).on("click", ".selected_project_owner", function () {
+	var fullName = $(this).attr("data-owner-fullname");
+	var ffID = $(this).attr("data-owner-ffid");
+
+	projectOwnerInfo.ffID = ffID;
+	projectOwnerInfo.fullName = fullName;
+});
+
+
+
+$("#btn_assign_project_to_employee").on("click", function () {
+
+	$("#verifier-assign-project-owner-loader").css("display", "block");
+	$(this).attr("disabled", "disabled");
+
+	//console.log(projectOwnerInfo);
+
+	$.post(
+		base_url + "ESavings/AssignProjectOwner",
+		{
+			proposalID: global_proposal_id,
+			ownerFFID: projectOwnerInfo.ffID,
+			ownerFullname: projectOwnerInfo.fullName
+		},
+		function (data) {
+			console.log(data);
+
+			M.toast({
+				html: "Processing...Please wait...",
+				completeCallback: function () {
+
+					$("#verifier-assign-project-owner-loader").css("display", "none");
+
+					M.toast({
+						html: data.msg,
+						completeCallback: function () {
+							window.location.reload();
+						}
+					})
+
+				}
+			})
+
+
+		}
+	);
+
+
+});
+
+
+
+$("#btn-browse-project-owner-supporting-documents").on("click", function () {
+	$("#project_owner_supporting_documents").click();
+});
+
+var project_owner_supporting_docs = [];
+
+$("#project_owner_supporting_documents").on("change", function (e) {
+
+	var fileLen = $(this)[0].files.length;
+
+	for (var i = 0; i < fileLen; i++) {
+		project_owner_supporting_docs.push($(this)[0].files[i]);
+	}
+
+	var display = "";
+	for (var i = 0; i < project_owner_supporting_docs.length; i++) {
+
+		display += "<div class='chip'>";
+		display += project_owner_supporting_docs[i].name + "<i class='close material-icons'>close</i>";
+		display += "</div>";
+	}
+
+	$("#project_owner_supporting_documents_display").html(display);
+
+});
+
+
+
+
+
+$(".btn-project-owner-save-response").on("click", function () {
+
+	$("#project-owner-responded-loader").css("display", "block");
+	$(this).attr("disabled", "disabled");
+
+	var formData = new FormData();
+
+	var remarks = $("#project_owner_remarks").val();
+
+	formData.append("proposalID", global_proposal_id);
+	formData.append("remarks", remarks);
+
+	formData.append("supportingDocsLen", project_owner_supporting_docs.length);
+	for (var i = 0; i < project_owner_supporting_docs.length; i++) {
+		formData.append("supporting_docs_" + i, project_owner_supporting_docs[i]);
+	}
+
+	var request = $.ajax({
+		url: base_url + "ESavings/SaveProjectOwnerResponse",
+		type: "POST",
+		data: formData,
+		contentType: false,
+		cache: false,
+		processData: false
+	});
+
+	request.done(function (data) {
+		console.log(data);
+
+
+		M.toast({
+			html: "Processing...Please wait...",
+			completeCallback: function () {
+				M.toast({
+					html: data.msg,
+					completeCallback: function () {
+						window.location.reload();
+
+					}
+				})
+
+			}
+		})
+
+	});
+
+});
+
+// <------------------
+//  PROJECT OWNER functions:
+// ###########################################
+// ###########################################

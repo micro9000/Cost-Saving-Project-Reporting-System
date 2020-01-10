@@ -7,5 +7,6 @@ namespace Repositories
 	{
 		CostAnalyst GetInfoByFFID (string ffID);
 		List<CostAnalyst> GetInfoByDeptCode (string deptCode);
+		List<CostAnalyst> GetAllCostAnalyst ();
 	}
 }

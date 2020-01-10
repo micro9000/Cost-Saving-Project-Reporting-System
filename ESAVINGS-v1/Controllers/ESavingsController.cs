@@ -3770,6 +3770,13 @@ namespace ESAVINGS_v1.Controllers
 
 
 					var costAnalyst = Factory.CostAnalystFactory().GetInfoByFFID(newCostAnalystFFID);
+
+					if (UserCostAnalystIDTmp == costAnalyst.Id)
+					{
+						results["msg"] = "<strong class='error'>Error: trying to assign current approver</strong>";
+						return Json(results);
+					}
+
 					// insert new cost analyst
 					if (Factory.ProposalCostAnalystRepository().Add(new ProposalCostAnalyst()
 					{
@@ -3978,6 +3985,11 @@ namespace ESAVINGS_v1.Controllers
 
 					var newFinance = Factory.FinanceApproverFactory().GetInfoByFFID(newFinanceFFID);
 
+					if (UserFinanceIDTmp == newFinance.Id)
+					{
+						results["msg"] = "<strong class='error'>Error: trying to assign current approver</strong>";
+						return Json(results);
+					}
 
 					var proposalFinanceApproval = new ProposalFinanceApproval()
 					{
@@ -4078,7 +4090,321 @@ namespace ESAVINGS_v1.Controllers
 		}
 
 
+		public async Task<JsonResult> AssignProjectOwner (int proposalID, string ownerFFID, string ownerFullname)
+		{
+			IDictionary<string, string> results = new Dictionary<string, string>();
+			results["done"] = "FALSE";
+			results["msg"] = "<strong class='error'>Internal error, kindly report this error.</strong>";
 
+			try
+			{
+				#region authentication
+
+				if (!IsUserSuccessfullyLoggedIn())
+				{
+					results["msg"] = "<strong class='error'>Please login...</strong>";
+					return Json(results);
+				}
+
+				if (this.UserType == ((int)StaticData.UserTypes.Client).ToString())
+				{
+					results["msg"] = "<strong class='error'>Permission Denied...</strong>";
+					return Json(results);
+				}
+
+				#endregion
+
+				if (string.IsNullOrEmpty(proposalID.ToString()) || string.IsNullOrEmpty(ownerFFID) || string.IsNullOrEmpty(ownerFullname))
+				{
+					results["msg"] = "<strong class='error'>Please complete the requirements, (Action Description and action owner info)</strong>";
+					return Json(results);
+				}
+
+
+				var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalID);
+
+				if (proposalDetails == null)
+				{
+					results["msg"] = "<strong class='error'>Proposal not found</strong>";
+					return Json(results);
+				}
+
+
+				if (this.IsUserMaster == false) // not a master approver
+				{
+					if (this.IsUserIsCostAnalystOnTheCurrentProposal(proposalDetails.AreaDeptBeneficiary) == false && this.IsUserIsFinanceApproverOnTheCurrentProposal(proposalID) == false)
+					{
+						results["msg"] = "<strong class='error'>Permission Denied...</strong>";
+						return Json(results);
+					}
+				}
+
+				var rows = Factory.ProposalFactory().AssignProjectOwner(proposalID, ownerFFID, ownerFullname, "");
+
+				if (rows > 0)
+				{
+					results["done"] = "TRUE";
+					results["msg"] = "<strong class='good'>Successfully assign to project owner</strong>";
+
+
+					#region Email notification
+
+					var actionOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, ownerFFID);
+					var actionOwnerEmail = (actionOwnerInfo.Count > 0) ? actionOwnerInfo[0].Email : "";
+
+					var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
+
+					string proposalOwnerEmail = "";
+					string ownerManagerEmail = "";
+
+					if (proposalOwnerInfo.Count > 0)
+					{
+						proposalOwnerEmail = (proposalOwnerInfo.Count > 0) ? proposalOwnerInfo[0].Email : "";
+						var empDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, proposalOwnerInfo[0].ManagerFFID);
+						ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
+					}
+
+					string emailMsg = string.Format(@"E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details <br/>
+											<a href='{1}/Home/Details/{2}'>Details</a>
+											<table>
+												<tr><td>Project Type</td><td>{3}</td></tr>
+												<tr><td>Project Title</td><td>{4}</td></tr>
+												<tr><td>Current Description</td><td>{5}</td></tr>
+												<tr><td>Proposal Description</td><td>{6}</td></tr>
+												<tr><td>Proposed By</td><td>{7}</td></tr>
+												<tr><td>Department</td><td>{8}</td></tr>
+												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
+											</table>",
+												 proposalDetails.ProposalTicket,
+												 this.base_url,
+												 proposalID,
+												 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
+												 proposalDetails.ProjectTitle,
+												 proposalDetails.CurrentDescription,
+												 proposalDetails.ProposalDescription,
+												 proposalDetails.SubmittedBy,
+												 proposalDetails.EmpDeptCode,
+												 proposalDetails.AreaDeptBeneficiary);
+
+					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "Action Needed from E-Savings-Ticket#" + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+					sendEmail.Add_To_Recipient(actionOwnerEmail);
+					sendEmail.Add_CC_Recipient(proposalOwnerEmail);
+					sendEmail.Add_CC_Recipient(ownerManagerEmail);
+					sendEmail.Add_CC_Recipient(this.UserEmail);
+
+
+					try
+					{
+						await sendEmail.send();
+					}
+					catch (Exception ex)
+					{
+						results["msg"] += "<br/><span class='error'>" + ex.Message + "</span>";
+					}
+
+					#endregion
+
+
+
+				}
+				else
+				{
+					results["msg"] = "<strong class='error'>Failed to add new action, please try again</strong>";
+				}
+
+			}
+			catch (Exception ex)
+			{
+				results["msg"] = ex.Message;
+			}
+
+
+
+
+			return Json(results);
+		}
+
+
+
+		public async Task<JsonResult> SaveProjectOwnerResponse (int proposalID, string remarks, int supportingDocsLen)
+		{
+
+			IDictionary<string, string> results = new Dictionary<string, string>();
+			results["done"] = "FALSE";
+			results["msg"] = "<strong class='error'>Internal error, kindly report this error.</strong>";
+
+			try
+			{
+
+				#region Validation and authentication
+
+				if (proposalID == 0)
+				{
+					results["msg"] = "<strong class='error'>Invalid proposalID</strong>";
+					return Json(results);
+				}
+
+				if (string.IsNullOrEmpty(remarks))
+				{
+					results["msg"] = "<strong class='error'>Remarks is required</strong>";
+					return Json(results);
+				}
+
+
+				if (!IsUserSuccessfullyLoggedIn())
+				{
+					results["msg"] = "<strong class='error'>Please login...</strong>";
+					return Json(results);
+				}
+				#endregion
+
+				var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalID);
+
+				if (proposalDetails == null)
+				{
+					results["msg"] = "<strong class='error'>Proposal not found</strong>";
+					return Json(results);
+				}
+
+				if (string.IsNullOrEmpty(proposalDetails.ProjectOwnerFFID) && proposalDetails.ProjectOwnerFFID != this.UserFFID)
+				{
+					results["msg"] = "<strong class='error'>Permission Denied...</strong>";
+					return Json(results);
+				}
+
+
+				var rows = Factory.ProposalFactory().UpdateProjectOwnerRemarks(proposalID, remarks);
+
+				if (rows > 0)
+				{
+					results["done"] = "TRUE";
+					results["msg"] = "<strong class='good'>Successfully saved! <br/></strong>";
+
+
+					#region Insert Supporting documents
+
+					IDictionary<string, string> upload_results = new Dictionary<string, string>();
+
+					List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
+					upload_results = new Dictionary<string, string>();
+					string supportingDocsErr = "Supporting Documents (Can't upload): <br/>";
+
+					for (int i = 0 ; i<supportingDocsLen ; i++)
+					{
+						HttpPostedFileBase file = Request.Files["supporting_docs_"+i];
+
+						upload_results = this.UploadThisFile(file, ConfigurationManager.AppSettings["dir_for_upload_supporting_docs"]);
+
+						if (upload_results["done"] == "TRUE")
+						{
+							supportingDocs.Add(new SupportingDoc
+							{
+								ProposalId = proposalID,
+								ServerFileName = upload_results["newFileName"],
+								OrigFileName = upload_results["origfileName"],
+								AttachedBy = this.UserFullName
+							});
+						}
+						else
+						{
+							supportingDocsErr += upload_results["origfileName"] +" - "+ upload_results["msg"] + "<br/>";
+						}
+						//
+					}
+
+
+					if (supportingDocs.Count > 0)
+					{
+						int supportingDocsInsertedRows = Factory.SupportingDocFactory().InsertProposalSupportingDocs(supportingDocs);
+
+						if (supportingDocsInsertedRows < supportingDocsLen)
+						{
+							results["msg"] += supportingDocsErr;
+						}
+					}
+
+					#endregion
+
+
+
+
+					#region Email notification
+
+					proposalDetails.CostAnalysts = Factory.ProposalCostAnalystRepository().GetProposalCostAnalystInfoAndVerificationInfo(proposalID);
+
+					var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
+					var proposalOwnerEmail = "";
+
+					if (proposalOwnerInfo.Count > 0)
+					{
+						proposalOwnerEmail = (proposalOwnerInfo.Count > 0) ? proposalOwnerInfo[0].Email : "";
+						var empDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, proposalOwnerInfo[0].ManagerFFID);
+						string ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
+
+
+						string emailMsg = string.Format(@"E-Savings Ticket #{0} - Project owner responded [{1}].<br/> Please click the link below to view the details <br/>
+																	<a href='{2}/Home/Details/{3}'>Details</a>
+																	<table>
+																		<tr><td>Project Type</td><td>{4}</td></tr>
+																		<tr><td>Project Title</td><td>{5}</td></tr>
+																		<tr><td>Current Description</td><td>{6}</td></tr>
+																		<tr><td>Proposal Description</td><td>{7}</td></tr>
+																		<tr><td>Proposed By</td><td>{8}</td></tr>
+																		<tr><td>Department</td><td>{9}</td></tr>
+																		<tr><td>Department/Area beneficiary</td><td>{10}</td></tr>
+																	</table>",
+											 proposalDetails.ProposalTicket,
+											 this.UserFullName +" - "+ remarks,
+											 this.base_url,
+											 proposalID,
+											 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
+											 proposalDetails.ProjectTitle,
+											 proposalDetails.CurrentDescription,
+											 proposalDetails.ProposalDescription,
+											 proposalDetails.SubmittedBy,
+											 proposalDetails.EmpDeptCode,
+											 proposalDetails.AreaDeptBeneficiary);
+
+						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "Project Owner from E-Savings-Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+						sendEmail.Add_CC_Recipient(proposalOwnerEmail);
+						sendEmail.Add_CC_Recipient(ownerManagerEmail);
+
+
+						foreach (var costAnalyst in proposalDetails.CostAnalysts)
+						{
+							var empInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, costAnalyst.CostAnalystInfo.FFID);
+							if (empInfo.Count > 0)
+							{
+								sendEmail.Add_To_Recipient(empInfo[0].Email);
+							}
+
+						}
+
+						try
+						{
+							await sendEmail.send();
+						}
+						catch (Exception ex)
+						{
+							results["msg"] += "<br/><span class='error'>" + ex.Message + "</span>";
+						}
+					}
+
+					#endregion
+
+				}
+
+			}
+			catch (Exception ex)
+			{
+				results["msg"] = ex.Message;
+			}
+
+
+
+			return Json(results);
+
+		}
 
 
 	}
