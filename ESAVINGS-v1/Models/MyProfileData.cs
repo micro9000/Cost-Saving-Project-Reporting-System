@@ -20,6 +20,21 @@ namespace ESAVINGS_v1.Models
 		}
 
 
+		private List<Proposal> assignedProjects;
+
+		public List<Proposal> AssignedProjects
+		{
+			get
+			{
+				return assignedProjects;
+			}
+			set
+			{
+				assignedProjects = value;
+			}
+		}
+
+
 
 		private List<Proposal> activeProposals;
 

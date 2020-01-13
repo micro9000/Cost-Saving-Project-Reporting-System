@@ -99,7 +99,7 @@ namespace ESAVINGS_v1.Controllers
 
 
 
-
+			profileData.AssignedProjects = this.GetProposalAdditionalInfo(Factory.ProposalFactory().GetAssignedProjectsByUser(this.UserFFID));
 			profileData.ActiveProposals = this.GetProposalAdditionalInfo(Factory.ProposalFactory().GetActiveProposalsByUser(this.UserFFID));
 
 

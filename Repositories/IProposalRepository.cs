@@ -58,6 +58,8 @@ namespace Repositories
 
 		List<Proposal> GetActiveProposalsByUser (string userFFID);
 
+		List<Proposal> GetAssignedProjectsByUser (string userFFID);
+
 		List<Proposal> GetProposalByCostAnalystApprovalPending (int costAnalystID = 0);
 
 		List<Proposal> GetProposalByFinanceApprovalPending (int financeID = 0);

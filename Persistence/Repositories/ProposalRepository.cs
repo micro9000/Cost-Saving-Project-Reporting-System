@@ -517,6 +517,30 @@ namespace Persistence.Repositories
 			return results;
 		}
 
+		public List<Proposal> GetAssignedProjectsByUser (string userFFID)
+		{
+			string query = @"SELECT * FROM Proposals 
+							WHERE isDeleted=0 AND projectOwnerFFID=@userFFID AND OAStatus IN @status";
+
+			List<Proposal> results = new List<Proposal>();
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				results = conn.Query<Proposal>(query, new
+				{
+					status = new int[] { (int)StaticData.OverallStatus.PROJECT_PROPOSAL,
+										(int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS,
+										(int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED,
+										(int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS
+										},
+					userFFID = userFFID,
+				}).OrderByDescending(p => p.Id).ToList();
+
+				conn.Close();
+
+			}
+			return results;
+		}
 
 		public List<Proposal> GetActiveProposalsByUser (string userFFID)
 		{
