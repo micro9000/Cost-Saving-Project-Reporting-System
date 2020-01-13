@@ -321,6 +321,7 @@
     <None Include="Properties\PublishProfiles\OSV-Version1.pubxml" />
     <None Include="Properties\PublishProfiles\OSV.pubxml" />
     <None Include="Properties\PublishProfiles\SBN-Version1.pubxml" />
+    <None Include="Properties\PublishProfiles\Tarlac-v3.pubxml" />
     <None Include="Properties\PublishProfiles\Tarlac-Version.2.2.pubxml" />
     <None Include="Properties\PublishProfiles\Tarlac-Version1.pubxml" />
     <None Include="Properties\PublishProfiles\Tarlac-Version2.1.pubxml" />

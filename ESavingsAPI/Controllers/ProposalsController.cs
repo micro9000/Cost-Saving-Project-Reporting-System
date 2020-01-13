@@ -40,7 +40,7 @@ namespace ESavingsAPI.Controllers
 							   funnelStatus = p.FunnelStatusIndicator,
 							   description = p.Remarks,
 							   functionalArea = departments[p.AreaDeptBeneficiary],
-							   owner = p.SubmittedBy,
+							   owner = (p.ProjectOwnerName == null) ? p.SubmittedBy : p.ProjectOwnerName,
 							   originalDueDate = p.OriginalDueDate == (new DateTime(0001, 01, 01)) ? "" : p.OriginalDueDate.ToString("yyyy-MM-dd"),
 							   currentDueDate = p.CurrentDueDate == (new DateTime(0001, 01, 01)) ? "" : p.CurrentDueDate.ToString("yyyy-MM-dd"),
 							   plannedProjectStartDate = p.PlannedProjectStartDate == (new DateTime(0001, 01, 01)) ? "" : p.PlannedProjectStartDate.ToString("yyyy-MM-dd"),

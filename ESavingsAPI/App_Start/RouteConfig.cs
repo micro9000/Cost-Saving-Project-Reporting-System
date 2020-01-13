@@ -13,23 +13,37 @@ namespace ESavingsAPI
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+			//routes.MapRoute(
+			//	name: "API",
+			//	url: "{controller}/{id}",
+			//	defaults: new
+			//	{
+			//		id = UrlParameter.Optional
+			//	}
+			//);
+
+
+			//routes.MapRoute(
+			//	name: "Home",
+			//	url: "{controller}/{action}",
+			//	defaults: new
+			//	{
+			//		action = UrlParameter.Optional
+			//	}
+			//);
+
 			routes.MapRoute(
 				name: "Default",
-				url: "api/{controller}/{id}",
+				url: "{controller}/{action}/{id}",
 				defaults: new
 				{
+					controller="Home",
+					action="Index",
 					id = UrlParameter.Optional
 				}
 			);
 
-			routes.MapRoute(
-				name: "MapByAction",
-				url: "api/{controller}/{action}/{id}",
-				defaults: new
-				{
-					id = UrlParameter.Optional
-				}
-			);
 		}
 	}
 }
