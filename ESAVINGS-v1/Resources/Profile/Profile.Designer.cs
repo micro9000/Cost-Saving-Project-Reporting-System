@@ -79,11 +79,29 @@ namespace ESAVINGS_v1.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Archived Proposal (s).
+        /// </summary>
+        public static string ArchivedProposalsHeader {
+            get {
+                return ResourceManager.GetString("ArchivedProposalsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create New Proposal.
         /// </summary>
         public static string CreateNewProposalBtnLbl {
             get {
                 return ResourceManager.GetString("CreateNewProposalBtnLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For your approval.
+        /// </summary>
+        public static string ForYourApprovalHeader {
+            get {
+                return ResourceManager.GetString("ForYourApprovalHeader", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace ESAVINGS_v1.Resources.Profile {
         public static string TitleLbl {
             get {
                 return ResourceManager.GetString("TitleLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your action item (s).
+        /// </summary>
+        public static string YourActionItemsHeader {
+            get {
+                return ResourceManager.GetString("YourActionItemsHeader", resourceCulture);
             }
         }
     }

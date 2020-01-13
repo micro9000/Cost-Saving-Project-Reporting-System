@@ -117,64 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>Semua</value>
+  <data name="ActionDescriptionLbl" xml:space="preserve">
+    <value>Huraian Tindakan</value>
   </data>
-  <data name="BPI" xml:space="preserve">
-    <value>Pelaksanaan amalan terbaik</value>
+  <data name="ActiveProposalsHeader" xml:space="preserve">
+    <value>Cadangan Aktif</value>
   </data>
-  <data name="Cost_avoidance_dollar_impact" xml:space="preserve">
-    <value>Impak Pengelakan-Kos ($)</value>
+  <data name="ArchivedProposalsHeader" xml:space="preserve">
+    <value>Archived Proposal (s)</value>
   </data>
-  <data name="Cost_avoidance_total" xml:space="preserve">
-    <value>Jumlah Pengelakan-Kos</value>
+  <data name="CreateNewProposalBtnLbl" xml:space="preserve">
+    <value>Buat Cadangan Baru</value>
   </data>
-  <data name="Current" xml:space="preserve">
-    <value>Semasa</value>
+  <data name="ForYourApprovalHeader" xml:space="preserve">
+    <value>For your approval</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Jabatan</value>
+  <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
+    <value>Bilangan penyerahan mengikut status</value>
   </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Pekerja</value>
+  <data name="ProjectTypeLbl" xml:space="preserve">
+    <value>Jenis Projek</value>
   </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>Tarikh Tamat</value>
-  </data>
-  <data name="For_verification" xml:space="preserve">
-    <value>Untuk Pengesahan</value>
-  </data>
-  <data name="Keyword" xml:space="preserve">
-    <value>Kata Kunci</value>
-  </data>
-  <data name="MultiSelection" xml:space="preserve">
-    <value>Pemilihan Pelbagai</value>
-  </data>
-  <data name="ProjectedDollarImpact" xml:space="preserve">
-    <value>Impak Dijangka ($)</value>
-  </data>
-  <data name="Proposal" xml:space="preserve">
-    <value>Cadangan</value>
-  </data>
-  <data name="Savings_Dollar_Impact" xml:space="preserve">
-    <value>Kesan Dolar Simpanan</value>
-  </data>
-  <data name="Savings_total" xml:space="preserve">
-    <value>Jumlah Simpanan</value>
-  </data>
-  <data name="Search_project" xml:space="preserve">
-    <value>Carian Projek</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Tarikh Mula</value>
-  </data>
-  <data name="Status" xml:space="preserve">
+  <data name="StatusLbl" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="Title" xml:space="preserve">
+  <data name="SubmissionLbl" xml:space="preserve">
+    <value>Penyerahan</value>
+  </data>
+  <data name="SubmittedByLbl" xml:space="preserve">
+    <value>Dikemukakan oleh</value>
+  </data>
+  <data name="TicketNumberLbl" xml:space="preserve">
+    <value>Nombor Tiket</value>
+  </data>
+  <data name="TitleLbl" xml:space="preserve">
     <value>Tajuk</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Jenis</value>
+  <data name="YourActionItemsHeader" xml:space="preserve">
+    <value>Your action item (s)</value>
   </data>
 </root>

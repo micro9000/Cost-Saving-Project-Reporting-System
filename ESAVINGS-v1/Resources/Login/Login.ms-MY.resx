@@ -117,64 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>Semua</value>
+  <data name="CancelBtnLbl" xml:space="preserve">
+    <value>Batal</value>
   </data>
-  <data name="BPI" xml:space="preserve">
-    <value>Pelaksanaan amalan terbaik</value>
+  <data name="LoginBtnLbl" xml:space="preserve">
+    <value>Log Masuk</value>
   </data>
-  <data name="Cost_avoidance_dollar_impact" xml:space="preserve">
-    <value>Impak Pengelakan-Kos ($)</value>
+  <data name="LoginFormHeader" xml:space="preserve">
+    <value>Borang Kemasukan</value>
   </data>
-  <data name="Cost_avoidance_total" xml:space="preserve">
-    <value>Jumlah Pengelakan-Kos</value>
+  <data name="OperatorRegistrationResetPassBtnLbl" xml:space="preserve">
+    <value>Pendaftaran Operator / Tukar Kata Laluan</value>
   </data>
-  <data name="Current" xml:space="preserve">
-    <value>Semasa</value>
+  <data name="RememberMeLbl" xml:space="preserve">
+    <value>Ingat Saya</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Jabatan</value>
+  <data name="SubmitBtnLbl" xml:space="preserve">
+    <value>Hantar</value>
   </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Pekerja</value>
-  </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>Tarikh Tamat</value>
-  </data>
-  <data name="For_verification" xml:space="preserve">
-    <value>Untuk Pengesahan</value>
-  </data>
-  <data name="Keyword" xml:space="preserve">
-    <value>Kata Kunci</value>
-  </data>
-  <data name="MultiSelection" xml:space="preserve">
-    <value>Pemilihan Pelbagai</value>
-  </data>
-  <data name="ProjectedDollarImpact" xml:space="preserve">
-    <value>Impak Dijangka ($)</value>
-  </data>
-  <data name="Proposal" xml:space="preserve">
-    <value>Cadangan</value>
-  </data>
-  <data name="Savings_Dollar_Impact" xml:space="preserve">
-    <value>Kesan Dolar Simpanan</value>
-  </data>
-  <data name="Savings_total" xml:space="preserve">
-    <value>Jumlah Simpanan</value>
-  </data>
-  <data name="Search_project" xml:space="preserve">
-    <value>Carian Projek</value>
-  </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Tarikh Mula</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>Tajuk</value>
-  </data>
-  <data name="Type" xml:space="preserve">
-    <value>Jenis</value>
+  <data name="YourDefaultPassLbl" xml:space="preserve">
+    <value>Kata laluan sementara anda ialah</value>
   </data>
 </root>

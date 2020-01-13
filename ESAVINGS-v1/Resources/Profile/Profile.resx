@@ -123,8 +123,14 @@
   <data name="ActiveProposalsHeader" xml:space="preserve">
     <value>Active proposals</value>
   </data>
+  <data name="ArchivedProposalsHeader" xml:space="preserve">
+    <value>Archived Proposal (s)</value>
+  </data>
   <data name="CreateNewProposalBtnLbl" xml:space="preserve">
     <value>Create New Proposal</value>
+  </data>
+  <data name="ForYourApprovalHeader" xml:space="preserve">
+    <value>For your approval</value>
   </data>
   <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
     <value>Number of submission by status</value>
@@ -146,5 +152,8 @@
   </data>
   <data name="TitleLbl" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="YourActionItemsHeader" xml:space="preserve">
+    <value>Your action item (s)</value>
   </data>
 </root>

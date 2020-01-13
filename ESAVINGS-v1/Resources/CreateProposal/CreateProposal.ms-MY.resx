@@ -117,64 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="All" xml:space="preserve">
-    <value>Semua</value>
+  <data name="AdditionalDescriptionLbl" xml:space="preserve">
+    <value>Penerangan Tambahan (Pengurangan Kos Pengiraan / Pengelakan Kos</value>
   </data>
-  <data name="BPI" xml:space="preserve">
-    <value>Pelaksanaan amalan terbaik</value>
+  <data name="ChooseDeptAreaBeneficiaryLbl" xml:space="preserve">
+    <value>Pilih benefisiari jabatan / kawasan projek anda</value>
   </data>
-  <data name="Cost_avoidance_dollar_impact" xml:space="preserve">
-    <value>Impak Pengelakan-Kos ($)</value>
+  <data name="CreateProposalLbl" xml:space="preserve">
+    <value>Cadangan Baru</value>
   </data>
-  <data name="Cost_avoidance_total" xml:space="preserve">
-    <value>Jumlah Pengelakan-Kos</value>
+  <data name="CurrentDescriptionLbl" xml:space="preserve">
+    <value>Penerangan Semasa</value>
   </data>
-  <data name="Current" xml:space="preserve">
+  <data name="CurrentLbl" xml:space="preserve">
     <value>Semasa</value>
   </data>
-  <data name="Department" xml:space="preserve">
-    <value>Jabatan</value>
+  <data name="DeleteLbl" xml:space="preserve">
+    <value>Padam</value>
   </data>
-  <data name="Employee" xml:space="preserve">
-    <value>Pekerja</value>
+  <data name="DeptAreaBeneficiaryLbl" xml:space="preserve">
+    <value>Jabatan / Kawasan Benefisiari</value>
   </data>
-  <data name="EndDate" xml:space="preserve">
-    <value>Tarikh Tamat</value>
+  <data name="DollarImpactLbl" xml:space="preserve">
+    <value>Impak Dollar</value>
   </data>
-  <data name="For_verification" xml:space="preserve">
-    <value>Untuk Pengesahan</value>
+  <data name="EditProposalImgsHeader" xml:space="preserve">
+    <value>Edit imej cadangan</value>
   </data>
-  <data name="Keyword" xml:space="preserve">
-    <value>Kata Kunci</value>
+  <data name="ExpectedNumOfMonthsToBeActiveLbl" xml:space="preserve">
+    <value>Bilangan bulan yang dijangka akan aktif</value>
   </data>
-  <data name="MultiSelection" xml:space="preserve">
-    <value>Pemilihan Pelbagai</value>
+  <data name="ExpectedStartDateLbl" xml:space="preserve">
+    <value>Tarikh mula dijangkakan</value>
   </data>
-  <data name="ProjectedDollarImpact" xml:space="preserve">
-    <value>Impak Dijangka ($)</value>
+  <data name="FilenameLbl" xml:space="preserve">
+    <value>Nama fail</value>
   </data>
-  <data name="Proposal" xml:space="preserve">
+  <data name="ProjectTitleLbl" xml:space="preserve">
+    <value>Tajuk Projek</value>
+  </data>
+  <data name="ProjectTypeLbl" xml:space="preserve">
+    <value>Jenis Projek</value>
+  </data>
+  <data name="ProposalDescriptionLbl" xml:space="preserve">
+    <value>Huraian Cadangan</value>
+  </data>
+  <data name="ProposalLbl" xml:space="preserve">
     <value>Cadangan</value>
   </data>
-  <data name="Savings_Dollar_Impact" xml:space="preserve">
-    <value>Kesan Dolar Simpanan</value>
+  <data name="RemarksLbl" xml:space="preserve">
+    <value>Kenyataan Tambahan</value>
   </data>
-  <data name="Savings_total" xml:space="preserve">
-    <value>Jumlah Simpanan</value>
+  <data name="SubmissionConfirmationHeader" xml:space="preserve">
+    <value>TERIMA KASIH KERANA MENYERTAI KEMPEN COST SAVING</value>
   </data>
-  <data name="Search_project" xml:space="preserve">
-    <value>Carian Projek</value>
+  <data name="SubmissionConfirmationMsg" xml:space="preserve">
+    <value>Cadangan anda berjaya dihantar. Notifikasi E-mel akan dihantar setiap kali cadangan anda berubah status atau anda mungkin akan diberi soalan tambahan untuk penerangan lanjut</value>
   </data>
-  <data name="StartDate" xml:space="preserve">
-    <value>Tarikh Mula</value>
+  <data name="SubmitBtnLbl" xml:space="preserve">
+    <value>Hantar</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Status</value>
+  <data name="SupportingDocumentsLbl" xml:space="preserve">
+    <value>Dokumen sokongan</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Tajuk</value>
+  <data name="UpdateProposalLbl" xml:space="preserve">
+    <value>Kemaskini Cadangan</value>
   </data>
-  <data name="Type" xml:space="preserve">
-    <value>Jenis</value>
+  <data name="UploadBtnLbl" xml:space="preserve">
+    <value>Muat Naik</value>
+  </data>
+  <data name="ViewDetailsBtnLbl" xml:space="preserve">
+    <value>Lihat Butiran</value>
   </data>
 </root>
