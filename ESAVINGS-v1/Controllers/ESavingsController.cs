@@ -3268,20 +3268,26 @@ namespace ESAVINGS_v1.Controllers
 					#region Email notification
 
 
-
+					// Action owner info and email
 					var actionOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, ownerFFID);
 					var actionOwnerEmail = (actionOwnerInfo.Count > 0) ? actionOwnerInfo[0].Email : "";
 
+					// Action owner direct supervisor
+					var actionOwnerDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, actionOwnerInfo[0].ManagerFFID);
+					string actionOwnerDirectSupvEmail = (actionOwnerDirectSupv != null) ? actionOwnerDirectSupv.Email : "";
+
+					// Proposal owner info
 					var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
 
 					string proposalOwnerEmail = "";
-					string ownerManagerEmail = "";
+					string proposalOwnerManagerEmail = "";
 
 					if (proposalOwnerInfo.Count > 0)
 					{
 						proposalOwnerEmail = (proposalOwnerInfo.Count > 0) ? proposalOwnerInfo[0].Email : "";
+						// Proposal owner supervisor
 						var empDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, proposalOwnerInfo[0].ManagerFFID);
-						ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
+						proposalOwnerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
 					}
 
 					string emailMsg = string.Format(@"Action Needed from E-Savings Ticket #{0} assign to you. Please click the link below to view the details <br/>
@@ -3308,8 +3314,9 @@ namespace ESAVINGS_v1.Controllers
 
 					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "Action Needed from E-Savings-Ticket#" + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 					sendEmail.Add_To_Recipient(actionOwnerEmail);
+					sendEmail.Add_CC_Recipient(actionOwnerDirectSupvEmail);
 					sendEmail.Add_CC_Recipient(proposalOwnerEmail);
-					sendEmail.Add_CC_Recipient(ownerManagerEmail);
+					sendEmail.Add_CC_Recipient(proposalOwnerManagerEmail);
 					sendEmail.Add_CC_Recipient(this.UserEmail);
 
 
