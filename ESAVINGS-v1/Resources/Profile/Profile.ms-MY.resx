@@ -135,6 +135,9 @@
   <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
     <value>Bilangan penyerahan mengikut status</value>
   </data>
+  <data name="ProjectsAssignToYouHeader" xml:space="preserve">
+    <value>Projects assign to you</value>
+  </data>
   <data name="ProjectTypeLbl" xml:space="preserve">
     <value>Jenis Projek</value>
   </data>

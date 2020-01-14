@@ -115,6 +115,15 @@ namespace ESAVINGS_v1.Resources.Profile {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Projects assign to you.
+        /// </summary>
+        public static string ProjectsAssignToYouHeader {
+            get {
+                return ResourceManager.GetString("ProjectsAssignToYouHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project Type.
         /// </summary>
         public static string ProjectTypeLbl {
