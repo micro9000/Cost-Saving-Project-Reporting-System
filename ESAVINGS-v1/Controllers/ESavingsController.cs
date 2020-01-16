@@ -90,7 +90,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Current Images (Can't upload): <br/>" + errorMsg;
+					errorMsg = "Current Images (Unable to upload): <br/>" + errorMsg;
 				}
 			}
 			else if (target == "proposal_imgs")
@@ -121,7 +121,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Proposal Images (Can't upload): <br/>" + errorMsg;
+					errorMsg = "Proposal Images (Unable to upload): <br/>" + errorMsg;
 				}
 			}
 			else if (target == "supporting_docs")
@@ -153,7 +153,7 @@ namespace ESAVINGS_v1.Controllers
 				insertedRows = Factory.SupportingDocFactory().InsertProposalSupportingDocs(supportingDocs);
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Supporting Images (Can't upload): <br/>" + errorMsg;
+					errorMsg = "Supporting Images (Unable to upload): <br/>" + errorMsg;
 				}
 			}
 
@@ -807,7 +807,7 @@ namespace ESAVINGS_v1.Controllers
 							}
 							else
 							{
-								results["msg"] = "<strong class='error'>Can't update your proposal details</strong>";
+								results["msg"] = "<strong class='error'>Unable to update your proposal details</strong>";
 							}
 						}
 						else
@@ -824,14 +824,14 @@ namespace ESAVINGS_v1.Controllers
 			catch (Exception ex)
 			{
 				results["msg"] = ex.Message;
-				Console.WriteLine("\nMessage ---\n{0}", ex.Message);
-				Console.WriteLine(
-					"\nHelpLink ---\n{0}", ex.HelpLink);
-				Console.WriteLine("\nSource ---\n{0}", ex.Source);
-				Console.WriteLine(
-					"\nStackTrace ---\n{0}", ex.StackTrace);
-				Console.WriteLine(
-					"\nTargetSite ---\n{0}", ex.TargetSite);
+				//Console.WriteLine("\nMessage ---\n{0}", ex.Message);
+				//Console.WriteLine(
+				//	"\nHelpLink ---\n{0}", ex.HelpLink);
+				//Console.WriteLine("\nSource ---\n{0}", ex.Source);
+				//Console.WriteLine(
+				//	"\nStackTrace ---\n{0}", ex.StackTrace);
+				//Console.WriteLine(
+				//	"\nTargetSite ---\n{0}", ex.TargetSite);
 			}
 
 
@@ -2010,7 +2010,7 @@ namespace ESAVINGS_v1.Controllers
 								//
 								if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't add/update dolar impact";
+									message += "<br/> Unable to add/update dolar impact";
 								}
 								else
 								{
@@ -2025,7 +2025,7 @@ namespace ESAVINGS_v1.Controllers
 								//
 								if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't add/update project type";
+									message += "<br/> Unable to add/update project type";
 								}
 								else
 								{
@@ -2040,7 +2040,7 @@ namespace ESAVINGS_v1.Controllers
 								//
 								if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't add/update number of months to be active";
+									message += "<br/> Unable to add/update number of months to be active";
 								}
 								else
 								{
@@ -2065,7 +2065,7 @@ namespace ESAVINGS_v1.Controllers
 									//
 									if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
 									{
-										message += "<br/> Can't add/update expected project start date";
+										message += "<br/> Unable to add/update expected project start date";
 									}
 									else
 									{
@@ -2088,7 +2088,7 @@ namespace ESAVINGS_v1.Controllers
 
 								List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
 								upload_results = new Dictionary<string, string>();
-								string supportingDocsErr = "Supporting Documents (Can't upload): <br/>";
+								string supportingDocsErr = "Supporting Documents (Unable to upload): <br/>";
 
 								for (int i = 0 ; i<supportingDocsLen ; i++)
 								{
@@ -2179,7 +2179,7 @@ namespace ESAVINGS_v1.Controllers
 									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Cancelled, proposalIDIntParse);
 
 									results["done"] = "FALSE";
-									results["msg"] = "<strong class='good'>Successfully move to <i>"+ StaticData.GetOverallStatusStr(invalid_status) +"</i> the status!</strong>";
+									results["msg"] = "<strong class='good'>Successfully move to <i>"+ StaticData.GetOverallStatusStr(invalid_status) +"</i> status!</strong>";
 
 
 									string emailMsg = "";
@@ -2235,7 +2235,7 @@ namespace ESAVINGS_v1.Controllers
 								{
 									if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS, proposalIDIntParse) == 0)
 									{
-										message += "<br/> Can't update overall status (IN-PROGRESS)";
+										message += "<br/> Unable to update overall status (IN-PROGRESS)";
 									}
 									else
 									{
@@ -2268,7 +2268,7 @@ namespace ESAVINGS_v1.Controllers
 										{
 											if (Factory.ProposalFinanceApprovalRepository().ReassignProposalFinanceApproval(proposalIDIntParse, financeInfo.Id, lastFinanceInfoID) == 0)
 											{
-												message += "<br/> Can't reassign finance approver";
+												message += "<br/> Unable to reassign finance approver";
 											}
 											else
 											{
@@ -2288,7 +2288,7 @@ namespace ESAVINGS_v1.Controllers
 
 										if (Factory.ProposalFinanceApprovalRepository().Add(proposalFinanceApproval) == 0)
 										{
-											message += "<br/> Can't add finance approver";
+											message += "<br/> Unable to add finance approver";
 										}
 										else
 										{
@@ -2380,7 +2380,7 @@ namespace ESAVINGS_v1.Controllers
 											// Reassign
 											if (Factory.ProposalFinanceApprovalRepository().ReassignProposalFinanceApproval(proposalIDIntParse, financeInfo.Id, lastFinanceInfoID) == 0)
 											{
-												message += "<br/> Can't reassign finance approver";
+												message += "<br/> Unable to reassign finance approver";
 												doneAddingFinance = false;
 											}
 											else
@@ -2395,7 +2395,7 @@ namespace ESAVINGS_v1.Controllers
 										// add
 										if (Factory.ProposalFinanceApprovalRepository().Add(proposalFinanceApproval) == 0)
 										{
-											message += "<br/> Can't add finance approver";
+											message += "<br/> Unable to add finance approver";
 											doneAddingFinance = false;
 										}
 										else
@@ -2408,7 +2408,7 @@ namespace ESAVINGS_v1.Controllers
 									{
 										if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED, proposalIDIntParse) == 0)
 										{
-											message += "<br/> Can't update overall status " + StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED);
+											message += "<br/> Unable to update overall status " + StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_IDENTIFIED);
 
 										}
 										else
@@ -2473,7 +2473,7 @@ namespace ESAVINGS_v1.Controllers
 									}
 									else
 									{
-										message += "<br/>Can't insert finance approvers";
+										message += "<br/>Unable to insert finance approvers";
 									}
 
 									results["done"] = "TRUE";
@@ -2497,7 +2497,7 @@ namespace ESAVINGS_v1.Controllers
 						else
 						{
 							results["done"] = "FALSE";
-							results["msg"] = "<strong class='error'>Can't verify this proposal</strong>";
+							results["msg"] = "<strong class='error'>Unable to verify this proposal</strong>";
 						}
 
 					}
@@ -2628,7 +2628,7 @@ namespace ESAVINGS_v1.Controllers
 						else
 						{
 							results["done"] = "FALSE";
-							results["msg"] = "<strong class='error'>Error "+ statusStr +" proposal as BPI</strong>";
+							results["msg"] = "<strong class='error'>Error: unable to "+ statusStr +" proposal as BPI</strong>";
 						}
 					}
 					else
@@ -2806,7 +2806,7 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't add/update project type";
+									message += "<br/> Unable to add/update project type";
 								}
 								else
 								{
@@ -2818,7 +2818,7 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't update dolar impact";
+									message += "<br/> Unable to update dolar impact";
 								}
 								else
 								{
@@ -2831,7 +2831,7 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
 								{
-									message += "<br/> Can't update number of months to be active";
+									message += "<br/> Unable to update number of months to be active";
 								}
 								else
 								{
@@ -2847,7 +2847,7 @@ namespace ESAVINGS_v1.Controllers
 								{
 									if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
 									{
-										message += "<br/> Can't add/update expected project start date";
+										message += "<br/> Unable to add/update expected project start date";
 									}
 									else
 									{
@@ -2864,7 +2864,7 @@ namespace ESAVINGS_v1.Controllers
 
 								List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
 								upload_results = new Dictionary<string, string>();
-								string supportingDocsErr = "Supporting Documents (Can't upload): <br/>";
+								string supportingDocsErr = "Supporting Documents (Unable to upload): <br/>";
 
 								for (int i = 0 ; i<supportingDocsLen ; i++)
 								{
@@ -3041,7 +3041,7 @@ namespace ESAVINGS_v1.Controllers
 							if (isApprovalDone == true)
 							{
 								results["done"] = "FALSE";
-								results["msg"] = "<strong class='good'>Successfully move to <i>"+ invalidOrClosed +"</i> the status!</strong>" + message;
+								results["msg"] = "<strong class='good'>Successfully move to <i>"+ invalidOrClosed +"</i> status!</strong>" + message;
 
 
 								string emailMsg = "";
@@ -3092,7 +3092,7 @@ namespace ESAVINGS_v1.Controllers
 						else
 						{
 							results["done"] = "FALSE";
-							results["msg"] = "<strong class='error'>Can't verify this proposal</strong>";
+							results["msg"] = "<strong class='error'>Unable to verify this proposal</strong>";
 						}
 					}
 					else
@@ -3401,7 +3401,7 @@ namespace ESAVINGS_v1.Controllers
 
 						List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
 						upload_results = new Dictionary<string, string>();
-						string supportingDocsErr = "Supporting Documents (Can't upload): <br/>";
+						string supportingDocsErr = "Supporting Documents (Unable to upload): <br/>";
 
 						for (int i = 0 ; i<supporting_docs_len ; i++)
 						{
@@ -3732,7 +3732,7 @@ namespace ESAVINGS_v1.Controllers
 							}
 							else
 							{
-								results["msg"] = "<strong class='error'>Can't update verification results</strong>";
+								results["msg"] = "<strong class='error'>Unable to update verification results</strong>";
 							}
 
 							break;
@@ -4010,7 +4010,7 @@ namespace ESAVINGS_v1.Controllers
 						Factory.ProposalFinanceApprovalRepository().DeleteProposalFinance(proposalID, currentFinanceID, "Reassigned by "+ this.UserFullName +" -> " + remarks);
 
 						results["done"] = "TRUE";
-						results["msg"] = "<strong class='good'>Successfully assigned new cost-analyst</strong>";
+						results["msg"] = "<strong class='good'>Successfully assigned new finance</strong>";
 
 						var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalID);
 
@@ -4123,7 +4123,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (string.IsNullOrEmpty(proposalID.ToString()) || string.IsNullOrEmpty(ownerFFID) || string.IsNullOrEmpty(ownerFullname))
 				{
-					results["msg"] = "<strong class='error'>Please complete the requirements, (Action Description and action owner info)</strong>";
+					results["msg"] = "<strong class='error'>Please complete the requirements, (project owner ff id, fullname and proposal id)</strong>";
 					return Json(results);
 				}
 
@@ -4193,7 +4193,7 @@ namespace ESAVINGS_v1.Controllers
 												 proposalDetails.EmpDeptCode,
 												 proposalDetails.AreaDeptBeneficiary);
 
-					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "Action Needed from E-Savings-Ticket#" + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "Project Owner in E-Savings-Ticket#" + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 					sendEmail.Add_To_Recipient(actionOwnerEmail);
 					sendEmail.Add_CC_Recipient(proposalOwnerEmail);
 					sendEmail.Add_CC_Recipient(ownerManagerEmail);
@@ -4216,7 +4216,7 @@ namespace ESAVINGS_v1.Controllers
 				}
 				else
 				{
-					results["msg"] = "<strong class='error'>Failed to add new action, please try again</strong>";
+					results["msg"] = "<strong class='error'>Failed to assign project owner, please try again</strong>";
 				}
 
 			}
@@ -4294,7 +4294,7 @@ namespace ESAVINGS_v1.Controllers
 
 					List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
 					upload_results = new Dictionary<string, string>();
-					string supportingDocsErr = "Supporting Documents (Can't upload): <br/>";
+					string supportingDocsErr = "Supporting Documents (Unable to upload): <br/>";
 
 					for (int i = 0 ; i<supportingDocsLen ; i++)
 					{
