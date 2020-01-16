@@ -1,0 +1,477 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="action_approval_complete_reqmts_msg" xml:space="preserve">
+    <value>Please complete the requirements, (Remarks and verification status)</value>
+  </data>
+  <data name="added_dollar_impact" xml:space="preserve">
+    <value>Added dollar impact</value>
+  </data>
+  <data name="added_expected_project_start_date" xml:space="preserve">
+    <value>Added expected project start date</value>
+  </data>
+  <data name="added_finance_approver" xml:space="preserve">
+    <value>Added finance approver</value>
+  </data>
+  <data name="added_number_of_months_active" xml:space="preserve">
+    <value>Added number of months to be active</value>
+  </data>
+  <data name="added_project_type" xml:space="preserve">
+    <value>Added project type</value>
+  </data>
+  <data name="assigned_new_cost_analyst_approver" xml:space="preserve">
+    <value>assigned_new_cost_analyst_approver</value>
+  </data>
+  <data name="assign_project_owner_complete_reqmnts_msg" xml:space="preserve">
+    <value>Please complete the requirements, (project owner ff id, fullname and proposal id)</value>
+  </data>
+  <data name="assign_project_owner_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project).</value>
+  </data>
+  <data name="assign_project_owner_email_subject" xml:space="preserve">
+    <value>Project Owner in E-Savings-Ticket#</value>
+  </data>
+  <data name="assign_project_owner_error_msg" xml:space="preserve">
+    <value>Failed to assign project owner, please try again</value>
+  </data>
+  <data name="assign_project_owner_success_msg" xml:space="preserve">
+    <value>Successfully assign to project owner</value>
+  </data>
+  <data name="bpi_marked" xml:space="preserve">
+    <value>Marked</value>
+  </data>
+  <data name="bpi_unmarked" xml:space="preserve">
+    <value>Unmarked</value>
+  </data>
+  <data name="CA_approver_not_allowed_to_make_changes_on_this" xml:space="preserve">
+    <value>Cost Analyst approver is not allowed to make changes on this approval</value>
+  </data>
+  <data name="close_all_action_items_before_move_to_active" xml:space="preserve">
+    <value>Please close all action items before moving the active</value>
+  </data>
+  <data name="close_all_action_items_before_move_to_finance_approclose_all_action_items_before_move_to_finance_approval" xml:space="preserve">
+    <value>Please close all action items before moving the status to finance approval</value>
+  </data>
+  <data name="close_all_action_items_before_move_to_funnel_evaluating" xml:space="preserve">
+    <value>Please close all action items before moving the cost funnel evaluating</value>
+  </data>
+  <data name="cost_analyst_approval_email_msg_1" xml:space="preserve">
+    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+  </data>
+  <data name="cost_analyst_approval_email_msg_2" xml:space="preserve">
+    <value>E-Savings Ticket #{0}. Moved status to {1} by {2}. Please click the link below to view the details</value>
+  </data>
+  <data name="cost_analyst_approval_email_msg_3" xml:space="preserve">
+    <value>E-Savings Ticket #{0}. {1} by {2}. Need your approval, please click the link below to view the details.</value>
+  </data>
+  <data name="cost_analyst_approval_email_subject_2" xml:space="preserve">
+    <value>E-Savings-Move-status-Ticket#{0}</value>
+  </data>
+  <data name="cost_analyst_approval_successes_msg" xml:space="preserve">
+    <value>Successfully moved status to {0} status</value>
+  </data>
+  <data name="create_new_action_complete_reqmts_msg" xml:space="preserve">
+    <value>Please complete the requirements, (Action Description and action owner info)</value>
+  </data>
+  <data name="create_new_action_email_msg" xml:space="preserve">
+    <value>Action Needed from E-Savings Ticket #{0} is assign to you. Please click the link below to view the details</value>
+  </data>
+  <data name="create_new_action_email_subject" xml:space="preserve">
+    <value>Action Needed from E-Savings-Ticket#</value>
+  </data>
+  <data name="create_new_action_error_msg" xml:space="preserve">
+    <value>Failed to add new action, please try again</value>
+  </data>
+  <data name="create_new_action_success_msg" xml:space="preserve">
+    <value>Action successfully assign to action owner</value>
+  </data>
+  <data name="current_imgs_unable_upload" xml:space="preserve">
+    <value>Current Images (Unable to upload)</value>
+  </data>
+  <data name="delete_proposal_files_invalid_target" xml:space="preserve">
+    <value>Invalid target</value>
+  </data>
+  <data name="dollar_impact_is_required" xml:space="preserve">
+    <value>Dollar impact is required</value>
+  </data>
+  <data name="done_changing_finance_approver" xml:space="preserve">
+    <value>Done changing finance approver.</value>
+  </data>
+  <data name="expected_start_date_is_required" xml:space="preserve">
+    <value>Expected start date is required</value>
+  </data>
+  <data name="internal_error_msg" xml:space="preserve">
+    <value>Internal error, kindly report this error</value>
+  </data>
+  <data name="invalid" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="invalid_current_img_len" xml:space="preserve">
+    <value>Invalid current image length</value>
+  </data>
+  <data name="invalid_dept_area_beneficiary" xml:space="preserve">
+    <value>Invalid Department/Area beneficiary</value>
+  </data>
+  <data name="invalid_dollar_impact" xml:space="preserve">
+    <value>Invalid dollar impact</value>
+  </data>
+  <data name="invalid_dollar_impact_whole_decimal_num" xml:space="preserve">
+    <value>Invalid dollar impact (must be whole/decimal number)</value>
+  </data>
+  <data name="invalid_expected_start_date" xml:space="preserve">
+    <value>Invalid expected start date</value>
+  </data>
+  <data name="invalid_num_months_to_be_active" xml:space="preserve">
+    <value>Invalid number of months to be active</value>
+  </data>
+  <data name="invalid_num_months_to_be_active_less_greater_than" xml:space="preserve">
+    <value>Invalid number of months to be active (less than or equal to {0} OR greater than {1} only)</value>
+  </data>
+  <data name="invalid_oa_status" xml:space="preserve">
+    <value>Invalid OA status</value>
+  </data>
+  <data name="invalid_project_type" xml:space="preserve">
+    <value>Invalid project type</value>
+  </data>
+  <data name="invalid_proposal" xml:space="preserve">
+    <value>Invalid Proposal</value>
+  </data>
+  <data name="invalid_proposal_id" xml:space="preserve">
+    <value>Invalid proposal id</value>
+  </data>
+  <data name="invalid_proposal_img_len" xml:space="preserve">
+    <value>Invalid proposal image length</value>
+  </data>
+  <data name="invalid_supporting_docs_len" xml:space="preserve">
+    <value>Invalid supporting documents length</value>
+  </data>
+  <data name="invalid_verification_status" xml:space="preserve">
+    <value>Invalid verification status indicator</value>
+  </data>
+  <data name="mark_proposal_bpi_email_msg" xml:space="preserve">
+    <value>E-Savings proposal Ticket #{0} Marked as BPI. Please click the link below to view the details.</value>
+  </data>
+  <data name="mark_proposal_bpi_email_subject" xml:space="preserve">
+    <value>E-Savings project marked as BPI</value>
+  </data>
+  <data name="mark_proposal_bpi_error_msg" xml:space="preserve">
+    <value>Error: unable to {0} proposal as BPI</value>
+  </data>
+  <data name="mark_proposal_bpi_success_msg" xml:space="preserve">
+    <value>Successfully {0} proposal as BPI</value>
+  </data>
+  <data name="no_changes_made" xml:space="preserve">
+    <value>No changes made</value>
+  </data>
+  <data name="no_verification" xml:space="preserve">
+    <value>No-verification</value>
+  </data>
+  <data name="please_login" xml:space="preserve">
+    <value>Please login</value>
+  </data>
+  <data name="please_select_finance_approver" xml:space="preserve">
+    <value>Please select finance approver</value>
+  </data>
+  <data name="project_type_is_required" xml:space="preserve">
+    <value>Project type is required</value>
+  </data>
+  <data name="proposal_details_not_found" xml:space="preserve">
+    <value>Proposal details not found</value>
+  </data>
+  <data name="proposal_entry_not_found" xml:space="preserve">
+    <value>Proposal entry not found!</value>
+  </data>
+  <data name="proposal_imgs_unable_upload" xml:space="preserve">
+    <value>Proposal Images (Unable to upload)</value>
+  </data>
+  <data name="remarks_is_required" xml:space="preserve">
+    <value>Remarks is required</value>
+  </data>
+  <data name="re_assign_project_CA_email_msg" xml:space="preserve">
+    <value>E-Savings ticket#{0}, is re-assign to you as cost-analyst approver by {1}. Please click the link below to view the details</value>
+  </data>
+  <data name="re_assign_project_CA_error_msg" xml:space="preserve">
+    <value>Error on assigning new cost-analyst, please contact site admin</value>
+  </data>
+  <data name="re_assign_project_CA_success_msg" xml:space="preserve">
+    <value>Successfully assigned new cost-analyst</value>
+  </data>
+  <data name="re_assign_project_finance_email_msg" xml:space="preserve">
+    <value>E-Savings ticket#{0}, is re-assign to you as finance approver by {1}. Please click the link below to view the details</value>
+  </data>
+  <data name="re_assign_project_finance_error_msg" xml:space="preserve">
+    <value>Error on assigning new finance, please contact site admin</value>
+  </data>
+  <data name="re_assign_project_finance_success_msg" xml:space="preserve">
+    <value>Successfully assigned new finance</value>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="save_action_owner_response_complete_reqmts_msg" xml:space="preserve">
+    <value>Please complete the requirements, (Remarks and supporting documents)</value>
+  </data>
+  <data name="save_action_owner_response_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0} action item responded by action owner {1}. Please click the link below to view the details</value>
+  </data>
+  <data name="save_action_owner_response_email_subject" xml:space="preserve">
+    <value>Action Needed from E-Savings-Ticket#</value>
+  </data>
+  <data name="save_project_owner_response_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0} - Project owner responded {1}. Please click the link below to view the details</value>
+  </data>
+  <data name="save_project_owner_response_email_subject" xml:space="preserve">
+    <value>Project Owner from E-Savings-Ticket#</value>
+  </data>
+  <data name="selected_finance_approver_not_found" xml:space="preserve">
+    <value>Selected finance approver not found</value>
+  </data>
+  <data name="submit_proposal_email_msg" xml:space="preserve">
+    <value>E-Savings NEW proposal Ticket #{0}. Please click the link below to view the details</value>
+  </data>
+  <data name="submit_proposal_email_subject" xml:space="preserve">
+    <value>New E-Savings Entry</value>
+  </data>
+  <data name="submit_proposal_error_msg" xml:space="preserve">
+    <value>Error submitting your proposal, kindly contact APPs team to check the error, Thank you!</value>
+  </data>
+  <data name="successfully_deleted" xml:space="preserve">
+    <value>Deleted successfully</value>
+  </data>
+  <data name="successfully_saved" xml:space="preserve">
+    <value>Successfully Saved!</value>
+  </data>
+  <data name="successfully_submitted" xml:space="preserve">
+    <value>Successfully submitted</value>
+  </data>
+  <data name="successfully_updated" xml:space="preserve">
+    <value>Updated successfully</value>
+  </data>
+  <data name="successfully_uploaded" xml:space="preserve">
+    <value>Successfully uploaded</value>
+  </data>
+  <data name="successfully_verified" xml:space="preserve">
+    <value>Successfully verified!</value>
+  </data>
+  <data name="supporting_docs_unable_upload" xml:space="preserve">
+    <value>Supporting Images (Unable to upload)</value>
+  </data>
+  <data name="supporting_docs_uploaded" xml:space="preserve">
+    <value>Supporting documents uploaded</value>
+  </data>
+  <data name="trying_to_assign_current_approver" xml:space="preserve">
+    <value>Error: trying to assign current approver</value>
+  </data>
+  <data name="uknown" xml:space="preserve">
+    <value>Uknown</value>
+  </data>
+  <data name="unable_to_add_finance_approver" xml:space="preserve">
+    <value>Unable to add finance approver</value>
+  </data>
+  <data name="unable_to_add_update_dollar_impact" xml:space="preserve">
+    <value>Unable to add/update dolar impact</value>
+  </data>
+  <data name="unable_to_add_update_expected_project_start_date" xml:space="preserve">
+    <value>Unable to add/update expected project start date</value>
+  </data>
+  <data name="unable_to_add_update_number_months_active" xml:space="preserve">
+    <value>Unable to add/update number of months to be active</value>
+  </data>
+  <data name="unable_to_add_update_project_type" xml:space="preserve">
+    <value>Unable to add/update project type</value>
+  </data>
+  <data name="unable_to_reassign_finance_approver" xml:space="preserve">
+    <value>Unable to reassign finance approver</value>
+  </data>
+  <data name="unable_to_update_overall_status_in_progress" xml:space="preserve">
+    <value>Unable to update overall status (IN-PROGRESS)</value>
+  </data>
+  <data name="unable_to_verify_this_proposal" xml:space="preserve">
+    <value>Unable to verify this proposal</value>
+  </data>
+  <data name="unable_update_verification_results" xml:space="preserve">
+    <value>Unable to update verification results</value>
+  </data>
+  <data name="updated_current_due_date" xml:space="preserve">
+    <value>Updated Current due date</value>
+  </data>
+  <data name="updated_finance_category" xml:space="preserve">
+    <value>Updated Finance category</value>
+  </data>
+  <data name="updated_original_due_date" xml:space="preserve">
+    <value>Updated Original due date</value>
+  </data>
+  <data name="updated_planned_project_start_date" xml:space="preserve">
+    <value>Updated Planned project start date</value>
+  </data>
+  <data name="updated_planned_saving_start_date" xml:space="preserve">
+    <value>Updated Planned saving start date</value>
+  </data>
+  <data name="update_actual_completion_date" xml:space="preserve">
+    <value>Updated Actual completion date</value>
+  </data>
+  <data name="update_proposal_email_msg" xml:space="preserve">
+    <value>E-Savings proposal Ticket #{0} - Updated by [name] and assigned new cost-analyst approver. &lt;br/&gt;Please check the link below to view the details</value>
+  </data>
+  <data name="update_proposal_email_subject" xml:space="preserve">
+    <value>New E-Savings Entry Updated</value>
+  </data>
+  <data name="update_proposal_error_msg" xml:space="preserve">
+    <value>Unable to update your proposal details</value>
+  </data>
+  <data name="verification_status_not_found" xml:space="preserve">
+    <value>Verification status not found</value>
+  </data>
+  <data name="verified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
+  <data name="verified_closed" xml:space="preserve">
+    <value>Verified closed</value>
+  </data>
+  <data name="verify_not_done" xml:space="preserve">
+    <value>Verify not done</value>
+  </data>
+  <data name="area_dept" xml:space="preserve">
+    <value>Area/Department Beneficiary</value>
+  </data>
+  <data name="current_description" xml:space="preserve">
+    <value>Current description</value>
+  </data>
+  <data name="dollar_impact" xml:space="preserve">
+    <value>Dollar impact</value>
+  </data>
+  <data name="expected_start_date" xml:space="preserve">
+    <value>Expected start date</value>
+  </data>
+  <data name="number_of_months_active" xml:space="preserve">
+    <value>Number of months to be active</value>
+  </data>
+  <data name="project_title" xml:space="preserve">
+    <value>Project Title</value>
+  </data>
+  <data name="project_type" xml:space="preserve">
+    <value>Project type</value>
+  </data>
+  <data name="proposal_description" xml:space="preserve">
+    <value>Proposal description</value>
+  </data>
+  <data name="remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+</root>
