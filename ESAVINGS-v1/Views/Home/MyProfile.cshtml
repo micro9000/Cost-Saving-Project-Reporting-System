@@ -26,9 +26,74 @@
 							<a class="btn waves-effect waves-light" href="~/Home/Proposal" 
 							   target="_blank"><i class="material-icons left">comment</i>@ESAVINGS_v1.Resources.Profile.Profile.CreateNewProposalBtnLbl</a>
 						</div>
+
+						<div class="card-content grey lighten-5">
+							<span class="card-title">Your dashboard</span>
+							<table class="base-font-size">
+								<thead class="grey lighten-2">
+									<tr>
+										<th>Section</th>
+										<th>#</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<a href="#project-assigned-to-you">
+												@ESAVINGS_v1.Resources.Profile.Profile.ProjectsAssignToYouHeader
+											</a>
+										</td>
+										<td>
+											@((Model.AssignedProjects != null) ? Model.AssignedProjects.Count : 0)
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="#your-active-proposals">
+												@ESAVINGS_v1.Resources.Profile.Profile.ActiveProposalsHeader
+											</a>
+										</td>
+										<td>
+											@((Model.ActiveProposals != null) ? Model.ActiveProposals.Count : 0)
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="#for-your-approval">
+												@ESAVINGS_v1.Resources.Profile.Profile.ForYourApprovalHeader
+											</a>
+										</td>
+										<td>
+											@((Model.ForApprovalProposals != null) ? Model.ForApprovalProposals.Count : 0)
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="#your-action-items">
+												@ESAVINGS_v1.Resources.Profile.Profile.YourActionItemsHeader
+											</a>
+										</td>
+										<td>
+											@((Model.CurrentUserActionItems != null) ? Model.CurrentUserActionItems.Count : 0)
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="#archived-proposals">
+												@ESAVINGS_v1.Resources.Profile.Profile.ArchivedProposalsHeader
+											</a>
+										</td>
+										<td>
+											@((Model.ArchivedProposals != null) ? Model.ArchivedProposals.Count : 0)
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
+
 
 			<div class="row">
 				<div class="col s12 m12 l12">
@@ -63,8 +128,8 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<div class="card" style="margin: 0px; border-left: 5px solid #757575">
-						<div class="card-content grey  lighten-5">
+					<div class="card" id="project-assigned-to-you" style="margin: 0px; border-left: 5px solid #757575">
+						<div class="card-content grey lighten-5">
 							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.ProjectsAssignToYouHeader - <b>@((Model.AssignedProjects != null) ? Model.AssignedProjects.Count : 0)</b></span>
 							<table class="base-font-size">
 								<thead class="grey lighten-1">
@@ -99,7 +164,7 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<div class="card" style="margin: 0px; border-left: 5px solid #9c27b0 ">
+					<div class="card" id="your-active-proposals" style="margin: 0px; border-left: 5px solid #9c27b0 ">
 						<div class="card-content purple lighten-5">
 							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.ActiveProposalsHeader - <b>@((Model.ActiveProposals != null) ? Model.ActiveProposals.Count : 0)</b></span>
 							<table class="base-font-size">
@@ -135,7 +200,7 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<div class="card" style="margin: 0px; border-left: 5px solid #cddc39">
+					<div class="card" id="for-your-approval" style="margin: 0px; border-left: 5px solid #cddc39">
 						<div class="card-content lime lighten-5">
 							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.ForYourApprovalHeader - <b>@((Model.ForApprovalProposals != null) ? Model.ForApprovalProposals.Count : 0)</b></span>
 							<table class="base-font-size">
@@ -171,7 +236,7 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<div class="card" style="margin: 0px; border-left: 5px solid #ee6e73">
+					<div class="card" id="your-action-items" style="margin: 0px; border-left: 5px solid #ee6e73">
 						<div class="card-content red lighten-5">
 							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.YourActionItemsHeader - <b>@((Model.CurrentUserActionItems != null) ? Model.CurrentUserActionItems.Count : 0)</b></span>
 							<table class="base-font-size">
@@ -203,7 +268,7 @@
 
 			<div class="row">
 				<div class="col s12 m12 l12">
-					<div class="card" style="border-left: 5px solid #4db6ac">
+					<div class="card" id="archived-proposals" style="border-left: 5px solid #4db6ac">
 						<div class="card-content teal lighten-5">
 							<span class="card-title">@ESAVINGS_v1.Resources.Profile.Profile.ArchivedProposalsHeader - <b>@((Model.ArchivedProposals != null) ? Model.ArchivedProposals.Count : 0)</b></span>
 							<table class="base-font-size">
