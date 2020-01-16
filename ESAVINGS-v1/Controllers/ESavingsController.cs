@@ -90,7 +90,8 @@ namespace ESAVINGS_v1.Controllers
 
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Current Images (Unable to upload): <br/>" + errorMsg;
+					//Current Images (Unable to upload): 
+					errorMsg = Resources.Controllers.ESavings.current_imgs_unable_upload + "<br/>" + errorMsg;
 				}
 			}
 			else if (target == "proposal_imgs")
@@ -121,7 +122,8 @@ namespace ESAVINGS_v1.Controllers
 
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Proposal Images (Unable to upload): <br/>" + errorMsg;
+					//Proposal Images (Unable to upload): 
+					errorMsg = Resources.Controllers.ESavings.proposal_imgs_unable_upload + "<br/>" + errorMsg;
 				}
 			}
 			else if (target == "supporting_docs")
@@ -153,7 +155,8 @@ namespace ESAVINGS_v1.Controllers
 				insertedRows = Factory.SupportingDocFactory().InsertProposalSupportingDocs(supportingDocs);
 				if (insertedRows < filesLen)
 				{
-					errorMsg = "Supporting Images (Unable to upload): <br/>" + errorMsg;
+					//Supporting Images (Unable to upload): 
+					errorMsg = Resources.Controllers.ESavings.supporting_docs_unable_upload + "<br/>" + errorMsg;
 				}
 			}
 
@@ -196,7 +199,7 @@ namespace ESAVINGS_v1.Controllers
 
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 
 			var currentImgsError = this.UploadProposalFiles(Request.Files, proposalID, filesLen, target);
@@ -204,23 +207,46 @@ namespace ESAVINGS_v1.Controllers
 			if (currentImgsError == "")
 			{
 				results["done"] = "TRUE";
-				results["msg"] = "<strong class='good'>Successfully uploaded!</strong>";
+				//Successfully uploaded!
+				results["msg"] = "<strong class='good'>"+ Resources.Controllers.ESavings.successfully_uploaded +"</strong>";
 			}
 			else
 			{
 				results["msg"] = "<strong class='error'>"+ currentImgsError +"</strong>";
 			}
 
-			try
-			{
+			//try
+			//{
 
-			}
-			catch (Exception ex)
-			{
-				results["msg"] = ex.Message;
-			}
+			//}
+			//catch (Exception ex)
+			//{
+			//	results["msg"] = ex.Message;
+			//}
 
 			return Json(results);
+		}
+
+
+
+		public string GetProposalDetailsTblForEmail (Proposal p)
+		{
+			return string.Format(@"<table>
+									<tr><td>Project Type</td><td>{0}</td></tr>
+									<tr><td>Project Title</td><td>{1}</td></tr>
+									<tr><td>Current Description</td><td>{2}</td></tr>
+									<tr><td>Proposal Description</td><td>{3}</td></tr>
+									<tr><td>Proposed By</td><td>{4}</td></tr>
+									<tr><td>Department</td><td>{5}</td></tr>
+									<tr><td>Department/Area beneficiary</td><td>{6}</td></tr>
+									</table>",
+									p.ProjectTypeIndicator,
+									p.ProjectTitle,
+									p.CurrentDescription,
+									p.ProposalDescription,
+									p.SubmittedBy,
+									p.EmpDeptCode,
+									p.AreaDeptBeneficiary);
 		}
 
 
@@ -228,7 +254,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 			results["proposalID"] = "0";
 
 
@@ -240,11 +266,11 @@ namespace ESAVINGS_v1.Controllers
 				if (IsUserSuccessfullyLoggedIn())
 				{
 					IDictionary<string, string> dataKeys = new Dictionary<string, string>();
-					dataKeys["AreaDept"]				= "Area/Department Beneficiary";
-					dataKeys["ProjectTitle"]            = "Project Title";
-					dataKeys["CurrentDescription"]      = "Current Description";
-					dataKeys["ProposalDescription"]     = "Proposal Description";
-					dataKeys["Remarks"]                 = "Remarks";
+					dataKeys["AreaDept"]				= Resources.Controllers.ESavings.area_dept;//"Area/Department Beneficiary";
+					dataKeys["ProjectTitle"]            = Resources.Controllers.ESavings.project_title;//"Project Title";
+					dataKeys["CurrentDescription"]      = Resources.Controllers.ESavings.current_description; //"Current Description";
+					dataKeys["ProposalDescription"]     = Resources.Controllers.ESavings.proposal_description;//"Proposal Description";
+					dataKeys["Remarks"]                 = Resources.Controllers.ESavings.remarks;//"Remarks";
 					//dataKeys["current_imgs_len"]        = "Current Images";
 					//dataKeys["proposal_imgs_len"]       = "Proposal Images";
 					//dataKeys["supporting_docs_len"]     = "Supporting Documents";
@@ -254,16 +280,16 @@ namespace ESAVINGS_v1.Controllers
 					{
 						if (expected_start_date_is_optional == false)
 						{
-							dataKeys["ExpectedStartDate"] = "Expected Start Date";
+							dataKeys["ExpectedStartDate"] = Resources.Controllers.ESavings.expected_start_date; //"Expected Start Date";
 						}
 
 						if (number_of_months_project_as_active_is_optional == false)
 						{
-							dataKeys["NumberOfMonthsToBeActive"] = "Number of months to be active";
+							dataKeys["NumberOfMonthsToBeActive"] = Resources.Controllers.ESavings.number_of_months_active;//"Number of months to be active";
 						}
 
-						dataKeys["DollarImpact"] = "Dollar impact";
-						dataKeys["ProjectType"]	= "Project Type";
+						dataKeys["DollarImpact"] = Resources.Controllers.ESavings.dollar_impact; //"Dollar impact";
+						dataKeys["ProjectType"]	= Resources.Controllers.ESavings.project_type; //"Project Type";
 					}
 
 
@@ -281,7 +307,8 @@ namespace ESAVINGS_v1.Controllers
 						// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 						if (!int.TryParse(data["current_imgs_len"], out current_imgs_len)) // inline declaration
 						{
-							results["msg"] = "<strong class='error'>Invalid current image length</strong>";
+							//Invalid current image length
+							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_current_img_len +"</strong>";
 							return Json(results);
 						}
 
@@ -295,7 +322,8 @@ namespace ESAVINGS_v1.Controllers
 						// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 						if (!int.TryParse(data["proposal_imgs_len"], out proposal_imgs_len))
 						{
-							results["msg"] = "<strong class='error'>Invalid proposal image length</strong>";
+							//Invalid proposal image length
+							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_proposal_img_len +"</strong>";
 							return Json(results);
 						}
 
@@ -309,7 +337,8 @@ namespace ESAVINGS_v1.Controllers
 						// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 						if (!int.TryParse(data["supporting_docs_len"], out supporting_docs_len))
 						{
-							results["msg"] = "<strong class='error'>Invalid supporting documents length</strong>";
+							//Invalid supporting documents length
+							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_supporting_docs_len +"</strong>";
 							return Json(results);
 						}
 
@@ -325,13 +354,15 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (DateTime.TryParse(data["ExpectedStartDate"], out ExpectedStartDate) == false)
 								{
-									results["msg"] = "<strong class='error'>Invalid expected start date</strong>";
+									//Invalid expected start date
+									results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_expected_start_date +"</strong>";
 									return Json(results);
 								}
 
 								if (ExpectedStartDate.Date <= DateTime.Now.Date)
 								{
-									results["msg"] = "<strong class='error'>Invalid expected start date</strong>";
+									//Invalid expected start date
+									results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_expected_start_date +"</strong>";
 									return Json(results);
 								}
 							}
@@ -340,13 +371,15 @@ namespace ESAVINGS_v1.Controllers
 							// Dollar impact
 							if (Decimal.TryParse(data["DollarImpact"], out dollarImpact) == false)
 							{
-								results["msg"] = "<strong class='error'>Invalid dollar impact</strong>";
+								//Invalid dollar impact
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_dollar_impact +"</strong>";
 								return Json(results);
 							}
 
 							if (dollarImpact <= 0)
 							{
-								results["msg"] = "<strong class='error'>Dollar impact is required</strong>";
+								//Dollar impact is required
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.dollar_impact_is_required +"</strong>";
 								return Json(results);
 							}
 
@@ -354,13 +387,15 @@ namespace ESAVINGS_v1.Controllers
 							// Project Type
 							if (int.TryParse(data["ProjectType"].ToString(), out projectType) == false)
 							{
-								results["msg"] = "<strong class='error'>Invalid project type</strong>";
+								//Invalid project type
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
 								return Json(results);
 							}
 
 							if (StaticData.GetProjectTypesStringArray().Contains(projectType) == false)
 							{
-								results["msg"] = "<strong class='error'>Invalid project type</strong>";
+								//Invalid project type
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
 								return Json(results);
 							}
 
@@ -370,19 +405,21 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (int.TryParse(data["NumberOfMonthsToBeActive"], out numberOfMonthsToBeActive) == false)
 								{
-									results["msg"] = "<strong class='error'>Invalid number of months to be active</strong>";
+									//Invalid number of months to be active
+									results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_num_months_to_be_active +"</strong>";
 									return Json(results);
 								}
 
 								if ((numberOfMonthsToBeActive <= this.max_num_of_months_to_active && numberOfMonthsToBeActive >= 1) == false)
 								{
-									results["msg"] = "<strong class='error'>Invalid number of months to be active (less than or equal to "+ this.max_num_of_months_to_active +" OR greater than 0 only)</strong>";
+									// Invalid number of months to be active (less than or equal to "+ this.max_num_of_months_to_active +" OR greater than 0 only)
+									results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
 									return Json(results);
 								}
 
 								if (numberOfMonthsToBeActive > this.max_num_of_months_to_active)
 								{
-									results["msg"] = "<strong class='error'>Invalid number of months to be active (less than or equal to "+ this.max_num_of_months_to_active +" OR greater than 0 only)</strong>";
+									results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
 									return Json(results);
 								}
 
@@ -404,7 +441,8 @@ namespace ESAVINGS_v1.Controllers
 						var dept = Factory.CostAnalystDeptCodesFactory().GetDepartment(data["AreaDept"]);
 						if (dept == null)
 						{
-							results["msg"] = "<strong class='error'>Invalid Department/Area beneficiary...</strong>";
+							//Invalid Department/Area beneficiary...
+							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_dept_area_beneficiary +"</strong>";
 							return Json(results);
 						}
 
@@ -459,7 +497,8 @@ namespace ESAVINGS_v1.Controllers
 
 
 							results["done"] = "TRUE";
-							results["msg"] = "<strong class='good'>Successfully submitted</strong><br/>";
+							// Successfully submitted
+							results["msg"] = "<strong class='good'>"+ Resources.Controllers.ESavings.successfully_submitted +"</strong><br/>";
 							results["proposalID"] = proposalID.ToString();
 
 							// Uploading current image/s
@@ -476,29 +515,34 @@ namespace ESAVINGS_v1.Controllers
 
 							#region Email notification for Cost Analyst and Manager
 
-							string emailMsg = string.Format(@"E-Savings <b>NEW</b> proposal Ticket #{0}. Please click the link below to view the details <br/>
-											<a href='{1}/Home/Details/{2}'>Details</a>
-											<table>
-												<tr><td>Project Type</td><td>{3}</td></tr>
-												<tr><td>Project Title</td><td>{4}</td></tr>
-												<tr><td>Current Description</td><td>{5}</td></tr>
-												<tr><td>Proposal Description</td><td>{6}</td></tr>
-												<tr><td>Proposed By</td><td>{7}</td></tr>
-												<tr><td>Department</td><td>{8}</td></tr>
-												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-											</table>",
-													 newProposalTicketNo,
-													 this.base_url,
-													 proposalID,
-													 StaticData.GetProjectTypeStr(newProposal.ProjectType),
-													 newProposal.ProjectTitle,
-													 newProposal.CurrentDescription,
-													 newProposal.ProposalDescription,
-													 newProposal.SubmittedBy,
-													 newProposal.EmpDeptCode,
-													 newProposal.AreaDeptBeneficiary);
+							string emailMsg = string.Format(Resources.Controllers.ESavings.submit_proposal_email_msg, newProposalTicketNo);
+							emailMsg += string.Format("<br/><a href='{0}/Home/Details/{1}'>Details</a>", this.base_url, proposalID);
+							emailMsg += this.GetProposalDetailsTblForEmail(newProposal);
 
-							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "New E-Savings Entry", this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+							//							string emailMsg = string.Format(@"E-Savings <b>NEW</b> proposal Ticket #{0}. Please click the link below to view the details <br/>
+							//											<a href='{1}/Home/Details/{2}'>Details</a>
+							//											<table>
+							//												<tr><td>Project Type</td><td>{3}</td></tr>
+							//												<tr><td>Project Title</td><td>{4}</td></tr>
+							//												<tr><td>Current Description</td><td>{5}</td></tr>
+							//												<tr><td>Proposal Description</td><td>{6}</td></tr>
+							//												<tr><td>Proposed By</td><td>{7}</td></tr>
+							//												<tr><td>Department</td><td>{8}</td></tr>
+							//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
+							//											</table>",
+							//													 newProposalTicketNo,
+							//													 this.base_url,
+							//													 proposalID,
+							//													 StaticData.GetProjectTypeStr(newProposal.ProjectType),
+							//													 newProposal.ProjectTitle,
+							//													 newProposal.CurrentDescription,
+							//													 newProposal.ProposalDescription,
+							//													 newProposal.SubmittedBy,
+							//													 newProposal.EmpDeptCode,
+							//													 newProposal.AreaDeptBeneficiary);
+
+							//"New E-Savings Entry"
+							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.submit_proposal_email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 							// Cost Analysts
 							// Changes: use the selected department/area beneficiary to select cost analyst instead of using the user department
@@ -578,7 +622,8 @@ namespace ESAVINGS_v1.Controllers
 						}
 						else
 						{
-							results["msg"] = "<strong class='error'>Error submitting your proposal, kindly contact APPs team to check the error, Thank you!</strong>";
+							//Error submitting your proposal, kindly contact APPs team to check the error, Thank you!
+							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.submit_proposal_error_msg +"</strong>";
 
 						}
 
@@ -601,7 +646,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 
 			try
@@ -862,7 +907,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 			string[] targetList = { "current", "proposal", "supporting" };
 
@@ -1748,7 +1793,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 
 			try
@@ -2527,7 +2572,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 			try
 			{
@@ -2654,7 +2699,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 
 			try
@@ -3129,7 +3174,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (!IsUserSuccessfullyLoggedIn())
 				{
-					results["msg"] = "<strong class='error'>Please login...</strong>";
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 					return Json(results);
 				}
 
@@ -3372,7 +3417,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (!IsUserSuccessfullyLoggedIn())
 				{
-					results["msg"] = "<strong class='error'>Please login...</strong>";
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 					return Json(results);
 				}
 				#endregion
@@ -3556,7 +3601,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (!IsUserSuccessfullyLoggedIn())
 				{
-					results["msg"] = "<strong class='error'>Please login...</strong>";
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 					return Json(results);
 				}
 
@@ -3753,7 +3798,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 			try
 			{
@@ -3882,7 +3927,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 			try
 			{
@@ -3969,7 +4014,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			IDictionary<string, string> results = new Dictionary<string, string>();
 			results["done"] = "FALSE";
-			results["msg"] = "<strong class='error'>Please login...</strong>";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 			try
 			{
@@ -4109,7 +4154,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (!IsUserSuccessfullyLoggedIn())
 				{
-					results["msg"] = "<strong class='error'>Please login...</strong>";
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 					return Json(results);
 				}
 
@@ -4260,7 +4305,7 @@ namespace ESAVINGS_v1.Controllers
 
 				if (!IsUserSuccessfullyLoggedIn())
 				{
-					results["msg"] = "<strong class='error'>Please login...</strong>";
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 					return Json(results);
 				}
 				#endregion

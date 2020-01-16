@@ -159,6 +159,21 @@
     <Compile Include="Models\MyProfileData.cs" />
     <Compile Include="Models\QlikViewData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Controllers\Base.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Base.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controllers\ESavings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ESavings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Controllers\User.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>User.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\CreateProposal\CreateProposal.ms-MY.Designer.cs">
       <DependentUpon>CreateProposal.ms-MY.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -353,6 +368,18 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Controllers\Base.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Base.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers\ESavings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ESavings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers\User.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>User.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\CreateProposal\CreateProposal.ms-MY.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CreateProposal.ms-MY.Designer.cs</LastGenOutput>

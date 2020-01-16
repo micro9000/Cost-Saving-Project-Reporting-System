@@ -17,6 +17,8 @@ namespace TestingEnv
 		static void Main (string[] args)
 		{
 
+			string contact_str = "INSERTED";
+			Console.WriteLine(string.Format(@"" + Resource1.testing_string, contact_str));
 
 			//var cals = Helpers.ONCalendar.GetByYear(2020);
 
