@@ -599,6 +599,13 @@ namespace ESAVINGS_v1.Controllers
 
 			try
 			{
+				results["done"] = "FALSE";
+				results["msg"] = Resources.Controllers.ESavings.internal_error_msg;
+				results["fileType"] = "";
+				results["origfileName"] = file.FileName;
+				results["newFileName"] = "";
+
+
 				string[] validDocsExtension = this.GetValidDocsFileExtensions();
 				string[] validImgsExtension = this.GetValidImgFileExtensions();
 
@@ -705,14 +712,16 @@ namespace ESAVINGS_v1.Controllers
 						results["newFileName"] = newFileName;
 					}
 				}
+				else
+				{
+					results["done"] = "FALSE";
+					results["msg"] = "Invalid file size";
+				}
 			}
 			catch (Exception ex)
 			{
 				results["done"] = "FALSE";
 				results["msg"] = ex.ToString();
-				results["fileType"] = "";
-				results["origfileName"] = "";
-				results["newFileName"] = "";
 			}
 
 			return results;
