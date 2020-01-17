@@ -13,7 +13,6 @@ using System.Globalization;
 
 namespace ESAVINGS_v1.Controllers
 {
-
 	public class UserSession
 	{
 		public string ffid
@@ -928,7 +927,7 @@ namespace ESAVINGS_v1.Controllers
 			return newCategories;
 		}
 
-		public List<Proposal> GetProposalAdditionalInfo (List<Proposal> proposals)
+		public List<Proposal> GetProposalsAdditionalInfo (List<Proposal> proposals)
 		{
 			//var departments = Factory.CostAnalystDeptCodesFactory().GetDepartments();
 
