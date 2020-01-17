@@ -1006,7 +1006,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to add/update dolar impact.
+        ///   Looks up a localized string similar to Unable to add/update dollar impact.
         /// </summary>
         internal static string unable_to_add_update_dollar_impact {
             get {

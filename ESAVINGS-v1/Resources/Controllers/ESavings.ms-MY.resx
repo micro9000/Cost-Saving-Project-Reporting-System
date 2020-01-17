@@ -1,0 +1,640 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="added_dollar_impact" xml:space="preserve">
+    <value>Kesan dolar ditambah</value>
+    <comment>Added dollar impact</comment>
+  </data>
+  <data name="added_expected_project_start_date" xml:space="preserve">
+    <value>Tarikh permulaan projek dijangka ditambah</value>
+    <comment>Added expected project start date</comment>
+  </data>
+  <data name="added_finance_approver" xml:space="preserve">
+    <value>Tambah Pihak kewangan yang memberi kelulusan</value>
+    <comment>Added finance approver</comment>
+  </data>
+  <data name="added_number_of_months_active" xml:space="preserve">
+    <value>Bilangan bulan untuk menjadi aktif ditambah</value>
+    <comment>Added number of months to be active</comment>
+  </data>
+  <data name="added_project_type" xml:space="preserve">
+    <value>Jenis projek ditambah</value>
+    <comment>Added project type</comment>
+  </data>
+  <data name="assigned_new_cost_analyst_approver" xml:space="preserve">
+    <value>Berikan penganalisa kos kelulusan Baru</value>
+    <comment>Assign new cost analyst approver</comment>
+  </data>
+  <data name="assign_project_owner_complete_reqmnts_msg" xml:space="preserve">
+    <value>Sila lengkapkan keperluan ( Pemilik projek ff id, nama penuh dan id cadangan)</value>
+    <comment>Please complete the requirements, (project owner ff id, fullname and proposal id)</comment>
+  </data>
+  <data name="assign_project_owner_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0} - mengarahkan anda sebagai pemilik projek (yang melaksanakan projek). Sila klik pautan di bawah untuk melihat butiran&lt;br/&gt;</value>
+    <comment>E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details &lt;br/&gt;</comment>
+  </data>
+  <data name="assign_project_owner_email_subject" xml:space="preserve">
+    <value>Pemilik Projek di E-Savings-Ticket #</value>
+    <comment>Project Owner in E-Savings-Ticket#</comment>
+  </data>
+  <data name="assign_project_owner_error_msg" xml:space="preserve">
+    <value>Gagal memberikan pemilik projek, sila cuba lagi</value>
+    <comment>Failed to assign project owner, please try again</comment>
+  </data>
+  <data name="assign_project_owner_success_msg" xml:space="preserve">
+    <value>Berjaya berikan kepada pemilik projek</value>
+    <comment>Successfully assign to project owner</comment>
+  </data>
+  <data name="bpi_marked" xml:space="preserve">
+    <value>Tanda</value>
+    <comment>Marked</comment>
+  </data>
+  <data name="bpi_unmarked" xml:space="preserve">
+    <value>Tidak tanda</value>
+    <comment>Unmarked</comment>
+  </data>
+  <data name="CA_approver_not_allowed_to_make_changes_on_this" xml:space="preserve">
+    <value>Penganalisa Kos yang memberi kelulusan tidak dibenarkan membuat perubahan pada kelulusan ini</value>
+    <comment>Cost Analyst approver is not allowed to make changes on this approval</comment>
+  </data>
+  <data name="close_all_action_items_before_move_to_active" xml:space="preserve">
+    <value>Sila tutup semua tindakan sebelum bergerak dari aktif</value>
+    <comment>Please close all action items before moving the active</comment>
+  </data>
+  <data name="close_all_action_items_before_move_to_finance_approval" xml:space="preserve">
+    <value>Sila tutup semua perkara tindakan sebelum memindahkan status untuk kelulusan kewangan</value>
+    <comment>Please close all action items before moving the status to finance approval</comment>
+  </data>
+  <data name="close_all_action_items_before_move_to_funnel_evaluating" xml:space="preserve">
+    <value>Sila tutup semua item tindakan sebelum mengalihkan corong kos penilaian.</value>
+    <comment>Please close all action items before moving the cost funnel evaluating</comment>
+  </data>
+  <data name="cost_analyst_approval_email_msg_1" xml:space="preserve">
+    <value>#Tiket E-Saving {0}. {1} oleh {2}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
+  </data>
+  <data name="cost_analyst_approval_email_msg_2" xml:space="preserve">
+    <value>#Tiket E-Saving {0}. Berpindah status ke {1} oleh {2}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0}. Moved status to {1} by {2}. Please click the link below to view the details</comment>
+  </data>
+  <data name="cost_analyst_approval_email_msg_3" xml:space="preserve">
+    <value>E-Saving Tiket#{0}. {1} oleh {2}. Perlukan persetujuan anda, pila semak pautan di bawah untuk melihat butiran.</value>
+    <comment>E-Savings Ticket #{0}. {1} by {2}. Need your approval, please click the link below to view the details.</comment>
+  </data>
+  <data name="cost_analyst_approval_email_subject_2" xml:space="preserve">
+    <value>Status E-Savings pindah tiket#{0}</value>
+    <comment>E-Savings-Move-status-Ticket#{0}</comment>
+  </data>
+  <data name="cost_analyst_approval_successes_msg" xml:space="preserve">
+    <value>Berjaya pindah status ke &lt;i&gt;{0}&lt;/i&gt; status</value>
+    <comment>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</comment>
+  </data>
+  <data name="create_new_action_complete_reqmts_msg" xml:space="preserve">
+    <value>Sila lengkapkan keperluan, (Perihalan tindakan dan maklumat pemilik tindakan)</value>
+    <comment>Please complete the requirements, (Action Description and action owner info)</comment>
+  </data>
+  <data name="create_new_action_email_msg" xml:space="preserve">
+    <value>Tindakan Diperlukan dari E-Savings Ticket#{0} diberikan kepada anda. Sila semak pautan di bawah untuk melihat butiran.</value>
+    <comment>Action Needed from E-Savings Ticket #{0} is assign to you. Please click the link below to view the details</comment>
+  </data>
+  <data name="create_new_action_email_subject" xml:space="preserve">
+    <value>Tindakan diperlukan daripada E-Savings-Tiket#</value>
+    <comment>Action Needed from E-Savings-Ticket#</comment>
+  </data>
+  <data name="create_new_action_error_msg" xml:space="preserve">
+    <value>Gagal menambah tindakan baru, sila cuba lagi</value>
+    <comment>Failed to add new action, please try again</comment>
+  </data>
+  <data name="create_new_action_success_msg" xml:space="preserve">
+    <value>Tindakan berjaya diberikan kepada pemilik tindakan</value>
+    <comment>Action successfully assign to action owner</comment>
+  </data>
+  <data name="current_imgs_unable_upload" xml:space="preserve">
+    <value>Imej Semasa (Tidak dapat muat naik)</value>
+    <comment>Current Images (Unable to upload)</comment>
+  </data>
+  <data name="delete_proposal_files_invalid_target" xml:space="preserve">
+    <value>Sasaran tidak sah</value>
+    <comment>Invalid target</comment>
+  </data>
+  <data name="dollar_impact_is_required" xml:space="preserve">
+    <value>Kesan Dolar diperlukan</value>
+    <comment>Dollar impact is required</comment>
+  </data>
+  <data name="done_changing_finance_approver" xml:space="preserve">
+    <value>Selesai menukar Pihak Kewangan yang memberi kelulusan</value>
+    <comment>Done changing finance approver.</comment>
+  </data>
+  <data name="expected_start_date_is_required" xml:space="preserve">
+    <value>Jangkaan tarikh permulaan diperlukan</value>
+    <comment>Expected start date is required</comment>
+  </data>
+  <data name="internal_error_msg" xml:space="preserve">
+    <value>Ralat dalaman, sila laporkan ralat ini</value>
+    <comment>Internal error, kindly report this error</comment>
+  </data>
+  <data name="invalid" xml:space="preserve">
+    <value>Tidah Sah</value>
+    <comment>Invalid</comment>
+  </data>
+  <data name="invalid_current_img_len" xml:space="preserve">
+    <value>Panjang imej semasa tidak sah</value>
+    <comment>Invalid current image length</comment>
+  </data>
+  <data name="invalid_dept_area_beneficiary" xml:space="preserve">
+    <value>Jabatan / Kawasan benefisiari Tidak sah</value>
+    <comment>Invalid Department/Area beneficiary</comment>
+  </data>
+  <data name="invalid_dollar_impact" xml:space="preserve">
+    <value>Impak dolar tidak sah</value>
+    <comment>Invalid dollar impact</comment>
+  </data>
+  <data name="invalid_dollar_impact_whole_decimal_num" xml:space="preserve">
+    <value>Dolar impak tidah sah (mesti nombor keseluruhan / perpuluhan)</value>
+    <comment>Invalid dollar impact (must be whole/decimal number)</comment>
+  </data>
+  <data name="invalid_expected_start_date" xml:space="preserve">
+    <value>Jangkaan tarikh mula tidak sah</value>
+    <comment>Invalid expected start date</comment>
+  </data>
+  <data name="invalid_num_months_to_be_active" xml:space="preserve">
+    <value>Bilangan bulan untuk menjadi aktif tidak sah</value>
+    <comment>Invalid number of months to be active</comment>
+  </data>
+  <data name="invalid_num_months_to_be_active_less_greater_than" xml:space="preserve">
+    <value>Bilangan bulan untuk menjadi aktif tidak sah (kurang daripada atau sama dengan {0} atau lebih besar daripada {1} sahaja)</value>
+    <comment>Invalid number of months to be active (less than or equal to {0} OR greater than {1} only)</comment>
+  </data>
+  <data name="invalid_oa_status" xml:space="preserve">
+    <value>Status OA tidak sah</value>
+    <comment>Invalid OA status</comment>
+  </data>
+  <data name="invalid_project_type" xml:space="preserve">
+    <value>Jenis Projek tidah sah</value>
+    <comment>Invalid project type</comment>
+  </data>
+  <data name="invalid_proposal" xml:space="preserve">
+    <value>Cadangan tidak sah</value>
+    <comment>Invalid Proposal</comment>
+  </data>
+  <data name="invalid_proposal_id" xml:space="preserve">
+    <value>Cadangan ID tidak Sah</value>
+    <comment>Invalid proposal id</comment>
+  </data>
+  <data name="invalid_proposal_img_len" xml:space="preserve">
+    <value>Panjang imej cadangan tidak sah</value>
+    <comment>Invalid proposal image length</comment>
+  </data>
+  <data name="invalid_supporting_docs_len" xml:space="preserve">
+    <value>Panjang dokumen sokongan tidak sah</value>
+    <comment>Invalid supporting documents length</comment>
+  </data>
+  <data name="invalid_verification_status" xml:space="preserve">
+    <value>Penunjuk status pengesahan tidak sah</value>
+    <comment>Invalid verification status indicator</comment>
+  </data>
+  <data name="mark_proposal_bpi_email_msg" xml:space="preserve">
+    <value>Cadangan E-Savings tiket#{0} Tanda sebagai BPI. Sila semak pautan di bawah untuk melihat butiran.</value>
+    <comment>E-Savings proposal Ticket #{0} Marked as BPI. Please click the link below to view the details.</comment>
+  </data>
+  <data name="mark_proposal_bpi_email_subject" xml:space="preserve">
+    <value>Projek E-Savings ditanda sebagai BPI</value>
+    <comment>E-Savings project marked as BPI</comment>
+  </data>
+  <data name="mark_proposal_bpi_error_msg" xml:space="preserve">
+    <value>Ralat : Tidak dapat {0} cadangan sebagai BPI</value>
+    <comment>Error: unable to {0} proposal as BPI</comment>
+  </data>
+  <data name="mark_proposal_bpi_success_msg" xml:space="preserve">
+    <value>Berjaya {0} cadangan sebagai BPI</value>
+    <comment>Successfully {0} proposal as BPI</comment>
+  </data>
+  <data name="no_changes_made" xml:space="preserve">
+    <value>Tiada perubahan dilakukan</value>
+    <comment>No changes made</comment>
+  </data>
+  <data name="no_verification" xml:space="preserve">
+    <value>Tiada pengesahan</value>
+    <comment>No-verification</comment>
+  </data>
+  <data name="please_login" xml:space="preserve">
+    <value>Sila Log Masuk</value>
+    <comment>Please login</comment>
+  </data>
+  <data name="please_select_finance_approver" xml:space="preserve">
+    <value>Sila Pilih Pihak Kewangan yang memberi kelulusan</value>
+    <comment>Please select finance approver</comment>
+  </data>
+  <data name="project_type_is_required" xml:space="preserve">
+    <value>Jenis projek diperlukan</value>
+    <comment>Project type is required</comment>
+  </data>
+  <data name="proposal_details_not_found" xml:space="preserve">
+    <value>Butiran cadangan tidak dijumpai</value>
+    <comment>Proposal details not found</comment>
+  </data>
+  <data name="proposal_entry_not_found" xml:space="preserve">
+    <value>Kemasukan cadangan tidak dijumpai!</value>
+    <comment>Proposal entry not found!</comment>
+  </data>
+  <data name="proposal_imgs_unable_upload" xml:space="preserve">
+    <value>Cadangan Imej (Tidak dapat muat naik)</value>
+    <comment>Proposal Images (Unable to upload)</comment>
+  </data>
+  <data name="remarks_is_required" xml:space="preserve">
+    <value>Keterangan diperlukan</value>
+    <comment>Remarks is required</comment>
+  </data>
+  <data name="re_assign_project_CA_email_msg" xml:space="preserve">
+    <value>E-Savings ticket#{0}, akan ditugaskan semula kepada anda sebagai pengesahan penganalisa kos oleh {1}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings ticket#{0}, is re-assign to you as cost-analyst approver by {1}. Please click the link below to view the details</comment>
+  </data>
+  <data name="re_assign_project_CA_error_msg" xml:space="preserve">
+    <value>Kesalahan untuk memberikan penganalisa kos baharu, sila hubungi admin dalaman</value>
+    <comment>Error on assigning new cost-analyst, please contact site admin</comment>
+  </data>
+  <data name="re_assign_project_CA_success_msg" xml:space="preserve">
+    <value>Berjaya menugaskan penganalisa kos baru</value>
+    <comment>Successfully assigned new cost-analyst</comment>
+  </data>
+  <data name="re_assign_project_finance_email_msg" xml:space="preserve">
+    <value>E-Savings ticket#{0}, akan diberikan semula kepada anda sebagai pihak kewangan yang memberi kelulusan oleh {1}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings ticket#{0}, is re-assign to you as finance approver by {1}. Please click the link below to view the details</comment>
+  </data>
+  <data name="re_assign_project_finance_error_msg" xml:space="preserve">
+    <value>Ralat untuk memberi pembiayaan baru, sila hubungi admin dalaman</value>
+    <comment>Error on assigning new finance, please contact site admin</comment>
+  </data>
+  <data name="re_assign_project_finance_success_msg" xml:space="preserve">
+    <value>Berjaya melantik kewangan baru</value>
+    <comment>Successfully assigned new finance</comment>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>Disimpan</value>
+    <comment>Saved</comment>
+  </data>
+  <data name="save_action_owner_response_complete_reqmts_msg" xml:space="preserve">
+    <value>Sila lengkapkan keperluan, (Catatan dan dokumen sokongan)</value>
+    <comment>Please complete the requirements, (Remarks and supporting documents)</comment>
+  </data>
+  <data name="save_action_owner_response_email_msg" xml:space="preserve">
+    <value>Tiket E-Savings #{0} item tindakan ditangani oleh pemilik tindakan {1}. Sila klik pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0} Action item responded by action owner {1}. Please click the link below to view the details</comment>
+  </data>
+  <data name="save_action_owner_response_email_subject" xml:space="preserve">
+    <value>Tindakan diperlukan daripada E-Savings-Tiket#</value>
+    <comment>Action Needed from E-Savings-Ticket#</comment>
+  </data>
+  <data name="save_project_owner_response_email_msg" xml:space="preserve">
+    <value>Tiket E-Savings #{0} - Pemilik projek menjawab [{1}]. Sila klik pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0} - Project owner responded [{1}]. Please click the link below to view the details</comment>
+  </data>
+  <data name="save_project_owner_response_email_subject" xml:space="preserve">
+    <value>Pemilik Projek dari E-Savings-Ticket #</value>
+    <comment>Project Owner from E-Savings-Ticket#</comment>
+  </data>
+  <data name="selected_finance_approver_not_found" xml:space="preserve">
+    <value>Pihak Kewangan yang dipilih tidak dijumpai</value>
+    <comment>Selected finance approver not found</comment>
+  </data>
+  <data name="submit_proposal_email_msg" xml:space="preserve">
+    <value>No.Tiket[{0}] Cadangan E-Saving BARU . Sila klik pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings NEW proposal Ticket #{0}. Please click the link below to view the details</comment>
+  </data>
+  <data name="submit_proposal_email_subject" xml:space="preserve">
+    <value>Kemasukan E-Savings Baru</value>
+    <comment>New E-Savings Entry</comment>
+  </data>
+  <data name="submit_proposal_error_msg" xml:space="preserve">
+    <value>Ralat mengemukakan cadangan anda, sila hubungi pasukan APPs untuk menyemak ralat, Terima kasih!</value>
+    <comment>Error submitting your proposal, kindly contact APPs team to check the error, Thank you!</comment>
+  </data>
+  <data name="successfully_deleted" xml:space="preserve">
+    <value>Berjaya dipadamkan</value>
+    <comment>Deleted successfully</comment>
+  </data>
+  <data name="successfully_saved" xml:space="preserve">
+    <value>Berjaya disimpan</value>
+    <comment>Successfully Saved!</comment>
+  </data>
+  <data name="successfully_submitted" xml:space="preserve">
+    <value>Berjaya Dihantar</value>
+    <comment>Successfully submitted</comment>
+  </data>
+  <data name="successfully_updated" xml:space="preserve">
+    <value>Berjaya dikemas kini</value>
+    <comment>Updated successfully</comment>
+  </data>
+  <data name="successfully_uploaded" xml:space="preserve">
+    <value>Berjaya dihantar</value>
+    <comment>Successfully uploaded</comment>
+  </data>
+  <data name="successfully_verified" xml:space="preserve">
+    <value>Pengesahan Berjaya!</value>
+    <comment>Successfully verified!</comment>
+  </data>
+  <data name="supporting_docs_unable_upload" xml:space="preserve">
+    <value>Dokumen sokongan (tidak dapat muat naik)</value>
+    <comment>Supporting Images (Unable to upload)</comment>
+  </data>
+  <data name="supporting_docs_uploaded" xml:space="preserve">
+    <value>Dokumen sokongan dimuat naik</value>
+    <comment>Supporting documents uploaded</comment>
+  </data>
+  <data name="trying_to_assign_current_approver" xml:space="preserve">
+    <value>Ralat: cuba memberikan pihak memberi kelulusan semasa</value>
+    <comment>Error: trying to assign current approver</comment>
+  </data>
+  <data name="unknown" xml:space="preserve">
+    <value>Tidah diketahui</value>
+    <comment>Unknown</comment>
+  </data>
+  <data name="unable_to_add_finance_approver" xml:space="preserve">
+    <value>Tidak dapat menambah Pihak kewangan yang memberi kelulusan</value>
+    <comment>Unable to add finance approver</comment>
+  </data>
+  <data name="unable_to_add_update_dollar_impact" xml:space="preserve">
+    <value>Tidak dapat menambah / mengemaskini impak dolar</value>
+    <comment>Unable to add/update dollar impact</comment>
+  </data>
+  <data name="unable_to_add_update_expected_project_start_date" xml:space="preserve">
+    <value>Tidak dapat menambah / mengemas kini tarikh permulaan projek yang dijangkakan</value>
+    <comment>Unable to add/update expected project start date</comment>
+  </data>
+  <data name="unable_to_add_update_number_months_active" xml:space="preserve">
+    <value>Tidak dapat menambah / mengemas kini bilangan bulan untuk menjadi aktif</value>
+    <comment>Unable to add/update number of months to be active</comment>
+  </data>
+  <data name="unable_to_add_update_project_type" xml:space="preserve">
+    <value>Tidak dapat menambah / mengemaskini jenis projek</value>
+    <comment>Unable to add/update project type</comment>
+  </data>
+  <data name="unable_to_reassign_finance_approver" xml:space="preserve">
+    <value>Tidak dapat menetap semula Pihak Kewangan yang memberi kelulusan</value>
+    <comment>Unable to reassign finance approver</comment>
+  </data>
+  <data name="unable_to_update_overall_status_to" xml:space="preserve">
+    <value>Tidak dapat mengemas kini status keseluruhan ({0})</value>
+    <comment>Unable to update overall status ({0})</comment>
+  </data>
+  <data name="unable_to_verify_this_proposal" xml:space="preserve">
+    <value>Tidak dapat mengesahkan cadangan ini</value>
+    <comment>Unable to verify this proposal</comment>
+  </data>
+  <data name="unable_update_verification_results" xml:space="preserve">
+    <value>Tidak dapat mengemas kini hasil pengesahan</value>
+    <comment>Unable to update verification results</comment>
+  </data>
+  <data name="updated_current_due_date" xml:space="preserve">
+    <value>Kemaskini tarikh akhir semasa</value>
+    <comment>Updated Current due date</comment>
+  </data>
+  <data name="updated_finance_category" xml:space="preserve">
+    <value>kemaskini kategori kewanagan</value>
+    <comment>Updated Finance category</comment>
+  </data>
+  <data name="updated_original_due_date" xml:space="preserve">
+    <value>kemaskini tarikh akhir asal</value>
+    <comment>Updated Original due date</comment>
+  </data>
+  <data name="updated_planned_project_start_date" xml:space="preserve">
+    <value>Tarikh permulaan projek yang dirancang telah dikemaskinikan</value>
+    <comment>Updated Planned project start date</comment>
+  </data>
+  <data name="updated_planned_saving_start_date" xml:space="preserve">
+    <value>Tarikh permulaan penjimatan yang dirancang telah dikemaskinikan</value>
+    <comment>Updated Planned saving start date</comment>
+  </data>
+  <data name="updated_actual_completion_date" xml:space="preserve">
+    <value>Tarikh siap sebenar telak dikemaskinikan</value>
+    <comment>Updated Actual completion date</comment>
+  </data>
+  <data name="update_proposal_email_msg" xml:space="preserve">
+    <value>Tiket Cadangan E-Saving#{0} Dikemas kini ole {1} dan berikan penganalisa kos kelulusan Baru. Sila semak pautan di bawah untuk melihat butiran.</value>
+    <comment>E-Savings proposal Ticket #{0} - Updated by {1}. &lt;br/&gt;Please click the link below to view the details</comment>
+  </data>
+  <data name="update_proposal_email_subject" xml:space="preserve">
+    <value>Kemasukan E-Simpanan Baru Dikemaskini</value>
+    <comment>E-Savings Entry Updated</comment>
+  </data>
+  <data name="update_proposal_error_msg" xml:space="preserve">
+    <value>Tidak dapat mengemas kini butiran cadangan anda</value>
+    <comment>Unable to update your proposal details</comment>
+  </data>
+  <data name="verification_status_not_found" xml:space="preserve">
+    <value>Status pengesahan tidak dijumpai</value>
+    <comment>Verification status not found</comment>
+  </data>
+  <data name="verified" xml:space="preserve">
+    <value>Disahkan</value>
+    <comment>Verified</comment>
+  </data>
+  <data name="verified_closed" xml:space="preserve">
+    <value>Pengesahan ditutup</value>
+    <comment>Verified closed</comment>
+  </data>
+  <data name="verify_not_done" xml:space="preserve">
+    <value>Pengesahan tidak dilakukan</value>
+    <comment>Verify not done</comment>
+  </data>
+  <data name="area_dept" xml:space="preserve">
+    <value>Area/Department Beneficiary</value>
+    <comment>Area/Department Beneficiary</comment>
+  </data>
+  <data name="current_description" xml:space="preserve">
+    <value>Current description</value>
+    <comment>Current description</comment>
+  </data>
+  <data name="dollar_impact" xml:space="preserve">
+    <value>Dollar impact</value>
+    <comment>Dollar impact</comment>
+  </data>
+  <data name="done_adding_finance_approver" xml:space="preserve">
+    <value>Done adding finance approver</value>
+    <comment>Done adding finance approver</comment>
+  </data>
+  <data name="expected_start_date" xml:space="preserve">
+    <value>Expected start date</value>
+    <comment>Expected start date</comment>
+  </data>
+  <data name="invalid_status" xml:space="preserve">
+    <value>Invalid Status</value>
+    <comment>Invalid Status</comment>
+  </data>
+  <data name="number_of_months_active" xml:space="preserve">
+    <value>Number of months to be active</value>
+    <comment>Number of months to be active</comment>
+  </data>
+  <data name="permission_denied" xml:space="preserve">
+    <value>Permission denied</value>
+    <comment>Permission denied</comment>
+  </data>
+  <data name="project_id" xml:space="preserve">
+    <value>Project Id</value>
+    <comment>Project Id</comment>
+  </data>
+  <data name="project_title" xml:space="preserve">
+    <value>Project Title</value>
+    <comment>Project Title</comment>
+  </data>
+  <data name="project_type" xml:space="preserve">
+    <value>Project type</value>
+    <comment>Project type</comment>
+  </data>
+  <data name="proposal_description" xml:space="preserve">
+    <value>Proposal description</value>
+    <comment>Proposal description</comment>
+  </data>
+  <data name="remarks" xml:space="preserve">
+    <value>Remarks</value>
+    <comment>Remarks</comment>
+  </data>
+  <data name="action_approval_email_msg" xml:space="preserve">
+    <value>#Tiket E-Saving {0}. {1} oleh {2}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
+  </data>
+  <data name="finance_approval_email_msg" xml:space="preserve">
+    <value>#Tiket E-Saving {0}. {1} oleh {2}. Sila semak pautan di bawah untuk melihat butiran</value>
+    <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
+  </data>
+  <data name="finance_approval_success_msg" xml:space="preserve">
+    <value>Berjaya pindah status ke &lt;i&gt;{0}&lt;/i&gt; status</value>
+    <comment>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</comment>
+  </data>
+  <data name="number_of_months_active_required" xml:space="preserve">
+    <value>Number of months to be active is required</value>
+    <comment>Number of months to be active is required</comment>
+  </data>
+  <data name="updated_funnel_status" xml:space="preserve">
+    <value>Updated funnel status</value>
+    <comment>Updated funnel status</comment>
+  </data>
+  <data name="update_dollar_impact" xml:space="preserve">
+    <value>Update dollar impact</value>
+    <comment>Update dollar impact</comment>
+  </data>
+  <data name="update_number_of_months_active" xml:space="preserve">
+    <value>Update number of months to be active</value>
+    <comment>Update number of months to be active</comment>
+  </data>
+  <data name="action_approval_complete_reqmts_msg" xml:space="preserve">
+    <value>Sila lengkapkan keperluan, (Keterangan dan status pengesahan)</value>
+    <comment>Please complete the requirements, (Remarks and verification status)</comment>
+  </data>
+</root>

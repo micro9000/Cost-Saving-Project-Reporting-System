@@ -385,7 +385,7 @@
     <value>Unable to add finance approver</value>
   </data>
   <data name="unable_to_add_update_dollar_impact" xml:space="preserve">
-    <value>Unable to add/update dolar impact</value>
+    <value>Unable to add/update dollar impact</value>
   </data>
   <data name="unable_to_add_update_expected_project_start_date" xml:space="preserve">
     <value>Unable to add/update expected project start date</value>
