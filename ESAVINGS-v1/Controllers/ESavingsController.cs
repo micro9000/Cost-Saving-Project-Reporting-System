@@ -2512,6 +2512,10 @@ namespace ESAVINGS_v1.Controllers
 										message += "<br/>" + Resources.Controllers.ESavings.supporting_docs_uploaded; //"<br/>Supporting documents uploaded";
 									}
 								}
+								else
+								{
+									message += supportingDocsErr;
+								}
 
 							}
 
@@ -3253,7 +3257,7 @@ namespace ESAVINGS_v1.Controllers
 						{
 							string message = "";
 
-							if (projectTypeIntParse > 0)
+							if (projectTypeIntParse > 0 && proposalDetails.ProjectType != projectTypeIntParse)
 							{
 								if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
 								{
@@ -3267,7 +3271,7 @@ namespace ESAVINGS_v1.Controllers
 								}
 							}
 
-							if (dollarImpact > 0)
+							if (dollarImpact > 0 && proposalDetails.DollarImpact != dollarImpact)
 							{
 								if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
 								{
@@ -3282,7 +3286,7 @@ namespace ESAVINGS_v1.Controllers
 							}
 
 
-							if (numberOfMonthsToBeActive > 0)
+							if (numberOfMonthsToBeActive > 0 && proposalDetails.NumberOfMonthsToBeActive != numberOfMonthsToBeActive)
 							{
 								if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
 								{
@@ -3300,7 +3304,7 @@ namespace ESAVINGS_v1.Controllers
 							if (expectedStartDate != "")
 							{
 								DateTime expectedStartDateParsed;
-								if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed))
+								if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed) && proposalDetails.ExpectedStartDate != expectedStartDateParsed)
 								{
 									if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
 									{
@@ -3360,6 +3364,10 @@ namespace ESAVINGS_v1.Controllers
 									{
 										message += "<br/>" + Resources.Controllers.ESavings.supporting_docs_uploaded; //Supporting documents uploaded";
 									}
+								}
+								else
+								{
+									message += supportingDocsErr;
 								}
 
 							}
@@ -3919,6 +3927,10 @@ namespace ESAVINGS_v1.Controllers
 							{
 								results["msg"] += supportingDocsErr;
 							}
+						}
+						else
+						{
+							results["msg"] += supportingDocsErr;
 						}
 
 						#endregion
@@ -4869,6 +4881,10 @@ namespace ESAVINGS_v1.Controllers
 						{
 							results["msg"] += supportingDocsErr;
 						}
+					}
+					else
+					{
+						results["msg"] += supportingDocsErr;
 					}
 
 					#endregion
