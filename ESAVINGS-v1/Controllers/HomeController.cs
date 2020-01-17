@@ -99,8 +99,8 @@ namespace ESAVINGS_v1.Controllers
 
 
 
-			profileData.AssignedProjects = this.GetProposalAdditionalInfo(Factory.ProposalFactory().GetAssignedProjectsByUser(this.UserFFID));
-			profileData.ActiveProposals = this.GetProposalAdditionalInfo(Factory.ProposalFactory().GetActiveProposalsByUser(this.UserFFID));
+			profileData.AssignedProjects = this.GetProposalsAdditionalInfo(Factory.ProposalFactory().GetAssignedProjectsByUser(this.UserFFID));
+			profileData.ActiveProposals = this.GetProposalsAdditionalInfo(Factory.ProposalFactory().GetActiveProposalsByUser(this.UserFFID));
 
 
 
@@ -138,14 +138,14 @@ namespace ESAVINGS_v1.Controllers
 			//	forApprovalProposals = Factory.ProposalFactory().GetProposalByStatus((int)StaticData.OverallStatus.ACTION_SITE_COST_INCHARGE_REVIEW);
 			//}
 
-			forApprovalProposals = this.GetProposalAdditionalInfo(forApprovalProposals);
+			forApprovalProposals = this.GetProposalsAdditionalInfo(forApprovalProposals);
 			profileData.ForApprovalProposals = forApprovalProposals;
 
 
 			profileData.CurrentUserActionItems = Factory.ProposalFactory().GetProposalThatCurrentUserHasActionItem(this.UserFFID);
 
 
-			profileData.ArchivedProposals = this.GetProposalAdditionalInfo(Factory.ProposalFactory().GetArchivedProposalByUser(this.UserFFID));
+			profileData.ArchivedProposals = this.GetProposalsAdditionalInfo(Factory.ProposalFactory().GetArchivedProposalByUser(this.UserFFID));
 
 
 			ViewBag.ProjectTypes = StaticData.GetProjectTypeWithLabel();
