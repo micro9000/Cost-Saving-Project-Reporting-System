@@ -573,6 +573,11 @@ $(".btn-search-by-keyword-andor-status").on("click", function () {
 
 $(".btn-export-to-excel").on("click", function () {
 
+
+	var format = $(this).attr("data-format");
+
+	alert(format);
+
 	var projectType = $("input[name='search_project_type']:checked").attr("data-project-type");
 	var searchKeyword = $("#searchKeyword").val();
 	var startDate = $("#startDate").val();
@@ -599,7 +604,7 @@ $(".btn-export-to-excel").on("click", function () {
 
 	var parameters = "";
 	var paramLen = 0;
-	var exportFile = base_url + "ESavings/ProposalExportToExcel";
+	var exportFile = base_url + ((format === "esavings") ? "ESavings/ProposalExportToExcel" : "ESavings/ProposalExportToExcelQlikviewFormat");
 	
 	if (projectType != "") {
 		parameters += "projectType=" + projectType;
