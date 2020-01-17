@@ -70,6 +70,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details..
+        /// </summary>
+        internal static string action_approval_email_msg {
+            get {
+                return ResourceManager.GetString("action_approval_email_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Added dollar impact.
         /// </summary>
         internal static string added_dollar_impact {
@@ -133,7 +142,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Savings Ticket #{0} - assigned you as project owner (who execute the project)..
+        ///   Looks up a localized string similar to E-Savings Ticket #{0} - assigned you as project owner (who execute the project).Please click the link below to view the details &lt;br/&gt;.
         /// </summary>
         internal static string assign_project_owner_email_msg {
             get {
@@ -169,7 +178,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to assigned_new_cost_analyst_approver.
+        ///   Looks up a localized string similar to Assign new cost analyst approver.
         /// </summary>
         internal static string assigned_new_cost_analyst_approver {
             get {
@@ -216,10 +225,9 @@ namespace ESAVINGS_v1.Resources.Controllers {
         /// <summary>
         ///   Looks up a localized string similar to Please close all action items before moving the status to finance approval.
         /// </summary>
-        internal static string close_all_action_items_before_move_to_finance_approclose_all_action_items_before_move_to_finance_approval {
+        internal static string close_all_action_items_before_move_to_finance_approval {
             get {
-                return ResourceManager.GetString("close_all_action_items_before_move_to_finance_approclose_all_action_items_before_" +
-                        "move_to_finance_approval", resourceCulture);
+                return ResourceManager.GetString("close_all_action_items_before_move_to_finance_approval", resourceCulture);
             }
         }
         
@@ -269,7 +277,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Successfully moved status to {0} status.
+        ///   Looks up a localized string similar to Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!.
         /// </summary>
         internal static string cost_analyst_approval_successes_msg {
             get {
@@ -368,6 +376,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Done adding finance approver.
+        /// </summary>
+        internal static string done_adding_finance_approver {
+            get {
+                return ResourceManager.GetString("done_adding_finance_approver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Done changing finance approver..
         /// </summary>
         internal static string done_changing_finance_approver {
@@ -391,6 +408,24 @@ namespace ESAVINGS_v1.Resources.Controllers {
         internal static string expected_start_date_is_required {
             get {
                 return ResourceManager.GetString("expected_start_date_is_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details..
+        /// </summary>
+        internal static string finance_approval_email_msg {
+            get {
+                return ResourceManager.GetString("finance_approval_email_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!.
+        /// </summary>
+        internal static string finance_approval_success_msg {
+            get {
+                return ResourceManager.GetString("finance_approval_success_msg", resourceCulture);
             }
         }
         
@@ -521,6 +556,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Status.
+        /// </summary>
+        internal static string invalid_status {
+            get {
+                return ResourceManager.GetString("invalid_status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid supporting documents length.
         /// </summary>
         internal static string invalid_supporting_docs_len {
@@ -602,6 +646,24 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of months to be active is required.
+        /// </summary>
+        internal static string number_of_months_active_required {
+            get {
+                return ResourceManager.GetString("number_of_months_active_required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permission denied.
+        /// </summary>
+        internal static string permission_denied {
+            get {
+                return ResourceManager.GetString("permission_denied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please login.
         /// </summary>
         internal static string please_login {
@@ -616,6 +678,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         internal static string please_select_finance_approver {
             get {
                 return ResourceManager.GetString("please_select_finance_approver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project Id.
+        /// </summary>
+        internal static string project_id {
+            get {
+                return ResourceManager.GetString("project_id", resourceCulture);
             }
         }
         
@@ -764,7 +835,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Savings Ticket #{0} action item responded by action owner {1}. Please click the link below to view the details.
+        ///   Looks up a localized string similar to E-Savings Ticket #{0} Action item responded by action owner {1}. Please click the link below to view the details.
         /// </summary>
         internal static string save_action_owner_response_email_msg {
             get {
@@ -782,7 +853,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Savings Ticket #{0} - Project owner responded {1}. Please click the link below to view the details.
+        ///   Looks up a localized string similar to E-Savings Ticket #{0} - Project owner responded [{1}]. Please click the link below to view the details.
         /// </summary>
         internal static string save_project_owner_response_email_msg {
             get {
@@ -926,15 +997,6 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Uknown.
-        /// </summary>
-        internal static string uknown {
-            get {
-                return ResourceManager.GetString("uknown", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unable to add finance approver.
         /// </summary>
         internal static string unable_to_add_finance_approver {
@@ -989,11 +1051,11 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to update overall status (IN-PROGRESS).
+        ///   Looks up a localized string similar to Unable to update overall status ({0}).
         /// </summary>
-        internal static string unable_to_update_overall_status_in_progress {
+        internal static string unable_to_update_overall_status_to {
             get {
-                return ResourceManager.GetString("unable_to_update_overall_status_in_progress", resourceCulture);
+                return ResourceManager.GetString("unable_to_update_overall_status_to", resourceCulture);
             }
         }
         
@@ -1016,16 +1078,34 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Updated Actual completion date.
+        ///   Looks up a localized string similar to Unknown.
         /// </summary>
-        internal static string update_actual_completion_date {
+        internal static string unknown {
             get {
-                return ResourceManager.GetString("update_actual_completion_date", resourceCulture);
+                return ResourceManager.GetString("unknown", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Savings proposal Ticket #{0} - Updated by [name] and assigned new cost-analyst approver. &lt;br/&gt;Please check the link below to view the details.
+        ///   Looks up a localized string similar to Update dollar impact.
+        /// </summary>
+        internal static string update_dollar_impact {
+            get {
+                return ResourceManager.GetString("update_dollar_impact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update number of months to be active.
+        /// </summary>
+        internal static string update_number_of_months_active {
+            get {
+                return ResourceManager.GetString("update_number_of_months_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E-Savings proposal Ticket #{0} - Updated by {1}. &lt;br/&gt;Please click the link below to view the details.
         /// </summary>
         internal static string update_proposal_email_msg {
             get {
@@ -1034,7 +1114,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New E-Savings Entry Updated.
+        ///   Looks up a localized string similar to E-Savings Entry Updated.
         /// </summary>
         internal static string update_proposal_email_subject {
             get {
@@ -1048,6 +1128,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         internal static string update_proposal_error_msg {
             get {
                 return ResourceManager.GetString("update_proposal_error_msg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Actual completion date.
+        /// </summary>
+        internal static string updated_actual_completion_date {
+            get {
+                return ResourceManager.GetString("updated_actual_completion_date", resourceCulture);
             }
         }
         
@@ -1066,6 +1155,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         internal static string updated_finance_category {
             get {
                 return ResourceManager.GetString("updated_finance_category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated funnel status.
+        /// </summary>
+        internal static string updated_funnel_status {
+            get {
+                return ResourceManager.GetString("updated_funnel_status", resourceCulture);
             }
         }
         

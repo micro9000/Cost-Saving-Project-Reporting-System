@@ -136,13 +136,13 @@
     <value>Added project type</value>
   </data>
   <data name="assigned_new_cost_analyst_approver" xml:space="preserve">
-    <value>assigned_new_cost_analyst_approver</value>
+    <value>Assign new cost analyst approver</value>
   </data>
   <data name="assign_project_owner_complete_reqmnts_msg" xml:space="preserve">
     <value>Please complete the requirements, (project owner ff id, fullname and proposal id)</value>
   </data>
   <data name="assign_project_owner_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project).</value>
+    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project).Please click the link below to view the details &lt;br/&gt;</value>
   </data>
   <data name="assign_project_owner_email_subject" xml:space="preserve">
     <value>Project Owner in E-Savings-Ticket#</value>
@@ -165,7 +165,7 @@
   <data name="close_all_action_items_before_move_to_active" xml:space="preserve">
     <value>Please close all action items before moving the active</value>
   </data>
-  <data name="close_all_action_items_before_move_to_finance_approclose_all_action_items_before_move_to_finance_approval" xml:space="preserve">
+  <data name="close_all_action_items_before_move_to_finance_approval" xml:space="preserve">
     <value>Please close all action items before moving the status to finance approval</value>
   </data>
   <data name="close_all_action_items_before_move_to_funnel_evaluating" xml:space="preserve">
@@ -184,7 +184,7 @@
     <value>E-Savings-Move-status-Ticket#{0}</value>
   </data>
   <data name="cost_analyst_approval_successes_msg" xml:space="preserve">
-    <value>Successfully moved status to {0} status</value>
+    <value>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</value>
   </data>
   <data name="create_new_action_complete_reqmts_msg" xml:space="preserve">
     <value>Please complete the requirements, (Action Description and action owner info)</value>
@@ -328,13 +328,13 @@
     <value>Please complete the requirements, (Remarks and supporting documents)</value>
   </data>
   <data name="save_action_owner_response_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} action item responded by action owner {1}. Please click the link below to view the details</value>
+    <value>E-Savings Ticket #{0} Action item responded by action owner {1}. Please click the link below to view the details</value>
   </data>
   <data name="save_action_owner_response_email_subject" xml:space="preserve">
     <value>Action Needed from E-Savings-Ticket#</value>
   </data>
   <data name="save_project_owner_response_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} - Project owner responded {1}. Please click the link below to view the details</value>
+    <value>E-Savings Ticket #{0} - Project owner responded [{1}]. Please click the link below to view the details</value>
   </data>
   <data name="save_project_owner_response_email_subject" xml:space="preserve">
     <value>Project Owner from E-Savings-Ticket#</value>
@@ -378,8 +378,8 @@
   <data name="trying_to_assign_current_approver" xml:space="preserve">
     <value>Error: trying to assign current approver</value>
   </data>
-  <data name="uknown" xml:space="preserve">
-    <value>Uknown</value>
+  <data name="unknown" xml:space="preserve">
+    <value>Unknown</value>
   </data>
   <data name="unable_to_add_finance_approver" xml:space="preserve">
     <value>Unable to add finance approver</value>
@@ -399,8 +399,8 @@
   <data name="unable_to_reassign_finance_approver" xml:space="preserve">
     <value>Unable to reassign finance approver</value>
   </data>
-  <data name="unable_to_update_overall_status_in_progress" xml:space="preserve">
-    <value>Unable to update overall status (IN-PROGRESS)</value>
+  <data name="unable_to_update_overall_status_to" xml:space="preserve">
+    <value>Unable to update overall status ({0})</value>
   </data>
   <data name="unable_to_verify_this_proposal" xml:space="preserve">
     <value>Unable to verify this proposal</value>
@@ -423,14 +423,14 @@
   <data name="updated_planned_saving_start_date" xml:space="preserve">
     <value>Updated Planned saving start date</value>
   </data>
-  <data name="update_actual_completion_date" xml:space="preserve">
+  <data name="updated_actual_completion_date" xml:space="preserve">
     <value>Updated Actual completion date</value>
   </data>
   <data name="update_proposal_email_msg" xml:space="preserve">
-    <value>E-Savings proposal Ticket #{0} - Updated by [name] and assigned new cost-analyst approver. &lt;br/&gt;Please check the link below to view the details</value>
+    <value>E-Savings proposal Ticket #{0} - Updated by {1}. &lt;br/&gt;Please click the link below to view the details</value>
   </data>
   <data name="update_proposal_email_subject" xml:space="preserve">
-    <value>New E-Savings Entry Updated</value>
+    <value>E-Savings Entry Updated</value>
   </data>
   <data name="update_proposal_error_msg" xml:space="preserve">
     <value>Unable to update your proposal details</value>
@@ -456,11 +456,23 @@
   <data name="dollar_impact" xml:space="preserve">
     <value>Dollar impact</value>
   </data>
+  <data name="done_adding_finance_approver" xml:space="preserve">
+    <value>Done adding finance approver</value>
+  </data>
   <data name="expected_start_date" xml:space="preserve">
     <value>Expected start date</value>
   </data>
+  <data name="invalid_status" xml:space="preserve">
+    <value>Invalid Status</value>
+  </data>
   <data name="number_of_months_active" xml:space="preserve">
     <value>Number of months to be active</value>
+  </data>
+  <data name="permission_denied" xml:space="preserve">
+    <value>Permission denied</value>
+  </data>
+  <data name="project_id" xml:space="preserve">
+    <value>Project Id</value>
   </data>
   <data name="project_title" xml:space="preserve">
     <value>Project Title</value>
@@ -473,5 +485,26 @@
   </data>
   <data name="remarks" xml:space="preserve">
     <value>Remarks</value>
+  </data>
+  <data name="action_approval_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+  </data>
+  <data name="finance_approval_email_msg" xml:space="preserve">
+    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+  </data>
+  <data name="finance_approval_success_msg" xml:space="preserve">
+    <value>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</value>
+  </data>
+  <data name="number_of_months_active_required" xml:space="preserve">
+    <value>Number of months to be active is required</value>
+  </data>
+  <data name="updated_funnel_status" xml:space="preserve">
+    <value>Updated funnel status</value>
+  </data>
+  <data name="update_dollar_impact" xml:space="preserve">
+    <value>Update dollar impact</value>
+  </data>
+  <data name="update_number_of_months_active" xml:space="preserve">
+    <value>Update number of months to be active</value>
   </data>
 </root>

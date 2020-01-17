@@ -576,8 +576,6 @@ $(".btn-export-to-excel").on("click", function () {
 
 	var format = $(this).attr("data-format");
 
-	alert(format);
-
 	var projectType = $("input[name='search_project_type']:checked").attr("data-project-type");
 	var searchKeyword = $("#searchKeyword").val();
 	var startDate = $("#startDate").val();
