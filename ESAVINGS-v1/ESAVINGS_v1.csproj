@@ -164,6 +164,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Base.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Controllers\ESavings.vi-VN.Designer.cs">
+      <DependentUpon>ESavings.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Controllers\ESavings.ms-MY.Designer.cs">
+      <DependentUpon>ESavings.ms-MY.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Controllers\ESavings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -371,6 +381,14 @@
     <EmbeddedResource Include="Resources\Controllers\Base.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Base.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers\ESavings.vi-VN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ESavings.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Controllers\ESavings.ms-MY.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ESavings.ms-MY.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Controllers\ESavings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
