@@ -142,7 +142,7 @@
     <value>Please complete the requirements, (project owner ff id, fullname and proposal id)</value>
   </data>
   <data name="assign_project_owner_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project).Please click the link below to view the details &lt;br/&gt;</value>
+    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details &lt;br/&gt;</value>
   </data>
   <data name="assign_project_owner_email_subject" xml:space="preserve">
     <value>Project Owner in E-Savings-Ticket#</value>

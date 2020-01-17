@@ -142,7 +142,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to E-Savings Ticket #{0} - assigned you as project owner (who execute the project).Please click the link below to view the details &lt;br/&gt;.
+        ///   Looks up a localized string similar to E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details &lt;br/&gt;.
         /// </summary>
         internal static string assign_project_owner_email_msg {
             get {
