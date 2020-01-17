@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Domain;
-using ESavingsFactory;
-using System.Configuration;
-using ESavingsAPI.Models;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ESavingsAPI.Controllers
+namespace ESavingsFactory
 {
-	public static class Loaders
+	public class Loaders
 	{
 		public static Dictionary<int, string> GetAllFinanceCategory ()
 		{
-
 			// var financeCategories = Factory.FinanceCategoryRepository().GetAllCategories();
 			// financeCategories.Where(f => f.Id == proposal.FinanceCategoryID).Select(f => f.Category).ToString(),
 
@@ -44,6 +40,5 @@ namespace ESavingsAPI.Controllers
 
 			return deptResults;
 		}
-
 	}
 }
