@@ -590,24 +590,24 @@ namespace Domain
 
 		public static string GetProjectTypeStr (int type)
 		{
-			string typeStr = "For-Verification";
+			string typeStr = DomainResources.ForVerification;//"For-Verification";
 
 			switch (type)
 			{
 				case (int)ProjectTypes.COST_AVOIDANCE:
-					typeStr = "Cost Avoidance";
+					typeStr = DomainResources.COST_AVOIDANCE_sm;//"Cost Avoidance";
 					break;
 
 				case (int)ProjectTypes.COST_SAVINGS:
-					typeStr = "Cost Savings";
+					typeStr = DomainResources.COST_SAVINGS_sm; //"Cost Savings";
 					break;
 
 				case (int)ProjectTypes.ONE_TIME_SAVINGS:
-					typeStr = "One Time Savings";
+					typeStr = DomainResources.OneTimeSavings; //"One Time Savings";
 					break;
 
 				default:
-					typeStr = "For-Verification";
+					typeStr = DomainResources.ForVerification;//"For-Verification";
 					break;
 			}
 

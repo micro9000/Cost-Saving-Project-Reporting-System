@@ -115,6 +115,15 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cost Avoidance.
+        /// </summary>
+        internal static string COST_AVOIDANCE_sm {
+            get {
+                return ResourceManager.GetString("COST_AVOIDANCE_sm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to COST-FUNNEL-EVALUATING.
         /// </summary>
         internal static string COST_FUNNEL_EVALUATING {
@@ -138,6 +147,15 @@ namespace Domain {
         internal static string COST_SAVINGS {
             get {
                 return ResourceManager.GetString("COST_SAVINGS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cost Savings.
+        /// </summary>
+        internal static string COST_SAVINGS_sm {
+            get {
+                return ResourceManager.GetString("COST_SAVINGS_sm", resourceCulture);
             }
         }
         
@@ -228,6 +246,15 @@ namespace Domain {
         internal static string FINANCE_REVIEW_IN_PROGRESS {
             get {
                 return ResourceManager.GetString("FINANCE_REVIEW_IN_PROGRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For-Verification.
+        /// </summary>
+        internal static string ForVerification {
+            get {
+                return ResourceManager.GetString("ForVerification", resourceCulture);
             }
         }
         
@@ -363,6 +390,15 @@ namespace Domain {
         internal static string ON_HOLD_sm {
             get {
                 return ResourceManager.GetString("ON_HOLD_sm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Time Savings.
+        /// </summary>
+        internal static string OneTimeSavings {
+            get {
+                return ResourceManager.GetString("OneTimeSavings", resourceCulture);
             }
         }
         

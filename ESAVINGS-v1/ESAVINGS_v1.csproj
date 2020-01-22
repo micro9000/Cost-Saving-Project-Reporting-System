@@ -184,6 +184,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>User.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CreateProposal\CreateProposal.vi-VN.Designer.cs">
+      <DependentUpon>CreateProposal.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\CreateProposal\CreateProposal.ms-MY.Designer.cs">
       <DependentUpon>CreateProposal.ms-MY.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -193,6 +198,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateProposal.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Details\Details.vi-VN.Designer.cs">
+      <DependentUpon>Details.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\Details\Details.ms-MY.Designer.cs">
       <DependentUpon>Details.ms-MY.resx</DependentUpon>
@@ -204,10 +214,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Details.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Index\Index.vi-VN.Designer.cs">
+      <DependentUpon>Index.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Index\Index.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Index.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Login\Login.vi-VN.Designer.cs">
+      <DependentUpon>Login.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\Login\Login.ms-MY.Designer.cs">
       <DependentUpon>Login.ms-MY.resx</DependentUpon>
@@ -218,6 +238,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Login.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Profile\Profile.vi-VN.Designer.cs">
+      <DependentUpon>Profile.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\Profile\Profile.ms-MY.Designer.cs">
       <DependentUpon>Profile.ms-MY.resx</DependentUpon>
@@ -361,6 +386,7 @@
     <Content Include="HowToImgs\User-Manual.pptx" />
     <None Include="Properties\PublishProfiles\Carmona-Version1.pubxml" />
     <None Include="Properties\PublishProfiles\Cebu-Version1.pubxml" />
+    <None Include="Properties\PublishProfiles\OSBD-v2.pubxml" />
     <None Include="Properties\PublishProfiles\OSBD-Version1.pubxml" />
     <None Include="Properties\PublishProfiles\OSBD.pubxml" />
     <None Include="Properties\PublishProfiles\OSV-Version1.pubxml" />
@@ -373,6 +399,7 @@
     <None Include="Properties\PublishProfiles\Tarlac-Version2.pubxml" />
     <Content Include="Views\Home\BPIs.cshtml" />
     <None Include="Properties\PublishProfiles\Tarlac_v2.2.1.pubxml" />
+    <None Include="Properties\PublishProfiles\Vietnam-v2.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -398,6 +425,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>User.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CreateProposal\CreateProposal.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CreateProposal.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\CreateProposal\CreateProposal.ms-MY.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CreateProposal.ms-MY.Designer.cs</LastGenOutput>
@@ -405,6 +436,10 @@
     <EmbeddedResource Include="Resources\CreateProposal\CreateProposal.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CreateProposal.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Details\Details.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Details.vi-VN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Details\Details.ms-MY.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -414,14 +449,19 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Details.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Index\Index.fil-PH.resx" />
+    <EmbeddedResource Include="Resources\Index\Index.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Index.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Index\Index.ms-MY.resx" />
     <EmbeddedResource Include="Resources\Index\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Index\Index.vi-VN.resx" />
-    <EmbeddedResource Include="Resources\Index\Index.zh-CN.resx" />
+    <EmbeddedResource Include="Resources\Login\Login.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Login.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Login\Login.ms-MY.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.ms-MY.Designer.cs</LastGenOutput>
@@ -429,6 +469,10 @@
     <EmbeddedResource Include="Resources\Login\Login.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Login.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Profile\Profile.vi-VN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Profile.vi-VN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Profile\Profile.ms-MY.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -117,7 +117,60 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Status" xml:space="preserve">
-    <value>katayuan</value>
+  <data name="ActionDescriptionLbl" xml:space="preserve">
+    <value>Mô tả hành động</value>
+    <comment>Action Description</comment>
+  </data>
+  <data name="ActiveProposalsHeader" xml:space="preserve">
+    <value>Các đề xuất tích cực</value>
+    <comment>Active proposals</comment>
+  </data>
+  <data name="ArchivedProposalsHeader" xml:space="preserve">
+    <value>Archived Proposal (s)</value>
+    <comment>Archived Proposal (s)</comment>
+  </data>
+  <data name="CreateNewProposalBtnLbl" xml:space="preserve">
+    <value>Tạo đề xuất mới</value>
+    <comment>Create New Proposal</comment>
+  </data>
+  <data name="ForYourApprovalHeader" xml:space="preserve">
+    <value>For your approval</value>
+    <comment>For your approval</comment>
+  </data>
+  <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
+    <value>Số lần đệ trình bằng trạng thái</value>
+    <comment>Number of submission by status</comment>
+  </data>
+  <data name="ProjectsAssignToYouHeader" xml:space="preserve">
+    <value>Projects assign to you</value>
+    <comment>Projects assign to you</comment>
+  </data>
+  <data name="ProjectTypeLbl" xml:space="preserve">
+    <value>Loại dự án</value>
+    <comment>Project Type</comment>
+  </data>
+  <data name="StatusLbl" xml:space="preserve">
+    <value>Tình trạng</value>
+    <comment>Status</comment>
+  </data>
+  <data name="SubmissionLbl" xml:space="preserve">
+    <value>Đệ trình/ nộp</value>
+    <comment>Submissions</comment>
+  </data>
+  <data name="SubmittedByLbl" xml:space="preserve">
+    <value>Được nộp bởi</value>
+    <comment>Submitted By</comment>
+  </data>
+  <data name="TicketNumberLbl" xml:space="preserve">
+    <value>Số thẻ</value>
+    <comment>Ticket #</comment>
+  </data>
+  <data name="TitleLbl" xml:space="preserve">
+    <value>Tiêu đề</value>
+    <comment>Title</comment>
+  </data>
+  <data name="YourActionItemsHeader" xml:space="preserve">
+    <value>Your action item (s)</value>
+    <comment>Your action item (s)</comment>
   </data>
 </root>

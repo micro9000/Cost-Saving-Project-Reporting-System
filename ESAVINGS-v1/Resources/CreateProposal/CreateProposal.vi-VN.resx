@@ -117,124 +117,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ACTIVE" xml:space="preserve">
-    <value>ACTIVE</value>
+  <data name="AdditionalDescriptionLbl" xml:space="preserve">
+    <value>Thêm mô tả (Cắt giảm chi phí ước tính/ Chi phí tránh)</value>
+    <comment>Additional Description (Computed Cost reduction / Cost Avoidance)</comment>
   </data>
-  <data name="CANCELED" xml:space="preserve">
-    <value>CANCELED</value>
+  <data name="ChooseDeptAreaBeneficiaryLbl" xml:space="preserve">
+    <value>Chọn phòng ban/ Khu vực thụ hưởng của dự án bạn</value>
+    <comment>Choose department/area beneficiary of your project</comment>
   </data>
-  <data name="Client" xml:space="preserve">
-    <value>Staff</value>
+  <data name="CreateProposalLbl" xml:space="preserve">
+    <value>Tạo đề xuất</value>
+    <comment>Create Proposal</comment>
   </data>
-  <data name="COMPLETED" xml:space="preserve">
-    <value>COMPLETED</value>
+  <data name="CurrentDescriptionLbl" xml:space="preserve">
+    <value>Mô tả tình hình hiện tại</value>
+    <comment>Current Description</comment>
   </data>
-  <data name="CostAnalyst" xml:space="preserve">
-    <value>Cost Analyst</value>
+  <data name="CurrentLbl" xml:space="preserve">
+    <value>Hiện hành/ hiện tại</value>
+    <comment>Current</comment>
   </data>
-  <data name="CostFunnelEvaluation" xml:space="preserve">
-    <value>Cost Funnel Evaluation</value>
+  <data name="DeleteLbl" xml:space="preserve">
+    <value>Xóa bỏ</value>
+    <comment>Delete</comment>
   </data>
-  <data name="CostFunnelIdentified" xml:space="preserve">
-    <value>Cost Funnel Identified</value>
+  <data name="DeptAreaBeneficiaryLbl" xml:space="preserve">
+    <value>Bộ phận/ khu vực được thụ hưởng</value>
+    <comment>Department/Area beneficiary</comment>
   </data>
-  <data name="CostSiteInCharge" xml:space="preserve">
-    <value>Cost site incharge</value>
+  <data name="DollarImpactLbl" xml:space="preserve">
+    <value>Dollar Impact</value>
+    <comment>Dollar Impact</comment>
   </data>
-  <data name="COST_ANALYST_REVIEW_IN_PROGRESS" xml:space="preserve">
-    <value>COST-ANALYST-REVIEW-IN-PROGRESS</value>
+  <data name="EditProposalImgsHeader" xml:space="preserve">
+    <value>Chỉnh sửa hình ảnh đề xuất</value>
+    <comment>Edit proposal images</comment>
   </data>
-  <data name="COST_AVOIDANCE" xml:space="preserve">
-    <value>COST-AVOIDANCE</value>
+  <data name="ExpectedNumOfMonthsToBeActiveLbl" xml:space="preserve">
+    <value>Dự kiến thời gian hành động trong bao nhiêu tháng</value>
+    <comment>Expected number of months to be active</comment>
   </data>
-  <data name="COST_FUNNEL_EVALUATING" xml:space="preserve">
-    <value>COST-FUNNEL-EVALUATING</value>
+  <data name="ExpectedStartDateLbl" xml:space="preserve">
+    <value>Ngày dự kiến bắt đầu</value>
+    <comment>Expected start date</comment>
   </data>
-  <data name="COST_FUNNEL_IDENTIFIED" xml:space="preserve">
-    <value>FINANCE-PENDING</value>
+  <data name="FilenameLbl" xml:space="preserve">
+    <value>Tên</value>
+    <comment>Filename</comment>
   </data>
-  <data name="COST_SAVINGS" xml:space="preserve">
-    <value>COST-SAVINGS</value>
+  <data name="ProjectTitleLbl" xml:space="preserve">
+    <value>Tên đề tài</value>
+    <comment>Project Title</comment>
   </data>
-  <data name="DUPLICATE_ENTRY" xml:space="preserve">
-    <value>DUPLICATE-ENTRY</value>
+  <data name="ProjectTypeLbl" xml:space="preserve">
+    <value>Loại đề tài</value>
+    <comment>Project Type</comment>
   </data>
-  <data name="EXISTING_PROJECT" xml:space="preserve">
-    <value>EXISTING-PROJECT</value>
+  <data name="ProposalDescriptionLbl" xml:space="preserve">
+    <value>Mô tả đề xuất</value>
+    <comment>Proposal Description</comment>
   </data>
-  <data name="Finance" xml:space="preserve">
-    <value>Finance</value>
+  <data name="ProposalLbl" xml:space="preserve">
+    <value>Đề xuất</value>
+    <comment>Proposal</comment>
   </data>
-  <data name="FINANCE_REVIEW_IN_PROGRESS" xml:space="preserve">
-    <value>FINANCE-REVIEW-IN-PROGRESS</value>
+  <data name="RemarksLbl" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Remarks</comment>
   </data>
-  <data name="INProgressActionRequired" xml:space="preserve">
-    <value>IN Progress Action Required</value>
+  <data name="SubmissionConfirmationHeader" xml:space="preserve">
+    <value>Cảm ơn sự tham gia của bạn trong cuộc vận động cắt giảm chi phí</value>
+    <comment>THANK YOU FOR PARTICIPATING ON THE COST-SAVING CAMPAIGN!</comment>
   </data>
-  <data name="INVALID" xml:space="preserve">
-    <value>INVALID</value>
+  <data name="SubmissionConfirmationMsg" xml:space="preserve">
+    <value>Đề xuất của bạn đã được nộp thành công. Sẽ có 1 email thông báo mỗi khi đề xuất của bạn thay đổi tình trạng hoặc người phê duyệt gắn 1 hành động</value>
+    <comment>Your proposal was submitted successfully. Expect an email notification everytime your proposal changes status or the approvers assign an action item.</comment>
   </data>
-  <data name="Manager" xml:space="preserve">
-    <value>Manager</value>
+  <data name="SubmitBtnLbl" xml:space="preserve">
+    <value>Gửi đi</value>
+    <comment>Submit</comment>
   </data>
-  <data name="MasterAccount" xml:space="preserve">
-    <value>Master Account</value>
+  <data name="SupportingDocumentsLbl" xml:space="preserve">
+    <value>Các tài liệu hỗ trợ</value>
+    <comment>Supporting Documents</comment>
   </data>
-  <data name="NA" xml:space="preserve">
-    <value>NA</value>
+  <data name="UpdateProposalLbl" xml:space="preserve">
+    <value>Cập nhật đề xuất</value>
+    <comment>Update Proposal</comment>
   </data>
-  <data name="NewProductEntry" xml:space="preserve">
-    <value>New Project Entry</value>
+  <data name="UploadBtnLbl" xml:space="preserve">
+    <value>Tải lên</value>
+    <comment>Upload</comment>
   </data>
-  <data name="PROJECT_PROPOSAL" xml:space="preserve">
-    <value>PROJECT-PROPOSAL</value>
-  </data>
-  <data name="REALIZATION" xml:space="preserve">
-    <value>REALIZATION</value>
-  </data>
-  <data name="DELAYED" xml:space="preserve">
-    <value>DELAYED</value>
-  </data>
-  <data name="DELAYED_sm" xml:space="preserve">
-    <value>Delayed</value>
-  </data>
-  <data name="FunnelStatus_active" xml:space="preserve">
-    <value>Active</value>
-  </data>
-  <data name="FunnelStatus_cancelled" xml:space="preserve">
-    <value>Cancelled</value>
-  </data>
-  <data name="FunnelStatus_complete" xml:space="preserve">
-    <value>Complete</value>
-  </data>
-  <data name="FunnelStatus_evaluating" xml:space="preserve">
-    <value>Evaluating</value>
-  </data>
-  <data name="FunnelStatus_identified" xml:space="preserve">
-    <value>Identified</value>
-  </data>
-  <data name="MONITOR" xml:space="preserve">
-    <value>MONITOR</value>
-  </data>
-  <data name="MONITOR_sm" xml:space="preserve">
-    <value>Monitor</value>
-  </data>
-  <data name="ON_HOLD" xml:space="preserve">
-    <value>ON HOLD</value>
-  </data>
-  <data name="ON_HOLD_sm" xml:space="preserve">
-    <value>On Hold</value>
-  </data>
-  <data name="COST_AVOIDANCE_sm" xml:space="preserve">
-    <value>Cost Avoidance</value>
-  </data>
-  <data name="COST_SAVINGS_sm" xml:space="preserve">
-    <value>Cost Savings</value>
-  </data>
-  <data name="ForVerification" xml:space="preserve">
-    <value>For-Verification</value>
-  </data>
-  <data name="OneTimeSavings" xml:space="preserve">
-    <value>One Time Savings</value>
+  <data name="ViewDetailsBtnLbl" xml:space="preserve">
+    <value>Xem chi tiết</value>
+    <comment>View details</comment>
   </data>
 </root>

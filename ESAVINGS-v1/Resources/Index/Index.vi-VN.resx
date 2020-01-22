@@ -117,7 +117,84 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+    <comment>All</comment>
+  </data>
+  <data name="BPI" xml:space="preserve">
+    <value>Sự thực thi hoàn hảo</value>
+    <comment>Best practice implementation</comment>
+  </data>
+  <data name="Cost_avoidance_dollar_impact" xml:space="preserve">
+    <value>Ảnh hưởng chi phí cần tránh</value>
+    <comment>Cost-Avoidance Dollar Impact</comment>
+  </data>
+  <data name="Cost_avoidance_total" xml:space="preserve">
+    <value>Tổng chi phí cần tránh</value>
+    <comment>Cost-Avoidance Total</comment>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Hiện tại</value>
+    <comment>Current</comment>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Bộ phận</value>
+    <comment>Department</comment>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Nhân viên</value>
+    <comment>Employee</comment>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>Ngày kết thúc</value>
+    <comment>End Date</comment>
+  </data>
+  <data name="For_verification" xml:space="preserve">
+    <value>Cho xác nhận</value>
+    <comment>For-Verification</comment>
+  </data>
+  <data name="Keyword" xml:space="preserve">
+    <value>Từ khóa</value>
+    <comment>Keyword</comment>
+  </data>
+  <data name="MultiSelection" xml:space="preserve">
+    <value>Nhiều sự lựa chọn</value>
+    <comment>Multiple Selection</comment>
+  </data>
+  <data name="ProjectedDollarImpact" xml:space="preserve">
+    <value>Ảnh hưởng dola có kế hoạch</value>
+    <comment>Projected Dollar Impact</comment>
+  </data>
+  <data name="Proposal" xml:space="preserve">
+    <value>Đề xuất</value>
+    <comment>Proposal</comment>
+  </data>
+  <data name="Savings_Dollar_Impact" xml:space="preserve">
+    <value>Ảnh hưởng tiết kiệm Dola</value>
+    <comment>Savings Dollar Impact</comment>
+  </data>
+  <data name="Savings_total" xml:space="preserve">
+    <value>Cắt giảm tổng thể</value>
+    <comment>Savings-Total</comment>
+  </data>
+  <data name="Search_project" xml:space="preserve">
+    <value>Tìm kiếm các đề tài</value>
+    <comment>Search Projects</comment>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Ngày bắt đầu</value>
+    <comment>Start Date</comment>
+  </data>
   <data name="Status" xml:space="preserve">
-    <value>tình trạng</value>
+    <value>Tình trạng</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Chủ đề</value>
+    <comment>Title</comment>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Loại</value>
+    <comment>Type</comment>
   </data>
 </root>

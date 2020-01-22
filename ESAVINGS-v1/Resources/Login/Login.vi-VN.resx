@@ -117,7 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Status" xml:space="preserve">
-    <value>状态</value>
+  <data name="CancelBtnLbl" xml:space="preserve">
+    <value>Hủy</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="LoginBtnLbl" xml:space="preserve">
+    <value>Đăng nhập</value>
+    <comment>Login</comment>
+  </data>
+  <data name="LoginFormHeader" xml:space="preserve">
+    <value>Đăng nhập chứng từ</value>
+    <comment>Login Form</comment>
+  </data>
+  <data name="OperatorRegistrationResetPassBtnLbl" xml:space="preserve">
+    <value>Nhân viên đăng ký/ Đặt lại mật khẩu</value>
+    <comment>Operator Registration/Reset Password</comment>
+  </data>
+  <data name="RememberMeLbl" xml:space="preserve">
+    <value>Ghi nhớ tôi</value>
+    <comment>Remember Me</comment>
+  </data>
+  <data name="SubmitBtnLbl" xml:space="preserve">
+    <value>Nộp</value>
+    <comment>Submit</comment>
+  </data>
+  <data name="YourDefaultPassLbl" xml:space="preserve">
+    <value>Mật khẩu mặc định của bạn là</value>
+    <comment>Your default password is</comment>
   </data>
 </root>

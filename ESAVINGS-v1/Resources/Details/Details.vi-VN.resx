@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionDescriptionLbl" xml:space="preserve">
+    <value>Mô tả hành động</value>
+    <comment>Action description</comment>
+  </data>
+  <data name="ActionItemTabHeader" xml:space="preserve">
+    <value>Hạng mục cần thực hiện</value>
+    <comment>Action Item</comment>
+  </data>
+  <data name="ActionVerificationDateLbl" xml:space="preserve">
+    <value>Ngày xác nhận</value>
+    <comment>Verification Date</comment>
+  </data>
+  <data name="ActionVerificationStatusLbl" xml:space="preserve">
+    <value>Tình trạng xác nhận</value>
+    <comment>Verification Status</comment>
+  </data>
+  <data name="ActionVerifyDoneBtnLbl" xml:space="preserve">
+    <value>Xác nhận hoàn tất</value>
+    <comment>Verify Done</comment>
+  </data>
+  <data name="ActionVerifyNotDoneBtnLbl" xml:space="preserve">
+    <value>Xác nhận không hoàn tất</value>
+    <comment>Verify Not Done</comment>
+  </data>
+  <data name="ActiveBtnLbl" xml:space="preserve">
+    <value>Hoạt động</value>
+    <comment>Active</comment>
+  </data>
+  <data name="actualCompletionDateLbl" xml:space="preserve">
+    <value>Actual completion date</value>
+    <comment>Actual completion date</comment>
+  </data>
+  <data name="AdditionalDescriptionLbl" xml:space="preserve">
+    <value>Thêm mô tả (Cắt giảm chi phí ước tính/ Chi phí tránh)</value>
+    <comment>Additional Description (Computed Cost reduction / Cost Avoidance)</comment>
+  </data>
+  <data name="ApprovalStatusTabHeader" xml:space="preserve">
+    <value>Tình trạng phê duyệt</value>
+    <comment>Approval status</comment>
+  </data>
+  <data name="ApprovalStatus_NoVerification" xml:space="preserve">
+    <value>Chưa xác nhận</value>
+    <comment>No-verification</comment>
+  </data>
+  <data name="ApprovalStatus_VerifiedClosed" xml:space="preserve">
+    <value>Xác nhận được đóng</value>
+    <comment>Verified-closed</comment>
+  </data>
+  <data name="ApprovalStatus_VerifyNotDone" xml:space="preserve">
+    <value>Xác nhận chưa hoàn tất</value>
+    <comment>Verify-no-done</comment>
+  </data>
+  <data name="ApproverNameLbl" xml:space="preserve">
+    <value>Người phê duyệt</value>
+    <comment>Approver</comment>
+  </data>
+  <data name="ApproverRemarksLbl" xml:space="preserve">
+    <value>Ghi chú</value>
+    <comment>Remarks</comment>
+  </data>
+  <data name="AssignActionBtnLbl" xml:space="preserve">
+    <value>Gán hoạt động</value>
+    <comment>Assign action</comment>
+  </data>
+  <data name="AssignActionOwnerModalHeader" xml:space="preserve">
+    <value>Gán hoạt động cho người có liên quan</value>
+    <comment>Assign action owner</comment>
+  </data>
+  <data name="AssignBtnLbl" xml:space="preserve">
+    <value>Gán</value>
+    <comment>Assign</comment>
+  </data>
+  <data name="AssignedDatelbl" xml:space="preserve">
+    <value>Gán ngày</value>
+    <comment>Assigned Date</comment>
+  </data>
+  <data name="AssigneedSectionHeader" xml:space="preserve">
+    <value>Người phụ trách hạng mục</value>
+    <comment>Assignee Section</comment>
+  </data>
+  <data name="AttachedByTbHeader" xml:space="preserve">
+    <value>Được đính kèm bởi</value>
+    <comment>Attached By</comment>
+  </data>
+  <data name="AttachmentSectionHeader" xml:space="preserve">
+    <value>Hạn mục đính kèm</value>
+    <comment>Attachment Section</comment>
+  </data>
+  <data name="AttachmentTabHeader" xml:space="preserve">
+    <value>Sự đính kèm</value>
+    <comment>Attachment</comment>
+  </data>
+  <data name="BestPracticeImplementation" xml:space="preserve">
+    <value>Thực hiện luyện tập hoàn hảo</value>
+    <comment>Best Practice Implementation</comment>
+  </data>
+  <data name="CancelBtnLbl" xml:space="preserve">
+    <value>Hủy</value>
+    <comment>Cancel</comment>
+  </data>
+  <data name="ChangeCostAnalystLbl" xml:space="preserve">
+    <value>Thay đổi phân tích chi phí</value>
+    <comment>Change Cost-Analyst</comment>
+  </data>
+  <data name="ChangeFinanceLbl" xml:space="preserve">
+    <value>Thay đổi tài chính LbI</value>
+    <comment>Change Finance</comment>
+  </data>
+  <data name="ChooseActionOwnerLbl" xml:space="preserve">
+    <value>Chọn người thực hiện hành động</value>
+    <comment>Choose action owner</comment>
+  </data>
+  <data name="ChooseCostAnalystApproverLbl" xml:space="preserve">
+    <value>Chọn người phê duyệt phân tích chi phí</value>
+    <comment>Choose cost-analyst approver</comment>
+  </data>
+  <data name="ChooseFinanceApproverLbl" xml:space="preserve">
+    <value>CHọn người phê duyệt tài chính</value>
+    <comment>Choose finance approver</comment>
+  </data>
+  <data name="ContinueUpdateBtnLbl" xml:space="preserve">
+    <value>Tiếp tục cập nhật</value>
+    <comment>Continue Update</comment>
+  </data>
+  <data name="CostAnalystApproverLbl" xml:space="preserve">
+    <value>Phân tích chi phí</value>
+    <comment>Cost-Analyst</comment>
+  </data>
+  <data name="CostAnalystVerifiedDateLbl" xml:space="preserve">
+    <value>Đã xác nhận ngày</value>
+    <comment>Verified Date</comment>
+  </data>
+  <data name="CostAnalystVerifiedStatusLbl" xml:space="preserve">
+    <value>Đã xác nhận tình trạng</value>
+    <comment>Verified Status</comment>
+  </data>
+  <data name="CostFunnelEvaluatingBtnLbl" xml:space="preserve">
+    <value>Đánh giá chi phí rót</value>
+    <comment>Cost Funnel Evaluating</comment>
+  </data>
+  <data name="CurrentCostAnalystRemarksLbl" xml:space="preserve">
+    <value>Các ghi chú</value>
+    <comment>Remarks</comment>
+  </data>
+  <data name="CurrentDescLbl" xml:space="preserve">
+    <value>Hiện tại</value>
+    <comment>Current</comment>
+  </data>
+  <data name="currentDueDateLbl" xml:space="preserve">
+    <value>Current due date</value>
+    <comment>Current due date</comment>
+  </data>
+  <data name="DateSubmittedLbl" xml:space="preserve">
+    <value>Ngày đã nộp</value>
+    <comment>Date submitted</comment>
+  </data>
+  <data name="DepartmentAreaBeneficiaryLbl" xml:space="preserve">
+    <value>Phòng ban/khu vực thụ hưởng</value>
+    <comment>Department / Area beneficiary</comment>
+  </data>
+  <data name="DeptCostAnalystSectionHeader" xml:space="preserve">
+    <value>Nhóm phòng ban phân tích chi phí</value>
+    <comment>Department Cost Analyst Section</comment>
+  </data>
+  <data name="DollarImpactLbl" xml:space="preserve">
+    <value>Ảnh hưởng Dola</value>
+    <comment>Dollar Impact</comment>
+  </data>
+  <data name="DuplicateEntryBtnLbl" xml:space="preserve">
+    <value>Nhập trùng lặp</value>
+    <comment>Duplicate Entry</comment>
+  </data>
+  <data name="EmployeeNameLbl" xml:space="preserve">
+    <value>Tên nhân viên</value>
+    <comment>Project Initiator</comment>
+  </data>
+  <data name="ExistingProjectBtnLbl" xml:space="preserve">
+    <value>Dự án hiện hành</value>
+    <comment>Existing Project</comment>
+  </data>
+  <data name="ExpectedStartDateLbl" xml:space="preserve">
+    <value>Ngày mong đợi bắt đầu</value>
+    <comment>Expected Start Date</comment>
+  </data>
+  <data name="FileNameTbHeader" xml:space="preserve">
+    <value>Tên</value>
+    <comment>File Name</comment>
+  </data>
+  <data name="FinanceApprovalLbl" xml:space="preserve">
+    <value>Phê duyệt tài chính</value>
+    <comment>Finance Approval</comment>
+  </data>
+  <data name="FinanceApproverLbl" xml:space="preserve">
+    <value>Người phê duyệt tài chính</value>
+    <comment>Finance Approver</comment>
+  </data>
+  <data name="FinanceCategoryLbl" xml:space="preserve">
+    <value>Nhóm tài chính</value>
+    <comment>Finance Category</comment>
+  </data>
+  <data name="FinanceSectionHeader" xml:space="preserve">
+    <value>Nhóm tài chính</value>
+    <comment>Finance Section</comment>
+  </data>
+  <data name="funnelStatuslbl" xml:space="preserve">
+    <value>Funnel statuss</value>
+    <comment>Funnel status</comment>
+  </data>
+  <data name="InvalidBtnLbl" xml:space="preserve">
+    <value>Vô hiệu</value>
+    <comment>Invalid</comment>
+  </data>
+  <data name="MarkAsBPI" xml:space="preserve">
+    <value>**Đánh dấu sự thực thi hoàn hảo**</value>
+    <comment>** Marked as Best practice implementation **</comment>
+  </data>
+  <data name="MonthLbl" xml:space="preserve">
+    <value>Tháng</value>
+    <comment>Month</comment>
+  </data>
+  <data name="NeededActionLbl" xml:space="preserve">
+    <value>Hành động cần thực hiện</value>
+    <comment>Needed action</comment>
+  </data>
+  <data name="NoAttachMsg" xml:space="preserve">
+    <value>Hiện tại không có file đính kèm</value>
+    <comment>THERE IS NO ATTACHMENT AT THE MOMENT</comment>
+  </data>
+  <data name="NumberOfMonthsToBeActiveLbl" xml:space="preserve">
+    <value>Số tháng hoạt động</value>
+    <comment>Number of months to be active</comment>
+  </data>
+  <data name="originalDueDateLbl" xml:space="preserve">
+    <value>Original due date</value>
+    <comment>Original due date</comment>
+  </data>
+  <data name="OverviewTabHeader" xml:space="preserve">
+    <value>Tổng quan</value>
+    <comment>Overview</comment>
+  </data>
+  <data name="OwnerNameLbl" xml:space="preserve">
+    <value>Tên người phụ trách</value>
+    <comment>Owner Name</comment>
+  </data>
+  <data name="OwnersRemarksLbl" xml:space="preserve">
+    <value>Ghi chú của người phụ trách</value>
+    <comment>Owner's Remarks</comment>
+  </data>
+  <data name="plannedProjectStartDateLbl" xml:space="preserve">
+    <value>Planned project start date</value>
+    <comment>Planned project start date</comment>
+  </data>
+  <data name="plannedSavingStartDateLbl" xml:space="preserve">
+    <value>Planned saving start date</value>
+    <comment>Planned saving start date</comment>
+  </data>
+  <data name="ProjectOwnerLb" xml:space="preserve">
+    <value>Project Owner</value>
+    <comment>Project Owner</comment>
+  </data>
+  <data name="ProjectTitleLbl" xml:space="preserve">
+    <value>Tên đề tài</value>
+    <comment>Project Title</comment>
+  </data>
+  <data name="ProjectTypeLbl" xml:space="preserve">
+    <value>Loại đề tài</value>
+    <comment>Benefit Type</comment>
+  </data>
+  <data name="ProposalApprover_Closed" xml:space="preserve">
+    <value>Đã đóng</value>
+    <comment>Closed</comment>
+  </data>
+  <data name="ProposalApprover_Disapproved" xml:space="preserve">
+    <value>Không được phê duyệt</value>
+    <comment>Disapproved</comment>
+  </data>
+  <data name="ProposalApprover_NoVerification" xml:space="preserve">
+    <value>Không xác nhận</value>
+    <comment>No-verification</comment>
+  </data>
+  <data name="ProposalApprover_Saved" xml:space="preserve">
+    <value>Đã lưu</value>
+    <comment>Saved</comment>
+  </data>
+  <data name="ProposalApprover_Verified" xml:space="preserve">
+    <value>Đã phê duyệt</value>
+    <comment>Verified</comment>
+  </data>
+  <data name="ProposalDescLb" xml:space="preserve">
+    <value>Đề xuất</value>
+    <comment>Proposal</comment>
+  </data>
+  <data name="ProposalDetailsHeader" xml:space="preserve">
+    <value>Chi tiết đề xuất</value>
+    <comment>Proposal Details</comment>
+  </data>
+  <data name="QlikViewSectionHeader" xml:space="preserve">
+    <value>Qlik View Section</value>
+    <comment>Qlik View Section</comment>
+  </data>
+  <data name="SaveBtnLbl" xml:space="preserve">
+    <value>Lưu</value>
+    <comment>Save</comment>
+  </data>
+  <data name="SearchEmployeeLbl" xml:space="preserve">
+    <value>Tìm kiếm nhân viên</value>
+    <comment>Search Employee</comment>
+  </data>
+  <data name="SupportingDocumentsLbl" xml:space="preserve">
+    <value>Các tài liệu hỗ trợ</value>
+    <comment>Supporting Documents</comment>
+  </data>
+  <data name="TicketNumberLbl" xml:space="preserve">
+    <value>Số thẻ</value>
+    <comment>Ticket #</comment>
+  </data>
+  <data name="TotalDollarImpactLbl" xml:space="preserve">
+    <value>Tổng dola ảnh hưởng</value>
+    <comment>Total Dollar Impact</comment>
+  </data>
+  <data name="UpdateProposalbtn" xml:space="preserve">
+    <value>Cập nhật đề xuất này</value>
+    <comment>Update this proposal</comment>
+  </data>
+  <data name="updateProposalWarningMsg" xml:space="preserve">
+    <value>Chú ý: Thay đổi khu vực bộ phận thụ hưởng sẽ thay đổi người phê duyệt chi phí phân tích</value>
+    <comment>NOTE: Changing the area/department beneficiary might change the cost-analyst approver.</comment>
+  </data>
+</root>

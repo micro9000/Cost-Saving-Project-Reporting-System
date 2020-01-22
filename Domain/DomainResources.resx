@@ -225,4 +225,16 @@
   <data name="ON_HOLD_sm" xml:space="preserve">
     <value>On Hold</value>
   </data>
+  <data name="COST_AVOIDANCE_sm" xml:space="preserve">
+    <value>Cost Avoidance</value>
+  </data>
+  <data name="COST_SAVINGS_sm" xml:space="preserve">
+    <value>Cost Savings</value>
+  </data>
+  <data name="ForVerification" xml:space="preserve">
+    <value>For-Verification</value>
+  </data>
+  <data name="OneTimeSavings" xml:space="preserve">
+    <value>One Time Savings</value>
+  </data>
 </root>
