@@ -118,123 +118,163 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ACTIVE" xml:space="preserve">
-    <value>ACTIVE</value>
+    <value>AKTIF</value>
+    <comment>ACTIVE</comment>
   </data>
   <data name="CANCELED" xml:space="preserve">
-    <value>CANCELED</value>
+    <value>DIBATALKAN</value>
+    <comment>CANCELED</comment>
   </data>
   <data name="Client" xml:space="preserve">
-    <value>Staff</value>
+    <value>Kakitangan</value>
+    <comment>Staff</comment>
   </data>
   <data name="COMPLETED" xml:space="preserve">
-    <value>COMPLETED</value>
+    <value>SELESAI</value>
+    <comment>COMPLETED</comment>
   </data>
   <data name="CostAnalyst" xml:space="preserve">
-    <value>Cost Analyst</value>
+    <value>Penganalisa Kos</value>
+    <comment>Cost Analyst</comment>
   </data>
   <data name="CostFunnelEvaluation" xml:space="preserve">
-    <value>Cost Funnel Evaluation</value>
+    <value>Penilaian Kos Corong</value>
+    <comment>Cost Funnel Evaluation</comment>
   </data>
   <data name="CostFunnelIdentified" xml:space="preserve">
-    <value>Cost Funnel Identified</value>
+    <value>Kos Corong Dikenalpasti</value>
+    <comment>Cost Funnel Identified</comment>
   </data>
   <data name="CostSiteInCharge" xml:space="preserve">
-    <value>Cost site incharge</value>
+    <value>Tapak Kos Bertanggungjawab</value>
+    <comment>Cost site incharge</comment>
   </data>
   <data name="COST_ANALYST_REVIEW_IN_PROGRESS" xml:space="preserve">
-    <value>COST-ANALYST-REVIEW-IN-PROGRESS</value>
+    <value>SEMAKAN-PENGANALISIS-KOS-DALAM-PROCESS</value>
+    <comment>COST-ANALYST-REVIEW-IN-PROGRESS</comment>
   </data>
   <data name="COST_AVOIDANCE" xml:space="preserve">
-    <value>COST-AVOIDANCE</value>
+    <value>PENGELAKAN-KOS</value>
+    <comment>COST-AVOIDANCE</comment>
   </data>
   <data name="COST_FUNNEL_EVALUATING" xml:space="preserve">
-    <value>COST-FUNNEL-EVALUATING</value>
+    <value>PENILAIAN-KOS-CORONG</value>
+    <comment>COST-FUNNEL-EVALUATING</comment>
   </data>
   <data name="COST_FUNNEL_IDENTIFIED" xml:space="preserve">
-    <value>FINANCE-PENDING</value>
+    <value>KEWANGAN-MASIH-BELUM-SELESAI</value>
+    <comment>FINANCE-PENDING</comment>
   </data>
   <data name="COST_SAVINGS" xml:space="preserve">
-    <value>COST-SAVINGS</value>
+    <value>PENJIMATAN-KOS</value>
+    <comment>COST-SAVINGS</comment>
   </data>
   <data name="DUPLICATE_ENTRY" xml:space="preserve">
-    <value>DUPLICATE-ENTRY</value>
+    <value>KEMASUKKAN-DUPLIKAT</value>
+    <comment>DUPLICATE-ENTRY</comment>
   </data>
   <data name="EXISTING_PROJECT" xml:space="preserve">
-    <value>EXISTING-PROJECT</value>
+    <value>PROJEK-SEDIA-ADA</value>
+    <comment>EXISTING-PROJECT</comment>
   </data>
   <data name="Finance" xml:space="preserve">
-    <value>Finance</value>
+    <value>Kewanagan</value>
+    <comment>Finance</comment>
   </data>
   <data name="FINANCE_REVIEW_IN_PROGRESS" xml:space="preserve">
-    <value>FINANCE-REVIEW-IN-PROGRESS</value>
+    <value>SEMAKAN-KEWANGAN-DALAM-PROCESS</value>
+    <comment>FINANCE-REVIEW-IN-PROGRESS</comment>
   </data>
   <data name="INProgressActionRequired" xml:space="preserve">
-    <value>IN Progress Action Required</value>
+    <value>Tindakan Diperlukan dalam process</value>
+    <comment>IN Progress Action Required</comment>
   </data>
   <data name="INVALID" xml:space="preserve">
-    <value>INVALID</value>
+    <value>TIDAK SAH</value>
+    <comment>INVALID</comment>
   </data>
   <data name="Manager" xml:space="preserve">
-    <value>Manager</value>
+    <value>Pengurus</value>
+    <comment>Manager</comment>
   </data>
   <data name="MasterAccount" xml:space="preserve">
-    <value>Master Account</value>
+    <value>Tuan Akaun</value>
+    <comment>Master Account</comment>
   </data>
   <data name="NA" xml:space="preserve">
     <value>NA</value>
+    <comment>NA</comment>
   </data>
   <data name="NewProductEntry" xml:space="preserve">
-    <value>New Project Entry</value>
+    <value>Kemasukkan Projeck Baru</value>
+    <comment>New Project Entry</comment>
   </data>
   <data name="PROJECT_PROPOSAL" xml:space="preserve">
-    <value>PROJECT-PROPOSAL</value>
+    <value>CADANGAN PROJEK</value>
+    <comment>PROJECT-PROPOSAL</comment>
   </data>
   <data name="REALIZATION" xml:space="preserve">
-    <value>REALIZATION</value>
+    <value>KESEDARAN</value>
+    <comment>REALIZATION</comment>
   </data>
   <data name="DELAYED" xml:space="preserve">
-    <value>DELAYED</value>
+    <value>TERTANGGUH</value>
+    <comment>DELAYED</comment>
   </data>
   <data name="DELAYED_sm" xml:space="preserve">
-    <value>Delayed</value>
+    <value>Tertangguh</value>
+    <comment>Delayed</comment>
   </data>
   <data name="FunnelStatus_active" xml:space="preserve">
-    <value>Active</value>
+    <value>Aktif</value>
+    <comment>Active</comment>
   </data>
   <data name="FunnelStatus_cancelled" xml:space="preserve">
-    <value>Cancelled</value>
+    <value>Dibatalkan</value>
+    <comment>Cancelled</comment>
   </data>
   <data name="FunnelStatus_complete" xml:space="preserve">
-    <value>Complete</value>
+    <value>Selesai</value>
+    <comment>Complete</comment>
   </data>
   <data name="FunnelStatus_evaluating" xml:space="preserve">
-    <value>Evaluating</value>
+    <value>Menilai</value>
+    <comment>Evaluating</comment>
   </data>
   <data name="FunnelStatus_identified" xml:space="preserve">
-    <value>Identified</value>
+    <value>Dikenalpasti</value>
+    <comment>Identified</comment>
   </data>
   <data name="MONITOR" xml:space="preserve">
-    <value>MONITOR</value>
+    <value>MEMANTAU</value>
+    <comment>MONITOR</comment>
   </data>
   <data name="MONITOR_sm" xml:space="preserve">
-    <value>Monitor</value>
+    <value>Memantau</value>
+    <comment>Monitor</comment>
   </data>
   <data name="ON_HOLD" xml:space="preserve">
-    <value>ON HOLD</value>
+    <value>DITAHAN</value>
+    <comment>ON HOLD</comment>
   </data>
   <data name="ON_HOLD_sm" xml:space="preserve">
-    <value>On Hold</value>
+    <value>Ditahan</value>
+    <comment>On Hold</comment>
   </data>
   <data name="COST_AVOIDANCE_sm" xml:space="preserve">
-    <value>Cost Avoidance</value>
+    <value>Pengelakan-kos</value>
+    <comment>Cost Avoidance</comment>
   </data>
   <data name="COST_SAVINGS_sm" xml:space="preserve">
-    <value>Cost Savings</value>
+    <value>Penjimatan-kos</value>
+    <comment>Cost Savings</comment>
   </data>
   <data name="ForVerification" xml:space="preserve">
-    <value>For-Verification</value>
+    <value>Untuk-Pengesahan</value>
+    <comment>For-Verification</comment>
   </data>
   <data name="OneTimeSavings" xml:space="preserve">
-    <value>One Time Savings</value>
+    <value>Simpanan Satu Kali</value>
+    <comment>One Time Savings</comment>
   </data>
 </root>

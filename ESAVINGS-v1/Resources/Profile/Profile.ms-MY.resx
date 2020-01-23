@@ -124,19 +124,19 @@
     <value>Cadangan Aktif</value>
   </data>
   <data name="ArchivedProposalsHeader" xml:space="preserve">
-    <value>Archived Proposal (s)</value>
+    <value>Cadangan diarkibkan</value>
   </data>
   <data name="CreateNewProposalBtnLbl" xml:space="preserve">
     <value>Buat Cadangan Baru</value>
   </data>
   <data name="ForYourApprovalHeader" xml:space="preserve">
-    <value>For your approval</value>
+    <value>Untuk kelulusan anda</value>
   </data>
   <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
     <value>Bilangan penyerahan mengikut status</value>
   </data>
   <data name="ProjectsAssignToYouHeader" xml:space="preserve">
-    <value>Projects assign to you</value>
+    <value>Projek-projek yang diberikan kepada anda</value>
   </data>
   <data name="ProjectTypeLbl" xml:space="preserve">
     <value>Jenis Projek</value>
@@ -157,6 +157,6 @@
     <value>Tajuk</value>
   </data>
   <data name="YourActionItemsHeader" xml:space="preserve">
-    <value>Your action item (s)</value>
+    <value>Item tindakan anda</value>
   </data>
 </root>
