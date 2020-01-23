@@ -554,15 +554,15 @@
     <comment>Verify not done</comment>
   </data>
   <data name="area_dept" xml:space="preserve">
-    <value>Area/Department Beneficiary</value>
+    <value>Penerima Kawasan / Jabatan</value>
     <comment>Area/Department Beneficiary</comment>
   </data>
   <data name="current_description" xml:space="preserve">
-    <value>Current description</value>
+    <value>Penerangan semasa</value>
     <comment>Current description</comment>
   </data>
   <data name="dollar_impact" xml:space="preserve">
-    <value>Dollar impact</value>
+    <value>Kesan dolar</value>
     <comment>Dollar impact</comment>
   </data>
   <data name="done_adding_finance_approver" xml:space="preserve">
@@ -570,39 +570,39 @@
     <comment>Done adding finance approver</comment>
   </data>
   <data name="expected_start_date" xml:space="preserve">
-    <value>Expected start date</value>
+    <value>Tarikh mula dijangkakan</value>
     <comment>Expected start date</comment>
   </data>
   <data name="invalid_status" xml:space="preserve">
-    <value>Invalid Status</value>
+    <value>Status tidak sah</value>
     <comment>Invalid Status</comment>
   </data>
   <data name="number_of_months_active" xml:space="preserve">
-    <value>Number of months to be active</value>
+    <value>Bilangan bulan untuk menjadi aktif</value>
     <comment>Number of months to be active</comment>
   </data>
   <data name="permission_denied" xml:space="preserve">
-    <value>Permission denied</value>
+    <value>Kebenaran dinafikan</value>
     <comment>Permission denied</comment>
   </data>
   <data name="project_id" xml:space="preserve">
-    <value>Project Id</value>
+    <value>Id Projek</value>
     <comment>Project Id</comment>
   </data>
   <data name="project_title" xml:space="preserve">
-    <value>Project Title</value>
+    <value>Tajuk Projek</value>
     <comment>Project Title</comment>
   </data>
   <data name="project_type" xml:space="preserve">
-    <value>Project type</value>
+    <value>Jenis projek</value>
     <comment>Project type</comment>
   </data>
   <data name="proposal_description" xml:space="preserve">
-    <value>Proposal description</value>
+    <value>Penerangan cadangan</value>
     <comment>Proposal description</comment>
   </data>
   <data name="remarks" xml:space="preserve">
-    <value>Remarks</value>
+    <value>Perkataan</value>
     <comment>Remarks</comment>
   </data>
   <data name="action_approval_email_msg" xml:space="preserve">
@@ -618,19 +618,19 @@
     <comment>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</comment>
   </data>
   <data name="number_of_months_active_required" xml:space="preserve">
-    <value>Number of months to be active is required</value>
+    <value>Bilangan bulan diperlukan untuk aktif</value>
     <comment>Number of months to be active is required</comment>
   </data>
   <data name="updated_funnel_status" xml:space="preserve">
-    <value>Updated funnel status</value>
+    <value>Status corong yang dikemas kini</value>
     <comment>Updated funnel status</comment>
   </data>
   <data name="update_dollar_impact" xml:space="preserve">
-    <value>Update dollar impact</value>
+    <value>Kemas kini kesan dolar</value>
     <comment>Update dollar impact</comment>
   </data>
   <data name="update_number_of_months_active" xml:space="preserve">
-    <value>Update number of months to be active</value>
+    <value>Kemas kini bilangan bulan untuk menjadi aktif</value>
     <comment>Update number of months to be active</comment>
   </data>
   <data name="action_approval_complete_reqmts_msg" xml:space="preserve">

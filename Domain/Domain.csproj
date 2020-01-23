@@ -58,6 +58,16 @@
     <Compile Include="CostAnalystDeptCode.cs" />
     <Compile Include="CostSiteInCharge.cs" />
     <Compile Include="CurrentImg.cs" />
+    <Compile Include="DomainResources.ms-MY.Designer.cs">
+      <DependentUpon>DomainResources.ms-MY.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DomainResources.vi-VN.Designer.cs">
+      <DependentUpon>DomainResources.vi-VN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="DomainResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +98,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DomainResources.ms-MY.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainResources.ms-MY.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DomainResources.vi-VN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>DomainResources.vi-VN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="DomainResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>DomainResources.Designer.cs</LastGenOutput>
