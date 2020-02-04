@@ -17,6 +17,7 @@
 	{
 		dollarImpact = Model.DollarImpact;
 	}
+	string dollarImpactFormatted = Model.DollarImpactFormatted;
 
 	bool isProjectOwner = false;
 	if (!string.IsNullOrWhiteSpace(Model.ProjectOwnerFFID))
@@ -24,7 +25,9 @@
 		isProjectOwner = (Model.ProjectOwnerFFID == ViewBag.UserFFID || (string.IsNullOrEmpty(Model.ProjectOwnerFFID) && Model.EmpFFID == ViewBag.UserFFID && (bool)ViewBag.IsDL == false));
 	}
 
-	decimal totalDollarImpact = dollarImpact * Model.NumberOfMonthsToBeActive;
+	string totalDollarImpact = Model.ProjectedDollarImpact;
+
+	//decimal totalDollarImpact = dollarImpact * Model.NumberOfMonthsToBeActive;
 
 	string expectedStartDate = "";
 	string originalDueDate = "";
@@ -173,7 +176,7 @@
 															}
 															else
 															{
-																<div class="details-content">@dollarImpact.ToString("C")</div>
+																<div class="details-content">@dollarImpactFormatted</div>
 															}
 
 														</div>
@@ -206,7 +209,7 @@
 															}
 															else
 															{
-																<div class="details-content">@totalDollarImpact.ToString("C")</div>
+																<div class="details-content">@totalDollarImpact</div>
 															}
 														</div>
 													</div>
