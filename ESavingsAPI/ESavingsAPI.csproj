@@ -198,6 +198,7 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <None Include="Properties\PublishProfiles\API-OSBD.pubxml" />
     <None Include="Properties\PublishProfiles\API-OSV.pubxml" />
+    <None Include="Properties\PublishProfiles\API-SBN.pubxml" />
     <None Include="Properties\PublishProfiles\API-TARLAC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

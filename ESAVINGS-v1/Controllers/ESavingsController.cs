@@ -229,12 +229,14 @@ namespace ESAVINGS_v1.Controllers
 
 		public string GetDetailsLinkForEmail (int proposalID)
 		{
-			return string.Format("<br/><a href='{0}/Home/Details/{1}'>Details</a>", this.base_url, proposalID);
+			string en = string.Format("<br/><a href='{0}/Home/Details/{1}'>Proposal Details</a>", this.base_url, proposalID);
+			string localize = string.Format("<br/><a href='{0}/Home/Details/{1}'>"+ Resources.Details.Details.ProposalDetailsHeader +"</a>", this.base_url, proposalID);
+			return en +"<br/>"+ localize;
 		}
 
 		public string GetProposalDetailsTblForEmail (Proposal p)
 		{
-			return string.Format(@"<br/><table>
+			string en = string.Format(@"<br/><table>
 									<tr><td>Project Type</td><td>{0}</td></tr>
 									<tr><td>Project Title</td><td>{1}</td></tr>
 									<tr><td>Current Description</td><td>{2}</td></tr>
@@ -250,6 +252,17 @@ namespace ESAVINGS_v1.Controllers
 									p.SubmittedBy,
 									p.EmpDeptCode,
 									p.AreaDeptBeneficiary);
+
+			string localize = "<br/><table>" + string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_type, p.ProjectTypeIndicator);
+			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_title, p.ProjectTitle);
+			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.current_description, p.CurrentDescription);
+			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.proposal_description, p.ProposalDescription);
+			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.EmployeeNameLbl, p.SubmittedBy);
+			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.DepartmentAreaBeneficiaryLbl, p.AreaDeptBeneficiary) + "</table>";
+
+
+			return en +"<br/>"+ localize;
+
 		}
 
 
@@ -522,28 +535,6 @@ namespace ESAVINGS_v1.Controllers
 							emailMsg += this.GetDetailsLinkForEmail(proposalID);
 							emailMsg += this.GetProposalDetailsTblForEmail(newProposal);
 
-							//							string emailMsg = string.Format(@"E-Savings <b>NEW</b> proposal Ticket #{0}. Please click the link below to view the details <br/>
-							//											<a href='{1}/Home/Details/{2}'>Details</a>
-							//											<table>
-							//												<tr><td>Project Type</td><td>{3}</td></tr>
-							//												<tr><td>Project Title</td><td>{4}</td></tr>
-							//												<tr><td>Current Description</td><td>{5}</td></tr>
-							//												<tr><td>Proposal Description</td><td>{6}</td></tr>
-							//												<tr><td>Proposed By</td><td>{7}</td></tr>
-							//												<tr><td>Department</td><td>{8}</td></tr>
-							//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-							//											</table>",
-							//													 newProposalTicketNo,
-							//													 this.base_url,
-							//													 proposalID,
-							//													 StaticData.GetProjectTypeStr(newProposal.ProjectType),
-							//													 newProposal.ProjectTitle,
-							//													 newProposal.CurrentDescription,
-							//													 newProposal.ProposalDescription,
-							//													 newProposal.SubmittedBy,
-							//													 newProposal.EmpDeptCode,
-							//													 newProposal.AreaDeptBeneficiary);
-
 							//"New E-Savings Entry"
 							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.submit_proposal_email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
@@ -585,30 +576,6 @@ namespace ESAVINGS_v1.Controllers
 
 							sendEmail.Add_CC_Recipient(this.UserEmail);
 
-
-							//var selectedDeptMgr = Helpers.ONEmployeesLDAP.SearchDeptManager(ldapAddress, data["AreaDept"]);
-
-							//if (selectedDeptMgr != null)
-							//{
-							//	sendEmail.Add_CC_Recipient(selectedDeptMgr.Email);
-							//}
-
-							// TODO: change this selection of manager, use the LDAP
-							// Manager on selected department/area beneficiary
-							//var SelectedDeptManagers = Factory.SOBFactory().SearchManagerByDeptCode(data["AreaDept"]);
-							//foreach (var manager in SelectedDeptManagers)
-							//{
-							//	sendEmail.Add_CC_Recipient(manager.email);
-							//}
-							//if (this.UserDepartment != data["AreaDept"])
-							//{
-							//	// User Manager
-							//	var UserManagers = Factory.SOBFactory().SearchManagerByDeptCode(this.UserDepartment);
-							//	foreach (var manager in UserManagers)
-							//	{
-							//		sendEmail.Add_CC_Recipient(manager.email);
-							//	}
-							//}
 
 							try
 							{
@@ -1214,7 +1181,8 @@ namespace ESAVINGS_v1.Controllers
 							{
 								if (temp["status"] == proposal.status.ToString())
 								{
-									counterTreeTemp[first.Key][second.Key][status.Key]["dollarImpact"] = string.Format(new CultureInfo("en-US"), "{0:C}", proposal.dollarImpact);//proposal.dollarImpact.ToString("C");
+									counterTreeTemp[first.Key][second.Key][status.Key]["dollarImpact"] = string.Format(new CultureInfo("en-US"), "{0:C}", proposal.dollarImpact);
+									//proposal.dollarImpact.ToString("C");
 									counterTreeTemp[first.Key][second.Key][status.Key]["counter"] = proposal.counter.ToString();
 								}
 							}

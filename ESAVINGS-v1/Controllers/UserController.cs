@@ -8,6 +8,7 @@ using Domain;
 using System.Configuration;
 using System.DirectoryServices;
 using Helpers;
+using ESAVINGS_v1.Models;
 
 namespace ESAVINGS_v1.Controllers
 {
@@ -302,13 +303,15 @@ namespace ESAVINGS_v1.Controllers
 					}
 
 					results["done"] = "TRUE";
-					results["msg"] = "<strong class='good'>Successfully Logged In</strong>";
+					//Successfully Logged In
+					results["msg"] = "<strong class='good'>"+ Resources.Controllers.User.successfully_logged_in +"</strong>";
 
 				}
 				else
 				{
 					results["done"] = "FALSE";
-					results["msg"] = "<strong class='error'>Login failed</strong>";
+					//Login failed
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.User.login_failed +"</strong>";
 
 				}
 
@@ -350,14 +353,16 @@ namespace ESAVINGS_v1.Controllers
 			{
 				if (string.IsNullOrEmpty(ffID))
 				{
-					results["msg"] = "<strong class='error'>Please enter your ffid</strong>";
+					//Please enter your ffid
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.User.please_enter_your_ffid +"</strong>";
 					return Json(results);
 				}
 
 				var employeeInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, ffID);
 				if (employeeInfo.Count == 0)
 				{
-					results["msg"] = "<strong class='error'>Your FFID is not existing in AD account server</strong>";
+					//Your FFID is not existing in AD account server
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.User.your_ffid_is_not_existing_in_active_directory +"</strong>";
 					return Json(results);
 				}
 
@@ -376,12 +381,14 @@ namespace ESAVINGS_v1.Controllers
 					if (Factory.OperatorFactory().Add(operatorInfo) > 0)
 					{
 						results["done"] = "TRUE";
-						results["msg"] = "<strong class='good'>You have successfully registered. Your default password is <b>"+ defPass +"</b></strong>";
+						//You have successfully registered. Your default password is <b>"+ defPass +"</b>
+						results["msg"] = "<strong class='good'>"+ string.Format(Resources.Controllers.User.successfully_registered, "<b>" + defPass + "</b>") +"</strong>";
 					}
 					else
 					{
 						results["done"] = "FALSE";
-						results["msg"] = "<strong class='error'>Failed to register</strong>";
+						//Failed to register
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.User.failed_to_register +"</strong>";
 					}
 				}
 				else
@@ -389,12 +396,14 @@ namespace ESAVINGS_v1.Controllers
 					if (Factory.OperatorFactory().ChangePassword(operatorInfo) > 0)
 					{
 						results["done"] = "TRUE";
-						results["msg"] = "<strong class='good'>You have successfully reset your password. Your default password is "+ defPass +"</strong>";
+						//You have successfully reset your password. Your default password is "+ defPass +"
+						results["msg"] = "<strong class='good'>"+ string.Format(Resources.Controllers.User.successfully_reset_password, "<b>" + defPass + "</b>") +"</strong>";
 					}
 					else
 					{
 						results["done"] = "FALSE";
-						results["msg"] = "<strong class='error'>Failed to reset your password</strong>";
+						//Failed to reset your password
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.User.failed_to_reset_password +"</strong>";
 					}
 				}
 
