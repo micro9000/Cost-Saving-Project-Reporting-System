@@ -148,7 +148,7 @@
     <value>Project Owner in E-Savings-Ticket#</value>
   </data>
   <data name="assign_project_owner_error_msg" xml:space="preserve">
-    <value>Failed to assign project owner, please try again</value>
+    <value>Fail to assign project owner, please try again</value>
   </data>
   <data name="assign_project_owner_success_msg" xml:space="preserve">
     <value>Successfully assign to project owner</value>
@@ -163,13 +163,13 @@
     <value>Cost Analyst approver is not allowed to make changes on this approval</value>
   </data>
   <data name="close_all_action_items_before_move_to_active" xml:space="preserve">
-    <value>Please close all action items before moving the active</value>
+    <value>Please close all action items before moving to active</value>
   </data>
   <data name="close_all_action_items_before_move_to_finance_approval" xml:space="preserve">
     <value>Please close all action items before moving the status to finance approval</value>
   </data>
   <data name="close_all_action_items_before_move_to_funnel_evaluating" xml:space="preserve">
-    <value>Please close all action items before moving the cost funnel evaluating</value>
+    <value>Please close all action items before moving to cost funnel evaluating</value>
   </data>
   <data name="cost_analyst_approval_email_msg_1" xml:space="preserve">
     <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
@@ -196,7 +196,7 @@
     <value>Action Needed from E-Savings-Ticket#</value>
   </data>
   <data name="create_new_action_error_msg" xml:space="preserve">
-    <value>Failed to add new action, please try again</value>
+    <value>Fail to add new action, please try again</value>
   </data>
   <data name="create_new_action_success_msg" xml:space="preserve">
     <value>Action successfully assign to action owner</value>

@@ -117,60 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActionDescriptionLbl" xml:space="preserve">
-    <value>Mô tả hành động</value>
-    <comment>Action Description</comment>
+  <data name="failed_to_register" xml:space="preserve">
+    <value>Gagal mendaftar</value>
+    <comment>Failed to register</comment>
   </data>
-  <data name="ActiveProposalsHeader" xml:space="preserve">
-    <value>Các đề xuất tích cực</value>
-    <comment>Active proposals</comment>
+  <data name="failed_to_reset_password" xml:space="preserve">
+    <value>Gagal menetapkan semula kata laluan anda</value>
+    <comment>Failed to reset your password</comment>
   </data>
-  <data name="ArchivedProposalsHeader" xml:space="preserve">
-    <value>Đề xuất lưu trữ</value>
-    <comment>Archived Proposal (s)</comment>
+  <data name="internal_error_msg" xml:space="preserve">
+    <value>Kesalahan Sistem Dalaman, sila hubungi APP TEAM</value>
+    <comment>System Internal error, kindly contact APPs TEAM</comment>
   </data>
-  <data name="CreateNewProposalBtnLbl" xml:space="preserve">
-    <value>Tạo đề xuất mới</value>
-    <comment>Create New Proposal</comment>
+  <data name="login_failed" xml:space="preserve">
+    <value>Daftar masuk gagal</value>
+    <comment>Login failed</comment>
   </data>
-  <data name="ForYourApprovalHeader" xml:space="preserve">
-    <value>Để bạn chấp thuận</value>
-    <comment>For your approval</comment>
+  <data name="please_enter_your_ffid" xml:space="preserve">
+    <value>Sila masukkan ffid anda</value>
+    <comment>Please enter your ffid</comment>
   </data>
-  <data name="NumberOfSubmissionByStatusLbl" xml:space="preserve">
-    <value>Số lần đệ trình bằng trạng thái</value>
-    <comment>Number of submission by status</comment>
+  <data name="successfully_logged_in" xml:space="preserve">
+    <value>Berhasil Logged In</value>
+    <comment>Successfully Logged In</comment>
   </data>
-  <data name="ProjectsAssignToYouHeader" xml:space="preserve">
-    <value>Dự án giao cho bạn</value>
-    <comment>Projects assign to you</comment>
+  <data name="successfully_registered" xml:space="preserve">
+    <value>Anda telah berjaya didaftarkan. Kata laluan lalai anda ialah {0}</value>
+    <comment>You have successfully registered. Your default password is {0}</comment>
   </data>
-  <data name="ProjectTypeLbl" xml:space="preserve">
-    <value>Loại dự án</value>
-    <comment>Project Type</comment>
+  <data name="successfully_reset_password" xml:space="preserve">
+    <value>Anda telah berjaya menetapkan semula kata laluan anda. Kata laluan lalai anda ialah {0}</value>
+    <comment>You have successfully reset your password. Your default password is {0}</comment>
   </data>
-  <data name="StatusLbl" xml:space="preserve">
-    <value>Tình trạng</value>
-    <comment>Status</comment>
-  </data>
-  <data name="SubmissionLbl" xml:space="preserve">
-    <value>Đệ trình/ nộp</value>
-    <comment>Submissions</comment>
-  </data>
-  <data name="SubmittedByLbl" xml:space="preserve">
-    <value>Được nộp bởi</value>
-    <comment>Submitted By</comment>
-  </data>
-  <data name="TicketNumberLbl" xml:space="preserve">
-    <value>Số thẻ</value>
-    <comment>Ticket #</comment>
-  </data>
-  <data name="TitleLbl" xml:space="preserve">
-    <value>Tiêu đề</value>
-    <comment>Title</comment>
-  </data>
-  <data name="YourActionItemsHeader" xml:space="preserve">
-    <value>Mục hành động của bạn</value>
-    <comment>Your action item (s)</comment>
+  <data name="your_ffid_is_not_existing_in_active_directory" xml:space="preserve">
+    <value>FFID anda tidak ada dalam pelayan akaun AD</value>
+    <comment>Your FFID is not existing in AD account server</comment>
   </data>
 </root>

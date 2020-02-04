@@ -118,523 +118,523 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="action_approval_complete_reqmts_msg" xml:space="preserve">
-    <value>Please complete the requirements, (Remarks and verification status)</value>
+    <value>Vui lòng hoàn tất các yêu cầu, (dánh dấu và xác nhận trạng thái)</value>
     <comment>Please complete the requirements, (Remarks and verification status)</comment>
   </data>
   <data name="added_dollar_impact" xml:space="preserve">
-    <value>Added dollar impact</value>
+    <value>Ðã thêm tác động tiền đô la</value>
     <comment>Added dollar impact</comment>
   </data>
   <data name="added_expected_project_start_date" xml:space="preserve">
-    <value>Added expected project start date</value>
+    <value>Ðã thêm ngày bắt đầu dự án</value>
     <comment>Added expected project start date</comment>
   </data>
   <data name="added_finance_approver" xml:space="preserve">
-    <value>Added finance approver</value>
+    <value>Ðã thêm người phê duyệt tài chính</value>
     <comment>Added finance approver</comment>
   </data>
   <data name="added_number_of_months_active" xml:space="preserve">
-    <value>Added number of months to be active</value>
+    <value>Ðã thêm số tháng hoạt động</value>
     <comment>Added number of months to be active</comment>
   </data>
   <data name="added_project_type" xml:space="preserve">
-    <value>Added project type</value>
+    <value>Ðã thêm loại dự án</value>
     <comment>Added project type</comment>
   </data>
   <data name="assigned_new_cost_analyst_approver" xml:space="preserve">
-    <value>Assign new cost analyst approver</value>
+    <value>Ðã chỉ định người phê duyệt phân tích chi phí mới</value>
     <comment>Assign new cost analyst approver</comment>
   </data>
   <data name="assign_project_owner_complete_reqmnts_msg" xml:space="preserve">
-    <value>Please complete the requirements, (project owner ff id, fullname and proposal id)</value>
+    <value>Vui lòng hoàn tất các yêu cầu, (người phụ trách dự án, mã số ff id, họ tên đầy đủ và  id đề xuất)</value>
     <comment>Please complete the requirements, (project owner ff id, fullname and proposal id)</comment>
   </data>
   <data name="assign_project_owner_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details &lt;br/&gt;</value>
+    <value>Ticket #{0} – đã được gán cho bạn như là người như là người phụ trách dự án (hay người thực thi dự án). Vui lòng nhấnn vào link bên dưới để xem chi tiết &lt;br/&gt;</value>
     <comment>E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details &lt;br/&gt;</comment>
   </data>
   <data name="assign_project_owner_email_subject" xml:space="preserve">
-    <value>Project Owner in E-Savings-Ticket#</value>
+    <value>Chủ dự án trên hệ thống E-Saving - Ticket #</value>
     <comment>Project Owner in E-Savings-Ticket#</comment>
   </data>
   <data name="assign_project_owner_error_msg" xml:space="preserve">
-    <value>Failed to assign project owner, please try again</value>
-    <comment>Failed to assign project owner, please try again</comment>
+    <value>Lỗi khi gán cho người thực hiện dự án , vui lòng thử lại</value>
+    <comment>Fail to assign project owner, please try again</comment>
   </data>
   <data name="assign_project_owner_success_msg" xml:space="preserve">
-    <value>Successfully assign to project owner</value>
+    <value>Ðã gán thành công người phụ trách dự án</value>
     <comment>Successfully assign to project owner</comment>
   </data>
   <data name="bpi_marked" xml:space="preserve">
-    <value>Marked</value>
+    <value>Ðánh dấu</value>
     <comment>Marked</comment>
   </data>
   <data name="bpi_unmarked" xml:space="preserve">
-    <value>Unmarked</value>
+    <value>Không đánh dấu</value>
     <comment>Unmarked</comment>
   </data>
   <data name="CA_approver_not_allowed_to_make_changes_on_this" xml:space="preserve">
-    <value>Cost Analyst approver is not allowed to make changes on this approval</value>
+    <value>Người phê duyệt chi phí không được phép thay đổi phê duyệt này</value>
     <comment>Cost Analyst approver is not allowed to make changes on this approval</comment>
   </data>
   <data name="close_all_action_items_before_move_to_active" xml:space="preserve">
-    <value>Please close all action items before moving the active</value>
-    <comment>Please close all action items before moving the active</comment>
+    <value>Vui lòng đóng tất cả các hạng mục trước khi chuyển đến hạng mục kích hoạt</value>
+    <comment>Please close all action items before moving to active</comment>
   </data>
   <data name="close_all_action_items_before_move_to_finance_approval" xml:space="preserve">
-    <value>Please close all action items before moving the status to finance approval</value>
+    <value>Vui lòng đóng tất cả các mục đang hoạt động trước khi chuyển trạng thái sang phê duyệt tài chính.</value>
     <comment>Please close all action items before moving the status to finance approval</comment>
   </data>
   <data name="close_all_action_items_before_move_to_funnel_evaluating" xml:space="preserve">
-    <value>Please close all action items before moving the cost funnel evaluating</value>
-    <comment>Please close all action items before moving the cost funnel evaluating</comment>
+    <value>Vui lòng đóng tất cả các hạng mục trước khi di chuyển đến đánh giá hạng mục chi phí</value>
+    <comment>Please close all action items before moving to cost funnel evaluating</comment>
   </data>
   <data name="cost_analyst_approval_email_msg_1" xml:space="preserve">
-    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+    <value>E-Savings Số ticket #{0} - {1} bởi {2} Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
   </data>
   <data name="cost_analyst_approval_email_msg_2" xml:space="preserve">
-    <value>E-Savings Ticket #{0}. Moved status to {1} by {2}. Please click the link below to view the details</value>
+    <value>Số ticket {0} đã chuyển trạng thái sang {1} bởi {2} . Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0}. Moved status to {1} by {2}. Please click the link below to view the details</comment>
   </data>
   <data name="cost_analyst_approval_email_msg_3" xml:space="preserve">
-    <value>E-Savings Ticket #{0}. {1} by {2}. Need your approval, please click the link below to view the details.</value>
+    <value>Số Ticket {0}. {1} bởi {2}. Cần sự phê duyệt của bạn. Vui lòng nhấn nào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0}. {1} by {2}. Need your approval, please click the link below to view the details.</comment>
   </data>
   <data name="cost_analyst_approval_email_subject_2" xml:space="preserve">
-    <value>E-Savings-Move-status-Ticket#{0}</value>
+    <value>Hệ thống E-Saving chuyển sang trạng thái – Ticket#{0}</value>
     <comment>E-Savings-Move-status-Ticket#{0}</comment>
   </data>
   <data name="cost_analyst_approval_successes_msg" xml:space="preserve">
-    <value>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</value>
+    <value>Chuyển thành công trạng thái sang trạng thái {0}</value>
     <comment>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</comment>
   </data>
   <data name="create_new_action_complete_reqmts_msg" xml:space="preserve">
-    <value>Please complete the requirements, (Action Description and action owner info)</value>
+    <value>Xin vui lòng hoàn tất các yêu cầu, (Mô tả hành động và thông tin người nhận hành động)</value>
     <comment>Please complete the requirements, (Action Description and action owner info)</comment>
   </data>
   <data name="create_new_action_email_msg" xml:space="preserve">
-    <value>Action Needed from E-Savings Ticket #{0} is assign to you. Please click the link below to view the details</value>
+    <value>Bạn nhận được hành động từ hệ thống E-savings Ticket #{0}. Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>Action Needed from E-Savings Ticket #{0} is assign to you. Please click the link below to view the details</comment>
   </data>
   <data name="create_new_action_email_subject" xml:space="preserve">
-    <value>Action Needed from E-Savings-Ticket#</value>
+    <value>Yêu cầu hành động từ hệ thống E-Saving (Ticket #)</value>
     <comment>Action Needed from E-Savings-Ticket#</comment>
   </data>
   <data name="create_new_action_error_msg" xml:space="preserve">
-    <value>Failed to add new action, please try again</value>
-    <comment>Failed to add new action, please try again</comment>
+    <value>Lỗi khi thêm hành động mới, vui lòng thử lại</value>
+    <comment>Fail to add new action, please try again</comment>
   </data>
   <data name="create_new_action_success_msg" xml:space="preserve">
-    <value>Action successfully assign to action owner</value>
+    <value>Hành động đã được gán thành công đến người chịu trách nhiệm thực thi hành động</value>
     <comment>Action successfully assign to action owner</comment>
   </data>
   <data name="current_imgs_unable_upload" xml:space="preserve">
-    <value>Current Images (Unable to upload)</value>
+    <value>Hình ảnh hiện tại (không thể tải lên)</value>
     <comment>Current Images (Unable to upload)</comment>
   </data>
   <data name="delete_proposal_files_invalid_target" xml:space="preserve">
-    <value>Invalid target</value>
+    <value>Mục tiêu không hợp lệ</value>
     <comment>Invalid target</comment>
   </data>
   <data name="dollar_impact_is_required" xml:space="preserve">
-    <value>Dollar impact is required</value>
+    <value>Ảnh hưởng tiền đô la được yêu cầu</value>
     <comment>Dollar impact is required</comment>
   </data>
   <data name="done_changing_finance_approver" xml:space="preserve">
-    <value>Done changing finance approver.</value>
+    <value>Hoàn thành việc thay đổi người phê duyệt tài chính.</value>
     <comment>Done changing finance approver.</comment>
   </data>
   <data name="expected_start_date_is_required" xml:space="preserve">
-    <value>Expected start date is required</value>
+    <value>Ngày bắt đầu dự kiến ​​là bắt buộc</value>
     <comment>Expected start date is required</comment>
   </data>
   <data name="internal_error_msg" xml:space="preserve">
-    <value>Internal error, kindly report this error</value>
+    <value>Lỗi nội bộ,  vui lòng báo cáo lỗi này</value>
     <comment>Internal error, kindly report this error</comment>
   </data>
   <data name="invalid" xml:space="preserve">
-    <value>Invalid</value>
+    <value>Không hợp lệ</value>
     <comment>Invalid</comment>
   </data>
   <data name="invalid_current_img_len" xml:space="preserve">
-    <value>Invalid current image length</value>
+    <value>Độ dài hình ảnh hiện tại không hợp lệ</value>
     <comment>Invalid current image length</comment>
   </data>
   <data name="invalid_dept_area_beneficiary" xml:space="preserve">
-    <value>Invalid Department/Area beneficiary</value>
+    <value>Phòng ban, khu vực liên quan không hợp lệ</value>
     <comment>Invalid Department/Area beneficiary</comment>
   </data>
   <data name="invalid_dollar_impact" xml:space="preserve">
-    <value>Invalid dollar impact</value>
+    <value>Tác động tiền đô la không hợp lệ</value>
     <comment>Invalid dollar impact</comment>
   </data>
   <data name="invalid_dollar_impact_whole_decimal_num" xml:space="preserve">
-    <value>Invalid dollar impact (must be whole/decimal number)</value>
+    <value>Tác động cuả  tiền đô la không hợp lệ (Yêu cầu phải là số nguyên/số thập phân)</value>
     <comment>Invalid dollar impact (must be whole/decimal number)</comment>
   </data>
   <data name="invalid_expected_start_date" xml:space="preserve">
-    <value>Invalid expected start date</value>
+    <value>Ngày dự kiến bắt đầu không hợp lệ</value>
     <comment>Invalid expected start date</comment>
   </data>
   <data name="invalid_num_months_to_be_active" xml:space="preserve">
-    <value>Invalid number of months to be active</value>
+    <value>Số tháng hiện tại không tồn tại</value>
     <comment>Invalid number of months to be active</comment>
   </data>
   <data name="invalid_num_months_to_be_active_less_greater_than" xml:space="preserve">
-    <value>Invalid number of months to be active (less than or equal to {0} OR greater than {1} only)</value>
+    <value>Số tháng hiện tại không hợp lệ (không tồn tại) (nhỏ hơn hoặc bằng {0} hoặc lớn hơn {1})</value>
     <comment>Invalid number of months to be active (less than or equal to {0} OR greater than {1} only)</comment>
   </data>
   <data name="invalid_oa_status" xml:space="preserve">
-    <value>Invalid OA status</value>
+    <value>Trạng thái OA không hợp lệ</value>
     <comment>Invalid OA status</comment>
   </data>
   <data name="invalid_project_type" xml:space="preserve">
-    <value>Invalid project type</value>
+    <value>Loại dự án không hợp lệ</value>
     <comment>Invalid project type</comment>
   </data>
   <data name="invalid_proposal" xml:space="preserve">
-    <value>Invalid Proposal</value>
+    <value>Ðề xuất không hợp lệ</value>
     <comment>Invalid Proposal</comment>
   </data>
   <data name="invalid_proposal_id" xml:space="preserve">
-    <value>Invalid proposal id</value>
+    <value>ID đề xuất không hợp lệ</value>
     <comment>Invalid proposal id</comment>
   </data>
   <data name="invalid_proposal_img_len" xml:space="preserve">
-    <value>Invalid proposal image length</value>
+    <value>Độ dài hình ảnh đề xuất không hợp lệ</value>
     <comment>Invalid proposal image length</comment>
   </data>
   <data name="invalid_supporting_docs_len" xml:space="preserve">
-    <value>Invalid supporting documents length</value>
+    <value>Ðộ dài tài liệu hỗ trợ không hợp lệ</value>
     <comment>Invalid supporting documents length</comment>
   </data>
   <data name="invalid_verification_status" xml:space="preserve">
-    <value>Invalid verification status indicator</value>
+    <value>Thông báo trạng thái xác nhận không hợp lệ</value>
     <comment>Invalid verification status indicator</comment>
   </data>
   <data name="mark_proposal_bpi_email_msg" xml:space="preserve">
-    <value>E-Savings proposal Ticket #{0} Marked as BPI. Please click the link below to view the details.</value>
+    <value>Số ticket để xuất #[---] được dánh dấu như là BPI. Vui lòng nhấn nào link bên dưới để xem chi tiết</value>
     <comment>E-Savings proposal Ticket #{0} Marked as BPI. Please click the link below to view the details.</comment>
   </data>
   <data name="mark_proposal_bpi_email_subject" xml:space="preserve">
-    <value>E-Savings project marked as BPI</value>
+    <value>Dự án tiết kiệm E-Savings đã được đánh dấu như BPI</value>
     <comment>E-Savings project marked as BPI</comment>
   </data>
   <data name="mark_proposal_bpi_error_msg" xml:space="preserve">
-    <value>Error: unable to {0} proposal as BPI</value>
+    <value>Lỗi: không thể {0} đê xuất như BPI</value>
     <comment>Error: unable to {0} proposal as BPI</comment>
   </data>
   <data name="mark_proposal_bpi_success_msg" xml:space="preserve">
-    <value>Successfully {0} proposal as BPI</value>
+    <value>Ðê xuất BPI thành công {0}</value>
     <comment>Successfully {0} proposal as BPI</comment>
   </data>
   <data name="no_changes_made" xml:space="preserve">
-    <value>No changes made</value>
+    <value>Không có sự thay đổi</value>
     <comment>No changes made</comment>
   </data>
   <data name="no_verification" xml:space="preserve">
-    <value>No-verification</value>
+    <value>Không xác minh</value>
     <comment>No-verification</comment>
   </data>
   <data name="please_login" xml:space="preserve">
-    <value>Please login</value>
+    <value>Vui lòng đăng nhập</value>
     <comment>Please login</comment>
   </data>
   <data name="please_select_finance_approver" xml:space="preserve">
-    <value>Please select finance approver</value>
+    <value>Vui lòng chọn người phê duyệt tài chính</value>
     <comment>Please select finance approver</comment>
   </data>
   <data name="project_type_is_required" xml:space="preserve">
-    <value>Project type is required</value>
+    <value>Loại dự án được yêu cầu</value>
     <comment>Project type is required</comment>
   </data>
   <data name="proposal_details_not_found" xml:space="preserve">
-    <value>Proposal details not found</value>
+    <value>Ðề xuất chi tiết không được tìm thấy</value>
     <comment>Proposal details not found</comment>
   </data>
   <data name="proposal_entry_not_found" xml:space="preserve">
-    <value>Proposal entry not found!</value>
+    <value>Không tìm thấy đề xuất</value>
     <comment>Proposal entry not found!</comment>
   </data>
   <data name="proposal_imgs_unable_upload" xml:space="preserve">
-    <value>Proposal Images (Unable to upload)</value>
+    <value>Hình ảnh đề xuất (không thể tải lên)</value>
     <comment>Proposal Images (Unable to upload)</comment>
   </data>
   <data name="remarks_is_required" xml:space="preserve">
-    <value>Remarks is required</value>
+    <value>Ghi chú được yêu cầu</value>
     <comment>Remarks is required</comment>
   </data>
   <data name="re_assign_project_CA_email_msg" xml:space="preserve">
-    <value>E-Savings ticket#{0}, is re-assign to you as cost-analyst approver by {1}. Please click the link below to view the details</value>
+    <value>Ticket #{0}, đã được gán lại cho bạn từ người phê duyệt phân tích chi phí {1}. Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings ticket#{0}, is re-assign to you as cost-analyst approver by {1}. Please click the link below to view the details</comment>
   </data>
   <data name="re_assign_project_CA_error_msg" xml:space="preserve">
-    <value>Error on assigning new cost-analyst, please contact site admin</value>
+    <value>Lôi trong quá trình chỉ định phân tích giá mới, vui lòng liên hệ quản trị viên khu vực</value>
     <comment>Error on assigning new cost-analyst, please contact site admin</comment>
   </data>
   <data name="re_assign_project_CA_success_msg" xml:space="preserve">
-    <value>Successfully assigned new cost-analyst</value>
+    <value>Ðã gán thành công người phân tích chi phí mới</value>
     <comment>Successfully assigned new cost-analyst</comment>
   </data>
   <data name="re_assign_project_finance_email_msg" xml:space="preserve">
-    <value>E-Savings ticket#{0}, is re-assign to you as finance approver by {1}. Please click the link below to view the details</value>
+    <value>Ticket #{0}, đã được gán lại cho bạn từ người phê duyệt tài chính {1}. Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings ticket#{0}, is re-assign to you as finance approver by {1}. Please click the link below to view the details</comment>
   </data>
   <data name="re_assign_project_finance_error_msg" xml:space="preserve">
-    <value>Error on assigning new finance, please contact site admin</value>
+    <value>Lỗi trong quá trình gán tài chính mới, vui lòng liên hệ quản trị viên khu vực</value>
     <comment>Error on assigning new finance, please contact site admin</comment>
   </data>
   <data name="re_assign_project_finance_success_msg" xml:space="preserve">
-    <value>Successfully assigned new finance</value>
+    <value>Ðã gán thành công tài chính mới</value>
     <comment>Successfully assigned new finance</comment>
   </data>
   <data name="saved" xml:space="preserve">
-    <value>Saved</value>
+    <value>Ðã lưu</value>
     <comment>Saved</comment>
   </data>
   <data name="save_action_owner_response_complete_reqmts_msg" xml:space="preserve">
-    <value>Please complete the requirements, (Remarks and supporting documents)</value>
+    <value>Vui lòng hoàn tất các yêu cầu, (Ghi chú và các tài liệu hỗ trợ)</value>
     <comment>Please complete the requirements, (Remarks and supporting documents)</comment>
   </data>
   <data name="save_action_owner_response_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} Action item responded by action owner {1}. Please click the link below to view the details</value>
+    <value>Ticket #{0}. Hành động đã được phản hồi từ người thực hiện hành động {1}. Vui lòng nhấnn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0} Action item responded by action owner {1}. Please click the link below to view the details</comment>
   </data>
   <data name="save_action_owner_response_email_subject" xml:space="preserve">
-    <value>Action Needed from E-Savings-Ticket#</value>
+    <value>Yêu cầu hành động từ hệ thống E-Saving (Ticket #)</value>
     <comment>Action Needed from E-Savings-Ticket#</comment>
   </data>
   <data name="save_project_owner_response_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0} - Project owner responded [{1}]. Please click the link below to view the details</value>
+    <value>Ticket #{0} – Người thực hiện dự án đã phản hồi {1}. Vui lòng nhấnn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0} - Project owner responded [{1}]. Please click the link below to view the details</comment>
   </data>
   <data name="save_project_owner_response_email_subject" xml:space="preserve">
-    <value>Project Owner from E-Savings-Ticket#</value>
+    <value>Người thực hiện dự án từ hệ thống E-Saving - Ticket #</value>
     <comment>Project Owner from E-Savings-Ticket#</comment>
   </data>
   <data name="selected_finance_approver_not_found" xml:space="preserve">
-    <value>Selected finance approver not found</value>
+    <value>Người xác nhận tài chính được chọn không tìm  thấy</value>
     <comment>Selected finance approver not found</comment>
   </data>
   <data name="submit_proposal_email_msg" xml:space="preserve">
-    <value>E-Savings NEW proposal Ticket #{0}. Please click the link below to view the details</value>
+    <value>Số ticket đề xuất mới #{0}. Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings NEW proposal Ticket #{0}. Please click the link below to view the details</comment>
   </data>
   <data name="submit_proposal_email_subject" xml:space="preserve">
-    <value>New E-Savings Entry</value>
+    <value>Ðăng nhập vào hệ thống E-Saving mới</value>
     <comment>New E-Savings Entry</comment>
   </data>
   <data name="submit_proposal_error_msg" xml:space="preserve">
-    <value>Error submitting your proposal, kindly contact APPs team to check the error, Thank you!</value>
+    <value>Đề xuất gửi đi của bạn bị lỗi, vui lòng liên hệ nhóm APPs để kiểm tra lỗi, cám ơn!</value>
     <comment>Error submitting your proposal, kindly contact APPs team to check the error, Thank you!</comment>
   </data>
   <data name="successfully_deleted" xml:space="preserve">
-    <value>Deleted successfully</value>
+    <value>Xóa dữ liệu thành công</value>
     <comment>Deleted successfully</comment>
   </data>
   <data name="successfully_saved" xml:space="preserve">
-    <value>Successfully Saved!</value>
+    <value>Ðã lưu thành công!</value>
     <comment>Successfully Saved!</comment>
   </data>
   <data name="successfully_submitted" xml:space="preserve">
-    <value>Successfully submitted</value>
+    <value>Đăng nhập thành công</value>
     <comment>Successfully submitted</comment>
   </data>
   <data name="successfully_updated" xml:space="preserve">
-    <value>Updated successfully</value>
+    <value>Ðã cập nhật thành công</value>
     <comment>Updated successfully</comment>
   </data>
   <data name="successfully_uploaded" xml:space="preserve">
-    <value>Successfully uploaded</value>
+    <value>Ðã tải lên thành công</value>
     <comment>Successfully uploaded</comment>
   </data>
   <data name="successfully_verified" xml:space="preserve">
-    <value>Successfully verified!</value>
+    <value>Xác minh thành công</value>
     <comment>Successfully verified!</comment>
   </data>
   <data name="supporting_docs_unable_upload" xml:space="preserve">
-    <value>Supporting Images (Unable to upload)</value>
+    <value>Hình ảnh hỗ trợ (không thể tải lên)</value>
     <comment>Supporting Images (Unable to upload)</comment>
   </data>
   <data name="supporting_docs_uploaded" xml:space="preserve">
-    <value>Supporting documents uploaded</value>
+    <value>Tài liệu hỗ trợ đã được tải lên</value>
     <comment>Supporting documents uploaded</comment>
   </data>
   <data name="trying_to_assign_current_approver" xml:space="preserve">
-    <value>Error: trying to assign current approver</value>
+    <value>Lỗi: thử gán lại người phê duyệt hiện tại</value>
     <comment>Error: trying to assign current approver</comment>
   </data>
   <data name="unknown" xml:space="preserve">
-    <value>Unknown</value>
+    <value>Không biết</value>
     <comment>Unknown</comment>
   </data>
   <data name="unable_to_add_finance_approver" xml:space="preserve">
-    <value>Unable to add finance approver</value>
+    <value>Không thể thêm người phê duyệt tài chính</value>
     <comment>Unable to add finance approver</comment>
   </data>
   <data name="unable_to_add_update_dollar_impact" xml:space="preserve">
-    <value>Unable to add/update dollar impact</value>
+    <value>Không thể thêm/ cập nhật tác động tiền đô la</value>
     <comment>Unable to add/update dollar impact</comment>
   </data>
   <data name="unable_to_add_update_expected_project_start_date" xml:space="preserve">
-    <value>Unable to add/update expected project start date</value>
+    <value>Không thể thêm/cập nhật ngày bắt đầu dự án</value>
     <comment>Unable to add/update expected project start date</comment>
   </data>
   <data name="unable_to_add_update_number_months_active" xml:space="preserve">
-    <value>Unable to add/update number of months to be active</value>
+    <value>Không thể thêm/cập nhật số tháng hoạt động</value>
     <comment>Unable to add/update number of months to be active</comment>
   </data>
   <data name="unable_to_add_update_project_type" xml:space="preserve">
-    <value>Unable to add/update project type</value>
+    <value>Không thể thêm/cập nhật loại dự án</value>
     <comment>Unable to add/update project type</comment>
   </data>
   <data name="unable_to_reassign_finance_approver" xml:space="preserve">
-    <value>Unable to reassign finance approver</value>
+    <value>Không thể gán lại người phê duyệt tài chính</value>
     <comment>Unable to reassign finance approver</comment>
   </data>
   <data name="unable_to_update_overall_status_to" xml:space="preserve">
-    <value>Unable to update overall status ({0})</value>
+    <value>Không thể cập nhật trạng thái tổng quan ({0})</value>
     <comment>Unable to update overall status ({0})</comment>
   </data>
   <data name="unable_to_verify_this_proposal" xml:space="preserve">
-    <value>Unable to verify this proposal</value>
+    <value>Không thể xác nhận đề xuất này</value>
     <comment>Unable to verify this proposal</comment>
   </data>
   <data name="unable_update_verification_results" xml:space="preserve">
-    <value>Unable to update verification results</value>
+    <value>Không thể cập nhật kết quả xác nhận</value>
     <comment>Unable to update verification results</comment>
   </data>
   <data name="updated_current_due_date" xml:space="preserve">
-    <value>Updated Current due date</value>
+    <value>Ðã cập nhật ngày hết hạn hiện tại</value>
     <comment>Updated Current due date</comment>
   </data>
   <data name="updated_finance_category" xml:space="preserve">
-    <value>Updated Finance category</value>
+    <value>Ðã cập nhật loại tài chánh</value>
     <comment>Updated Finance category</comment>
   </data>
   <data name="updated_original_due_date" xml:space="preserve">
-    <value>Updated Original due date</value>
+    <value>Ðã cập nhật ngày hết hạn ban đầu</value>
     <comment>Updated Original due date</comment>
   </data>
   <data name="updated_planned_project_start_date" xml:space="preserve">
-    <value>Updated Planned project start date</value>
+    <value>Ðã cập nhật ngày bắt đầu dự án theo kế hoạch</value>
     <comment>Updated Planned project start date</comment>
   </data>
   <data name="updated_planned_saving_start_date" xml:space="preserve">
-    <value>Updated Planned saving start date</value>
+    <value>Ðã cập nhật ngày bắt đầu tiết kiệm theo kế hoạch</value>
     <comment>Updated Planned saving start date</comment>
   </data>
   <data name="updated_actual_completion_date" xml:space="preserve">
-    <value>Updated Actual completion date</value>
+    <value>Ðã cập nhật ngày hoàn thành thực tế</value>
     <comment>Updated Actual completion date</comment>
   </data>
   <data name="update_proposal_email_msg" xml:space="preserve">
-    <value>E-Savings proposal Ticket #{0} - Updated by {1}. &lt;br/&gt;Please click the link below to view the details</value>
+    <value>Vé đề xuất tiết kiệm điện tử #{0} - Được cập nhật bởi {1}. Vui lòng nhấp vào liên kết bên dưới để xem chi tiết</value>
     <comment>E-Savings proposal Ticket #{0} - Updated by {1}. &lt;br/&gt;Please click the link below to view the details</comment>
   </data>
   <data name="update_proposal_email_subject" xml:space="preserve">
-    <value>E-Savings Entry Updated</value>
+    <value>Ðã cập nhật đăng nhập vào hệ thống  E-Saving mới</value>
     <comment>E-Savings Entry Updated</comment>
   </data>
   <data name="update_proposal_error_msg" xml:space="preserve">
-    <value>Unable to update your proposal details</value>
+    <value>Chi tiết đề xuất của bạn không thể cập nhật</value>
     <comment>Unable to update your proposal details</comment>
   </data>
   <data name="verification_status_not_found" xml:space="preserve">
-    <value>Verification status not found</value>
+    <value>Trạng thái xác minh không tìm thấy</value>
     <comment>Verification status not found</comment>
   </data>
   <data name="verified" xml:space="preserve">
-    <value>Verified</value>
+    <value>Ðã xác nhận</value>
     <comment>Verified</comment>
   </data>
   <data name="verified_closed" xml:space="preserve">
-    <value>Verified closed</value>
+    <value>Xác nhận đã đóng</value>
     <comment>Verified closed</comment>
   </data>
   <data name="verify_not_done" xml:space="preserve">
-    <value>Verify not done</value>
+    <value>Xác nhận không hoàn thành</value>
     <comment>Verify not done</comment>
   </data>
   <data name="area_dept" xml:space="preserve">
-    <value>Area/Department Beneficiary</value>
+    <value>Khu vực / Bộ phận thụ hưởng</value>
     <comment>Area/Department Beneficiary</comment>
   </data>
   <data name="current_description" xml:space="preserve">
-    <value>Current description</value>
+    <value>Mô tả hiện tại</value>
     <comment>Current description</comment>
   </data>
   <data name="dollar_impact" xml:space="preserve">
-    <value>Dollar impact</value>
+    <value>Tác động của đồng đô la</value>
     <comment>Dollar impact</comment>
   </data>
   <data name="done_adding_finance_approver" xml:space="preserve">
-    <value>Done adding finance approver</value>
+    <value>Đã thêm xong người phê duyệt tài chính</value>
     <comment>Done adding finance approver</comment>
   </data>
   <data name="expected_start_date" xml:space="preserve">
-    <value>Expected start date</value>
+    <value>Ngày bắt đầu dự kiến được yêu cầu</value>
     <comment>Expected start date</comment>
   </data>
   <data name="invalid_status" xml:space="preserve">
-    <value>Invalid Status</value>
+    <value>Tình trạng không hợp lệ</value>
     <comment>Invalid Status</comment>
   </data>
   <data name="number_of_months_active" xml:space="preserve">
-    <value>Number of months to be active</value>
+    <value>Số tháng hoạt động</value>
     <comment>Number of months to be active</comment>
   </data>
   <data name="permission_denied" xml:space="preserve">
-    <value>Permission denied</value>
+    <value>Quyền bị từ chối</value>
     <comment>Permission denied</comment>
   </data>
   <data name="project_id" xml:space="preserve">
-    <value>Project Id</value>
+    <value>Id dự án</value>
     <comment>Project Id</comment>
   </data>
   <data name="project_title" xml:space="preserve">
-    <value>Project Title</value>
+    <value>Tên dự án</value>
     <comment>Project Title</comment>
   </data>
   <data name="project_type" xml:space="preserve">
-    <value>Project type</value>
+    <value>Loại dự án</value>
     <comment>Project type</comment>
   </data>
   <data name="proposal_description" xml:space="preserve">
-    <value>Proposal description</value>
+    <value>Mô tả đề xuất</value>
     <comment>Proposal description</comment>
   </data>
   <data name="remarks" xml:space="preserve">
-    <value>Remarks</value>
+    <value>Nhận xét</value>
     <comment>Remarks</comment>
   </data>
   <data name="action_approval_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+    <value>E-Savings Số ticket #{0} - {1} bởi {2} Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
   </data>
   <data name="finance_approval_email_msg" xml:space="preserve">
-    <value>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</value>
+    <value>E-Savings Số ticket #{0} - {1} bởi {2} Vui lòng nhấn vào link bên dưới để xem chi tiết</value>
     <comment>E-Savings Ticket #{0}. {1} by {2}. &lt;br/&gt;Please click the link below to view the details.</comment>
   </data>
   <data name="finance_approval_success_msg" xml:space="preserve">
-    <value>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</value>
+    <value>Chuyển thành công trạng thái sang trạng thái {0}</value>
     <comment>Successfully moved status to &lt;i&gt;{0}&lt;/i&gt; status!</comment>
   </data>
   <data name="number_of_months_active_required" xml:space="preserve">
-    <value>Number of months to be active is required</value>
+    <value>Số tháng để hoạt động là bắt buộc</value>
     <comment>Number of months to be active is required</comment>
   </data>
   <data name="updated_funnel_status" xml:space="preserve">
-    <value>Updated funnel status</value>
+    <value>Trạng thái kênh được cập nhật</value>
     <comment>Updated funnel status</comment>
   </data>
   <data name="update_dollar_impact" xml:space="preserve">
-    <value>Update dollar impact</value>
+    <value>Cập nhật tác động của đồng đô la</value>
     <comment>Update dollar impact</comment>
   </data>
   <data name="update_number_of_months_active" xml:space="preserve">
-    <value>Update number of months to be active</value>
+    <value>Cập nhật số tháng hoạt động</value>
     <comment>Update number of months to be active</comment>
   </data>
 </root>

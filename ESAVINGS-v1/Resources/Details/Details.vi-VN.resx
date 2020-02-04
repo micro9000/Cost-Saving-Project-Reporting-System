@@ -146,7 +146,7 @@
     <comment>Active</comment>
   </data>
   <data name="actualCompletionDateLbl" xml:space="preserve">
-    <value>Actual completion date</value>
+    <value>Ngày kết thúc thực tế</value>
     <comment>Actual completion date</comment>
   </data>
   <data name="AdditionalDescriptionLbl" xml:space="preserve">
@@ -266,7 +266,7 @@
     <comment>Current</comment>
   </data>
   <data name="currentDueDateLbl" xml:space="preserve">
-    <value>Current due date</value>
+    <value>Ngày đáo hạn</value>
     <comment>Current due date</comment>
   </data>
   <data name="DateSubmittedLbl" xml:space="preserve">
@@ -322,7 +322,7 @@
     <comment>Finance Section</comment>
   </data>
   <data name="funnelStatuslbl" xml:space="preserve">
-    <value>Funnel statuss</value>
+    <value>Trạng thái kênh</value>
     <comment>Funnel status</comment>
   </data>
   <data name="InvalidBtnLbl" xml:space="preserve">
@@ -350,7 +350,7 @@
     <comment>Number of months to be active</comment>
   </data>
   <data name="originalDueDateLbl" xml:space="preserve">
-    <value>Original due date</value>
+    <value>Ngày đáo hạn gốc</value>
     <comment>Original due date</comment>
   </data>
   <data name="OverviewTabHeader" xml:space="preserve">
@@ -366,15 +366,15 @@
     <comment>Owner's Remarks</comment>
   </data>
   <data name="plannedProjectStartDateLbl" xml:space="preserve">
-    <value>Planned project start date</value>
+    <value>Ngày bắt đầu dự án</value>
     <comment>Planned project start date</comment>
   </data>
   <data name="plannedSavingStartDateLbl" xml:space="preserve">
-    <value>Planned saving start date</value>
+    <value>Ngày bắt đầu tiết kiệm theo kế hoạch</value>
     <comment>Planned saving start date</comment>
   </data>
   <data name="ProjectOwnerLb" xml:space="preserve">
-    <value>Project Owner</value>
+    <value>Chủ dự án</value>
     <comment>Project Owner</comment>
   </data>
   <data name="ProjectTitleLbl" xml:space="preserve">
@@ -414,7 +414,7 @@
     <comment>Proposal Details</comment>
   </data>
   <data name="QlikViewSectionHeader" xml:space="preserve">
-    <value>Qlik View Section</value>
+    <value>Phần xem Qlik</value>
     <comment>Qlik View Section</comment>
   </data>
   <data name="SaveBtnLbl" xml:space="preserve">

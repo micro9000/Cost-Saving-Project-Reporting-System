@@ -139,7 +139,7 @@
     <value>Aktif</value>
   </data>
   <data name="actualCompletionDateLbl" xml:space="preserve">
-    <value>Actual completion date</value>
+    <value>Tarikh siap sebenar</value>
   </data>
   <data name="AdditionalDescriptionLbl" xml:space="preserve">
     <value>Penerangan Tambahan (Pengurangan Kos Pengiraan / Pengelakan Kos)</value>
@@ -151,7 +151,7 @@
     <value>Tiada pengesahan</value>
   </data>
   <data name="ApprovalStatus_VerifiedClosed" xml:space="preserve">
-    <value>Verified-closed</value>
+    <value>Ditutup-tutup</value>
   </data>
   <data name="ApprovalStatus_VerifyNotDone" xml:space="preserve">
     <value>Disahkan -Ditutup</value>
@@ -229,7 +229,7 @@
     <value>Semasa</value>
   </data>
   <data name="currentDueDateLbl" xml:space="preserve">
-    <value>Current due date</value>
+    <value>Tarikh akhir semasa</value>
   </data>
   <data name="DateSubmittedLbl" xml:space="preserve">
     <value>Tarikh Hantar</value>
@@ -265,13 +265,13 @@
     <value>Pihak Kwangan yang memberi kelulusan</value>
   </data>
   <data name="FinanceCategoryLbl" xml:space="preserve">
-    <value>Finance Category</value>
+    <value>Kategori Kewangan</value>
   </data>
   <data name="FinanceSectionHeader" xml:space="preserve">
     <value>Bahagian Kewangan</value>
   </data>
   <data name="funnelStatuslbl" xml:space="preserve">
-    <value>Funnel status</value>
+    <value>Status saluran</value>
   </data>
   <data name="InvalidBtnLbl" xml:space="preserve">
     <value>Tidak Sah</value>
@@ -292,7 +292,7 @@
     <value>Bilangan bulan untuk menjadi aktif</value>
   </data>
   <data name="originalDueDateLbl" xml:space="preserve">
-    <value>Original due date</value>
+    <value>Tarikh akhir asal</value>
   </data>
   <data name="OverviewTabHeader" xml:space="preserve">
     <value>Gambaran keseluruhan</value>
@@ -304,13 +304,13 @@
     <value>Pernyataan Pemilik</value>
   </data>
   <data name="plannedProjectStartDateLbl" xml:space="preserve">
-    <value>Planned project start date</value>
+    <value>arikh permulaan projek yang dirancang</value>
   </data>
   <data name="plannedSavingStartDateLbl" xml:space="preserve">
-    <value>Planned saving start date</value>
+    <value>Tarikh permulaan penjimatan yang dirancang</value>
   </data>
   <data name="ProjectOwnerLb" xml:space="preserve">
-    <value>Project Owner</value>
+    <value>Pemilik Projek</value>
   </data>
   <data name="ProjectTitleLbl" xml:space="preserve">
     <value>Tajuk Projek</value>
@@ -340,7 +340,7 @@
     <value>Butiran Cadangan</value>
   </data>
   <data name="QlikViewSectionHeader" xml:space="preserve">
-    <value>Qlik View Section</value>
+    <value>Bahagian Lihat Qlik</value>
   </data>
   <data name="SaveBtnLbl" xml:space="preserve">
     <value>Simpan</value>

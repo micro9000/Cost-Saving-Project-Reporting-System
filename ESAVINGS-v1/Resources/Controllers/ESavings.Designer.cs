@@ -160,7 +160,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to assign project owner, please try again.
+        ///   Looks up a localized string similar to Fail to assign project owner, please try again.
         /// </summary>
         internal static string assign_project_owner_error_msg {
             get {
@@ -214,7 +214,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please close all action items before moving the active.
+        ///   Looks up a localized string similar to Please close all action items before moving to active.
         /// </summary>
         internal static string close_all_action_items_before_move_to_active {
             get {
@@ -232,7 +232,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please close all action items before moving the cost funnel evaluating.
+        ///   Looks up a localized string similar to Please close all action items before moving to cost funnel evaluating.
         /// </summary>
         internal static string close_all_action_items_before_move_to_funnel_evaluating {
             get {
@@ -313,7 +313,7 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Failed to add new action, please try again.
+        ///   Looks up a localized string similar to Fail to add new action, please try again.
         /// </summary>
         internal static string create_new_action_error_msg {
             get {
