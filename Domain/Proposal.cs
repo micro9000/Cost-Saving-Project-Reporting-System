@@ -144,6 +144,15 @@ namespace Domain
 		}
 
 
+		public string DollarImpactFormatted
+		{
+			get
+			{
+				return string.Format(new CultureInfo("en-US"), "{0:C}", this.dollarImpact);
+			}
+		}
+
+
 		public string ProjectedDollarImpact
 		{
 			get
@@ -740,6 +749,7 @@ namespace Domain
 			Map(p => p.ProjectedDollarImpact).Ignore();
 			Map(p => p.FinanceCategory).Ignore();
 			Map(p => p.FunnelStatusIndicator).Ignore();
+			Map(p => p.DollarImpactFormatted).Ignore();
 			AutoMap();
 		}
 	}
