@@ -17,6 +17,12 @@ namespace Domain
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(currentCulture);
 		}
 
+		public static void englishCulture (string currentCulture)
+		{
+			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+			Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+		}
+
 		public enum UserTypes
 		{
 			Client = 1,
