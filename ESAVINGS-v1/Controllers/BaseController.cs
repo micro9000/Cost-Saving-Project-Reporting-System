@@ -46,6 +46,9 @@ namespace ESAVINGS_v1.Controllers
 		public string SESSION_COOKIE_USER_FINANCE_ID = "user_finance_id";
 		public string SESSION_COOKIE_PASSWORD = "user_password";
 		public string SESSION_COOKIE_USER_IS_DL = "user_is_DL";
+
+		public string currentLang = "";
+
 		//public string SET_SESSION_ERROR = "errr";
 
 
@@ -58,7 +61,6 @@ namespace ESAVINGS_v1.Controllers
 
 		public BaseController ()
 		{
-
 			//Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ms-MY");
 			//Thread.CurrentThread.CurrentUICulture = new CultureInfo("ms-MY");
 
@@ -75,6 +77,25 @@ namespace ESAVINGS_v1.Controllers
 			if (ConfigurationManager.AppSettings["number_of_months_project_as_active_is_optional"].ToLower() == "true")
 			{
 				number_of_months_project_as_active_is_optional = true;
+			}
+		}
+
+
+		public void SwitchToEnglish (bool switchToEnglish, HttpCookieCollection cookies)
+		{
+			if (cookies.AllKeys.Contains("ESavingsLanguage"))
+			{
+				HttpCookie cookie = cookies["ESavingsLanguage"];
+				if (switchToEnglish)
+				{
+					Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+					Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
+				}
+				else
+				{
+					Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(cookie.Value);
+					Thread.CurrentThread.CurrentUICulture = new CultureInfo(cookie.Value);
+				}
 			}
 		}
 
@@ -293,6 +314,7 @@ namespace ESAVINGS_v1.Controllers
 		{
 			ViewBag.types_COST_SAVINGS = ((int)StaticData.ProjectTypes.COST_SAVINGS).ToString();
 			ViewBag.types_COST_AVOIDANCE = ((int)StaticData.ProjectTypes.COST_AVOIDANCE).ToString();
+			ViewBag.types_ONE_TIME_SAVINGS = ((int)StaticData.ProjectTypes.ONE_TIME_SAVINGS).ToString();
 		}
 
 
@@ -829,6 +851,22 @@ namespace ESAVINGS_v1.Controllers
 
 			return newCategories;
 		}
+
+
+		public Dictionary<int, TrackingCategory> GetAllTrackingCategoryById ()
+		{
+			var newCategories = new Dictionary<int, TrackingCategory>();
+
+			var categories = Factory.TrackingCategoryRepository().GetAll();
+
+			foreach (var cat in categories)
+			{
+				newCategories.Add(cat.Id, cat);
+			}
+
+			return newCategories;
+		}
+
 
 		public List<Proposal> GetProposalsAdditionalInfo (List<Proposal> proposals)
 		{

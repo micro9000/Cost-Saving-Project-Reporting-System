@@ -14,13 +14,20 @@ namespace ESavingsAPI.Controllers
 
 	public class ProposalsController : ApiController
 	{
+		[HttpGet]
+		public List<Proposal> SearchEmployee (string s)
+		{
+			List<Proposal> proposals = Factory.ProposalFactory().GetAllProposals().ToList();
+			return proposals;
+		}
+
 		public List<QlikView> Get ()
 		{
 			List<Proposal> proposals = Factory.ProposalFactory().GetAllProposals().ToList();
 
 			var financeCategories = Loaders.GetAllFinanceCategory();
-
 			var departments = Loaders.GetAllDepartments();
+			var trackingCategories = Loaders.GetAllTrackingCategory();
 
 			string site = ConfigurationManager.AppSettings["onsemi_site_code"];
 
@@ -36,6 +43,7 @@ namespace ESavingsAPI.Controllers
 							   projectStatus = p.OAStatusIndicator,
 							   rank = 0,
 							   financeCategory = financeCategories[p.FinanceCategoryID],
+							   trackingCategory = trackingCategories[p.TrackingCategoryID],
 							   notes = WebUtility.HtmlDecode(p.ProposalDescription),
 							   funnelStatus = p.FunnelStatusIndicator,
 							   description = p.Remarks,
@@ -46,7 +54,7 @@ namespace ESavingsAPI.Controllers
 							   plannedProjectStartDate = p.PlannedProjectStartDate == (new DateTime(0001, 01, 01)) ? "" : p.PlannedProjectStartDate.ToString("yyyy-MM-dd"),
 							   plannedSavingStartDate = p.PlannedSavingsStartDate == (new DateTime(0001, 01, 01)) ? "" : p.PlannedSavingsStartDate.ToString("yyyy-MM-dd"),
 							   actualCompletionDate = p.ActualCompletionDate == (new DateTime(0001, 01, 01)) ? "" : p.ActualCompletionDate.ToString("yyyy-MM-dd"),
-							   actualAmount = 0
+							   actualAmount = p.ActualAmount
 						   }).OrderByDescending(p => p.amount).ToList();
 
 			return results;

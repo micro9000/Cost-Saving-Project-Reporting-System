@@ -507,4 +507,10 @@
   <data name="update_number_of_months_active" xml:space="preserve">
     <value>Update number of months to be active</value>
   </data>
+  <data name="updated_actual_amount" xml:space="preserve">
+    <value>Updated Actual amount</value>
+  </data>
+  <data name="updated_tracking_category" xml:space="preserve">
+    <value>Updated Tracking Category</value>
+  </data>
 </root>

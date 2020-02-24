@@ -749,11 +749,15 @@ namespace Persistence.Repositories
 		public int UpdateProposalDetails (Proposal proposal)
 		{
 			string query = @"UPDATE Proposals 
-							SET ProjectTitle=@ProjectTitle,
+							SET projectType=@ProjectType,
+								ProjectTitle=@ProjectTitle,
 								CurrentDescription=@CurrentDescription,
 								ProposalDescription=@ProposalDescription,
 								remarks=@remarks,
-								areaDeptBeneficiary=@AreaDeptBeneficiary
+								areaDeptBeneficiary=@AreaDeptBeneficiary,
+								expectedStartDate=@ExpectedStartDate,
+								numberOfMonthsToBeActive=@NumberOfMonthsToBeActive,
+								dollarImpact=@DollarImpact
 							WHERE id=@Id";
 
 			int rowsUpdated = 0;
@@ -937,6 +941,45 @@ namespace Persistence.Repositories
 			return rowsUpdated;
 		}
 
+		public int UpdateProposalActualAmount (decimal actualAmount, int proposalID)
+		{
+			string query = "UPDATE Proposals SET actualAmount=@actualAmount WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					actualAmount = actualAmount,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
+
+		public int UpdateProposalTrackingCategory (int trackingCategoryID, int proposalID)
+		{
+			string query = "UPDATE Proposals SET trackingCategoryID=@trackingCategoryID WHERE id=@proposalID";
+
+			int rowsUpdated = 0;
+
+			using (var conn = new WrappedDbConnection(GetOpenConnection()))
+			{
+				rowsUpdated = conn.Execute(query, new
+				{
+					trackingCategoryID = trackingCategoryID,
+					proposalID = proposalID
+				});
+
+				conn.Close();
+
+			}
+			return rowsUpdated;
+		}
 
 		public int UpdateProposalOriginalDueDate (DateTime origDueDate, int proposalID)
 		{

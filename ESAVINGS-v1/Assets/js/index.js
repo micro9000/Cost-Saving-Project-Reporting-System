@@ -191,31 +191,45 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	var display = "";
 
 	display += "<tr>";
-	display += "<td>" + TreeKeyDesc["NewProductEntry"] + "</td>";
+	display += "<td>" + TreeKeyDesc["NewProposalEntry"] + "</td>";
 	display += "<td></td>";
+
+	// New 
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
-		display += "<td>" + counterTree[global_project_type_for_identified]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
-		display += "<td class='center'>" + counterTree[global_project_type_for_identified]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_for_identified]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
+		display += "<td class='center'>" + counterTree[global_project_type_for_identified]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_savings]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_savings]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
 
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["NewProductEntry"]["NA"]["PROJECT_PROPOSAL"]["dollarImpact"] + "</td>";
+		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["NewProposalEntry"]["NA"]["PROJECT_PROPOSAL"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 
 
@@ -225,6 +239,7 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	display += "<td rowspan='7'>" + TreeKeyDesc["CostFunnelIdentified"] + "</td>";
 	display += "<td rowspan='3'>" + TreeKeyDesc["INProgressActionRequired"] + "</td>";
 
+	// Cost analyst review in progress
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
 		display += "<td>" + counterTree[global_project_type_for_identified]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
 		display += "<td class='center'>" + counterTree[global_project_type_for_identified]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
@@ -234,8 +249,9 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
 	} else {
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
 		display += "<td></td>";
@@ -244,15 +260,26 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
+		display += "<td></td>";
+	}
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_ANALYST_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
 	} else {
 		display += "<td></td>";
 		display += "<td></td>";
 	}
+
 	display += "</tr>";
 
 
 
-
+	// Cost Funnel Identified
 	display += "<tr>";
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
 		display += "<td>" + counterTree[global_project_type_for_identified]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["statusDesc"] + "</td>";
@@ -263,25 +290,38 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["COST_FUNNEL_IDENTIFIED"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 
 
 
-
+	// Cost funnel identified
 	display += "<tr>";
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
 		display += "<td>" + counterTree[global_project_type_for_identified]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
@@ -292,23 +332,37 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["INProgressActionRequired"]["FINANCE_REVIEW_IN_PROGRESS"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 
 
+	// Cost Funnel identified
 	display += "<tr>";
 	display += "<td></td>";
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
@@ -320,25 +374,37 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["actualAmount"] + "</td>";
 	} else {
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["statusDesc"] + "</td>";
 		display += "<td></td>";
-		display += "<td></td>";
+	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["ExistingProject"]["EXISTING_PROJECT"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
 	}
 	
 	display += "</tr>";
 
 
-
+	// Cost Funnel Identified
 	display += "<tr>";
 	display += "<td></td>";
 	if (counterTree.hasOwnProperty(global_project_type_for_identified)) {
@@ -351,20 +417,32 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["DoubleEntry"]["DUPLICATE_ENTRY"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 
 
@@ -381,20 +459,33 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 
 
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Cancelled"]["CANCELED"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 	
 
@@ -410,20 +501,33 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Invalid"]["INVALID"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Invalid"]["INVALID"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Invalid"]["INVALID"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Invalid"]["INVALID"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelIdentified"]["Invalid"]["INVALID"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Invalid"]["INVALID"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Invalid"]["INVALID"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Invalid"]["INVALID"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Invalid"]["INVALID"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelIdentified"]["Invalid"]["INVALID"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td></td>";
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Invalid"]["INVALID"]["statusDesc"] + "</td>";
 		display += "<td></td>";
 	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Invalid"]["INVALID"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Invalid"]["INVALID"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelIdentified"]["Invalid"]["INVALID"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
+	}
+
 	display += "</tr>";
 
 
@@ -440,19 +544,31 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["actualAmount"] + "</td>";
 	} else {
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["statusDesc"] + "</td>";
 		display += "<td></td>";
-		display += "<td></td>";
+	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["CostFunnelEvaluation"]["NA"]["COST_FUNNEL_EVALUATING"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
 	}
 	display += "</tr>";
 
@@ -470,19 +586,31 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["Active"]["NA"]["ACTIVE"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["Active"]["NA"]["ACTIVE"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Active"]["NA"]["ACTIVE"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Active"]["NA"]["ACTIVE"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Active"]["NA"]["ACTIVE"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Active"]["NA"]["ACTIVE"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["Active"]["NA"]["ACTIVE"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["Active"]["NA"]["ACTIVE"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Active"]["NA"]["ACTIVE"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Active"]["NA"]["ACTIVE"]["actualAmount"] + "</td>";
 	} else {
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["Active"]["NA"]["ACTIVE"]["statusDesc"] + "</td>";
 		display += "<td></td>";
-		display += "<td></td>";
+	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Active"]["NA"]["ACTIVE"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Active"]["NA"]["ACTIVE"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Active"]["NA"]["ACTIVE"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td class='grey lighten-3'></td>";
+		display += "<td class='grey lighten-3'></td>";
 	}
 	
 	display += "</tr>";
@@ -501,20 +629,33 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	}
 	
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'>" + counterTree[global_project_type_cost_savings]["Completed"]["NA"]["COMPLETED"]["counter"] + "</td>";
-		display += "<td>" + counterTree[global_project_type_cost_savings]["Completed"]["NA"]["COMPLETED"]["dollarImpact"] + "</td>";
+		display += "<td class='center teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Completed"]["NA"]["COMPLETED"]["counter"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Completed"]["NA"]["COMPLETED"]["dollarImpact"] + "</td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_savings]["Completed"]["NA"]["COMPLETED"]["actualAmount"] + "</td>";
 	} else {
-		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Completed"]["NA"]["COMPLETED"]["statusDesc"] + "</td>";
-		display += "<td></td>";
+		display += "<td class='teal lighten-3'>" + counterTree[global_project_type_cost_avoidance]["Completed"]["NA"]["COMPLETED"]["statusDesc"] + "</td>";
+		display += "<td class='teal lighten-3'></td>";
 	}
 
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'>" + counterTree[global_project_type_cost_avoidance]["Completed"]["NA"]["COMPLETED"]["counter"] + "</td>";
 		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Completed"]["NA"]["COMPLETED"]["dollarImpact"] + "</td>";
+		display += "<td>" + counterTree[global_project_type_cost_avoidance]["Completed"]["NA"]["COMPLETED"]["actualAmount"] + "</td>";
+	} else {
+		display += "<td>" + counterTree[global_project_type_one_time_saving]["Completed"]["NA"]["COMPLETED"]["statusDesc"] + "</td>";
+		display += "<td></td>";
+	}
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Completed"]["NA"]["COMPLETED"]["counter"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Completed"]["NA"]["COMPLETED"]["dollarImpact"] + "</td>";
+		display += "<td class='grey lighten-3'>" + counterTree[global_project_type_one_time_saving]["Completed"]["NA"]["COMPLETED"]["actualAmount"] + "</td>";
 	} else {
 		display += "<td></td>";
 		display += "<td></td>";
 	}
+
 	display += "</tr>";
 
 
@@ -527,19 +668,35 @@ function displayProposalCounterAndDollarImpactComputation(data) {
 	} else {
 		display += "<td></td>";
 	}
+
+
 	if (counterTree.hasOwnProperty(global_project_type_cost_savings)) {
-		display += "<td class='center'><h6>" + counterTree[global_project_type_cost_savings]["TotalCount"]["NA"]["total"]["counter"] + "</h6></td>";
+		display += "<td class='center teal lighten-3'><h6>" + counterTree[global_project_type_cost_savings]["TotalCount"]["NA"]["total"]["counter"] + "</h6></td>";
 	} else {
 		display += "<td></td>";
 	}
+	display += "<td class='teal lighten-3'></td>";
+	display += "<td class='teal lighten-3'></td>";
 
-	display += "<td></td>";
+
 	if (counterTree.hasOwnProperty(global_project_type_cost_avoidance)) {
 		display += "<td class='center'><h6>" + counterTree[global_project_type_cost_avoidance]["TotalCount"]["NA"]["total"]["counter"] + "</h6></td>";
 	} else {
 		display += "<td></td>";
 	}
 	display += "<td></td>";
+	display += "<td></td>";
+
+
+	if (counterTree.hasOwnProperty(global_project_type_one_time_saving)) {
+		display += "<td class='center grey lighten-3'><h6>" + counterTree[global_project_type_one_time_saving]["TotalCount"]["NA"]["total"]["counter"] + "</h6></td>";
+	} else {
+		display += "<td></td>";
+	}
+	display += "<td class='grey lighten-3'></td>";
+	display += "<td class='grey lighten-3'></td>";
+
+
 	display += "</tr>";
 
 	$("#proposal_counter_and_dollarImpact_calculation").html(display);

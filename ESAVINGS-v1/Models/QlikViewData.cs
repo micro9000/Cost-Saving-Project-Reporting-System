@@ -93,6 +93,36 @@ namespace ESAVINGS_v1.Models
 			}
 		}
 
+
+		private decimal actualAmount;
+
+		public decimal ActualAmount
+		{
+			get
+			{
+				return actualAmount;
+			}
+			set
+			{
+				actualAmount = value;
+			}
+		}
+
+		private int trackingCategoryId;
+
+		public int TrackingCategoryId
+		{
+			get
+			{
+				return trackingCategoryId;
+			}
+			set
+			{
+				trackingCategoryId = value;
+			}
+		}
+
+
 		private int globalFunnelStatusIndicator;
 
 		public int GlobalFunnelStatusIndicator

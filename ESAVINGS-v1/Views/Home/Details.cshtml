@@ -19,6 +19,15 @@
 	}
 	string dollarImpactFormatted = Model.DollarImpactFormatted;
 
+
+	decimal actualAmount = 0;
+	if (Model.ActualAmount != null || Model.ActualAmount > 0)
+	{
+		actualAmount = Model.ActualAmount;
+	}
+	string actualAmountFormatted = Model.ActualAmountFormatted;
+	
+
 	bool isProjectOwner = false;
 	if (!string.IsNullOrWhiteSpace(Model.ProjectOwnerFFID))
 	{
@@ -93,7 +102,9 @@
 								Model.OAStatus.ToString() == ViewBag.status_PROJECT_PROPOSAL ||
 								Model.OAStatus.ToString() == ViewBag.status_COST_ANALYST_REVIEW_IN_PROGRESS ||
 								Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_IDENTIFIED ||
-								Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS
+								Model.OAStatus.ToString() == ViewBag.status_FINANCE_REVIEW_IN_PROGRESS ||
+								Model.OAStatus.ToString() == ViewBag.status_COST_FUNNEL_EVALUATING ||
+								Model.OAStatus.ToString() == ViewBag.status_ACTIVE
 							) &&
 							( // allowed users with their permissions
 								(ViewBag.UserType == ViewBag.userType_costAnalyst && ViewBag.UserIsCostAnalystOnCurrentProposal == true) || // Normal COST-ANALYST
@@ -210,6 +221,23 @@
 															else
 															{
 																<div class="details-content">@totalDollarImpact</div>
+															}
+														</div>
+													</div>
+
+
+													<!-- Actual amount -->
+													<div class="input-field">
+														<div>
+															<label class="details-label">Actual Amount</label>
+
+															@if (actualAmount == 0)
+															{
+																<div class="details-content">TBD</div>
+															}
+															else
+															{
+																<div class="details-content">@actualAmountFormatted</div>
 															}
 														</div>
 													</div>
@@ -1597,6 +1625,13 @@
 																}
 																<span>@ESAVINGS_v1.Resources.Details.Details.BestPracticeImplementation</span>
 															</label>
+															
+															<!-- Complete button -->
+															<a class="btn waves-effect waves-light btn-small btn-finance-move-to-completed"
+															   data-oa-status="@ViewBag.status_COMPLETED"
+															   data-finance-approver-id="@Model.FinanceApproval[0].FinanceApproverInfo.Id">
+																<i class="material-icons left">check</i>@ESAVINGS_v1.Resources.Details.Details.CompletedBtnLbl
+															</a>
 														}
 
 													</div>
@@ -1653,7 +1688,7 @@
 													<!-- Finance category -->
 													<div class="input-field">
 														<select id="financeCategory">
-															@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
+															@*@foreach (Domain.FinanceCategory cat in ViewBag.FinanceCategories)
 															{
 																if (Model.FinanceCategoryID == cat.Id)
 																{
@@ -1664,9 +1699,40 @@
 																	<option value="@cat.Id">@cat.Category</option>
 																}
 
+															}*@
+															@foreach (var cat in ViewBag.FinanceCategories)
+															{
+																if (Model.FinanceCategoryID == cat.Key)
+																{
+																	<option value="@cat.Key" selected>@cat.Value.Category</option>
+																}
+																else
+																{
+																	<option value="@cat.Key">@cat.Value.Category</option>
+																}
+
 															}
 														</select>
 														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl</label>
+													</div>
+
+													<!-- Tracking category -->
+													<div class="input-field">
+														<select id="trackingCategory">
+															@foreach (var cat in ViewBag.TrackingCategories)
+															{
+																if (Model.TrackingCategoryID == cat.Key)
+																{
+																	<option value="@cat.Key" selected>@cat.Value.Category</option>
+																}
+																else
+																{
+																	<option value="@cat.Key">@cat.Value.Category</option>
+																}
+
+															}
+														</select>
+														<label for="financeCategory">@ESAVINGS_v1.Resources.Details.Details.TrackingCategoryLbl</label>
 													</div>
 
 													<!-- Original due date -->
@@ -1680,7 +1746,6 @@
 														<input id="qlik_view_current_due_date" type="text" class="datepicker" value="@currentDueDate" autocomplete="off">
 														<label for="qlik_view_current_due_date">@ESAVINGS_v1.Resources.Details.Details.currentDueDateLbl</label>
 													</div>
-
 
 													<!-- Planned project start date -->
 													<div class="input-field">
@@ -1699,6 +1764,14 @@
 														<input id="qlik_view_actual_completion_date" type="text" class="datepicker" value="@actualCompletionDate" autocomplete="off">
 														<label for="qlik_view_actual_completion_date">@ESAVINGS_v1.Resources.Details.Details.actualCompletionDateLbl</label>
 													</div>
+
+
+													<!-- Actual Amount-->
+													<div class="input-field">
+														<input id="qlik_view_actual_amount" type="text" value="@actualAmount" autocomplete="off">
+														<label for="qlik_view_actual_completion_date">@ESAVINGS_v1.Resources.Details.Details.ActualAmountLbl</label>
+													</div>
+
 													<!-- Global funnel status -->
 													<div class="input-field">
 														<select id="globalFunnelStatus">
@@ -1740,6 +1813,15 @@
 														<div>
 															<label>@ESAVINGS_v1.Resources.Details.Details.FinanceCategoryLbl:</label>
 															<div style="white-space: pre-wrap">@Model.FinanceCategory</div>
+														</div>
+													</div>
+												</div>
+
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>@ESAVINGS_v1.Resources.Details.Details.TrackingCategoryLbl:</label>
+															<div style="white-space: pre-wrap">@Model.TrackingCategory</div>
 														</div>
 													</div>
 												</div>
@@ -1798,7 +1880,14 @@
 													</div>
 												</div>
 
-												<div class="col l4 s12 m6"></div>
+												<div class="col l4 s12 m6">
+													<div class="input-field">
+														<div>
+															<label>Actual Amount:</label>
+															<div style="white-space: pre-wrap">@actualAmountFormatted</div>
+														</div>
+													</div>
+												</div>
 												<div class="col l4 s12 m6"></div>
 
 											</div>

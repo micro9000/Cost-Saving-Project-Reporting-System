@@ -564,6 +564,50 @@ $(".btn-finance-verification").on("click", function () {
 
 });
 
+
+$(".btn-finance-move-to-completed").on("click", function () {
+
+
+	$("#finance-verification-loader").css("display", "block");
+
+	var financeApproverID = $(this).attr("data-finance-approver-id");
+	
+	var formData = new FormData();
+
+	formData.append("proposalID", global_proposal_id);
+	formData.append("OAStatus", $(this).attr("data-oa-status"));
+	formData.append("financeApproverID", financeApproverID);
+
+	var request = $.ajax({
+		url: base_url + "ESavings/MoveProjectToCompleted",
+		type: "POST",
+		data: formData,
+		contentType: false,
+		cache: false,
+		processData: false
+	});
+
+	request.done(function (data) {
+		console.log(data);
+
+		M.toast({
+			html: "Processing...Please wait...",
+			completeCallback: function () {
+				M.toast({
+					html: data.msg,
+					completeCallback: function () {
+						window.location.reload();
+					}
+				})
+
+			}
+		})
+
+	});
+
+});
+
+
 //$("#reassign-project-to-cost-analyst-modal").modal('open');
 
 // ######################################
@@ -747,22 +791,26 @@ $("#btn-qlik-view-save-details").on("click", function () {
 	$(this).attr("disabled", "disabled");
 
 	var financeCategory = $("#financeCategory").val();
+	var trackingCategory = $("#trackingCategory").val();
 	var origDueDate = $("#qlik_view_original_due_date").val();
 	var curDueDate = $("#qlik_view_current_due_date").val();
 	var plannedProjectStartDate = $("#qlik_view_planned_project_start_date").val();
 	var plannedSavingStartDate = $("#qlik_view_planned_saving_start_date").val();
 	var actualCompletionDate = $("#qlik_view_actual_completion_date").val();
+	var actualAmount = $("#qlik_view_actual_amount").val();
 	var globalFunnelStatus = $("#globalFunnelStatus").val();
 
 
 	var data = {
 		proposalID: global_proposal_id,
 		FinanceCategoryId: financeCategory,
+		TrackingCategoryId: trackingCategory,
 		OriginalDueDate: origDueDate,
 		CurrentDueDate: curDueDate,
 		PlannedProjectStartDate: plannedProjectStartDate,
 		PlannedSavingStartDate: plannedSavingStartDate,
 		ActualCompletionDate: actualCompletionDate,
+		ActualAmount: actualAmount,
 		GlobalFunnelStatusIndicator: globalFunnelStatus
 	}
 

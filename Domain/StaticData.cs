@@ -17,12 +17,6 @@ namespace Domain
 			Thread.CurrentThread.CurrentUICulture = new CultureInfo(currentCulture);
 		}
 
-		public static void englishCulture (string currentCulture)
-		{
-			Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en");
-			Thread.CurrentThread.CurrentUICulture = new CultureInfo("en");
-		}
-
 		public enum UserTypes
 		{
 			Client = 1,
@@ -80,7 +74,7 @@ namespace Domain
 		{
 			var desc = new Dictionary<string, string>();
 
-			desc.Add("NewProductEntry", DomainResources.NewProductEntry);
+			desc.Add("NewProposalEntry", DomainResources.NewProductEntry);
 			desc.Add("CostFunnelIdentified", DomainResources.CostFunnelIdentified);
 			desc.Add("CostFunnelEvaluation", DomainResources.CostFunnelEvaluation);
 			desc.Add("Active", DomainResources.ACTIVE);
@@ -95,7 +89,7 @@ namespace Domain
 		{
 			var tree = new Dictionary<string, Dictionary<string, Dictionary<string, Dictionary<string, string>>>>{
 				{
-					"NewProductEntry", new Dictionary<string, Dictionary<string, Dictionary<string, string>>>{
+					"NewProposalEntry", new Dictionary<string, Dictionary<string, Dictionary<string, string>>>{
 						{
 							"NA", new Dictionary<string, Dictionary<string, string>>{
 								{
@@ -103,7 +97,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.PROJECT_PROPOSAL).ToString()},
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.PROJECT_PROPOSAL)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -119,7 +114,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								},
 								{
@@ -127,7 +123,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.COST_FUNNEL_IDENTIFIED).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.COST_FUNNEL_IDENTIFIED)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								},
 								{
@@ -135,7 +132,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.FINANCE_REVIEW_IN_PROGRESS).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.FINANCE_REVIEW_IN_PROGRESS)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -159,7 +157,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.EXISTING_PROJECT).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.EXISTING_PROJECT)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -171,7 +170,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.DUPLICATE_ENTRY).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.DUPLICATE_ENTRY)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -183,7 +183,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.CANCELED).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.CANCELED)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -195,7 +196,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.INVALID).ToString() },
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.INVALID)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -211,7 +213,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.COST_FUNNEL_EVALUATING).ToString()},
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.COST_FUNNEL_EVALUATING)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -227,7 +230,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.ACTIVE).ToString()},
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.ACTIVE)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -243,7 +247,8 @@ namespace Domain
 										{"status", ((int)OverallStatus.COMPLETED).ToString()},
 										{"counter", "" },
 										{"statusDesc", GetOverallStatusStr(((int)OverallStatus.COMPLETED)) },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}
@@ -259,7 +264,8 @@ namespace Domain
 										{"status", ""},
 										{"counter", "" },
 										{"statusDesc", "" },
-										{"dollarImpact", "" }
+										{"dollarImpact", "" },
+										{"actualAmount", "" }
 									}
 								}
 							}

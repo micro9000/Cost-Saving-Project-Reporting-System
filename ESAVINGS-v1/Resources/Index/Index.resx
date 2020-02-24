@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ActualAmount" xml:space="preserve">
+    <value>Actual Amount</value>
+  </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
   </data>
@@ -124,10 +127,13 @@
     <value>Best practice implementation</value>
   </data>
   <data name="Cost_avoidance_dollar_impact" xml:space="preserve">
-    <value>Cost-Avoidance Dollar Impact</value>
+    <value>Dollar Impact</value>
   </data>
   <data name="Cost_avoidance_total" xml:space="preserve">
-    <value>Cost-Avoidance Total</value>
+    <value>Cost-Avoidance</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
@@ -150,6 +156,12 @@
   <data name="MultiSelection" xml:space="preserve">
     <value>Multiple Selection</value>
   </data>
+  <data name="One_time_savings_dollar_impact" xml:space="preserve">
+    <value>Dollar Impact</value>
+  </data>
+  <data name="One_time_savings_total" xml:space="preserve">
+    <value>One Time Savings</value>
+  </data>
   <data name="ProjectedDollarImpact" xml:space="preserve">
     <value>Projected Dollar Impact</value>
   </data>
@@ -157,10 +169,10 @@
     <value>Proposal</value>
   </data>
   <data name="Savings_Dollar_Impact" xml:space="preserve">
-    <value>Savings Dollar Impact</value>
+    <value>Dollar Impact</value>
   </data>
   <data name="Savings_total" xml:space="preserve">
-    <value>Savings-Total</value>
+    <value>Savings</value>
   </data>
   <data name="Search_project" xml:space="preserve">
     <value>Search Projects</value>

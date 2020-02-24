@@ -124,7 +124,7 @@ namespace TaskServices
 						msg += "<b>To view the details, please click this <a href='"+ base_detail_link + activeP.Id +"'>link</a></b><br/><br/>";
 
 
-						Helpers.SendEmail sendEmail = new Helpers.SendEmail(msg, "E-Savings Reminder", emailMsgFooter, "E-SAVINGS", "apps.donotreply@onsemi.com");
+						Helpers.SendEmail sendEmail = new Helpers.SendEmail(msg, "E-Savings Notifier", emailMsgFooter, "E-SAVINGS", "apps.donotreply@onsemi.com");
 						//sendEmail.Add_CC_Recipient("Raniel.Garcia@onsemi.com");
 						sendEmail.Add_To_Recipient(ownerEmail);
 

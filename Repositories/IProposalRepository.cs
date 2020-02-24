@@ -30,6 +30,10 @@ namespace Repositories
 
 		int UpdateProposalActualCompletionDate (DateTime actualCompletionDate, int proposalID);
 
+		int UpdateProposalActualAmount (decimal actualAmount, int proposalID);
+
+		int UpdateProposalTrackingCategory (int trackingCategoryID, int proposalID);
+
 		int UpdateProposalFinanceCategory (int financeCategoryID, int proposalID);
 
 		int UpdateProposalFunnelStatus (int funnelStatus, int proposalID);

@@ -138,27 +138,27 @@
     <comment>Cost Analyst</comment>
   </data>
   <data name="CostFunnelEvaluation" xml:space="preserve">
-    <value>Cost Funnel Evaluation</value>
+    <value>Đánh giá chi phí</value>
     <comment>Cost Funnel Evaluation</comment>
   </data>
   <data name="CostFunnelIdentified" xml:space="preserve">
-    <value>Cost Funnel Identified</value>
+    <value>Kênh chi phí được xác định</value>
     <comment>Cost Funnel Identified</comment>
   </data>
   <data name="CostSiteInCharge" xml:space="preserve">
-    <value>Cost site incharge</value>
+    <value>Site Phụ trách chi phí</value>
     <comment>Cost site incharge</comment>
   </data>
   <data name="COST_ANALYST_REVIEW_IN_PROGRESS" xml:space="preserve">
-    <value>COST-ANALYST-REVIEW-IN-PROGRESS</value>
+    <value>Xem xét phân tích chi phí đang xử lý</value>
     <comment>COST-ANALYST-REVIEW-IN-PROGRESS</comment>
   </data>
   <data name="COST_AVOIDANCE" xml:space="preserve">
-    <value>Cost Avoidance</value>
+    <value>Chi phí tránh</value>
     <comment>COST-AVOIDANCE</comment>
   </data>
   <data name="COST_FUNNEL_EVALUATING" xml:space="preserve">
-    <value>COST-FUNNEL-EVALUATING</value>
+    <value>Đánh giá chi phí</value>
     <comment>COST-FUNNEL-EVALUATING</comment>
   </data>
   <data name="COST_FUNNEL_IDENTIFIED" xml:space="preserve">
@@ -262,7 +262,7 @@
     <comment>On Hold</comment>
   </data>
   <data name="COST_AVOIDANCE_sm" xml:space="preserve">
-    <value>Cost Avoidance</value>
+    <value>Chi phí tránh</value>
     <comment>Cost Avoidance</comment>
   </data>
   <data name="COST_SAVINGS_sm" xml:space="preserve">

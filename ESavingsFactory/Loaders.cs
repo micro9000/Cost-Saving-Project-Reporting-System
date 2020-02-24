@@ -25,6 +25,20 @@ namespace ESavingsFactory
 			return newCategories;
 		}
 
+		public static Dictionary<int, string> GetAllTrackingCategory ()
+		{
+			var newCategories = new Dictionary<int, string>();
+
+			var categories = Factory.TrackingCategoryRepository().GetAll();
+
+			foreach (var cat in categories)
+			{
+				newCategories.Add(cat.Id, cat.Category);
+			}
+
+			return newCategories;
+		}
+
 		public static Dictionary<string, string> GetAllDepartments ()
 		{
 			var departments = Factory.CostAnalystDeptCodesFactory().GetDepartments();

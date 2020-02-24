@@ -1132,6 +1132,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated Actual amount.
+        /// </summary>
+        internal static string updated_actual_amount {
+            get {
+                return ResourceManager.GetString("updated_actual_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Updated Actual completion date.
         /// </summary>
         internal static string updated_actual_completion_date {
@@ -1191,6 +1200,15 @@ namespace ESAVINGS_v1.Resources.Controllers {
         internal static string updated_planned_saving_start_date {
             get {
                 return ResourceManager.GetString("updated_planned_saving_start_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated Tracking Category.
+        /// </summary>
+        internal static string updated_tracking_category {
+            get {
+                return ResourceManager.GetString("updated_tracking_category", resourceCulture);
             }
         }
         

@@ -17,20 +17,31 @@
 			<div class="row">
 				<div class="col s12 m12 l12">
 					<div class="card" style="border-left: 5px solid #03a9f4; margin: 0;">
-						<div class="card-content light-blue lighten-5">
+						<div class="card-content">
 							<span class="card-title">Projects - @System.Configuration.ConfigurationManager.AppSettings["onsemi_site"]</span>
 
 							<table class="base-font-size" style="table-layout: fixed; width: 100%;">
 								<thead class="light-blue lighten-2">
 									<tr>
+										<th colspan="4" style="text-align:center;">Status</th>
+										<th colspan="3" style="text-align:center;" class="teal">Cost-Savings</th>
+										<th colspan="3" style="text-align:center;">Cost-Avoidance</th>
+										<th colspan="3" style="text-align:center;" class="grey">One-Time-Savings</th>
+									</tr>
+									<tr>
 										<th></th>
 										<th></th>
 										<th>@ESAVINGS_v1.Resources.Index.Index.Status</th>
 										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.For_verification</th>
-										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.Savings_total</th>
-										<th>@ESAVINGS_v1.Resources.Index.Index.Savings_Dollar_Impact</th>
-										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.Cost_avoidance_total</th>
+										<th style="text-align:center;" class="teal">@ESAVINGS_v1.Resources.Index.Index.Count</th>
+										<th class="teal">@ESAVINGS_v1.Resources.Index.Index.Savings_Dollar_Impact</th>
+										<th class="teal">@ESAVINGS_v1.Resources.Index.Index.ActualAmount</th>
+										<th style="text-align:center;">@ESAVINGS_v1.Resources.Index.Index.Count</th>
 										<th>@ESAVINGS_v1.Resources.Index.Index.Cost_avoidance_dollar_impact</th>
+										<th>@ESAVINGS_v1.Resources.Index.Index.ActualAmount</th>
+										<th style="text-align:center;" class="grey">@ESAVINGS_v1.Resources.Index.Index.Count</th>
+										<th class="grey">@ESAVINGS_v1.Resources.Index.Index.One_time_savings_dollar_impact</th>
+										<th class="grey">@ESAVINGS_v1.Resources.Index.Index.ActualAmount</th>
 									</tr>
 								</thead>
 								<tbody id="proposal_counter_and_dollarImpact_calculation"></tbody>
@@ -307,6 +318,7 @@
 	var global_project_type_for_identified = "0";
 	var global_project_type_cost_savings = "@ViewBag.types_COST_SAVINGS";
 	var global_project_type_cost_avoidance = "@ViewBag.types_COST_AVOIDANCE";
+	var global_project_type_one_time_saving = "@ViewBag.types_ONE_TIME_SAVINGS";
 
 	//var global_project_types = ["", "@ViewBag.ProjectTypes[int.Parse(ViewBag.types_COST_SAVINGS)]", "@ViewBag.ProjectTypes[int.Parse(ViewBag.types_COST_AVOIDANCE)]"];
 

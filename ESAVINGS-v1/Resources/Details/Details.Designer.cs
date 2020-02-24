@@ -124,6 +124,15 @@ namespace ESAVINGS_v1.Resources.Details {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual Amount.
+        /// </summary>
+        public static string ActualAmountLbl {
+            get {
+                return ResourceManager.GetString("ActualAmountLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Actual completion date.
         /// </summary>
         public static string actualCompletionDateLbl {
@@ -327,6 +336,15 @@ namespace ESAVINGS_v1.Resources.Details {
         public static string ChooseFinanceApproverLbl {
             get {
                 return ResourceManager.GetString("ChooseFinanceApproverLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string CompletedBtnLbl {
+            get {
+                return ResourceManager.GetString("CompletedBtnLbl", resourceCulture);
             }
         }
         
@@ -777,6 +795,15 @@ namespace ESAVINGS_v1.Resources.Details {
         public static string TotalDollarImpactLbl {
             get {
                 return ResourceManager.GetString("TotalDollarImpactLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TrackingCategory.
+        /// </summary>
+        public static string TrackingCategoryLbl {
+            get {
+                return ResourceManager.GetString("TrackingCategoryLbl", resourceCulture);
             }
         }
         

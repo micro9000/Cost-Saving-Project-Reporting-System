@@ -61,6 +61,13 @@ namespace ESavingsAPI.Models
 			set;
 		}
 
+
+		public string trackingCategory
+		{
+			get;
+			set;
+		}
+
 		public string notes
 		{
 			get;

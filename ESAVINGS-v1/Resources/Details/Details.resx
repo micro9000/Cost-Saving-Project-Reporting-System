@@ -363,4 +363,13 @@
   <data name="updateProposalWarningMsg" xml:space="preserve">
     <value>NOTE: Changing the area/department beneficiary might change the cost-analyst approver.</value>
   </data>
+  <data name="ActualAmountLbl" xml:space="preserve">
+    <value>Actual Amount</value>
+  </data>
+  <data name="CompletedBtnLbl" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TrackingCategoryLbl" xml:space="preserve">
+    <value>TrackingCategory</value>
+  </data>
 </root>

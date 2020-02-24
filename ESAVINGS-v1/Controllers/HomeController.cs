@@ -296,12 +296,17 @@ namespace ESAVINGS_v1.Controllers
 					var financeCategories = this.GetAllFinanceCategoryById();
 					proposalDetails.FinanceCategory = financeCategories[proposalDetails.FinanceCategoryID].Category;
 
+					var trackingCategories = this.GetAllTrackingCategoryById();
+					proposalDetails.TrackingCategory = trackingCategories[proposalDetails.TrackingCategoryID].Category;
+
 					if (IsUserSuccessfullyLoggedIn() == true)
 					{
 						ViewBag.FinanceList = Factory.FinanceApproverFactory().GetAll().Where(f => f.IsDeleted == 0);
 						ViewBag.CostAnalystList = Factory.CostAnalystFactory().GetAll().Where(ca => ca.IsDeleted == 0 && ca.IsMaster == 0);
 
-						ViewBag.FinanceCategories = Factory.FinanceCategoryRepository().GetAllCategories();
+						ViewBag.FinanceCategories = financeCategories;//Factory.FinanceCategoryRepository().GetAllCategories();
+
+						ViewBag.TrackingCategories = trackingCategories;
 
 					}
 

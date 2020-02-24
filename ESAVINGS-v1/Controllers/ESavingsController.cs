@@ -227,41 +227,27 @@ namespace ESAVINGS_v1.Controllers
 			return Json(results);
 		}
 
-		public string GetDetailsLinkForEmail (int proposalID)
-		{
-			string en = string.Format("<br/><a href='{0}/Home/Details/{1}'>Proposal Details</a>", this.base_url, proposalID);
-			string localize = string.Format("<br/><a href='{0}/Home/Details/{1}'>"+ Resources.Details.Details.ProposalDetailsHeader +"</a>", this.base_url, proposalID);
-			return en +"<br/>"+ localize;
-		}
+		//public string GetDetailsLinkForEmail (int proposalID)
+		//{
+		//	string en = string.Format("<br/><a href='{0}/Home/Details/{1}'>Proposal Details</a>", this.base_url, proposalID);
+		//	string localize = string.Format("<br/><a href='{0}/Home/Details/{1}'>"+ Resources.Details.Details.ProposalDetailsHeader +"</a>", this.base_url, proposalID);
+		//	return en +"<br/>"+ localize;
+		//}
 
 		public string GetProposalDetailsTblForEmail (Proposal p)
 		{
-			string en = string.Format(@"<br/><table>
-									<tr><td>Project Type</td><td>{0}</td></tr>
-									<tr><td>Project Title</td><td>{1}</td></tr>
-									<tr><td>Current Description</td><td>{2}</td></tr>
-									<tr><td>Proposal Description</td><td>{3}</td></tr>
-									<tr><td>Proposed By</td><td>{4}</td></tr>
-									<tr><td>Department</td><td>{5}</td></tr>
-									<tr><td>Department/Area beneficiary</td><td>{6}</td></tr>
-									</table>",
-									p.ProjectTypeIndicator,
-									p.ProjectTitle,
-									p.CurrentDescription,
-									p.ProposalDescription,
-									p.SubmittedBy,
-									p.EmpDeptCode,
-									p.AreaDeptBeneficiary);
+			string table = "";
 
-			string localize = "<br/><table>" + string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_type, p.ProjectTypeIndicator);
-			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_title, p.ProjectTitle);
-			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.current_description, p.CurrentDescription);
-			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.proposal_description, p.ProposalDescription);
-			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.EmployeeNameLbl, p.SubmittedBy);
-			localize += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.DepartmentAreaBeneficiaryLbl, p.AreaDeptBeneficiary) + "</table>";
+			table += "<br/><br/><table>" + string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_type, p.ProjectTypeIndicator);
+			table += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.project_title, p.ProjectTitle);
+			table += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.current_description, p.CurrentDescription);
+			table += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Controllers.ESavings.proposal_description, p.ProposalDescription);
+			table += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.EmployeeNameLbl, p.SubmittedBy);
+			table += string.Format("<tr><td>{0}</td><td>{1}</td></tr>", Resources.Details.Details.DepartmentAreaBeneficiaryLbl, p.AreaDeptBeneficiary) + "</table>";
 
+			table += string.Format("<br/><a href='{0}/Home/Details/{1}'>{2}</a>", this.base_url, p.Id, Resources.Details.Details.ProposalDetailsHeader);
 
-			return en +"<br/>"+ localize;
+			return table;
 
 		}
 
@@ -531,12 +517,25 @@ namespace ESAVINGS_v1.Controllers
 
 							#region Email notification for Cost Analyst and Manager
 
-							string emailMsg = string.Format(Resources.Controllers.ESavings.submit_proposal_email_msg, newProposalTicketNo);
-							emailMsg += this.GetDetailsLinkForEmail(proposalID);
+							// English message
+							this.SwitchToEnglish(true, Request.Cookies);
+							string emailMsg = string.Format(Resources.Controllers.ESavings.submit_proposal_email_msg, newProposalTicketNo) + "<br/>";
+							string email_subject = Resources.Controllers.ESavings.submit_proposal_email_subject;
 							emailMsg += this.GetProposalDetailsTblForEmail(newProposal);
 
+
+							// Localize message
+							this.SwitchToEnglish(false, Request.Cookies);
+							if (CultureInfo.CurrentCulture.Name != "en-US")
+							{
+								emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.submit_proposal_email_msg, newProposalTicketNo) + "<br/>";
+								email_subject += " / " + Resources.Controllers.ESavings.submit_proposal_email_subject;
+								emailMsg += this.GetProposalDetailsTblForEmail(newProposal);
+							}
+
+
 							//"New E-Savings Entry"
-							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.submit_proposal_email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 							// Cost Analysts
 							// Changes: use the selected department/area beneficiary to select cost analyst instead of using the user department
@@ -604,7 +603,13 @@ namespace ESAVINGS_v1.Controllers
 			}
 			catch (Exception ex)
 			{
-				results["msg"] = ex.Message;
+				string errors = ex.Message + "<br/>";
+				errors += ex.HelpLink + "<br/>";
+				errors += ex.Source + "<br/>";
+				errors += ex.StackTrace + "<br/>";
+				errors += ex.TargetSite + "<br/>";
+
+				results["msg"] = errors;
 			}
 
 
@@ -630,6 +635,7 @@ namespace ESAVINGS_v1.Controllers
 					dataKeys["CurrentDescription"] = Resources.Controllers.ESavings.current_description;//"Current Description";
 					dataKeys["ProposalDescription"]= Resources.Controllers.ESavings.proposal_description;//"Proposal Description";
 					dataKeys["Remarks"]            = Resources.Controllers.ESavings.remarks;//"Remarks";
+
 					//dataKeys["supporting_docs_len"] = "Supporting documents";
 
 
@@ -701,6 +707,34 @@ namespace ESAVINGS_v1.Controllers
 							proposalDetails.ProposalDescription = data["ProposalDescription"];
 							proposalDetails.Remarks = data["Remarks"];
 
+							if (this.IsDL == false)
+							{
+								int projectType = 0;
+								if (int.TryParse(data["ProjectType"], out projectType))
+								{
+									proposalDetails.ProjectType = projectType;
+								}
+
+								int numberOfMonthsToBeActive = 0;
+								if (int.TryParse(data["NumberOfMonthsToBeActive"], out numberOfMonthsToBeActive))
+								{
+									proposalDetails.NumberOfMonthsToBeActive = numberOfMonthsToBeActive;
+								}
+
+								decimal dollarImpact = 0;
+								if (decimal.TryParse(data["DollarImpact"], out dollarImpact))
+								{
+									proposalDetails.DollarImpact = dollarImpact;
+								}
+
+								DateTime expectedStartDate;
+								if (DateTime.TryParse(data["ExpectedStartDate"], out expectedStartDate))
+								{
+									proposalDetails.ExpectedStartDate = expectedStartDate;
+								}
+
+							}
+
 							int rowsUpdated = Factory.ProposalFactory().UpdateProposalDetails(proposalDetails);
 
 							#endregion
@@ -728,37 +762,25 @@ namespace ESAVINGS_v1.Controllers
 								#region Email notification for Cost Analyst and Manager
 
 
-								string emailMsg = string.Format(Resources.Controllers.ESavings.update_proposal_email_msg, proposalDetails.ProposalTicket, this.UserFullName +" ["+ changeAreaDeptBeneficiaryMsg + "]");
-								emailMsg += this.GetDetailsLinkForEmail(proposalID);
+								// English message
+								this.SwitchToEnglish(true, Request.Cookies);
+								string emailMsg = string.Format(Resources.Controllers.ESavings.update_proposal_email_msg, proposalDetails.ProposalTicket, this.UserFullName +" ["+ changeAreaDeptBeneficiaryMsg + "]") + "<br/>";
+								string email_subject = Resources.Controllers.ESavings.update_proposal_email_subject;
 								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-								//								string emailMsg = string.Format(@"E-Savings proposal Ticket #{0} <b>Update by {10} {11}</b> . Please click the link below to view the details <br/>
-								//											<a href='{1}/Home/Details/{2}'>Details</a>
-								//											<table>
-								//												<tr><td>Project Type</td><td>{3}</td></tr>
-								//												<tr><td>Project Title</td><td>{4}</td></tr>
-								//												<tr><td>Current Description</td><td>{5}</td></tr>
-								//												<tr><td>Proposal Description</td><td>{6}</td></tr>
-								//												<tr><td>Proposed By</td><td>{7}</td></tr>
-								//												<tr><td>Department</td><td>{8}</td></tr>
-								//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-								//											</table>",
-								//														 proposalDetails.ProposalTicket,
-								//														 this.base_url,
-								//														 proposalID,
-								//														 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-								//														 proposalDetails.ProjectTitle,
-								//														 proposalDetails.CurrentDescription,
-								//														 proposalDetails.ProposalDescription,
-								//														 proposalDetails.SubmittedBy,
-								//														 proposalDetails.EmpDeptCode,
-								//														 proposalDetails.AreaDeptBeneficiary,
-								//														 this.UserFullName,
-								//														 changeAreaDeptBeneficiaryMsg);
+
+								// Localize message
+								this.SwitchToEnglish(false, Request.Cookies);
+								if (CultureInfo.CurrentCulture.Name != "en-US")
+								{
+									emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.update_proposal_email_msg, proposalDetails.ProposalTicket, this.UserFullName +" ["+ changeAreaDeptBeneficiaryMsg + "]") + "<br/>";
+									email_subject += " / " + Resources.Controllers.ESavings.update_proposal_email_subject;
+									emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+								}
 
 
 								//"New E-Savings Entry Updated"
-								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.update_proposal_email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 
 								var proposal_currentCostAnalyst = Factory.ProposalCostAnalystRepository().GetProposalCostAnalystInfoAndVerificationInfo(proposalID);
@@ -847,10 +869,18 @@ namespace ESAVINGS_v1.Controllers
 
 				}
 
+
 			}
 			catch (Exception ex)
 			{
-				results["msg"] = ex.Message;
+
+				string errors = ex.Message + "<br/>";
+				errors += ex.HelpLink + "<br/>";
+				errors += ex.Source + "<br/>";
+				errors += ex.StackTrace + "<br/>";
+				errors += ex.TargetSite + "<br/>";
+
+				results["msg"] = errors;
 				//Console.WriteLine("\nMessage ---\n{0}", ex.Message);
 				//Console.WriteLine(
 				//	"\nHelpLink ---\n{0}", ex.HelpLink);
@@ -862,8 +892,8 @@ namespace ESAVINGS_v1.Controllers
 			}
 
 
-
 			return Json(results);
+
 		}
 
 		public JsonResult GetProposalCurrentImgs (int proposalID)
@@ -1159,7 +1189,8 @@ namespace ESAVINGS_v1.Controllers
 				{
 					status = g.Key,
 					counter = g.ToList().Count(),
-					dollarImpact = g.Sum(a => (a.NumberOfMonthsToBeActive > 0) ? a.DollarImpact * a.NumberOfMonthsToBeActive : a.DollarImpact) //
+					dollarImpact = g.Sum(a => (a.NumberOfMonthsToBeActive > 0) ? a.DollarImpact * a.NumberOfMonthsToBeActive : a.DollarImpact), //
+					actualAmount = g.Sum(a => a.ActualAmount)
 				});
 
 
@@ -1184,6 +1215,7 @@ namespace ESAVINGS_v1.Controllers
 									counterTreeTemp[first.Key][second.Key][status.Key]["dollarImpact"] = string.Format(new CultureInfo("en-US"), "{0:C}", proposal.dollarImpact);
 									//proposal.dollarImpact.ToString("C");
 									counterTreeTemp[first.Key][second.Key][status.Key]["counter"] = proposal.counter.ToString();
+									counterTreeTemp[first.Key][second.Key][status.Key]["actualAmount"] = string.Format(new CultureInfo("en-US"), "{0:C}", proposal.actualAmount);
 								}
 							}
 
@@ -2077,6 +2109,18 @@ namespace ESAVINGS_v1.Controllers
 		}
 
 
+		private string[] GetCostAnalystApprovalStatusList ()
+		{
+			string[] verificationApprovalStatusList = { 
+								Resources.Controllers.ESavings.unknown, 
+								Resources.Controllers.ESavings.verified,
+								Resources.Controllers.ESavings.invalid,
+								Resources.Controllers.ESavings.saved };
+
+			return verificationApprovalStatusList;
+		}
+
+
 		public async Task<JsonResult> CostAnalystApproval (string proposalID, string remarks, string isVerified, string OAStatus, int costAnalystID,
 															string projectType="", string dollarImpactStr="", string expectedStartDate="", string numberOfMonthsToBeActiveStr="",
 															int supportingDocsLen=0, string selectedFinanceFFID="")
@@ -2492,12 +2536,14 @@ namespace ESAVINGS_v1.Controllers
 
 							//string[] verificationApprovalStatusList = { "Unknown", "Verified", "Invalid", "Saved" };
 
-							string[] verificationApprovalStatusList = { 
-																		  Resources.Controllers.ESavings.unknown, 
-																		  Resources.Controllers.ESavings.verified,
-																		  Resources.Controllers.ESavings.invalid,
-																		  Resources.Controllers.ESavings.saved
-																	  };
+							//string[] verificationApprovalStatusList = { 
+							//											  Resources.Controllers.ESavings.unknown, 
+							//											  Resources.Controllers.ESavings.verified,
+							//											  Resources.Controllers.ESavings.invalid,
+							//											  Resources.Controllers.ESavings.saved
+							//										  };
+
+							string[] verificationApprovalStatusList = { };
 
 							var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
 
@@ -2548,36 +2594,27 @@ namespace ESAVINGS_v1.Controllers
 									results["msg"] = "<strong class='good'>"+ string.Format(Resources.Controllers.ESavings.cost_analyst_approval_successes_msg, StaticData.GetOverallStatusStr(invalid_status)) +"</strong>";
 
 
-									string emailMsg = string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_1, proposalDetails.ProposalTicket, verificationApprovalStatusList[isVerifiedIntParse], this.UserFullName);
-									emailMsg += this.GetDetailsLinkForEmail(proposalIDIntParse);
+									// English message
+									this.SwitchToEnglish(true, Request.Cookies);
+									verificationApprovalStatusList = this.GetCostAnalystApprovalStatusList();
+
+									string emailMsg = string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_1, proposalDetails.ProposalTicket, verificationApprovalStatusList[isVerifiedIntParse], this.UserFullName) +"<br/>";
+									string email_subject = "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket;
 									emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-									//									string emailMsg = "";
-									//									emailMsg = string.Format(@"E-Savings Ticket #{0}. {1} by {2}., Please click the link below to view the details <br/>
-									//											<a href='{3}/Home/Details/{4}'>Details</a>
-									//											<table>
-									//												<tr><td>Project Type</td><td>{5}</td></tr>
-									//												<tr><td>Project Title</td><td>{6}</td></tr>
-									//												<tr><td>Current Description</td><td>{7}</td></tr>
-									//												<tr><td>Proposal Description</td><td>{8}</td></tr>
-									//												<tr><td>Proposed By</td><td>{9}</td></tr>
-									//												<tr><td>Department</td><td>{10}</td></tr>
-									//												<tr><td>Department/Area beneficiary</td><td>{11}</td></tr>
-									//											</table>",
-									//													 proposalDetails.ProposalTicket,
-									//													 verificationApprovalStatusList[isVerifiedIntParse],
-									//													 this.UserFullName,
-									//													 this.base_url,
-									//													 proposalID,
-									//													 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-									//													 proposalDetails.ProjectTitle,
-									//													 proposalDetails.CurrentDescription,
-									//													 proposalDetails.ProposalDescription,
-									//													 proposalDetails.SubmittedBy,
-									//													 proposalDetails.EmpDeptCode,
-									//													 proposalDetails.AreaDeptBeneficiary);
 
-									Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+									// Localize message
+									this.SwitchToEnglish(false, Request.Cookies);
+									if (CultureInfo.CurrentCulture.Name != "en-US")
+									{
+										verificationApprovalStatusList = this.GetCostAnalystApprovalStatusList();
+
+										emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_1, proposalDetails.ProposalTicket, verificationApprovalStatusList[isVerifiedIntParse], this.UserFullName) + "<br/>";
+										email_subject += " / " + "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket;
+										emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+									}
+
+									Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 									sendEmail.Add_To_Recipient(proposalOwnerEmail);
 									sendEmail.Add_To_Recipient(ownerManagerEmail);
@@ -2672,41 +2709,32 @@ namespace ESAVINGS_v1.Controllers
 								}
 
 
+
+								// English message
+								this.SwitchToEnglish(true, Request.Cookies);
 								string emailMsg = string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_2,
 																		proposalDetails.ProposalTicket,
 																		StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS),
-																		this.UserFullName);
-								emailMsg += this.GetDetailsLinkForEmail(proposalIDIntParse);
+																		this.UserFullName) +"<br/>";
+								string email_subject = string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_subject_2, proposalDetails.ProposalTicket);
 								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-								//								string emailMsg = "";
-								//								emailMsg = string.Format(@"E-Savings Ticket #{0}. Moved status to {1} by {2}., Please click the link below to view the details <br/>
-								//											<a href='{3}/Home/Details/{4}'>Details</a>
-								//											<table>
-								//												<tr><td>Project Type</td><td>{5}</td></tr>
-								//												<tr><td>Project Title</td><td>{6}</td></tr>
-								//												<tr><td>Current Description</td><td>{7}</td></tr>
-								//												<tr><td>Proposal Description</td><td>{8}</td></tr>
-								//												<tr><td>Proposed By</td><td>{9}</td></tr>
-								//												<tr><td>Department</td><td>{10}</td></tr>
-								//												<tr><td>Department/Area beneficiary</td><td>{11}</td></tr>
-								//											</table>",
-								//												 proposalDetails.ProposalTicket,
-								//												 StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS),
-								//												 this.UserFullName,
-								//												 this.base_url,
-								//												 proposalID,
-								//												 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-								//												 proposalDetails.ProjectTitle,
-								//												 proposalDetails.CurrentDescription,
-								//												 proposalDetails.ProposalDescription,
-								//												 proposalDetails.SubmittedBy,
-								//												 proposalDetails.EmpDeptCode,
-								//												 proposalDetails.AreaDeptBeneficiary);
+
+								// Localize message
+								this.SwitchToEnglish(false, Request.Cookies);
+								if (CultureInfo.CurrentCulture.Name != "en-US")
+								{
+									emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_2,
+																		proposalDetails.ProposalTicket,
+																		StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_ANALYST_REVIEW_IN_PROGRESS),
+																		this.UserFullName) + "<br/>";
+									email_subject += " / " + string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_subject_2, proposalDetails.ProposalTicket);
+									emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+								}
 
 								//"E-Savings-Move-status-Ticket#"
 								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg,
-																					string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_subject_2, proposalDetails.ProposalTicket),
+																					email_subject,
 																					this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 								sendEmail.Add_To_Recipient(proposalOwnerEmail);
@@ -2814,39 +2842,35 @@ namespace ESAVINGS_v1.Controllers
 											string selectedFinanceEmail = (selectedFinanceInfo.Count > 0) ? selectedFinanceInfo[0].Email : "";
 
 
+
+											// English message
+											this.SwitchToEnglish(true, Request.Cookies);
+											verificationApprovalStatusList = this.GetCostAnalystApprovalStatusList();
+
 											string emailMsg = string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_3,
 																		proposalDetails.ProposalTicket,
 																		verificationApprovalStatusList[isVerifiedIntParse],
-																		this.UserFullName);
-											emailMsg += this.GetDetailsLinkForEmail(proposalIDIntParse);
+																		this.UserFullName) +"<br/>";
+											string email_subject = "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket;
 											emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-											//											string emailMsg = "";
-											//											emailMsg = string.Format(@"E-Savings Ticket #{0}. {1} by {2}. <b>Need your approval</b>, Please click the link below to view the details <br/>
-											//														<a href='{3}/Home/Details/{4}'>Details</a>
-											//														<table>
-											//															<tr><td>Project Type</td><td>{5}</td></tr>
-											//															<tr><td>Project Title</td><td>{6}</td></tr>
-											//															<tr><td>Current Description</td><td>{7}</td></tr>
-											//															<tr><td>Proposal Description</td><td>{8}</td></tr>
-											//															<tr><td>Proposed By</td><td>{9}</td></tr>
-											//															<tr><td>Department</td><td>{10}</td></tr>
-											//															<tr><td>Department/Area beneficiary</td><td>{11}</td></tr>
-											//														</table>",
-											//															 proposalDetails.ProposalTicket,
-											//															 verificationApprovalStatusList[isVerifiedIntParse],
-											//															 this.UserFullName,
-											//															 this.base_url,
-											//															 proposalID,
-											//															 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-											//															 proposalDetails.ProjectTitle,
-											//															 proposalDetails.CurrentDescription,
-											//															 proposalDetails.ProposalDescription,
-											//															 proposalDetails.SubmittedBy,
-											//															 proposalDetails.EmpDeptCode,
-											//															 proposalDetails.AreaDeptBeneficiary);
 
-											Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+											// Localize message
+											this.SwitchToEnglish(false, Request.Cookies);
+											if (CultureInfo.CurrentCulture.Name != "en-US")
+											{
+												verificationApprovalStatusList = this.GetCostAnalystApprovalStatusList();
+
+												emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.cost_analyst_approval_email_msg_3,
+																		proposalDetails.ProposalTicket,
+																		verificationApprovalStatusList[isVerifiedIntParse],
+																		this.UserFullName) + "<br/>";
+												email_subject += " / " + "E-Savings-"+ verificationApprovalStatusList[isVerifiedIntParse] +"-Ticket#"+proposalDetails.ProposalTicket;
+												emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+											}
+
+
+											Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 											sendEmail.Add_To_Recipient(selectedFinanceEmail);
 											sendEmail.Add_CC_Recipient(proposalOwnerEmail);
@@ -2963,34 +2987,25 @@ namespace ESAVINGS_v1.Controllers
 							var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalIDIntParse);
 
 
+							// English message
+							this.SwitchToEnglish(true, Request.Cookies);
 							string emailMsg = string.Format(Resources.Controllers.ESavings.mark_proposal_bpi_email_msg, proposalDetails.ProposalTicket);
-							emailMsg += this.GetDetailsLinkForEmail(proposalIDIntParse);
+							string email_subject = Resources.Controllers.ESavings.mark_proposal_bpi_email_subject;
 							emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-							//							string emailMsg = string.Format(@"E-Savings proposal Ticket #{0} <b>Marked as BPI</b>. Please click the link below to view the details <br/>
-							//											<a href='{1}/Home/Details/{2}'>Details</a>
-							//											<table>
-							//												<tr><td>Project Type</td><td>{3}</td></tr>
-							//												<tr><td>Project Title</td><td>{4}</td></tr>
-							//												<tr><td>Current Description</td><td>{5}</td></tr>
-							//												<tr><td>Proposal Description</td><td>{6}</td></tr>
-							//												<tr><td>Proposed By</td><td>{7}</td></tr>
-							//												<tr><td>Department</td><td>{8}</td></tr>
-							//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-							//											</table>",
-							//											proposalDetails.ProposalTicket,
-							//											this.base_url,
-							//											proposalID,
-							//											StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-							//											proposalDetails.ProjectTitle,
-							//											proposalDetails.CurrentDescription,
-							//											proposalDetails.ProposalDescription,
-							//											proposalDetails.SubmittedBy,
-							//											proposalDetails.EmpDeptCode,
-							//											proposalDetails.AreaDeptBeneficiary);
+
+							// Localize message
+							this.SwitchToEnglish(false, Request.Cookies);
+							if (CultureInfo.CurrentCulture.Name != "en-US")
+							{
+								emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.mark_proposal_bpi_email_msg, proposalDetails.ProposalTicket) +"<br/>";
+								email_subject += " / " + Resources.Controllers.ESavings.mark_proposal_bpi_email_subject;
+								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+							}
+
 
 							//"E-Savings project marked as BPI"
-							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.mark_proposal_bpi_email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 
 							var upon_submission_recipients = ConfigurationManager.AppSettings["upon_submission_recipients"];
@@ -3065,12 +3080,538 @@ namespace ESAVINGS_v1.Controllers
 			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
 
 
+			//try
+			//{
+
+			//}
+			//catch (Exception ex)
+			//{
+			//	results["msg"] = ex.Message;
+			//}
+
+			decimal dollarImpact = 0;
+			int numberOfMonthsToBeActive = 0;
+			int projectTypeIntParse = 0;
+
+			if (IsUserSuccessfullyLoggedIn())
+			{
+				if (this.UserType != ((int)StaticData.UserTypes.Finance).ToString())
+				{
+					//Permission Denied...
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.permission_denied +"</strong>";
+					return Json(results);
+				}
+				int proposalIDIntParse;
+				if (int.TryParse(proposalID, out proposalIDIntParse) == false)
+				{
+					//Invalid Proposal
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_proposal +"</strong>";
+					return Json(results);
+				}
+
+				if (proposalIDIntParse <= 0)
+				{
+					//Invalid Proposal
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_proposal +"</strong>";
+					return Json(results);
+				}
+
+				if (string.IsNullOrWhiteSpace(remarks))
+				{
+					//Remarks is required
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.remarks_is_required +"</strong>";
+					return Json(results);
+				}
+
+
+				int isVerifiedIntParse;
+				if (int.TryParse(isVerified, out isVerifiedIntParse) == false)
+				{
+					//Invalid status
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_status +"</strong>";
+					return Json(results);
+				}
+
+				if (isVerifiedIntParse > 4 || isVerifiedIntParse <= 0)
+				{
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_status +"</strong>";
+					return Json(results);
+				}
+
+
+				// 1-Verified or cost-funnel-evaluation
+				// 4-closed or active, 
+				// 3-saved
+				if (isVerifiedIntParse == 1 || isVerifiedIntParse == 4 || isVerifiedIntParse == 3)
+				{
+
+					if (projectType == "")
+					{
+						//Project type is required
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.project_type_is_required +"</strong>";
+						return Json(results);
+					}
+
+
+					if (int.TryParse(projectType, out projectTypeIntParse) == false)
+					{
+						//Invalid Project type
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
+						return Json(results);
+					}
+
+
+					if (StaticData.GetProjectTypesStringArray().Contains(projectTypeIntParse) == false)
+					{
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
+						return Json(results);
+					}
+
+
+					if (dollarImpactStr == "")
+					{
+						//Dollar Impact is required
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.dollar_impact_is_required +"</strong>";
+						return Json(results);
+					}
+
+					if (decimal.TryParse(dollarImpactStr, out dollarImpact) == false)
+					{
+						//Invalid dollar impact (must be whole/decimal)
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_dollar_impact_whole_decimal_num +"</strong>";
+						return Json(results);
+					}
+
+					if (numberOfMonthsToBeActiveStr == "")
+					{
+						//Number of months to be active is required
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.number_of_months_active_required +"</strong>";
+						return Json(results);
+					}
+
+					if (int.TryParse(numberOfMonthsToBeActiveStr, out numberOfMonthsToBeActive) == false)
+					{
+						//Invalid number of months to be active
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_num_months_to_be_active +"</strong>";
+						return Json(results);
+					}
+
+					if ((numberOfMonthsToBeActive <= this.max_num_of_months_to_active && numberOfMonthsToBeActive >= 1) == false)
+					{
+						//Invalid number of months to be active (less than or equal to "+ this.max_num_of_months_to_active +" OR greater than 0 only)
+						results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
+						return Json(results);
+					}
+
+					if (numberOfMonthsToBeActive > this.max_num_of_months_to_active)
+					{
+						results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
+						return Json(results);
+					}
+
+
+					if (string.IsNullOrWhiteSpace(expectedStartDate))
+					{
+						//Expected start date is required
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.expected_start_date_is_required +"</strong>";
+						return Json(results);
+					}
+
+				}
+
+
+				int OAStatusIntParse;
+				if (int.TryParse(OAStatus, out OAStatusIntParse) == false)
+				{
+					//Invalid OA status
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_oa_status +"</strong>";
+					return Json(results);
+				}
+				if (OAStatusIntParse <= 0)
+				{
+					//Invalid OA status
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_oa_status +"</strong>";
+					return Json(results);
+				}
+
+
+				var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalIDIntParse);
+
+				if (this.IsUserIsFinanceApproverOnTheCurrentProposal(proposalDetails.Id) == true || this.IsUserMaster == true)
+				{
+					///financeApproverID
+					///
+					int UserFinanceIDTmp = (this.IsUserMaster == true) ? financeApproverID : int.Parse(this.UserFinanceID);
+
+					if (Factory.ProposalFinanceApprovalRepository().UpdateProposalFinanceInfoVerification(proposalIDIntParse, UserFinanceIDTmp, remarks, isVerifiedIntParse) > 0)
+					{
+						string message = "";
+
+						if (projectTypeIntParse > 0 && proposalDetails.ProjectType != projectTypeIntParse)
+						{
+							if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
+							{
+								//Unable to add/update project type;
+								message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_project_type;
+							}
+							else
+							{
+								// Added project type";
+								message += "<br/>" + Resources.Controllers.ESavings.added_project_type;
+							}
+						}
+
+						if (dollarImpact > 0 && proposalDetails.DollarImpact != dollarImpact)
+						{
+							if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
+							{
+								// Unable to update dolar impact";
+								message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_dollar_impact;
+							}
+							else
+							{
+								//Update dollar impact;
+								message += "<br/>" + Resources.Controllers.ESavings.update_dollar_impact;
+							}
+						}
+
+
+						if (numberOfMonthsToBeActive > 0 && proposalDetails.NumberOfMonthsToBeActive != numberOfMonthsToBeActive)
+						{
+							if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
+							{
+								// Unable to update number of months to be active";
+								message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_number_months_active;
+							}
+							else
+							{
+								// Update number of months to be active";
+								message += "<br/>" + Resources.Controllers.ESavings.update_number_of_months_active;
+							}
+						}
+
+
+						if (expectedStartDate != "")
+						{
+							DateTime expectedStartDateParsed;
+							if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed) && proposalDetails.ExpectedStartDate != expectedStartDateParsed)
+							{
+								if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
+								{
+									//Unable to add/update expected project start date";
+									message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_expected_project_start_date;
+								}
+								else
+								{
+									// Added expected project start date";
+									message += "<br/>" + Resources.Controllers.ESavings.added_expected_project_start_date;
+								}
+							}
+						}
+
+						#region Insert Supporting documents
+
+						if (supportingDocsLen > 0 && (isVerifiedIntParse == 1 || isVerifiedIntParse == 3))
+						{
+							IDictionary<string, string> upload_results = new Dictionary<string, string>();
+
+							List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
+							upload_results = new Dictionary<string, string>();
+							string supportingDocsErr = Resources.Controllers.ESavings.supporting_docs_unable_upload; //"Supporting Documents (Unable to upload): <br/>";
+
+							for (int i = 0 ; i<supportingDocsLen ; i++)
+							{
+								HttpPostedFileBase file = Request.Files["supporting_docs_"+i];
+
+								upload_results = this.UploadThisFile(file, ConfigurationManager.AppSettings["dir_for_upload_supporting_docs"]);
+
+								if (upload_results["done"] == "TRUE")
+								{
+									supportingDocs.Add(new SupportingDoc
+									{
+										ProposalId = proposalIDIntParse,
+										ServerFileName = upload_results["newFileName"],
+										OrigFileName = upload_results["origfileName"],
+										AttachedBy = this.UserFullName
+									});
+								}
+								else
+								{
+									supportingDocsErr += upload_results["origfileName"] + "<br/>";
+								}
+								//
+							}
+
+							if (supportingDocs.Count > 0)
+							{
+								int supportingDocsInsertedRows = Factory.SupportingDocFactory().InsertProposalSupportingDocs(supportingDocs);
+
+								if (supportingDocsInsertedRows < supportingDocsLen)
+								{
+									message += supportingDocsErr;
+								}
+								else if (supportingDocsInsertedRows == supportingDocsLen)
+								{
+									message += "<br/>" + Resources.Controllers.ESavings.supporting_docs_uploaded; //Supporting documents uploaded";
+								}
+							}
+							else
+							{
+								message += supportingDocsErr;
+							}
+
+						}
+
+						#endregion
+
+						//string[] verificationApprovalStatusList = { "Unknown", "Verified", "Invalid", "Saved", "Closed" };
+
+						var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
+
+						string proposalOwnerEmail = "";
+						string ownerManagerEmail = "";
+
+						if (proposalOwnerInfo.Count > 0)
+						{
+							proposalOwnerEmail = (proposalOwnerInfo.Count > 0) ? proposalOwnerInfo[0].Email : "";
+							var empDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, proposalOwnerInfo[0].ManagerFFID);
+							ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
+						}
+
+						int[] invalid_status_list = { (int)StaticData.OverallStatus.CANCELED,
+														(int)StaticData.OverallStatus.INVALID,
+														//(int)StaticData.OverallStatus.COST_AVOIDANCE,
+														(int)StaticData.OverallStatus.EXISTING_PROJECT,
+														(int)StaticData.OverallStatus.DUPLICATE_ENTRY };
+
+						bool isApprovalDone = false;
+						string invalidOrClosedEng = "";
+						string invalidOrClosedLocal = "";
+
+						var neededActions = Factory.ProposalActionApproverRepository().GetProposalActionApprovers(proposalDetails.Id);
+						var countClosedActionItems = neededActions.Where(a => a.ApprovalStatus == 1).Sum(a => a.Id);
+						var countAllActionItems = neededActions.Sum(a => a.Id);
+
+						if (isVerifiedIntParse == 1 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING)
+						{
+							if (countClosedActionItems != countAllActionItems)
+							{
+								//Please close all action items before moving the cost funnel evaluating
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.close_all_action_items_before_move_to_funnel_evaluating +"</strong>";
+								return Json(results);
+							}
+
+							if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING, proposalIDIntParse) > 0)
+							{
+								isApprovalDone = true;
+
+								// English
+								StaticData.changeCurrentCulture("en");
+								invalidOrClosedEng = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING);
+
+								if (Request.Cookies.AllKeys.Contains("ESavingsLanguage"))
+								{
+									// Localize
+									StaticData.changeCurrentCulture(Request.Cookies["ESavingsLanguage"].Value.ToString());
+									invalidOrClosedLocal = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING);
+								}
+
+								// Log the new overall status
+								Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+								{
+									ProposalID = proposalIDIntParse,
+									OAStatus = (int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING,
+									ApproverFFID = this.UserFFID,
+									ApproverName = this.UserFullName
+								});
+
+								// Update funell status to evaluating
+								Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
+							}
+
+						}
+						else if (isVerifiedIntParse == 2 && invalid_status_list.Contains(OAStatusIntParse)) // Invalid
+						{
+							int OAStatusIndex = Array.IndexOf(invalid_status_list, OAStatusIntParse);
+							int invalid_status = invalid_status_list[OAStatusIndex];
+
+							if (Factory.ProposalFactory().UpdateProposalStatus(invalid_status, proposalIDIntParse) > 0)
+							{
+								isApprovalDone = true;
+
+								// English
+								StaticData.changeCurrentCulture("en");
+								invalidOrClosedEng = StaticData.GetOverallStatusStr(invalid_status);
+
+								if (Request.Cookies.AllKeys.Contains("ESavingsLanguage"))
+								{
+									// Localize
+									StaticData.changeCurrentCulture(Request.Cookies["ESavingsLanguage"].Value.ToString());
+									invalidOrClosedLocal = StaticData.GetOverallStatusStr(invalid_status);
+								}
+
+
+								// Log the new overall status
+								Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+								{
+									ProposalID = proposalIDIntParse,
+									OAStatus = invalid_status,
+									ApproverFFID = this.UserFFID,
+									ApproverName = this.UserFullName
+								});
+
+								// Update funell status to cancelled
+								Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Cancelled, proposalIDIntParse);
+							}
+						}
+						else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS) // Saved
+						{
+
+							if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS, proposalIDIntParse) > 0)
+							{
+								isApprovalDone = true;
+
+								// English
+								StaticData.changeCurrentCulture("en");
+								invalidOrClosedEng = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS);
+
+								if (Request.Cookies.AllKeys.Contains("ESavingsLanguage"))
+								{
+									// Localize
+									StaticData.changeCurrentCulture(Request.Cookies["ESavingsLanguage"].Value.ToString());
+									invalidOrClosedLocal = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS);
+								}
+
+								// Log the new overall status
+								Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+								{
+									ProposalID = proposalIDIntParse,
+									OAStatus = (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS,
+									ApproverFFID = this.UserFFID,
+									ApproverName = this.UserFullName
+								});
+
+								// Update Global funnel status to Identified
+								Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
+
+							}
+
+						}
+						else if (isVerifiedIntParse == 4 && OAStatusIntParse == (int)StaticData.OverallStatus.ACTIVE)
+						{
+							if (countClosedActionItems != countAllActionItems)
+							{
+								//Please close all action items before moving the active
+								results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.close_all_action_items_before_move_to_active +"</strong>";
+								return Json(results);
+							}
+							if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.ACTIVE, proposalIDIntParse) > 0)
+							{
+								isApprovalDone = true;
+
+
+								// English
+								StaticData.changeCurrentCulture("en");
+								invalidOrClosedEng = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.ACTIVE);
+
+								if (Request.Cookies.AllKeys.Contains("ESavingsLanguage"))
+								{
+									// Localize
+									StaticData.changeCurrentCulture(Request.Cookies["ESavingsLanguage"].Value.ToString());
+									invalidOrClosedLocal = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.ACTIVE);
+								}
+
+								// Update plannedProjectStartDate to DATE NOW when proposal's status change to ACTIVE status
+								Factory.ProposalFactory().UpdateProposalPlannedProjectStartDate(DateTime.Now, proposalIDIntParse);
+
+
+								// Log the new overall status
+								Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+								{
+									ProposalID = proposalIDIntParse,
+									OAStatus = (int)StaticData.OverallStatus.ACTIVE,
+									ApproverFFID = this.UserFFID,
+									ApproverName = this.UserFullName
+								});
+
+								// Update funnel status to Active
+								Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Active, proposalIDIntParse);
+							}
+						}
+
+						if (isApprovalDone == true)
+						{
+							results["done"] = "FALSE";
+							//Successfully move to <i>"+ invalidOrClosed +"</i> status!
+							results["msg"] = "<strong class='good'>"+ string.Format(Resources.Controllers.ESavings.finance_approval_success_msg, invalidOrClosedLocal) +"</strong>" + message;
+
+
+							// English message
+							this.SwitchToEnglish(true, Request.Cookies);
+							string emailMsg = string.Format(Resources.Controllers.ESavings.finance_approval_email_msg, proposalDetails.ProposalTicket, invalidOrClosedEng, this.UserFullName);
+							string email_subject = "E-Savings-"+ invalidOrClosedEng +"-Ticket#"+proposalDetails.ProposalTicket;
+							emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+
+
+							// Localize message
+							this.SwitchToEnglish(false, Request.Cookies);
+							if (CultureInfo.CurrentCulture.Name != "en-US")
+							{
+								emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.finance_approval_email_msg, proposalDetails.ProposalTicket, invalidOrClosedLocal, this.UserFullName) +"<br/>";
+								email_subject += " / " + "E-Savings-"+ invalidOrClosedLocal +"-Ticket#"+proposalDetails.ProposalTicket;
+								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+							}
+
+							Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+
+							sendEmail.Add_To_Recipient(proposalOwnerEmail);
+							sendEmail.Add_To_Recipient(ownerManagerEmail);
+							sendEmail.Add_CC_Recipient(this.UserEmail);// current user: finance approver
+
+
+							try
+							{
+								await sendEmail.send();
+							}
+							catch (Exception ex)
+							{
+								results["msg"] += "<br/><span class='error'>" + ex.Message + "</span>";
+							}
+
+							return Json(results);
+						}
+
+					}
+					else
+					{
+						results["done"] = "FALSE";
+						//Unable to verify this proposal
+						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.unable_to_verify_this_proposal +"</strong>";
+					}
+				}
+				else
+				{
+					//Permission Denied...
+					results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.permission_denied +"</strong>";
+					return Json(results);
+				}
+
+
+			}
+
+
+			return Json(results);
+		}
+
+
+		public async Task<JsonResult> MoveProjectToCompleted (int proposalID, int financeApproverID)
+		{
+			IDictionary<string, string> results = new Dictionary<string, string>();
+			results["done"] = "FALSE";
+			results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.please_login +"</strong>";
+
 			try
 			{
-				decimal dollarImpact = 0;
-				int numberOfMonthsToBeActive = 0;
-				int projectTypeIntParse = 0;
-
 				if (IsUserSuccessfullyLoggedIn())
 				{
 					if (this.UserType != ((int)StaticData.UserTypes.Finance).ToString())
@@ -3079,464 +3620,119 @@ namespace ESAVINGS_v1.Controllers
 						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.permission_denied +"</strong>";
 						return Json(results);
 					}
-					int proposalIDIntParse;
-					if (int.TryParse(proposalID, out proposalIDIntParse) == false)
+
+
+					if (proposalID <= 0)
 					{
 						//Invalid Proposal
 						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_proposal +"</strong>";
 						return Json(results);
 					}
 
-					if (proposalIDIntParse <= 0)
+
+					var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalID);
+
+
+					if (proposalDetails.OAStatus != (int)StaticData.OverallStatus.ACTIVE)
 					{
-						//Invalid Proposal
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_proposal +"</strong>";
+						results["msg"] = "<strong class='error'>Project is not yet in ACTIVE status</strong>";
 						return Json(results);
 					}
-
-					if (string.IsNullOrWhiteSpace(remarks))
-					{
-						//Remarks is required
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.remarks_is_required +"</strong>";
-						return Json(results);
-					}
-
-
-					int isVerifiedIntParse;
-					if (int.TryParse(isVerified, out isVerifiedIntParse) == false)
-					{
-						//Invalid status
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_status +"</strong>";
-						return Json(results);
-					}
-
-					if (isVerifiedIntParse > 4 || isVerifiedIntParse <= 0)
-					{
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_status +"</strong>";
-						return Json(results);
-					}
-
-
-					// 1-Verified or cost-funnel-evaluation
-					// 4-closed or active, 
-					// 3-saved
-					if (isVerifiedIntParse == 1 || isVerifiedIntParse == 4 || isVerifiedIntParse == 3)
-					{
-
-						if (projectType == "")
-						{
-							//Project type is required
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.project_type_is_required +"</strong>";
-							return Json(results);
-						}
-
-
-						if (int.TryParse(projectType, out projectTypeIntParse) == false)
-						{
-							//Invalid Project type
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
-							return Json(results);
-						}
-
-
-						if (StaticData.GetProjectTypesStringArray().Contains(projectTypeIntParse) == false)
-						{
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_project_type +"</strong>";
-							return Json(results);
-						}
-
-
-						if (dollarImpactStr == "")
-						{
-							//Dollar Impact is required
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.dollar_impact_is_required +"</strong>";
-							return Json(results);
-						}
-
-						if (decimal.TryParse(dollarImpactStr, out dollarImpact) == false)
-						{
-							//Invalid dollar impact (must be whole/decimal)
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_dollar_impact_whole_decimal_num +"</strong>";
-							return Json(results);
-						}
-
-						if (numberOfMonthsToBeActiveStr == "")
-						{
-							//Number of months to be active is required
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.number_of_months_active_required +"</strong>";
-							return Json(results);
-						}
-
-						if (int.TryParse(numberOfMonthsToBeActiveStr, out numberOfMonthsToBeActive) == false)
-						{
-							//Invalid number of months to be active
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_num_months_to_be_active +"</strong>";
-							return Json(results);
-						}
-
-						if ((numberOfMonthsToBeActive <= this.max_num_of_months_to_active && numberOfMonthsToBeActive >= 1) == false)
-						{
-							//Invalid number of months to be active (less than or equal to "+ this.max_num_of_months_to_active +" OR greater than 0 only)
-							results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
-							return Json(results);
-						}
-
-						if (numberOfMonthsToBeActive > this.max_num_of_months_to_active)
-						{
-							results["msg"] = "<strong class='error'>"+ string.Format(Resources.Controllers.ESavings.invalid_num_months_to_be_active_less_greater_than, this.max_num_of_months_to_active, "0") +"</strong>";
-							return Json(results);
-						}
-
-
-						if (string.IsNullOrWhiteSpace(expectedStartDate))
-						{
-							//Expected start date is required
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.expected_start_date_is_required +"</strong>";
-							return Json(results);
-						}
-
-					}
-
-
-					int OAStatusIntParse;
-					if (int.TryParse(OAStatus, out OAStatusIntParse) == false)
-					{
-						//Invalid OA status
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_oa_status +"</strong>";
-						return Json(results);
-					}
-					if (OAStatusIntParse <= 0)
-					{
-						//Invalid OA status
-						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.invalid_oa_status +"</strong>";
-						return Json(results);
-					}
-
-
-					var proposalDetails = Factory.ProposalFactory().GetProposalDetailsByID(proposalIDIntParse);
 
 					if (this.IsUserIsFinanceApproverOnTheCurrentProposal(proposalDetails.Id) == true || this.IsUserMaster == true)
 					{
-						///financeApproverID
-						///
 						int UserFinanceIDTmp = (this.IsUserMaster == true) ? financeApproverID : int.Parse(this.UserFinanceID);
+						var CostAnalystList = Factory.CostAnalystFactory().GetAll();
+						var FinanceList = Factory.FinanceApproverFactory().GetAll();
 
-						if (Factory.ProposalFinanceApprovalRepository().UpdateProposalFinanceInfoVerification(proposalIDIntParse, UserFinanceIDTmp, remarks, isVerifiedIntParse) > 0)
+						Dictionary<string, string> approvers = new Dictionary<string, string>();
+						foreach (var ca in CostAnalystList)
 						{
-							string message = "";
-
-							if (projectTypeIntParse > 0 && proposalDetails.ProjectType != projectTypeIntParse)
+							if (!approvers.ContainsKey(ca.FFID))
 							{
-								if (Factory.ProposalFactory().UpdateProposalProjectType(projectTypeIntParse, proposalIDIntParse) == 0)
-								{
-									//Unable to add/update project type;
-									message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_project_type;
-								}
-								else
-								{
-									// Added project type";
-									message += "<br/>" + Resources.Controllers.ESavings.added_project_type;
-								}
+								var tempInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, ca.FFID);
+								string tempEmail = (tempInfo.Count > 0) ? tempInfo[0].Email : "";
+
+								Console.WriteLine(tempEmail);
+
+								if (tempEmail != "")
+									approvers.Add(ca.FFID, tempEmail);
+							}
+						}
+
+
+						foreach (var fn in FinanceList)
+						{
+							if (!approvers.ContainsKey(fn.FFID))
+							{
+								var tempInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, fn.FFID);
+								string tempEmail = (tempInfo.Count > 0) ? tempInfo[0].Email : "";
+
+								Console.WriteLine(tempEmail);
+
+								if (tempEmail != "")
+									approvers.Add(fn.FFID, tempEmail);
+							}
+						}
+
+						if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COMPLETED, proposalID) > 0)
+						{
+							Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
+							{
+								ProposalID = proposalID,
+								OAStatus = (int)StaticData.OverallStatus.COMPLETED,
+								ApproverFFID = this.UserFFID,
+								ApproverName = this.UserFullName
+							});
+
+							results["done"] = "TRUE";
+							results["msg"] = "<strong class='good'>Successfully move to completed status!</strong>";
+
+							// Update funnel status to Complete
+							Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Complete, proposalID);
+
+							// Update proposal actual completion date when the proposal's status is COMPLETED
+							Factory.ProposalFactory().UpdateProposalActualCompletionDate(DateTime.Now, proposalID);
+
+
+							var ownerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
+							string ownerEmail = (ownerInfo.Count > 0) ? ownerInfo[0].Email : "";
+							string ownerName = (ownerInfo.Count > 0) ? ownerInfo[0].DisplayName : "";
+
+
+							string msg = "<b>" + ownerName + "</b><br/>";
+							msg += "Your cost cutting project is now completed<br/>";
+							msg += "Below is the information of the proposal<br/><br/>";
+
+							msg += "<hr/><br/>";
+							msg += "<table style='width: 100%; background: #fffad9'>";
+							msg += "<tr><td style='width: 25%'>Ticket: <td> <td>"+ proposalDetails.ProposalTicket +"</td></tr>";
+							msg += "<tr><td style='width: 25%'>Title: <td> <td>"+ proposalDetails.ProjectTitle +"</td></tr>";
+							msg += "<tr><td style='width: 25%'>Current Description:<td> <td>"+ proposalDetails.CurrentDescription +"</td></tr>";
+							msg += "<tr><td style='width: 25%'>Proposal Description:<td> <td>"+ proposalDetails.ProposalDescription +"</td></tr>";
+							msg += "</table><br/>";
+							msg += "<b>To view the details, please click this <a href='"+ this.base_url + "/Home/Details/" + proposalDetails.Id +"'>link</a></b><br/><br/>";
+
+							Helpers.SendEmail sendEmail = new Helpers.SendEmail(msg, "E-Savings Notifier", this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+							sendEmail.Add_To_Recipient(ownerEmail);
+
+							foreach (var apprv in approvers)
+							{
+								Console.WriteLine(apprv.Value);
+								sendEmail.Add_CC_Recipient(apprv.Value);
 							}
 
-							if (dollarImpact > 0 && proposalDetails.DollarImpact != dollarImpact)
+							try
 							{
-								if (Factory.ProposalFactory().UpdateProposalDollarImpact(dollarImpact, proposalIDIntParse) == 0)
-								{
-									// Unable to update dolar impact";
-									message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_dollar_impact;
-								}
-								else
-								{
-									//Update dollar impact;
-									message += "<br/>" + Resources.Controllers.ESavings.update_dollar_impact;
-								}
+								await sendEmail.send();
 							}
-
-
-							if (numberOfMonthsToBeActive > 0 && proposalDetails.NumberOfMonthsToBeActive != numberOfMonthsToBeActive)
+							catch (Exception ex)
 							{
-								if (Factory.ProposalFactory().UpdateProposalNummberOfMonthsToBeActive(numberOfMonthsToBeActive, proposalIDIntParse) == 0)
-								{
-									// Unable to update number of months to be active";
-									message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_number_months_active;
-								}
-								else
-								{
-									// Update number of months to be active";
-									message += "<br/>" + Resources.Controllers.ESavings.update_number_of_months_active;
-								}
-							}
-
-
-							if (expectedStartDate != "")
-							{
-								DateTime expectedStartDateParsed;
-								if (DateTime.TryParse(expectedStartDate, out expectedStartDateParsed) && proposalDetails.ExpectedStartDate != expectedStartDateParsed)
-								{
-									if (Factory.ProposalFactory().UpdateProposalExpectedStartDate(expectedStartDateParsed, proposalIDIntParse) == 0)
-									{
-										//Unable to add/update expected project start date";
-										message += "<br/>" + Resources.Controllers.ESavings.unable_to_add_update_expected_project_start_date;
-									}
-									else
-									{
-										// Added expected project start date";
-										message += "<br/>" + Resources.Controllers.ESavings.added_expected_project_start_date;
-									}
-								}
-							}
-
-							#region Insert Supporting documents
-
-							if (supportingDocsLen > 0 && (isVerifiedIntParse == 1 || isVerifiedIntParse == 3))
-							{
-								IDictionary<string, string> upload_results = new Dictionary<string, string>();
-
-								List<SupportingDoc> supportingDocs = new List<SupportingDoc>();
-								upload_results = new Dictionary<string, string>();
-								string supportingDocsErr = Resources.Controllers.ESavings.supporting_docs_unable_upload; //"Supporting Documents (Unable to upload): <br/>";
-
-								for (int i = 0 ; i<supportingDocsLen ; i++)
-								{
-									HttpPostedFileBase file = Request.Files["supporting_docs_"+i];
-
-									upload_results = this.UploadThisFile(file, ConfigurationManager.AppSettings["dir_for_upload_supporting_docs"]);
-
-									if (upload_results["done"] == "TRUE")
-									{
-										supportingDocs.Add(new SupportingDoc
-										{
-											ProposalId = proposalIDIntParse,
-											ServerFileName = upload_results["newFileName"],
-											OrigFileName = upload_results["origfileName"],
-											AttachedBy = this.UserFullName
-										});
-									}
-									else
-									{
-										supportingDocsErr += upload_results["origfileName"] + "<br/>";
-									}
-									//
-								}
-
-								if (supportingDocs.Count > 0)
-								{
-									int supportingDocsInsertedRows = Factory.SupportingDocFactory().InsertProposalSupportingDocs(supportingDocs);
-
-									if (supportingDocsInsertedRows < supportingDocsLen)
-									{
-										message += supportingDocsErr;
-									}
-									else if (supportingDocsInsertedRows == supportingDocsLen)
-									{
-										message += "<br/>" + Resources.Controllers.ESavings.supporting_docs_uploaded; //Supporting documents uploaded";
-									}
-								}
-								else
-								{
-									message += supportingDocsErr;
-								}
-
-							}
-
-							#endregion
-
-							//string[] verificationApprovalStatusList = { "Unknown", "Verified", "Invalid", "Saved", "Closed" };
-
-							var proposalOwnerInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, proposalDetails.EmpFFID);
-
-							string proposalOwnerEmail = "";
-							string ownerManagerEmail = "";
-
-							if (proposalOwnerInfo.Count > 0)
-							{
-								proposalOwnerEmail = (proposalOwnerInfo.Count > 0) ? proposalOwnerInfo[0].Email : "";
-								var empDirectSupv = Helpers.ONEmployeesLDAP.GetEmployeeInfo(ldapAddress, proposalOwnerInfo[0].ManagerFFID);
-								ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
-							}
-
-							int[] invalid_status_list = { (int)StaticData.OverallStatus.CANCELED,
-														(int)StaticData.OverallStatus.INVALID,
-														//(int)StaticData.OverallStatus.COST_AVOIDANCE,
-														(int)StaticData.OverallStatus.EXISTING_PROJECT,
-														(int)StaticData.OverallStatus.DUPLICATE_ENTRY };
-
-							bool isApprovalDone = false;
-							string invalidOrClosed = "";
-
-							var neededActions = Factory.ProposalActionApproverRepository().GetProposalActionApprovers(proposalDetails.Id);
-							var countClosedActionItems = neededActions.Where(a => a.ApprovalStatus == 1).Sum(a => a.Id);
-							var countAllActionItems = neededActions.Sum(a => a.Id);
-
-							if (isVerifiedIntParse == 1 && OAStatusIntParse == (int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING)
-							{
-								if (countClosedActionItems != countAllActionItems)
-								{
-									//Please close all action items before moving the cost funnel evaluating
-									results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.close_all_action_items_before_move_to_funnel_evaluating +"</strong>";
-									return Json(results);
-								}
-
-								if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING, proposalIDIntParse) > 0)
-								{
-									isApprovalDone = true;
-									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING);
-
-									// Log the new overall status
-									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
-									{
-										ProposalID = proposalIDIntParse,
-										OAStatus = (int)StaticData.OverallStatus.COST_FUNNEL_EVALUATING,
-										ApproverFFID = this.UserFFID,
-										ApproverName = this.UserFullName
-									});
-
-									// Update funell status to evaluating
-									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
-								}
-
-							}
-							else if (isVerifiedIntParse == 2 && invalid_status_list.Contains(OAStatusIntParse)) // Invalid
-							{
-								int OAStatusIndex = Array.IndexOf(invalid_status_list, OAStatusIntParse);
-								int invalid_status = invalid_status_list[OAStatusIndex];
-
-								if (Factory.ProposalFactory().UpdateProposalStatus(invalid_status, proposalIDIntParse) > 0)
-								{
-									isApprovalDone = true;
-									invalidOrClosed = StaticData.GetOverallStatusStr(invalid_status);
-
-									// Log the new overall status
-									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
-									{
-										ProposalID = proposalIDIntParse,
-										OAStatus = invalid_status,
-										ApproverFFID = this.UserFFID,
-										ApproverName = this.UserFullName
-									});
-
-									// Update funell status to cancelled
-									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Cancelled, proposalIDIntParse);
-								}
-							}
-							else if (isVerifiedIntParse == 3 && OAStatusIntParse == (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS) // Saved
-							{
-
-								if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS, proposalIDIntParse) > 0)
-								{
-									isApprovalDone = true;
-									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS);
-
-									// Log the new overall status
-									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
-									{
-										ProposalID = proposalIDIntParse,
-										OAStatus = (int)StaticData.OverallStatus.FINANCE_REVIEW_IN_PROGRESS,
-										ApproverFFID = this.UserFFID,
-										ApproverName = this.UserFullName
-									});
-
-									// Update Global funnel status to Identified
-									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Evaluating, proposalIDIntParse);
-
-								}
-
-							}
-							else if (isVerifiedIntParse == 4 && OAStatusIntParse == (int)StaticData.OverallStatus.ACTIVE)
-							{
-								if (countClosedActionItems != countAllActionItems)
-								{
-									//Please close all action items before moving the active
-									results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.close_all_action_items_before_move_to_active +"</strong>";
-									return Json(results);
-								}
-								if (Factory.ProposalFactory().UpdateProposalStatus((int)StaticData.OverallStatus.ACTIVE, proposalIDIntParse) > 0)
-								{
-									isApprovalDone = true;
-									invalidOrClosed = StaticData.GetOverallStatusStr((int)StaticData.OverallStatus.ACTIVE);
-
-
-									// Update plannedProjectStartDate to DATE NOW when proposal's status change to ACTIVE status
-									Factory.ProposalFactory().UpdateProposalPlannedProjectStartDate(DateTime.Now, proposalIDIntParse);
-
-
-									// Log the new overall status
-									Factory.ProposalStatusLogRepository().Add(new ProposalStatusLog()
-									{
-										ProposalID = proposalIDIntParse,
-										OAStatus = (int)StaticData.OverallStatus.ACTIVE,
-										ApproverFFID = this.UserFFID,
-										ApproverName = this.UserFullName
-									});
-
-									// Update funnel status to Active
-									Factory.ProposalFactory().UpdateProposalFunnelStatus((int)StaticData.GlobalFunnelStatus.Active, proposalIDIntParse);
-								}
-							}
-
-							if (isApprovalDone == true)
-							{
-								results["done"] = "FALSE";
-								//Successfully move to <i>"+ invalidOrClosed +"</i> status!
-								results["msg"] = "<strong class='good'>"+ string.Format(Resources.Controllers.ESavings.finance_approval_success_msg, invalidOrClosed) +"</strong>" + message;
-
-
-								string emailMsg = string.Format(Resources.Controllers.ESavings.finance_approval_email_msg, proposalDetails.ProposalTicket, invalidOrClosed, this.UserFullName);
-								emailMsg += this.GetDetailsLinkForEmail(proposalIDIntParse);
-								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
-
-								//								string emailMsg = "";
-								//								emailMsg = string.Format(@"E-Savings Ticket #{0}. {1} by {2}., Please click the link below to view the details <br/>
-								//											<a href='{3}/Home/Details/{4}'>Details</a>
-								//											<table>
-								//												<tr><td>Project Type</td><td>{5}</td></tr>
-								//												<tr><td>Project Title</td><td>{6}</td></tr>
-								//												<tr><td>Current Description</td><td>{7}</td></tr>
-								//												<tr><td>Proposal Description</td><td>{8}</td></tr>
-								//												<tr><td>Proposed By</td><td>{9}</td></tr>
-								//												<tr><td>Department</td><td>{10}</td></tr>
-								//												<tr><td>Department/Area beneficiary</td><td>{11}</td></tr>
-								//											</table>",
-								//												 proposalDetails.ProposalTicket,
-								//												 invalidOrClosed,
-								//												 this.UserFullName,
-								//												 this.base_url,
-								//												 proposalID,
-								//												 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-								//												 proposalDetails.ProjectTitle,
-								//												 proposalDetails.CurrentDescription,
-								//												 proposalDetails.ProposalDescription,
-								//												 proposalDetails.SubmittedBy,
-								//												 proposalDetails.EmpDeptCode,
-								//												 proposalDetails.AreaDeptBeneficiary);
-
-								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "E-Savings-"+ invalidOrClosed +"-Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
-
-								sendEmail.Add_To_Recipient(proposalOwnerEmail);
-								sendEmail.Add_To_Recipient(ownerManagerEmail);
-								sendEmail.Add_CC_Recipient(this.UserEmail);// current user: finance approver
-
-
-								try
-								{
-									await sendEmail.send();
-								}
-								catch (Exception ex)
-								{
-									results["msg"] += "<br/><span class='error'>" + ex.Message + "</span>";
-								}
-
-								return Json(results);
+								results["msg"] += "<br/><span class='error'>" + ex.Message + "</span>";
 							}
 
 						}
-						else
-						{
-							results["done"] = "FALSE";
-							//Unable to verify this proposal
-							results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.unable_to_verify_this_proposal +"</strong>";
-						}
+
 					}
 					else
 					{
@@ -3544,7 +3740,6 @@ namespace ESAVINGS_v1.Controllers
 						results["msg"] = "<strong class='error'>"+ Resources.Controllers.ESavings.permission_denied +"</strong>";
 						return Json(results);
 					}
-
 
 				}
 			}
@@ -3556,9 +3751,6 @@ namespace ESAVINGS_v1.Controllers
 
 			return Json(results);
 		}
-
-
-
 
 
 		public async Task<JsonResult> CreateNewAction (int proposalID, string actionDesc, string ownerFFID, string ownerFullname)
@@ -3740,34 +3932,25 @@ namespace ESAVINGS_v1.Controllers
 						proposalOwnerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
 					}
 
+
+					// English message
+					this.SwitchToEnglish(true, Request.Cookies);
 					string emailMsg = string.Format(Resources.Controllers.ESavings.create_new_action_email_msg, proposalDetails.ProposalTicket);
-					emailMsg += this.GetDetailsLinkForEmail(proposalID);
+					string email_subject = Resources.Controllers.ESavings.create_new_action_email_subject + proposalDetails.ProposalTicket;
 					emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-					//					string emailMsg = string.Format(@"Action Needed from E-Savings Ticket #{0} assign to you. Please click the link below to view the details <br/>
-					//											<a href='{1}/Home/Details/{2}'>Details</a>
-					//											<table>
-					//												<tr><td>Project Type</td><td>{3}</td></tr>
-					//												<tr><td>Project Title</td><td>{4}</td></tr>
-					//												<tr><td>Current Description</td><td>{5}</td></tr>
-					//												<tr><td>Proposal Description</td><td>{6}</td></tr>
-					//												<tr><td>Proposed By</td><td>{7}</td></tr>
-					//												<tr><td>Department</td><td>{8}</td></tr>
-					//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-					//											</table>",
-					//												 proposalDetails.ProposalTicket,
-					//												 this.base_url,
-					//												 proposalID,
-					//												 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-					//												 proposalDetails.ProjectTitle,
-					//												 proposalDetails.CurrentDescription,
-					//												 proposalDetails.ProposalDescription,
-					//												 proposalDetails.SubmittedBy,
-					//												 proposalDetails.EmpDeptCode,
-					//												 proposalDetails.AreaDeptBeneficiary);
+
+					// Localize message
+					this.SwitchToEnglish(false, Request.Cookies);
+					if (CultureInfo.CurrentCulture.Name != "en-US")
+					{
+						emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.create_new_action_email_msg, proposalDetails.ProposalTicket) +"<br/>";
+						email_subject += " / " + Resources.Controllers.ESavings.create_new_action_email_subject + proposalDetails.ProposalTicket;
+						emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+					}
 
 					//"Action Needed from E-Savings-Ticket#"
-					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.create_new_action_email_subject + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 					sendEmail.Add_To_Recipient(actionOwnerEmail);
 					sendEmail.Add_CC_Recipient(actionOwnerDirectSupvEmail);
 					sendEmail.Add_CC_Recipient(proposalOwnerEmail);
@@ -3923,35 +4106,26 @@ namespace ESAVINGS_v1.Controllers
 								string ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
 
 
+
+								// English message
+								this.SwitchToEnglish(true, Request.Cookies);
 								string emailMsg = string.Format(Resources.Controllers.ESavings.save_action_owner_response_email_msg, proposalDetails.ProposalTicket, this.UserFullName);
-								emailMsg += this.GetDetailsLinkForEmail(proposalID);
+								string email_subject = Resources.Controllers.ESavings.save_action_owner_response_email_subject + proposalDetails.ProposalTicket;
 								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-								//								string emailMsg = string.Format(@"E-Savings Ticket #{0} Action item responded by action Owner [{1}]. Please click the link below to view the details <br/>
-								//																	<a href='{2}/Home/Details/{3}'>Details</a>
-								//																	<table>
-								//																		<tr><td>Project Type</td><td>{4}</td></tr>
-								//																		<tr><td>Project Title</td><td>{5}</td></tr>
-								//																		<tr><td>Current Description</td><td>{6}</td></tr>
-								//																		<tr><td>Proposal Description</td><td>{7}</td></tr>
-								//																		<tr><td>Proposed By</td><td>{8}</td></tr>
-								//																		<tr><td>Department</td><td>{9}</td></tr>
-								//																		<tr><td>Department/Area beneficiary</td><td>{10}</td></tr>
-								//																	</table>",
-								//													 proposalDetails.ProposalTicket,
-								//													 this.UserFullName,
-								//													 this.base_url,
-								//													 proposalID,
-								//													 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-								//													 proposalDetails.ProjectTitle,
-								//													 proposalDetails.CurrentDescription,
-								//													 proposalDetails.ProposalDescription,
-								//													 proposalDetails.SubmittedBy,
-								//													 proposalDetails.EmpDeptCode,
-								//													 proposalDetails.AreaDeptBeneficiary);
+
+								// Localize message
+								this.SwitchToEnglish(false, Request.Cookies);
+								if (CultureInfo.CurrentCulture.Name != "en-US")
+								{
+									emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.save_action_owner_response_email_msg, proposalDetails.ProposalTicket, this.UserFullName) +"<br/>";
+									email_subject += " / " + Resources.Controllers.ESavings.save_action_owner_response_email_subject + proposalDetails.ProposalTicket;
+									emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+								}
+
 
 								//"Action Needed from E-Savings-Ticket#"
-								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.save_action_owner_response_email_subject + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 								sendEmail.Add_CC_Recipient(proposalOwnerEmail);
 								sendEmail.Add_CC_Recipient(ownerManagerEmail);
 
@@ -4010,6 +4184,16 @@ namespace ESAVINGS_v1.Controllers
 
 			return Json(results);
 
+		}
+
+
+		public string[] GetProposalActionVerificationStatusList ()
+		{
+			string[] verificationApprovalStatusList = { Resources.Controllers.ESavings.unknown, 
+																			Resources.Controllers.ESavings.verified_closed, 
+																			Resources.Controllers.ESavings.verify_not_done };
+
+			return verificationApprovalStatusList;
 		}
 
 
@@ -4162,42 +4346,33 @@ namespace ESAVINGS_v1.Controllers
 
 								#region Email notification
 
-								string[] verificationApprovalStatusList = { Resources.Controllers.ESavings.unknown, 
-																			Resources.Controllers.ESavings.verified_closed, 
-																			Resources.Controllers.ESavings.verify_not_done };
+								//string[] verificationApprovalStatusList = { Resources.Controllers.ESavings.unknown, 
+								//											Resources.Controllers.ESavings.verified_closed, 
+								//											Resources.Controllers.ESavings.verify_not_done };
+
+								string[] verificationApprovalStatusList = { };
 								//string[] verificationApprovalStatusList = { "Unknown", "Verified closed", "Verify not closed" };
 
 
+								// English message
+								this.SwitchToEnglish(true, Request.Cookies);
+								verificationApprovalStatusList = this.GetProposalActionVerificationStatusList();
 								string emailMsg = string.Format(Resources.Controllers.ESavings.action_approval_email_msg, proposalDetails.ProposalTicket, verificationApprovalStatusList[verificationStatusParse], this.UserFullName);
-								emailMsg += this.GetDetailsLinkForEmail(proposalID);
+								string email_subject = verificationApprovalStatusList[verificationStatusParse]+" E-Savings-Ticket#"+proposalDetails.ProposalTicket;
 								emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-								// Notify the action owner
-								//								string emailMsg = string.Format(@"E-Savings Ticket #{0}, {1} by {2} . Please click the link below to view the details <br/>
-								//													<a href='{3}/Home/Details/{4}'>Details</a>
-								//													<table>
-								//														<tr><td>Project Type</td><td>{5}</td></tr>
-								//														<tr><td>Project Title</td><td>{6}</td></tr>
-								//														<tr><td>Current Description</td><td>{7}</td></tr>
-								//														<tr><td>Proposal Description</td><td>{8}</td></tr>
-								//														<tr><td>Proposed By</td><td>{9}</td></tr>
-								//														<tr><td>Department</td><td>{10}</td></tr>
-								//														<tr><td>Department/Area beneficiary</td><td>{11}</td></tr>
-								//													</table>",
-								//														proposalDetails.ProposalTicket,
-								//														verificationApprovalStatusList[verificationStatusParse],
-								//														this.UserFullName,
-								//														this.base_url,
-								//														proposalID,
-								//														StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-								//														proposalDetails.ProjectTitle,
-								//														proposalDetails.CurrentDescription,
-								//														proposalDetails.ProposalDescription,
-								//														proposalDetails.SubmittedBy,
-								//														proposalDetails.EmpDeptCode,
-								//														proposalDetails.AreaDeptBeneficiary);
 
-								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, verificationApprovalStatusList[verificationStatusParse]+" E-Savings-Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+								// Localize message
+								this.SwitchToEnglish(false, Request.Cookies);
+								if (CultureInfo.CurrentCulture.Name != "en-US")
+								{
+									verificationApprovalStatusList = this.GetProposalActionVerificationStatusList();
+									emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.action_approval_email_msg, proposalDetails.ProposalTicket, verificationApprovalStatusList[verificationStatusParse], this.UserFullName) +"<br/>";
+									email_subject += " / " + verificationApprovalStatusList[verificationStatusParse]+" E-Savings-Ticket#"+proposalDetails.ProposalTicket;
+									emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+								}
+
+								Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 								sendEmail.Add_To_Recipient(actionOwnerEmail);
 								sendEmail.Add_CC_Recipient(ownerManagerEmail);
 								sendEmail.Add_CC_Recipient(proposalOwnerEmail);
@@ -4299,38 +4474,23 @@ namespace ESAVINGS_v1.Controllers
 						}
 
 
+						// English message
+						this.SwitchToEnglish(true, Request.Cookies);
 						string emailMsg = string.Format(Resources.Controllers.ESavings.re_assign_project_CA_email_msg, proposalDetails.ProposalTicket, this.UserFullName);
-						emailMsg += this.GetDetailsLinkForEmail(proposalID);
+						string email_subject = "E-Savings Ticket#"+proposalDetails.ProposalTicket;
 						emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-						//						string emailMsg = string.Format(@"E-Savings Ticket #{0}, is re-assign to you as cost-analyst approver by {1}. Please click the link below to view the details <br/>
-						//												<a href='{2}/Home/Details/{3}'>Details</a>
-						//												<table>
-						//													<tr><td>Project Type</td><td>{4}</td></tr>
-						//													<tr><td>Project Title</td><td>{5}</td></tr>
-						//													<tr><td>Current Description</td><td>{6}</td></tr>
-						//													<tr><td>Proposal Description</td><td>{7}</td></tr>
-						//													<tr><td>Proposed By</td><td>{8}</td></tr>
-						//													<tr><td>Department</td><td>{9}</td></tr>
-						//													<tr><td>Department/Area beneficiary</td><td>{10}</td></tr>
-						//												</table>
-						//												<br/>
-						//												<b>{1}'s remarks: </b> {11}
-						//											",
-						//											proposalDetails.ProposalTicket,
-						//											this.UserFullName,
-						//											this.base_url,
-						//											proposalID,
-						//											StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-						//											proposalDetails.ProjectTitle,
-						//											proposalDetails.CurrentDescription,
-						//											proposalDetails.ProposalDescription,
-						//											proposalDetails.SubmittedBy,
-						//											proposalDetails.EmpDeptCode,
-						//											proposalDetails.AreaDeptBeneficiary,
-						//											remarks);
 
-						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "E-Savings Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+						// Localize message
+						this.SwitchToEnglish(false, Request.Cookies);
+						if (CultureInfo.CurrentCulture.Name != "en-US")
+						{
+							emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.re_assign_project_CA_email_msg, proposalDetails.ProposalTicket, this.UserFullName) +"<br/>";
+							email_subject += " / " + "E-Savings Ticket#"+proposalDetails.ProposalTicket;
+							emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+						}
+
+						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 						var empInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, costAnalyst.FFID);
 						if (empInfo.Count > 0)
@@ -4436,6 +4596,21 @@ namespace ESAVINGS_v1.Controllers
 					}
 
 
+					if (qlikviewdata.ActualAmount != 0 && projectDetails.ActualAmount != qlikviewdata.ActualAmount)
+					{
+						Factory.ProposalFactory().UpdateProposalActualAmount(qlikviewdata.ActualAmount, proposalID);
+						msg += Resources.Controllers.ESavings.updated_actual_amount + "<br";
+					}
+
+
+					if (qlikviewdata.TrackingCategoryId != 0 && projectDetails.TrackingCategoryID != qlikviewdata.TrackingCategoryId)
+					{
+						Factory.ProposalFactory().UpdateProposalTrackingCategory(qlikviewdata.TrackingCategoryId, proposalID);
+						msg += Resources.Controllers.ESavings.updated_tracking_category + "<br";
+
+					}
+
+
 					if (qlikviewdata.GlobalFunnelStatusIndicator > 0 && projectDetails.FunnelStatus != qlikviewdata.GlobalFunnelStatusIndicator)
 					{
 						Factory.ProposalFactory().UpdateProposalFunnelStatus(qlikviewdata.GlobalFunnelStatusIndicator, proposalID);
@@ -4523,38 +4698,23 @@ namespace ESAVINGS_v1.Controllers
 						}
 
 
+						// English message
+						this.SwitchToEnglish(true, Request.Cookies);
 						string emailMsg = string.Format(Resources.Controllers.ESavings.re_assign_project_finance_email_msg, proposalDetails.ProposalTicket, this.UserFullName);
-						emailMsg += this.GetDetailsLinkForEmail(proposalID);
+						string email_subject = "E-Savings Ticket#"+proposalDetails.ProposalTicket;
 						emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-						//						string emailMsg = string.Format(@"E-Savings Ticket #{0}, is re-assign to you as finance approver by {1}. Please click the link below to view the details <br/>
-						//												<a href='{2}/Home/Details/{3}'>Details</a>
-						//												<table>
-						//													<tr><td>Project Title</td><td>{4}</td></tr>
-						//													<tr><td>Project Title</td><td>{5}</td></tr>
-						//													<tr><td>Current Description</td><td>{6}</td></tr>
-						//													<tr><td>Proposal Description</td><td>{7}</td></tr>
-						//													<tr><td>Proposed By</td><td>{8}</td></tr>
-						//													<tr><td>Department</td><td>{9}</td></tr>
-						//													<tr><td>Department/Area beneficiary</td><td>{10}</td></tr>
-						//												</table>
-						//												<br/>
-						//												<b>{1}'s remarks: </b> {11}
-						//											",
-						//											proposalDetails.ProposalTicket,
-						//											this.UserFullName,
-						//											this.base_url,
-						//											proposalID,
-						//											StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-						//											proposalDetails.ProjectTitle,
-						//											proposalDetails.CurrentDescription,
-						//											proposalDetails.ProposalDescription,
-						//											proposalDetails.SubmittedBy,
-						//											proposalDetails.EmpDeptCode,
-						//											proposalDetails.AreaDeptBeneficiary,
-						//											remarks);
 
-						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, "E-Savings Ticket#"+proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+						// Localize message
+						this.SwitchToEnglish(false, Request.Cookies);
+						if (CultureInfo.CurrentCulture.Name != "en-US")
+						{
+							emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.re_assign_project_finance_email_msg, proposalDetails.ProposalTicket, this.UserFullName) +"<br/>";
+							email_subject += " / " + "E-Savings Ticket#"+proposalDetails.ProposalTicket;
+							emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+						}
+
+						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 
 						var empInfo = Helpers.ONEmployeesLDAP.SearchEmployee(this.ldapAddress, newFinance.FFID);
 						if (empInfo.Count > 0)
@@ -4680,34 +4840,24 @@ namespace ESAVINGS_v1.Controllers
 					}
 
 
+					// English message
+					this.SwitchToEnglish(true, Request.Cookies);
 					string emailMsg = string.Format(Resources.Controllers.ESavings.assign_project_owner_email_msg, proposalDetails.ProposalTicket);
-					emailMsg += this.GetDetailsLinkForEmail(proposalID);
+					string email_subject = Resources.Controllers.ESavings.assign_project_owner_email_subject + proposalDetails.ProposalTicket;
 					emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-					//					string emailMsg = string.Format(@"E-Savings Ticket #{0} - assigned you as project owner (who execute the project). Please click the link below to view the details <br/>
-					//											<a href='{1}/Home/Details/{2}'>Details</a>
-					//											<table>
-					//												<tr><td>Project Type</td><td>{3}</td></tr>
-					//												<tr><td>Project Title</td><td>{4}</td></tr>
-					//												<tr><td>Current Description</td><td>{5}</td></tr>
-					//												<tr><td>Proposal Description</td><td>{6}</td></tr>
-					//												<tr><td>Proposed By</td><td>{7}</td></tr>
-					//												<tr><td>Department</td><td>{8}</td></tr>
-					//												<tr><td>Department/Area beneficiary</td><td>{9}</td></tr>
-					//											</table>",
-					//												 proposalDetails.ProposalTicket,
-					//												 this.base_url,
-					//												 proposalID,
-					//												 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-					//												 proposalDetails.ProjectTitle,
-					//												 proposalDetails.CurrentDescription,
-					//												 proposalDetails.ProposalDescription,
-					//												 proposalDetails.SubmittedBy,
-					//												 proposalDetails.EmpDeptCode,
-					//												 proposalDetails.AreaDeptBeneficiary);
+
+					// Localize message
+					this.SwitchToEnglish(false, Request.Cookies);
+					if (CultureInfo.CurrentCulture.Name != "en-US")
+					{
+						emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.assign_project_owner_email_msg, proposalDetails.ProposalTicket) +"<br/>";
+						email_subject += " / " + Resources.Controllers.ESavings.assign_project_owner_email_subject + proposalDetails.ProposalTicket;
+						emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+					}
 
 					//"Project Owner in E-Savings-Ticket#"
-					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.assign_project_owner_email_subject + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+					Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 					sendEmail.Add_To_Recipient(actionOwnerEmail);
 					sendEmail.Add_CC_Recipient(proposalOwnerEmail);
 					sendEmail.Add_CC_Recipient(ownerManagerEmail);
@@ -4874,35 +5024,25 @@ namespace ESAVINGS_v1.Controllers
 						string ownerManagerEmail = (empDirectSupv.Email != null) ? empDirectSupv.Email : "";
 
 
+						// English message
+						this.SwitchToEnglish(true, Request.Cookies);
 						string emailMsg = string.Format(Resources.Controllers.ESavings.save_project_owner_response_email_msg, proposalDetails.ProposalTicket, this.UserFullName +" - "+ remarks);
-						emailMsg += this.GetDetailsLinkForEmail(proposalID);
+						string email_subject = Resources.Controllers.ESavings.save_project_owner_response_email_subject + proposalDetails.ProposalTicket;
 						emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
 
-						//						string emailMsg = string.Format(@"E-Savings Ticket #{0} - Project owner responded [{1}].<br/> Please click the link below to view the details <br/>
-						//																	<a href='{2}/Home/Details/{3}'>Details</a>
-						//																	<table>
-						//																		<tr><td>Project Type</td><td>{4}</td></tr>
-						//																		<tr><td>Project Title</td><td>{5}</td></tr>
-						//																		<tr><td>Current Description</td><td>{6}</td></tr>
-						//																		<tr><td>Proposal Description</td><td>{7}</td></tr>
-						//																		<tr><td>Proposed By</td><td>{8}</td></tr>
-						//																		<tr><td>Department</td><td>{9}</td></tr>
-						//																		<tr><td>Department/Area beneficiary</td><td>{10}</td></tr>
-						//																	</table>",
-						//											 proposalDetails.ProposalTicket,
-						//											 this.UserFullName +" - "+ remarks,
-						//											 this.base_url,
-						//											 proposalID,
-						//											 StaticData.GetProjectTypeStr(proposalDetails.ProjectType),
-						//											 proposalDetails.ProjectTitle,
-						//											 proposalDetails.CurrentDescription,
-						//											 proposalDetails.ProposalDescription,
-						//											 proposalDetails.SubmittedBy,
-						//											 proposalDetails.EmpDeptCode,
-						//											 proposalDetails.AreaDeptBeneficiary);
+
+						// Localize message
+						this.SwitchToEnglish(false, Request.Cookies);
+						if (CultureInfo.CurrentCulture.Name != "en-US")
+						{
+							emailMsg += "<br/><br/>" + string.Format(Resources.Controllers.ESavings.save_project_owner_response_email_msg, proposalDetails.ProposalTicket, this.UserFullName +" - "+ remarks) +"<br/>";
+							email_subject += " / " + Resources.Controllers.ESavings.save_project_owner_response_email_subject + proposalDetails.ProposalTicket;
+							emailMsg += this.GetProposalDetailsTblForEmail(proposalDetails);
+						}
+
 
 						//"Project Owner from E-Savings-Ticket#"
-						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, Resources.Controllers.ESavings.save_project_owner_response_email_subject + proposalDetails.ProposalTicket, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
+						Helpers.SendEmail sendEmail = new Helpers.SendEmail(emailMsg, email_subject, this.emailMsgFooter, this.emailSenderName, this.emailSenderEmail, this.emailDefaultRecipient);
 						sendEmail.Add_CC_Recipient(proposalOwnerEmail);
 						sendEmail.Add_CC_Recipient(ownerManagerEmail);
 

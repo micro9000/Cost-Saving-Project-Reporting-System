@@ -153,6 +153,15 @@ namespace Domain
 		}
 
 
+		public string ActualAmountFormatted
+		{
+			get
+			{
+				return string.Format(new CultureInfo("en-US"), "{0:C}", this.actualAmount);
+			}
+		}
+
+
 		public string ProjectedDollarImpact
 		{
 			get
@@ -527,6 +536,49 @@ namespace Domain
 		}
 
 
+		private int trackingCategoryID = 1;
+
+		public int TrackingCategoryID
+		{
+			get
+			{
+				return trackingCategoryID;
+			}
+			set
+			{
+				trackingCategoryID = value;
+			}
+		}
+
+		private string trackingCategory;
+
+		public string TrackingCategory
+		{
+			get
+			{
+				return trackingCategory;
+			}
+			set
+			{
+				trackingCategory = value;
+			}
+		}
+
+		private decimal actualAmount;
+
+		public decimal ActualAmount
+		{
+			get
+			{
+				return actualAmount;
+			}
+			set
+			{
+				actualAmount = value;
+			}
+		}
+
+
 		private DateTime originalDueDate;
 		//
 		// Assign in Submit_Proposal if the user is IDL
@@ -748,8 +800,10 @@ namespace Domain
 			Map(p => p.ProposalImgsPath).Ignore();
 			Map(p => p.ProjectedDollarImpact).Ignore();
 			Map(p => p.FinanceCategory).Ignore();
+			Map(p => p.TrackingCategory).Ignore();
 			Map(p => p.FunnelStatusIndicator).Ignore();
 			Map(p => p.DollarImpactFormatted).Ignore();
+			Map(p => p.ActualAmountFormatted).Ignore();
 			AutoMap();
 		}
 	}

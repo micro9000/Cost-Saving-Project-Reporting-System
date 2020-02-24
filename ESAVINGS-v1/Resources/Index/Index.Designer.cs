@@ -61,6 +61,15 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Actual Amount.
+        /// </summary>
+        public static string ActualAmount {
+            get {
+                return ResourceManager.GetString("ActualAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All.
         /// </summary>
         public static string All {
@@ -79,7 +88,7 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cost-Avoidance Dollar Impact.
+        ///   Looks up a localized string similar to Dollar Impact.
         /// </summary>
         public static string Cost_avoidance_dollar_impact {
             get {
@@ -88,11 +97,20 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cost-Avoidance Total.
+        ///   Looks up a localized string similar to Cost-Avoidance.
         /// </summary>
         public static string Cost_avoidance_total {
             get {
                 return ResourceManager.GetString("Cost_avoidance_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count.
+        /// </summary>
+        public static string Count {
+            get {
+                return ResourceManager.GetString("Count", resourceCulture);
             }
         }
         
@@ -160,6 +178,24 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dollar Impact.
+        /// </summary>
+        public static string One_time_savings_dollar_impact {
+            get {
+                return ResourceManager.GetString("One_time_savings_dollar_impact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to One Time Savings.
+        /// </summary>
+        public static string One_time_savings_total {
+            get {
+                return ResourceManager.GetString("One_time_savings_total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Projected Dollar Impact.
         /// </summary>
         public static string ProjectedDollarImpact {
@@ -178,7 +214,7 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Savings Dollar Impact.
+        ///   Looks up a localized string similar to Dollar Impact.
         /// </summary>
         public static string Savings_Dollar_Impact {
             get {
@@ -187,7 +223,7 @@ namespace ESAVINGS_v1.Resources.Index {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Savings-Total.
+        ///   Looks up a localized string similar to Savings.
         /// </summary>
         public static string Savings_total {
             get {

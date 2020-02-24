@@ -19,5 +19,13 @@ namespace ESavingsAPI
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
 		}
+
+
+		protected void Application_BeginRequest (object sender, EventArgs e)
+		{
+			HttpContext.Current.Response.AppendHeader("Access-Control-Allow-Origin", "*");
+			HttpContext.Current.Response.AddHeader("Access-Control-Allow-Headers", "*");
+			HttpContext.Current.Response.AddHeader("Access-Control-Allow-Credentials", "true");
+		}
 	}
 }

@@ -88,5 +88,10 @@ namespace ESavingsFactory
 		{
 			return new ProposalStatusLogRepository();
 		}
+
+		public static ITrackingCategoryRepository TrackingCategoryRepository ()
+		{
+			return new TrackingCategoryRepository();
+		}
 	}
 }
